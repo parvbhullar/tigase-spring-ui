@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           				   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+           				   
+	<import resource="application-cache.xml"/>
+	<import resource="application-jcaptcha.xml"/>
+	<import resource="application-datasource.xml"/>
+	<import resource="application-jdbc.xml"/>
+    <import resource="application-dao.xml"/>
+    <import resource="application-service.xml"/>
+    <import resource="application-security.xml"/>
+	
+</beans>
+

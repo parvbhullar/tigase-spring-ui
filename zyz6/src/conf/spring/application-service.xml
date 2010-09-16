@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           				   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 
+	<bean id="shopsService" class="com.linkage.ec.apps.webpreferential.shops.service.ShopsService" autowire="byName"/>
+ 	<bean id="couponsService" class="com.linkage.ec.apps.webpreferential.coupons.service.CouponsService" autowire="byName"/>
+ 	<bean id="indexService" class="com.linkage.ec.apps.webpreferential.index.service.IndexService" autowire="byName"/>
+ 	
+ 	<bean id="initService" class="com.linkage.app.gqt.init.service.InitService" autowire="byName"/>
+ 	-->
+ 	<bean id="membersService" class="com.linkage.app.gqt.front.reg.service.MembersService" autowire="byName"/>
+ 	<bean id="activeService" class="com.linkage.app.gqt.backstage.active.service.ActiveService" autowire="byName"/>
+  	<bean id="helpingService" class="com.linkage.app.gqt.backstage.helping.service.HelpingService" autowire="byName"/>	
+  	
+ 	<bean id="diaryService" class="com.linkage.app.gqt.front.diary.service.DiaryService" autowire="byName"/>
+ 	<bean id="sysparamService" class="com.linkage.app.gqt.backstage.sysparam.service.SysparamService" autowire="byName"/>
+ 	<bean id="postulantService" class="com.linkage.app.gqt.backstage.members.service.PostulantService" autowire="byName"/>
+ 	<bean id="assistService" class="com.linkage.app.gqt.backstage.members.service.AssistService" autowire="byName"/>
+ 	<bean id="logService" class="com.linkage.app.gqt.backstage.log.service.LogService" autowire="byName"/>
+</beans>
+

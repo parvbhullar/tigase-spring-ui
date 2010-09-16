@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           				   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	 <bean id="InitDao" class="com.linkage.app.gqt.init.dao.InitDao" autowire="byName"/>
+	 <bean id="orgDao" class="com.linkage.app.gqt.backstage.org.dao.OrgDao" autowire="byName"/>
+	 <bean id="membersDao" class="com.linkage.app.gqt.front.reg.dao.MembersDao" autowire="byName"/>
+	 <bean id="activeDao" class="com.linkage.app.gqt.backstage.active.dao.ActiveDao" autowire="byName"/>
+	 <bean id="helpingDao" class="com.linkage.app.gqt.backstage.helping.dao.HelpingDao" autowire="byName"/>
+	 <bean id="purviesDao" class="com.linkage.app.gqt.purview.dao.PurviesDao" autowire="byName"/>
+	 <bean id="diaryDao" class="com.linkage.app.gqt.front.diary.dao.DiaryDao" autowire="byName"/>
+	 <bean id="sysparamDao" class="com.linkage.app.gqt.backstage.sysparam.dao.SysparamDao" autowire="byName"/>
+	 <bean id="postulantDao" class="com.linkage.app.gqt.backstage.members.dao.PostulantDao" autowire="byName"/>
+	 <bean id="assistDao" class="com.linkage.app.gqt.backstage.members.dao.AssistDao" autowire="byName"/>
+	 <bean id="logDao" class="com.linkage.app.gqt.backstage.log.dao.LogDao" autowire="byName"/>
+</beans>
