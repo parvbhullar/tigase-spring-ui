@@ -1,0 +1,70 @@
+/*-------------------------------------
+zTree Icons Skin
+
+version:	1.1
+author:		Hunter.z
+email:		hunter.z@263.net
+website:	http://code.google.com/p/jquerytree/
+
+-------------------------------------*/
+.tree li button.flagUN.ico_open{ background:url('./img/flag/United Nations.png');}
+.tree li button.flagUN.ico_close{ background:url('./img/flag/United Nations.png');}
+.tree li button.flagRedCross.ico_open{ background:url('./img/flag/Red Cross.png');}
+.tree li button.flagRedCross.ico_close{ background:url('./img/flag/Red Cross.png');}
+.tree li button.flagAU.ico_open{ background:url('./img/flag/African Union.png');}
+.tree li button.flagAU.ico_close{ background:url('./img/flag/African Union.png');}
+
+.tree li button.flagCHN.ico_docu{ background:url('./img/flag/China.png');}
+.tree li button.flagUSA.ico_docu{ background:url('./img/flag/United States of America(USA).png');}
+.tree li button.flagRUS.ico_docu{ background:url('./img/flag/Russian Federation.png');}
+.tree li button.flagDE.ico_docu{ background:url('./img/flag/Germany.png');}
+.tree li button.flagCA.ico_docu{ background:url('./img/flag/Canada.png');}
+.tree li button.flagAU.ico_docu{ background:url('./img/flag/Australia.png');}
+.tree li button.flagJPN.ico_docu{ background:url('./img/flag/Japan.png');}
+.tree li button.flagROK.ico_docu{ background:url('./img/flag/South Korea.png');}
+.tree li button.flagRSA.ico_docu{ background:url('./img/flag/South Africa.png');}
+.tree li button.flagEGY.ico_docu{ background:url('./img/flag/Egypt.png');}
+.tree li button.flagCM.ico_docu{ background:url('./img/flag/Cameroon.png');}
+.tree li button.flagGH.ico_docu{ background:url('./img/flag/Ghana.png');}
+
+.tree li button.iCandyFolder.ico_open{ background:url('./img/iCandy/Open Folder.png');}
+.tree li button.iCandyFolder.ico_close{ background:url('./img/iCandy/Closed Folder.png');}
+.tree li button.iCandyMyPC.ico_open{ background:url('./img/iCandy/My Computer.png');}
+.tree li button.iCandyMyPC.ico_close{ background:url('./img/iCandy/My Computer.png');}
+.tree li button.iCandyMyDate.ico_open{ background:url('./img/iCandy/Calendar multiweek.png');}
+.tree li button.iCandyMyDate.ico_close{ background:url('./img/iCandy/Calendar month.png');}
+
+.tree li button.iCandyEmail.ico_docu{ background:url('./img/iCandy/Email envelope.png');}
+.tree li button.iCandyMusic.ico_docu{ background:url('./img/iCandy/My Music4.png');}
+.tree li button.iCandyMovie.ico_docu{ background:url('./img/iCandy/Movies dvd.png');}
+.tree li button.iCandyImg.ico_docu{ background:url('./img/iCandy/My Pictures4.png');}
+.tree li button.iCandyIM.ico_docu{ background:url('./img/iCandy/Chat.png');}
+.tree li button.iCandyGame.ico_docu{ background:url('./img/iCandy/Software.png');}
+.tree li button.iCandyTools.ico_docu{ background:url('./img/iCandy/Cut.png');}
+.tree li button.iCandyRB.ico_docu{ background:url('./img/iCandy/Delete.png');}
+.tree li button.iCandySetPC.ico_docu{ background:url('./img/iCandy/Control Panel.png');}
+.tree li button.iCandySecret.ico_docu{ background:url('./img/iCandy/Security.png');}
+.tree li button.iCandyLove.ico_docu{ background:url('./img/iCandy/Bookmarks 1.png');}
+.tree li button.iCandyToday.ico_docu{ background:url('./img/iCandy/Calendar day.png');}
+.tree li button.iCandySetDate.ico_docu{ background:url('./img/iCandy/Themes 2.png');}
+
+.tree li button.smoothFolder.ico_open{ background:url('./img/smooth/Red_Chip.png');}
+.tree li button.smoothFolder.ico_close{ background:url('./img/smooth/Blue_Chip.png');}
+.tree li button.smoothMyPC.ico_open{ background:url('./img/smooth/Powerbook 12_.png');}
+.tree li button.smoothMyPC.ico_close{ background:url('./img/smooth/Powerbook 12_.png');}
+.tree li button.smoothMyDate.ico_open{ background:url('./img/smooth/LimeWire.png');}
+.tree li button.smoothMyDate.ico_close{ background:url('./img/smooth/Safari.png');}
+
+.tree li button.smoothEmail.ico_docu{ background:url('./img/smooth/E-mail.png');}
+.tree li button.smoothMusic.ico_docu{ background:url('./img/smooth/GarageBand.png');}
+.tree li button.smoothMovie.ico_docu{ background:url('./img/smooth/iMovie.png');}
+.tree li button.smoothImg.ico_docu{ background:url('./img/smooth/iPhoto.png');}
+.tree li button.smoothIM.ico_docu{ background:url('./img/smooth/iChat.png');}
+.tree li button.smoothGame.ico_docu{ background:url('./img/smooth/AIM.png');}
+.tree li button.smoothTools.ico_docu{ background:url('./img/smooth/Backup.png');}
+.tree li button.smoothRB.ico_docu{ background:url('./img/smooth/Spam.png');}
+.tree li button.smoothSetPC.ico_docu{ background:url('./img/smooth/xScope.png');}
+.tree li button.smoothSecret.ico_docu{ background:url('./img/smooth/Safari.png');}
+.tree li button.smoothLove.ico_docu{ background:url('./img/smooth/Heart.png');}
+.tree li button.smoothToday.ico_docu{ background:url('./img/smooth/iCal.png');}
+.tree li button.smoothSetDate.ico_docu{ background:url('./img/smooth/Word Processor-Word.png');}

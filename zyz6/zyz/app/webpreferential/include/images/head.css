@@ -1,0 +1,78 @@
+A:link {
+	COLOR: #6e6e6e; TEXT-DECORATION: none
+}
+.main
+{
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.main-top
+{
+	width:417px;
+	height:93px;
+	float:left;
+	background-attachment: scroll;
+	background-image: url(menu_01.gif);
+	background-repeat: no-repeat;
+}
+.main-top-1
+{
+	width:583px;
+	height:36px;
+    line-height:36px;
+	float:left;
+	background-attachment: scroll;
+	background-image: url(menu_02.gif);
+	background-repeat: no-repeat;
+}
+
+.main-top-2
+{
+	width:570px;
+	height:36px;
+	float:left;
+	margin: 0px;
+}
+.main-top-2 li{
+	float:left;
+	display:inline;
+	padding-left: 10px;
+	margin-left: 0px;
+	padding-top: 10px;
+}
+.main-top-2 li img{
+	float:left;
+	width: 18px;
+}
+.main-top-2 .middle{
+	background:url(navigation-bg.jpg) repeat-x scroll left top;
+	line-height:36px;
+	height:36px;
+}
+.middle li{
+	display:inline;
+	float:left;
+	width: 100px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.middle li a{
+background:url(nav-seperate.jpg) no-repeat scroll right 6px;
+display:block;
+padding:0 20px;
+font-size:14px;
+font-weight:bold;
+color:#000;
+}
+
+.text_menu_link a{
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+	}
+.text_menu_link a:hover{
+	font-size: 14px;
+	color: #F60;
+	font-weight: bold;
+	}

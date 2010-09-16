@@ -1,0 +1,125 @@
+*{ margin:0; padding:0}
+body{ font-size:12px; font-family:"宋体"; color:#2d0000}
+img{ border:none}
+ul li{ list-style:none}
+.fl{ float:left}
+.fr{ float: right ; margin-left:70px;}
+img{ vertical-align:middle}
+a:link,a:visited{ color:#2d0000; text-decoration:none}
+a:hover{ text-decoration:underline}
+#header{
+	width:960px;
+	margin:0 auto;
+	background-color: #E3F4FA;
+}
+#main,#footer{
+	width:922px;
+	margin:0 auto;
+	background-color: #E3F4FA;
+}
+#main{ padding:20px; width:920px; background:#e3f4fa; overflow:hidden}
+#left,#right{ float:left}
+#left{ width:705px}
+ .pic,.con{ float:left;}
+.box1,.box2{ overflow:hidden;zoom:1; padding:20px 10px; margin-bottom:10px;background:url(../images/bg_item.png) }
+.box1 .pic{ padding:7px; background:url(../images/bg_pic.gif) no-repeat; height:149px; margin-right:20px}
+.box1 .con{width:440px}
+.box1 .con h2{ height:26px; background:url(../images/bg_h2.jpg) no-repeat; text-indent:-999em}
+.box1 .con p{ padding:10px 0 11px 0}
+.box1 .spic{ width:71px; height:62px; float:left; margin-right:5px; padding:6px; background:url(../images/bg_spic.gif) no-repeat; position:relative}
+.box1 .spic span{	display:inline-block;	background:url(../images/sale.png);width:38px;	height:37px;position:absolute;left: 41px;top: 30px;}
+.box1 .more{ padding-left:10px; float:left}
+.pagination{ text-align:center; height:32px; width:705px;  background:url(../images/bg_page.png); padding-top:8px}
+.pagination a, .page-start, .page-next, .page-break, .page-cur {color:#0063dc;font-family:Arial,SimSun;font-size:13px;height:20px;line-height:20px; width:20px;margin-right:5px;overflow:hidden;padding:3px 8px;text-align:center;text-decoration:none; border:#ccc 1px solid}
+.page-break{ border:none}
+a.page-next{ padding-right:20px ; background:url(../images/bg_page-next.gif) no-repeat 54px center}
+.pagination a:hover{ border:1px solid #f60}
+.page-cur{ background:#f60; color:#fff}
+#right{ width:203px; padding-left:12px}
+.box{ background:#f8982a; border:1px solid #f8982a; margin-bottom:10px}
+h3{text-indent:-999em; height:31px}
+#new{  background:url(../images/bg_nh3.jpg);}
+#preferential{background:url(../images/bg_ph3.jpg)}
+#download{background:url(../images/bg_dh3.jpg)}
+.box ul{ padding:5px; background:#ffefcb}
+.box ul li{ padding:5px 5px 5px 20px; border-bottom:1px dashed #ccc; background:url(../images/bg_li.gif) no-repeat 10px  center}
+
+.box2 { padding:22px 10px;}
+.box2  .pic{ border:5px solid #e1e1e1}
+.box2 .con{ margin-left:25px; color:#666; line-height:1.6; width:375px}
+.box2 .con ul{ padding-bottom:5px}
+.box2 .con p{ color:#007d9f;}
+.coupon .box{ border:1px solid #3093da}
+.coupon h3{ height:26px}
+.coupon .box ul  { background:#fff}
+.coupon #new{ background:url(../images/bg_cnh3.jpg)}
+.coupon #download{ background: url(../images/bg_cph3.jpg)}
+
+.wapper{ width:906px; margin:0 auto}
+.recommend h3{ height:36px ; background: url(../images/bg_rah3.jpg)}
+.recommend h3.recent{ background: url(../images/bg_recentrah3.jpg) }
+.box3{ overflow:hidden;zoom:1; background: url(../images/bg_box3.jpg) repeat-y; padding:20px}
+.box3 .pic{ border:4px solid #000; margin-right:20px}
+.box3  .con{ width:400px}
+.box3  .con strong{ color:#007d9f}
+.box3  .con p{ padding:6px 0; color:#666}
+.box3  .con p span{ font-size:70px; color:#007d9f}
+.bt{ height:12px; background:url(../images/bg_bt.jpg); margin-bottom:10px}
+.bannar{ padding:10px; text-align:center}
+.recommend .pagination{ background:url(../images/bg_rpage.jpg) ; width:906px}
+
+#topCon{ width:920px; margin-bottom:10px; height:170px; background:url(../images/bg_topCon.jpg)}
+#topCon h2{ background:url(../images/bg_tit.jpg); text-indent:0; line-height:26px; padding-left:30px; color:#0a8cd5; font-size:16px}
+#topCon .box1 { background:none; padding:20px}
+#topCon .box1 .con{ width:495px;margin:0 28px}
+#topCon .box1 .con p{ padding:5px}
+.cpic{ float:left; width:150px; height:115px; background:url(../images/bg_cpic.jpg); padding:5px}
+
+.business #new{ background:url(../images/bg_ndh3.jpg)}
+.business #download{ background:url(../images/bg_hoth3.jpg)}
+.box4{ overflow:hidden;zoom:1; padding:10px 18px; background:url(../images/bg_box4.jpg) repeat-y}
+.business .bt{ height:12px; font-size:0; background:url(../images/bg_box4bt.jpg)}
+.business .tp{ height:8px; font:0; line-height:0; background:url(../images/bg_tp.jpg)}
+.business  h2{ background:url(../images/bg_lh2.jpg); font-size:16px; line-height:26px; padding-left:30px}
+.item{ overflow:hidden;zoom:1; padding:15px; border-bottom:3px solid #d6d6d6}
+.item .con { line-height:1.5}
+.box4 .pic{ border:6px solid #e1e1e1; margin-right:20px}
+.box4 ul{ color:#666}
+.box4 p{ padding:4px 0}
+.orange{ color:#ff6600}
+.item .fl{ padding-top:25px}
+.box4 .pagination{ background:none ; width:650px}
+.box5,.box6{ background:url(../images/bg_box5.gif) repeat-y; padding-top:15px}
+.box5 .bannar img{ border:10px solid #000}
+.recommend h3.ball { background:url(../images/bg_ballh3.jpg); height:57px}
+.info{ overflow:hidden; padding:10px 60px}
+.info .l,.info .c,.info .r{ float:left; height:156px}
+.info .l{ width:325px}
+.info .c{ width:230px; padding:0 5px}
+.info .r{ width:200px; padding-left:20px}
+.info span{ font-size:18px; font-weight:bold; color:#007d9f; background:#9bcaff; padding:2px; margin-right:20px; width:88px; text-align:right; display:inline-block}
+.info p{ padding:10px 0; font-size:16px; color:#007d9f; font-weight: bold}
+.info em{ font-size:80px;font-style:normal  }
+.info ul{ padding-left:112px; color:#666}
+.info ul li{ padding:3px 0}
+.bannartp{ text-align:center; padding:0 0 20px 0}
+.wapper .tp{ height:10px ; font-size:0; background:url(../images/bg_wtp.gif)}
+.box6{ padding:20px; overflow:hidden;zoom:1}
+.box6 .btn{ padding:10px; background:#f4eefd}
+.box6 .btn img{ margin-right:5px}
+.box6 .btn span{ display:inline-block; padding-left:30px;}
+.add{ padding:5px; border:1px solid #cdc0e1; background:#fff; color:#000; text-decoration:none}
+.warp{ overflow:hidden;zoom:1; padding:20px 0}
+.warp .left{ float:left; width:560px}
+.warp .right{ width:285px; float:left; padding-left:20px}
+.companyName{ overflow:hidden; zoom:1; margin-bottom:10px}
+.companyName img{ float:left; margin-right:10px}
+.companyName h4{ font-size:14px; padding:10px 0; color:#ff6600}
+.boxgray{ background:#f4eefd}
+.boxgray{ padding:20px 20px 20px 10px; line-height:1.4; margin-bottom:10px}
+.boxgray li{ padding:5px 0; overflow:hidden;zoom:1}
+.boxgray li span{ display:inline-block; margin-bottom:1px; float:left; color:#005fa1} 
+.down span{ background:url(../images/bg_downtit.gif); display:inline-block; width:129px; height:23px}
+.down{ padding:20px 40px; background:url(../images/bg_down.jpg) no-repeat left center; margin-top:10px}
+.down li{ padding:5px 0}
+.box6 .pagination{ background:none; width:866px}

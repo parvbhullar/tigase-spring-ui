@@ -1,0 +1,79 @@
+BODY {
+	SCROLLBAR-ARROW-COLOR: #666d77; SCROLLBAR-FACE-COLOR: #ffffff; PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px; 
+	PADDING-LEFT: 0px; PADDING-RIGHT: 0px; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; SCROLLBAR-BASE-COLOR: #ea002c; FONT-FAMILY: "宋体"; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #cccccc; COLOR: #6e6e6e; SCROLLBAR-SHADOW-COLOR: #cccccc; FONT-SIZE: 12px; SCROLLBAR-TRACK-COLOR: #ffffff; 
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff; PADDING-TOP: 0px; sans-serif: 
+}
+
+TD {
+	SCROLLBAR-ARROW-COLOR: #666d77; SCROLLBAR-FACE-COLOR: #ffffff; PADDING-BOTTOM: 0px; LINE-HEIGHT: 15px; MARGIN: 0px; 
+	PADDING-LEFT: 0px; PADDING-RIGHT: 0px; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; SCROLLBAR-BASE-COLOR: #ea002c; FONT-FAMILY: "宋体"; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #cccccc; COLOR: #6e6e6e; SCROLLBAR-SHADOW-COLOR: #cccccc; FONT-SIZE: 12px; SCROLLBAR-TRACK-COLOR: #ffffff; 
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff; PADDING-TOP: 0px
+}
+
+img {
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+
+.login_bg {
+	background-image: url(login_bg.jpg);
+	background-repeat: no-repeat;
+	height: 225px;
+	width: 276px;
+	background-position: center;
+}
+.menubg03 {
+	background-image: url(menu_bg03.gif);
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	font-size: 14px;
+	color: #F00;
+	line-height: 26px;
+	text-indent: 20px;
+}
+
+.bg01 {
+	background-image: url(bg01.jpg);
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+.menu_title_bg {
+	font-size: 14px;
+	color: #33F;
+	background-image: url(menu_title_bg.gif);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	height: 29px;
+	text-align: center;
+	line-height: 26px;
+}
+
+/*按钮控制滚动图片样式*/
+.rollBox{width:900px; overflow:hidden;padding:5px 0 5px 6px;}
+.rollBox .LeftBotton{height:52px;width:19px;background:url(job_mj_069.gif) no-repeat 11px 0;overflow:hidden;float:left;display:inline;margin:25px 0 0 0;cursor:pointer;}
+.rollBox .RightBotton{height:52px;width:20px;background:url(job_mj_069.gif) no-repeat -8px 0;overflow:hidden;float:left;display:inline;margin:25px 0 0 10px;cursor:pointer;}
+.rollBox .Cont{width:840px;height:110px;overflow:hidden;float:left;}
+.rollBox .ScrCont{width:10000000px;}
+.rollBox .Cont .pic{
+	width:110px;
+	height:90px;
+	float:left;
+	text-align:center;
+}
+.rollBox .Cont .pic img{
+	padding:5px;
+	background:#fff;
+	border:1px solid #ccc;
+	display:block;
+	margin:10 auto;
+}
+.rollBox .Cont .pic p{line-height:26px;color:#505050;}
+.rollBox .Cont a:link,.rollBox .Cont a:visited{color:#626466;text-decoration:none;}
+.rollBox .Cont a:hover{color:#f00;text-decoration:underline;}
+.rollBox #List1,.rollBox #List2{float:left;}
