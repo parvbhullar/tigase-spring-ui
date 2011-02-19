@@ -264,17 +264,19 @@
 
 
 <div class="ui-layout-north">
-	<div class="header">Outer - North</div>
+	<div class="header">TONG YI TONG XIN PING TAI</div>
+	<!--  
 	<div class="content">
-		I only have toggler when 'closed' - I cannot be resized - and I do not 'slide open'
+		
 	</div>
+	-->
 	<ul class="toolbar">
-		<li id="tbarToggleNorth" class="first"><span></span>Toggle NORTH</li>
+		<li id="tbarToggleNorth" class="first">Toggle NORTH</li>
 
-		<li id="tbarOpenSouth"><span></span>Open SOUTH</li>
-		<li id="tbarCloseSouth"><span></span>Close SOUTH</li>
-		<li id="tbarPinWest"><span></span>Pin/Unpin WEST</li>
-		<li id="tbarPinEast" class="last"><span></span>Pin/Unpin EAST</li>
+		<li id="tbarOpenSouth">Open SOUTH</li>
+		<li id="tbarCloseSouth">Close SOUTH</li>
+		<li id="tbarPinWest">Pin/Unpin WEST</li>
+		<li id="tbarPinEast" class="last">Pin/Unpin EAST</li>
 	</ul>
 </div>
 
@@ -291,7 +293,7 @@
 	<!-- DIVs for the INNER LAYOUT -->
 
 	<div class="ui-layout-center">
-		<h3 class="header">nei</h3>
+		<h3 class="header">NEI BU BIAO TI</h3>
 		<div class="ui-layout-content">
 
 			

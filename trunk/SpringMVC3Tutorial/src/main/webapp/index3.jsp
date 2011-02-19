@@ -265,17 +265,16 @@
 
 
 <div class="ui-layout-north">
-	<div class="header">统一通信平台</div>
+	<div class="header">TONG YI TONG XIN PING TAI</div>
+	<!--  
 	<div class="content">
 		
 	</div>
+	-->
 	<ul class="toolbar">
-		<li id="tbarToggleNorth" class="first"><span></span>Toggle NORTH</li>
-
-		<li id="tbarOpenSouth"><span></span>Open SOUTH</li>
-		<li id="tbarCloseSouth"><span></span>Close SOUTH</li>
-		<li id="tbarPinWest"><span></span>Pin/Unpin WEST</li>
-		<li id="tbarPinEast" class="last"><span></span>Pin/Unpin EAST</li>
+		<li id="tbarToggleNorth" class="first">邮件</li>
+		<li id="tbarOpenSouth">视频会议</li>
+		<li id="tbarCloseSouth">WebCall</li>
 	</ul>
 </div>
 
@@ -292,7 +291,7 @@
 	<!-- DIVs for the INNER LAYOUT -->
 
 	<div class="ui-layout-center">
-		<h3 class="header">内容</h3>
+		<h3 class="header">NEI BU BIAO TI</h3>
 		<div class="ui-layout-content">
 
 			

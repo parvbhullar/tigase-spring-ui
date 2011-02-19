@@ -16,7 +16,7 @@ body {
 </head>
 <body>
 <form id="file_upload" action="uploadServlet" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" multiple>
+    <input id="fileId" type="file" name="file" multiple>
     <button>Upload</button>
     <div>Upload files</div>
 </form>
@@ -28,12 +28,19 @@ body {
 <script>
 /*global $ */
 $(function () {
+	var fileName;
+	$('input[type=file]').change(function(e){
+		  $in=$(this);
+		  fileName=$in.val();
+		  $in.next().html($in.val());
+		});
+	
     $('#file_upload').fileUploadUI({
         uploadTable: $('#files'),
         downloadTable: $('#files'),
         buildUploadRow: function (files, index) {
-    		window.setTimeout("getPercent();", 100);
-            return $('<tr><td>' + files[index].name + '<\/td>' +
+    		
+            return $('<tr><td>' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td>' +
                     '<td class="file_upload_progress"><div><\/div><\/td>' +
                     '<td class="file_upload_cancel">' +
                     '<button class="ui-state-default ui-corner-all" title="Cancel">' +
@@ -41,7 +48,10 @@ $(function () {
                     '<\/button><\/td><\/tr>');
         },
         buildDownloadRow: function (file) {
-            return $('<tr><td>' + file.name + '<\/td><\/tr>');
+            return $('<tr><td>' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td><\/tr>');
+        },
+        onComplete: function (event, files, index, xhr, handler) {
+            
         }
     });
 });
