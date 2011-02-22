@@ -48,10 +48,13 @@ $(function () {
                     '<\/button><\/td><\/tr>');
         },
         buildDownloadRow: function (file) {
-            return $('<tr><td>' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td><\/tr>');
+            return $('<tr><td class="filename">' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td><td class="file_delete"><button title="Delete" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"><\/span><\/button><\/td><\/tr>');
         },
         onComplete: function (event, files, index, xhr, handler) {
-            
+            //handler.onCompleteAll(files);
+        	$(".file_delete").click(function () {
+        		window.location.href = "./tet1.txt";        		
+            });
         }
     });
 });
