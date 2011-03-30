@@ -9,6 +9,7 @@ public class FileUploadListener implements ProgressListener{
 	private volatile long bytesRead = 0L, contentLength = 0L, item = 0L;   
 
 	  public FileUploadListener() {
+		  
 	    super();
 	  }
 
