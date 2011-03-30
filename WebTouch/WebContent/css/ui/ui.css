@@ -1,0 +1,133 @@
+﻿html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.ui-layout-pane { /* all 'panes' */ 
+		/*padding: 10px;*/ 
+		background: #FFF; 
+		border-top: 1px solid #BBB;
+		border-bottom: 1px solid #BBB;
+		}
+		.ui-layout-pane-north ,
+		.ui-layout-pane-south {
+			border: 1px solid #BBB;
+		} 
+		
+		.ui-layout-pane-south {
+			overflow: hidden !important;
+		} 
+		.ui-layout-pane-west {
+			border-left: 1px solid #BBB;
+		} 
+		.ui-layout-pane-east {
+			border-right: 1px solid #BBB;
+		} 
+		.ui-layout-pane-center {
+			border-left: 0;
+			border-right: 0;
+			} 
+			.inner-center {
+				border: 1px solid #BBB;
+			} 
+
+		.outer-west ,
+		.outer-east {
+			background-color: #EEE;
+		}
+		.middle-west ,
+		.middle-east {
+			background-color: #F8F8F8;
+		}
+
+	.ui-layout-resizer { /* all 'resizer-bars' */ 
+		background: #DDD; 
+		}
+		.ui-layout-resizer:hover { /* all 'resizer-bars' */ 
+			background: #FED; 
+		}
+		.ui-layout-resizer-west {
+			border-left: 1px solid #BBB;
+		}
+		.ui-layout-resizer-east {
+			border-right: 1px solid #BBB;
+		}
+
+	.ui-layout-toggler { /* all 'toggler-buttons' */ 
+		background: #AAA; 
+		} 
+		.ui-layout-toggler:hover { /* all 'toggler-buttons' */ 
+			background: #FC3; 
+		} 
+
+	.outer-center ,
+	.middle-center {
+		/* center pane that are 'containers' for a nested layout */ 
+		padding: 0; 
+		border: 0; 
+	} 
+	
+	#toolbar {
+		padding: 10px 4px;
+	}
+	#toolbar1 {
+		padding-top:6px;
+		padding-bottom:4px;
+	}
+/*自定义开始*/
+
+.buttonBar{position: relative !important;position: absolute;}
+
+.tab9{font-size:0.9em;}
+.button8{font-weight:lighter;font-size:0.8em;}
+
+.noborder{border: 0px;}
+
+.table-td14{font-size: 14px;}
+.EditTable{background-color:#AED0EA}
