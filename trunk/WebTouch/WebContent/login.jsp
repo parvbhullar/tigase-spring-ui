@@ -314,7 +314,7 @@ session.invalidate();
                             <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu1.jpg" alt=""></a>
                             <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu2.jpg" alt=""></a>
                             <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu3.jpg" alt=""></a>
-                            <a href="" target="_blank" class="rotator-item" style=""><img src="images/index/controls-charts.jpg" alt=""></a>
+                            <a href="" target="_blank" class="rotator-item" style=""><img src="images/index/usertu.jpg" alt=""></a>
                             <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu5.jpg" alt=""></a>
                             <ul id="focus_tabsbg" class="rotator-toggle">
                                 <li class="no1"><a href="javascript:void(Mea(0));" class="">1</a></li>
