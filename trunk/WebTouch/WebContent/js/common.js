@@ -46,7 +46,8 @@ function initAccordionMenu(arrMenu){
 function countHeight(){
 	var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
 	var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
-	var h=Number(h1)-Number(h2)-30;
+	var h=Number(h2)-Number(h1)-166;
+	if($.browser.msie){ h=h-193;}
 	innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 
