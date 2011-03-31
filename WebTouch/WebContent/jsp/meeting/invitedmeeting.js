@@ -220,6 +220,6 @@ function comInitContentFunc(parentdiv,type){
 		
 	}else{
 		loadMeetingModList();
-		countHeight();
+		countHeight("list");
 	}
 }
