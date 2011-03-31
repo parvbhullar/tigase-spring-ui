@@ -55,7 +55,8 @@ String username=sessionUserBean.getUserBean().getName();
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
-    
+    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+	
 <script type="text/javascript">
 	var outerLayout, innerLayout,innerWestLayout;
 	$(document).ready( function() {
@@ -332,7 +333,7 @@ String username=sessionUserBean.getUserBean().getName();
 		$( "#accordion" ).accordion({ clearStyle: true });
 		$( "#accordion" ).accordion( "option", "icons", icons );
 		//innerLayout
-		innerLayout.sizePane('south', 235);innerLayout.open('south');
+		//innerLayout.sizePane('south', 235);innerLayout.open('south');
 		outerLayout.open("west");
 		innerWestLayout.sizePane('north', 300);innerWestLayout.open('north');
 		//$(".ui-layout-center.ui-layout-pane.ui-layout-pane-center").css("height",200);
