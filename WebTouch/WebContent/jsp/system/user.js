@@ -50,7 +50,7 @@ $(document).ready( function() {
 			$(parentdiv+" #curdForm").hide();
 			$(parentdiv+" #UpdUserDiv").hide();
 			$(parentdiv+" #listDiv").show();
-			countHeight();
+			countHeight("list");
 		}
 	}
 
@@ -259,7 +259,7 @@ $(document).ready( function() {
 		  initUserContent("#userMod","list");
 		  $('#userForm')[0].reset();
 		  clearMessage();
-		  //innerLayout.show('south');
+		  countHeight("form");
 		  $("#mainContent .ui-layout-south.ui-layout-pane.ui-layout-pane-south").html("详细信息显示内容栏");
 		});
 	

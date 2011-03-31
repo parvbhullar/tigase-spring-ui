@@ -43,13 +43,24 @@ function initAccordionMenu(arrMenu){
 	$(".content").html(str1+str2+str3)
 }
 
-function countHeight(){
-	var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
-	var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
-	var h=Number(h2)-Number(h1)-166;
-	if($.browser.msie){ h=h-193;}
+function countHeight(type){
+	if("list"==type){
+		var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
+		var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
+		var h=Number(h2)-Number(h1)-166;
+		if($.browser.msie){ h=h-193;}
+	}else{ 
+		if("form"==type){
+			var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
+			var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
+			var h=Number(h1)-Number(h2)-2;
+			if($.browser.msie){ h=h+4;}
+		}
+	}
 	innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
+
+
 
 //自动关闭提示框
 function blockUI(message,second)
