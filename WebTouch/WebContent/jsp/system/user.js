@@ -63,7 +63,6 @@ $(document).ready( function() {
 		}else{
 			loadUserList();
 			$( "#dialogViewUser" ).hide();
-			innerLayout.open('south');
 		}
 	}
 	
