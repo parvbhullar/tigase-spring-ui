@@ -44,6 +44,7 @@ function initAccordionMenu(arrMenu){
 }
 
 function countHeight(type){
+	
 	if("list"==type){
 		var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
 		var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
@@ -57,6 +58,7 @@ function countHeight(type){
 			if($.browser.msie){ h=h+4;}
 		}
 	}
+	console.info("documentElement.clientHeight="+document.documentElement.clientHeight+";h1="+h1+";"+$("#listDiv").css("height").substring(0,($("#listDiv").css("height").length-2)))
 	innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 
