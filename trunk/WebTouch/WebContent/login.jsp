@@ -8,8 +8,6 @@ session.invalidate();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>统一通信</title>
 
 
@@ -273,14 +271,14 @@ session.invalidate();
                             <div class="formrow formrow-user">
                                 <div class="label"><label for="logname">账号</label></div>
                                 <div class="form-enter">
-                                    <input type="text" tabindex="2" id="logname" name="logname" class="text" value="">
+                                    <input type="text" tabindex="2" id="logname" name="logname" class="text" value="csadmin">
                                 </div>
                                  
                             </div>
                             <div class="formrow formrow-password">
                                 <div class="label"><label for="password">密码</label></div>
                                 <div class="form-enter">
-                                    <input type="password" tabindex="3" id="password" name="password" class="text" value="">
+                                    <input type="password" tabindex="3" id="password" name="password" class="text" value="123456">
                                 </div>
                                 
                             </div>
