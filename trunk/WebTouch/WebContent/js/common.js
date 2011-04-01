@@ -44,21 +44,18 @@ function initAccordionMenu(arrMenu){
 }
 
 function countHeight(type){
-	
+	var h1=document.documentElement.clientHeight;
 	if("list"==type){
-		var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
-		var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
-		var h=Number(h2)-Number(h1)-113;
-		if($.browser.msie){ h=h-130;}
+		var h2=$("#userMod").css("height").substring(0,($("#tabs").css("height").length-2));
+		var h=Number(h1)-450;
+		if($.browser.msie){ h=h;}
 	}else{ 
 		if("form"==type){
-			var h1=$("#mainContent").css("height").substring(0,($("#mainContent").css("height").length-2));
-			var h2=$("#tabs").css("height").substring(0,($("#tabs").css("height").length-2));
-			var h=Number(h1)-Number(h2)-2;
+			var h2=$("#userMod").css("height").substring(0,($("#tabs").css("height").length-2));
+			var h=Number(h1)-450;
 			if($.browser.msie){ h=h+4;}
 		}
 	}
-	console.info("documentElement.clientHeight="+document.documentElement.clientHeight+";h1="+h1+";"+$("#listDiv").css("height").substring(0,($("#listDiv").css("height").length-2)))
 	innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 
