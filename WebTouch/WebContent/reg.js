@@ -1,16 +1,17 @@
 $(document).ready(function() {
 	var validator = $("#signupform").validate({
 		rules: {
-			username: "required"
+			username: "required",
+			email	: "required email"
 			
 		},
 		messages: {
-			username: "请填写用户名"
+			username: "请填写用户名",
+			email	: "邮箱地址不对"
 			
 		},
 		// the errorPlacement has to take the table layout into account
 		errorPlacement: function(error, element) {
-			console.info("36")
 			if ( element.is(":radio") )
 				error.appendTo( element.parent().next().next() );
 			else if ( element.is(":checkbox") )
