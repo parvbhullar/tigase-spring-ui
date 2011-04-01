@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib uri="http://jakarta.apache.org/taglibs/i18n-1.0"
 	prefix="i18n"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<link href="js/friendchoose/css/style.css" rel="stylesheet" type="text/css" />
