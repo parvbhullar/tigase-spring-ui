@@ -19,7 +19,7 @@ $(document).ready(function() {
 			{
 				//$"<span class='form-tip tip-error'>"+error.label+"</br></span>".appendTo( element.next() );
 				
-				element.next("").append("<span class='form-tip tip-error'><br></span>")
+				//element.next("").append("<span class='form-tip tip-error'><br></span>")
 				error.appendTo( element.next() );
 			}
 		},
