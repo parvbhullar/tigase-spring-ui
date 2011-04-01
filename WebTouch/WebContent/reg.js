@@ -18,10 +18,10 @@ $(document).ready(function() {
 			else
 			{
 				//$"<span class='form-tip tip-error'>"+error.label+"</br></span>".appendTo( element.next() );
-				error.appendTo( element.next() );
-				element.next("").append("<span class='form-tip tip-error'><br></span>")
-			}
 				
+				element.next("").append("<span class='form-tip tip-error'><br></span>")
+				error.appendTo( element.next() );
+			}
 		},
 		// specifying a submitHandler prevents the default submit, good for the demo
 		submitHandler: function() {
