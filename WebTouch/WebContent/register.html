@@ -12,13 +12,14 @@
 <script type="text/javascript">
 var root = '';debugMode=false;
 //var cookieid = '';
-var staticExt = '?5.0.2.0111';
-var cookieDomain = '.chinaz.com';
+var staticExt = '';
+var cookieDomain = '';
 var isExecuteJobTime = false;
 var jobUrl = '/handler/job.html';
 </script>
 <script type="text/javascript" src="js/index/max-lib.js"></script>
 <script type="text/javascript" src="js/jqueryui/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="reg.js"></script>
 <script type="text/javascript" src="js/jquery-validate/jquery.validate.min.js"></script> 
 
 </head>
@@ -100,23 +101,25 @@ var jobUrl = '/handler/job.html';
                         </div>
             
                             <div class="formgroup registerform">
-                                <form method="post" action="/register.html">
+                                <form method="post" action="" id="signupform">
+                            
                             
                             <div class="formrow">
                                 <label for="email" class="label">电子邮箱</label>
                                 <div class="form-enter">
-                                    <input type="text" value="" id="email" name="email" onblur="validate('email')" class="text">
-                                    <span id="err_email"><span class="form-tip tip-error">请填写电子邮件地址<br></span></span>
+                                    <input type="text" value="" id="email" name="email" class="text">
+                                    <span id="err_email"></span>
                                 </div>
                                 
                                 <div class="form-note">请准确填入您的邮箱. 在忘记密码, 或者您使用邮件通知功能时, 会发送邮件到该邮箱.</div>
                                 
                             </div>
+                             
                             <div class="formrow">
                                 <label for="username" class="label">用户名</label>
                                 <div class="form-enter">
-                                    <input type="text" value="" onblur="validate('username')" id="username" name="username" class="text">
-                                    <span id="err_username"><span class="form-tip tip-error">请填写用户名<br></span></span>
+                                    <input type="text" value=""  id="username" name="username" class="text">
+                                    <span id="err_username"></span>
                                 </div>
                                 <div class="form-note">用户名由3到14位的中文字符、英文字母、数字组成</div>
                             </div>
@@ -136,6 +139,16 @@ var jobUrl = '/handler/job.html';
                                     </span>
                                 </div>
                             </div>
+                            
+                            <div class="formrow">
+                                <label for="username" class="label">用户名</label>
+                                <div class="form-enter">
+                                    <input type="text" value=""  id="username" name="username" class="text">
+                                    <span id="err_username"></span>
+                                </div>
+                                <div class="form-note">用户名由3到14位的中文字符、英文字母、数字组成</div>
+                            </div>
+                            
                             <!--  
                             <div class="formrow formrow-captcha">
                                 <label for="validatecode" class="label">验证码</label>
