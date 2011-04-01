@@ -3603,7 +3603,7 @@ widget("emot", {
                 each(emots, function(n, v){
                     var src = v.src, title = v.t ? v.t : v.q[0];
                     markup.push('<li><img src="');
-                    markup.push(src);
+                    markup.push("js/im"+src.substring(5))
                     markup.push('" title="');
                     markup.push(title);
                     markup.push('" alt="');
