@@ -223,6 +223,7 @@
 	</servlet-mapping>
 	<!-- 配置 servlet结束 -->
 	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
 		<welcome-file>login.jsp</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
