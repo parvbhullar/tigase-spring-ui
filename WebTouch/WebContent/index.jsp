@@ -54,9 +54,11 @@ String username=sessionUserBean.getUserBean().getName();
     <script type="text/javascript" src="js/im/webim.js"></script>
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
-    <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
+    <script type="text/javascript" src="jsp/mail/mail2.js"></script>
+    
+    <!-- 
     <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
-	
+	 -->
 <script type="text/javascript">
 	var outerLayout, innerLayout,innerWestLayout;
 	$(document).ready( function() {
@@ -283,6 +285,7 @@ String username=sessionUserBean.getUserBean().getName();
 	<div class="ui-layout-center">
 		<div id="content">
 		
+		
 	</div>
 	</div>
 	
@@ -310,7 +313,21 @@ String username=sessionUserBean.getUserBean().getName();
 
 	<div class="ui-layout-center">
 		<div class="ui-layout-content" style="padding: 0px;">
-			<div id="tabs"></div>
+			<div id="tabs">
+				<ul id="ultab">
+				</ul>
+				<div id="tabs-1">
+					
+				</div>
+				<div id="tabs-2">
+					<div><table id="mailList"></table></div>
+				</div>
+				<div id="tabs-3">
+					<table id="mailList"></table>
+				</div>	
+				<div id="tabs-4">
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -336,6 +353,9 @@ String username=sessionUserBean.getUserBean().getName();
 		//innerLayout.sizePane('south', 235);innerLayout.open('south');
 		outerLayout.open("west");
 		innerWestLayout.sizePane('north', 300);innerWestLayout.open('north');
+
+		$(".ui-layout-content").css("padding","0px");
+    	$(".ui-layout-content").css("overflow","hidden");
 		//$(".ui-layout-center.ui-layout-pane.ui-layout-pane-center").css("height",200);
 		//innerWestLayout.sizePane('center', 130);innerWestLayout.open('center');
 	});

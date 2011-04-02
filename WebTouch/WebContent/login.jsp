@@ -299,7 +299,7 @@ session.invalidate();
                             <div class="formrow formrow-action">
                                 <input type="hidden" value="/default.html" name="returnurl">
                                 <span class="button-login"><input type="submit" tabindex="7" value="登录" name="login" class="button" id="max_unnamedsubmit_6"></span>
-                                <span class="button-register"><a tabindex="8" href="register.jsp" class="button">立即注册</a></span>
+                                <span class="button-register"><a tabindex="8" href="register.html" class="button">立即注册</a></span>
                             </div>
                         </div>
                         </form>
