@@ -199,7 +199,7 @@ function loadmessage(authIndex,index){
 //加载个人设置模块
 function loadpersonal(authIndex,index){
 	$("#accordion").remove();
-	$(".content").html("<div id='accordion'><h3><a href='#' class='dcjq-parent'>个人设置<span class='dcjq-icon'></span></a></h3><div><ul><li><a href='#' class='dcjq-parent'>修改个人信息<span class='dcjq-icon'></span></a></li><li><a href='#' class='dcjq-parent'>修改密码<span class='dcjq-icon'></span></a></li></ul></div>");
+	$(".content").html("<div id='accordion'><h3><a href='#' class='dcjq-parent'>个人设置<span class='dcjq-icon'></span></a></h3><div><ul><li><a href='#' class='dcjq-parent'>个人信息<span class='dcjq-icon'></span></a></li><li><a href='#' class='dcjq-parent'>修改密码<span class='dcjq-icon'></span></a></li></ul></div>");
 	initAccordion();
 	initAccordionFun(authIndex,index);
 	$.ajax({
