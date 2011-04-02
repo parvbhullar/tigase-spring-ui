@@ -115,7 +115,7 @@ arrMenu[2][1]=[
 		
 	$(document).ready( function() {
 		//加载TAB模块
-		
+		/*
 		modules[0].include=true;
 		modules[0].canloaded=true;
 		$.ajax({
@@ -130,4 +130,7 @@ arrMenu[2][1]=[
 			    	$(".ui-layout-content").css("overflow","hidden");
 			  }
 		});
+		*/
+		$(".ui-layout-content").css("padding","0px");
+    	$(".ui-layout-content").css("overflow","hidden");
 	});	

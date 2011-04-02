@@ -90,7 +90,7 @@
 <div id="dialogViewUser" title="查看用户">
 <div id="viewuser">
 
-<fieldset class="ui-widget ui-widget-content ui-corner-all" >
+<fieldset class="ui-widget ui-widget-content ui-state-hover">
 	<legend>用户详细信息</legend>
 	<table border="1">
 	<tr><td width="10%">登录名:	   	</td><td width="40%"><label id="logname" >		</label></td><td width="10%">昵称 </td>		<td width="40%"><label id="nickname">		</label></td></tr>
