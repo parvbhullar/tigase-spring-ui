@@ -24,7 +24,12 @@ String username=sessionUserBean.getUserBean().getName();
 	<script src="<%=ctxindex%>/js/jqgrid/js/jquery.jqGrid.min2.js" type="text/javascript"></script>
 	
 	<script src="<%=ctxindex%>/js/jquery.blockUI.js" type="text/javascript"></script>
+	 
 	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/redmond/jquery-ui-1.8.7.custom.css" rel="stylesheet" />
+	 
+	 <!--  
+	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/flick/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
+	-->
 	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
 	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
@@ -152,10 +157,7 @@ String username=sessionUserBean.getUserBean().getName();
 		//,	initClosed:						true
 		,	center__minWidth:				200
 		,	center__minHeight:				200
-		, 	south: {
-				slidable:				false
-			,	resizable: 				false
-			}
+		
 		};
 
 	/*
@@ -281,21 +283,22 @@ String username=sessionUserBean.getUserBean().getName();
 				</div>
 			</div>
 		</div>
-	</div>//end west ui-layout-north
+	</div>
+	<!--  
+	//end west ui-layout-north
 	<div class="ui-layout-center">
 		<div id="content">
-		
-		
 	</div>
 	</div>
+	-->
 	
 	</div>
 
 
-<div class="ui-layout-north" style="background-image:url(images/index/top.gif)">
-	<div style="float:right;padding-right:30px;padding-top:10px;"><label id="username"><img src="images/index/group.png" />当前用户：<%=username %></label>&nbsp;|&nbsp;
+<div class="ui-layout-north" style="background-image:url(images/head_bg.jpg)">
+	<div style="float:right;padding-right:30px;padding-top:10px;"><label id="username"><img width="25" src="css/im/images/noavatar_small.gif" />当前用户：<%=username %></label>&nbsp;|&nbsp;
 	<a id="personal" href="javascript:void(false)">个人设置</a>&nbsp;|&nbsp;
-	<a id="cancellation" href="login.jsp">注销</a>
+	<a id="cancellation" href="login.jsp">注销 </a>
 	</div>
 </div>
 
@@ -352,7 +355,7 @@ String username=sessionUserBean.getUserBean().getName();
 		//innerLayout
 		//innerLayout.sizePane('south', 235);innerLayout.open('south');
 		outerLayout.open("west");
-		innerWestLayout.sizePane('north', 300);innerWestLayout.open('north');
+		//innerWestLayout.sizePane('north', 300);innerWestLayout.open('north');
 
 		$(".ui-layout-content").css("padding","0px");
     	$(".ui-layout-content").css("overflow","hidden");
@@ -375,7 +378,7 @@ String username=sessionUserBean.getUserBean().getName();
 	function createInnerWestLayout () {
 	    // innerLayout is INSIDE the center-pane of the outerLayout
 	    //debugData( layoutSettings_Inner );
-	    innerWestLayout = $( outerLayout.options.west.paneSelector ).layout(layoutSettings_West);
+	    //innerWestLayout = $( outerLayout.options.west.paneSelector ).layout(layoutSettings_West);
 	    // hide 'Create Inner Layout' commands and show the list of testing commands
 	}
 	
