@@ -46,7 +46,8 @@ public class Login extends HttpServlet {
 					e.printStackTrace();
 				}
 				session.setAttribute("sessionUserBean", sessionUserBean);
-				request.getRequestDispatcher("layout2.jsp").forward(request, response);
+				//request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("complexLayout.jsp").forward(request, response);
 			}else{
 				String errmessage = loginBean.getErrmessage();
 				out.print("<script type='text/javascript'>alert('"+errmessage+"');history.go(-1);</script>");
