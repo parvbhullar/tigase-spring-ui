@@ -56,7 +56,7 @@ function countHeight(type){
 			if($.browser.msie){ h=h+4;}
 		}
 	}
-	innerLayout.sizePane('south', (h));innerLayout.open('south');
+	//innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 
 
