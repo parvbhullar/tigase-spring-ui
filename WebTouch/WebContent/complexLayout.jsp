@@ -1,36 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.ivyinfo.session.bean.SessionUserBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <% 
 String ctxindex = request.getContextPath();
+HttpSession getSession = request.getSession();
+SessionUserBean sessionUserBean = (SessionUserBean) getSession.getAttribute("sessionUserBean");
+String username=sessionUserBean.getUserBean().getName();
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-	<!-- uncomment 'base' to view this page without external files
-	<base href="http://jquery-border-layout.googlecode.com/svn/trunk/" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/index/complex.css" />
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/jquery.layout.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-ui-1.8.7.custom.min.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/themeswitchertool.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/debug.js"></script>
+	
+	<script src="<%=ctxindex%>/js/jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+	<script src="<%=ctxindex%>/js/jqgrid/js/jquery.jqGrid.min2.js" type="text/javascript"></script>
+	
+	<script src="<%=ctxindex%>/js/jquery.blockUI.js" type="text/javascript"></script>
+	 
+	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/redmond/jquery-ui-1.8.7.custom.css" rel="stylesheet" />
+	 
+	 <!--  
+	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/flick/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
 	-->
-
-	<title>Complex Layout Demo</title>
-
-	<!-- DEMO styles - specific to this page -->
-	<link rel="stylesheet" type="text/css" href="http://layout.jquery-dev.net/demos/css/complex.css" />
-
-	<!--[if lte IE 7]>
-		<style type="text/css"> body { font-size: 85%; } </style>
-	<![endif]-->
 	
-	<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
-	<script type="text/javascript" src="http://layout.jquery-dev.net/lib/js/jquery-ui-latest.js"></script>
-	<script type="text/javascript" src="http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js"></script>
-	<script type="text/javascript" src="http://layout.jquery-dev.net/demos/js/complex.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
+	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
 	
+	<link type="text/css" href="<%=ctxindex%>/js/webcall/css/css.css" rel="stylesheet" />
 	
+	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jqgrid/css/ui.jqgrid.css" />
+	 
+	<script type="text/javascript" src="<%=ctxindex%>/js/common.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
+	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/index/screen.css"   />
+	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/ui/ui.css" 		 media="screen"  />
 	<link href="css/index/screen.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
+	<link rel="stylesheet" href="js/michenriksen/stylesheets/reset.css" media="screen">
+	<link rel="stylesheet" href="js/michenriksen/stylesheets/demo.css" media="screen">
+	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
 	
-	
-
+	<script type="text/javascript" src="js/fgmenu/fg.menu.js"></script>
+    <link type="text/css" href="js/fgmenu/fg.menu.css" media="screen" rel="stylesheet" />
+    
+    <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
+    <link type="text/css" href="css/im/webim.min.css" media="screen" rel="stylesheet" />
+    <script type="text/javascript" src="js/im/webim.js"></script>
+    <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
+    <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
+    <script type="text/javascript" src="jsp/mail/mail2.js"></script>
+    
+    <!-- 
+    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+	 -->
 <script type="text/javascript">
 /*
  * complex.html
@@ -64,9 +97,10 @@ String ctxindex = request.getContextPath();
 		 */
 
 		// BIND events to hard-coded buttons in the NORTH toolbar
-		outerLayout.addToggleBtn( "#tbarToggleNorth", "north" );
-		outerLayout.addOpenBtn( "#tbarOpenSouth", "south" );
-		outerLayout.addCloseBtn( "#tbarCloseSouth", "south" );
+		
+		//outerLayout.addToggleBtn( "#tbarToggleNorth", "north" );
+		//outerLayout.addOpenBtn( "#tbarOpenSouth", "south" );
+		//outerLayout.addCloseBtn( "#tbarCloseSouth", "south" );
 		//outerLayout.addPinBtn( "#tbarPinWest", "west" );
 		//outerLayout.addPinBtn( "#tbarPinEast", "east" );
 
@@ -186,10 +220,12 @@ String ctxindex = request.getContextPath();
 		,	slidable:				false
 		//	override default effect
 		,	fxName:					"none"
+		,	initClosed:				false
 		}
 	,	south: {
 			maxSize:				200
 		,	spacing_closed:			0			// HIDE resizer & toggler when 'closed'
+		,	resizable: 				false
 		,	slidable:				false		// REFERENCE - cannot slide if spacing_closed = 0
 		,	initClosed:				true
 		//	CALLBACK TESTING...
@@ -214,7 +250,7 @@ String ctxindex = request.getContextPath();
 		,	togglerTip_closed:		"Open West Pane"
 		,	resizerTip_open:		"Resize West Pane"
 		,	slideTrigger_open:		"click" 	// default
-		,	initClosed:				true
+		,	initClosed:				false
 		//	add 'bounce' option to default 'slide' effect
 		,	fxSettings_open:		{ easing: "easeOutBounce" }
 		}
@@ -259,6 +295,9 @@ String ctxindex = request.getContextPath();
 	    $('#innerCommands').show();
 	}
 
+	var json0 = {"options":"[{\"mod\":\"sys\",\"modname\":\"系统管理\"}]"}
+	var json1 = {"options":"[{\"mod\":\"orgsys\",\"modname\":\"管理平台\"},{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
+	var json2 = {"options":"[{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
 </script>
 </head>
 <body>
@@ -312,16 +351,19 @@ String ctxindex = request.getContextPath();
 
 <div class="ui-layout-north">
 	<div class="header">云端统一通信平台</div>
+	
 	<!--  
 	<div class="content">
 		
 	</div>
 	-->
+	<!--  
 	<ul class="toolbar">
 		<li id="tbarToggleNorth" class="first">邮件</li>
 		<li id="tbarOpenSouth">视频会议</li>
 		<li id="tbarCloseSouth">WebCall</li>
 	</ul>
+	-->
 </div>
 
 
@@ -336,12 +378,25 @@ String ctxindex = request.getContextPath();
 <div id="mainContent">
 	<!-- DIVs for the INNER LAYOUT -->
 	<div class="ui-layout-center">
-		<div class="ui-layout-content">
 			<div id="tabs">
-			
+				<ul id="ultab">
+				</ul>
+				<DIV class="ui-layout-content">
+				<div id="tabs-1">
+					
+				</div>
+				<div id="tabs-2">
+					<div><table id="mailList"></table></div>
+				</div>
+				<div id="tabs-3">
+					<table id="mailList"></table>
+				</div>	
+				<div id="tabs-4">
+				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div class="ui-layout-south">详细信息显示内容栏</div>
 </div>
 
