@@ -3,7 +3,6 @@
 <%@ page import="com.ivyinfo.session.bean.SessionUserBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
 <% 
 String ctxindex = request.getContextPath();
 HttpSession getSession = request.getSession();
@@ -26,12 +25,8 @@ String username=sessionUserBean.getUserBean().getName();
 	
 	<script src="<%=ctxindex%>/js/jquery.blockUI.js" type="text/javascript"></script>
 	 
-	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/redmond/jquery-ui-1.8.7.custom.css" rel="stylesheet" />
-	 
-	 <!--  
-	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/flick/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
-	-->
-	
+	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/redmond2/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
+s	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
 	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
 	
@@ -43,13 +38,12 @@ String username=sessionUserBean.getUserBean().getName();
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
-	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/index/screen.css"   />
 	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/ui/ui.css" 		 media="screen"  />
 	<link href="css/index/screen.css" rel="stylesheet" type="text/css" />
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
-	<link rel="stylesheet" href="js/michenriksen/stylesheets/reset.css" media="screen">
-	<link rel="stylesheet" href="js/michenriksen/stylesheets/demo.css" media="screen">
+	<!--  <link rel="stylesheet" href="js/michenriksen/stylesheets/reset.css" media="screen">-->
+	<!--  <link rel="stylesheet" href="js/michenriksen/stylesheets/demo.css" media="screen">-->
 	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
 	
 	<script type="text/javascript" src="js/fgmenu/fg.menu.js"></script>
@@ -66,9 +60,22 @@ String username=sessionUserBean.getUserBean().getName();
     <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
 	 -->
 <script type="text/javascript">
-	var outerLayout, innerLayout,innerWestLayout;
+/*
+ * complex.html
+ *
+ * This is a demonstration page for the jQuery layout widget
+ *
+ *	NOTE: For best code readability, view this with a fixed-space font and tabs equal to 4-chars
+ */
+
+	var outerLayout, innerLayout;
+
+	/*
+	*#######################
+	*     ON PAGE LOAD
+	*#######################
+	*/
 	$(document).ready( function() {
-		$( "#accordion" ).hide();
 		// create the OUTER LAYOUT
 		outerLayout = $("body").layout( layoutSettings_Outer );
 
@@ -84,15 +91,41 @@ String username=sessionUserBean.getUserBean().getName();
 		 * CSS will size and position the spans, as well as set the background-images
 		 */
 
+		// BIND events to hard-coded buttons in the NORTH toolbar
+		
+		//outerLayout.addToggleBtn( "#tbarToggleNorth", "north" );
+		//outerLayout.addOpenBtn( "#tbarOpenSouth", "south" );
+		//outerLayout.addCloseBtn( "#tbarCloseSouth", "south" );
+		//outerLayout.addPinBtn( "#tbarPinWest", "west" );
+		//outerLayout.addPinBtn( "#tbarPinEast", "east" );
+
+		// save selector strings to vars so we don't have to repeat it
+		// must prefix paneClass with "body > " to target ONLY the outerLayout panes
 		var westSelector = "body > .ui-layout-west"; // outer-west pane
+		//var eastSelector = "body > .ui-layout-east"; // outer-east pane
 
-
-		/*
+		 // CREATE SPANs for pin-buttons - using a generic class as identifiers
 		$("<span></span>").addClass("pin-button").prependTo( westSelector );
+		//$("<span></span>").addClass("pin-button").prependTo( eastSelector );
+		// BIND events to pin-buttons to make them functional
 		outerLayout.addPinBtn( westSelector +" .pin-button", "west");
+		//outerLayout.addPinBtn( eastSelector +" .pin-button", "east" );
+
+		 // CREATE SPANs for close-buttons - using unique IDs as identifiers
 		$("<span></span>").attr("id", "west-closer" ).prependTo( westSelector );
+		//$("<span></span>").attr("id", "east-closer").prependTo( eastSelector );
+		// BIND layout events to close-buttons to make them functional
 		outerLayout.addCloseBtn("#west-closer", "west");
-		*/
+		//outerLayout.addCloseBtn("#east-closer", "east");
+
+
+
+		/* Create the INNER LAYOUT - nested inside the 'center pane' of the outer layout
+		 * Inner Layout is create by createInnerLayout() function - on demand
+		 *
+			innerLayout = $("div.pane-center").layout( layoutSettings_Inner );
+		 *
+		 */
 
 
 		// DEMO HELPER: prevent hyperlinks from reloading page when a 'base.href' is set
@@ -101,8 +134,6 @@ String username=sessionUserBean.getUserBean().getName();
 			if (path.substr(path.length-1)=="#") path = path.substr(0,path.length-1);
 			if (this.href.substr(this.href.length-1) == "#") this.href = path +"#";
 		});
-
-		createInnerLayout ();
 
 	});
 
@@ -136,10 +167,8 @@ String username=sessionUserBean.getUserBean().getName();
 	//,	initClosed:						true
 	,	center__minWidth:				200
 	,	center__minHeight:				200
-	,	resizable: 						false
-	,	slidable:						true
 	};
-	
+
 
 	/*
 	*#######################
@@ -177,8 +206,6 @@ String username=sessionUserBean.getUserBean().getName();
 		,	fxSpeed_close:			1500
 		,	fxSettings_open:		{ easing: "easeInQuint" }
 		,	fxSettings_close:		{ easing: "easeOutQuint" }
-		,	resizable: 				false
-		,	slidable:				false
 	}
 	,	north: {
 			spacing_open:			1			// cosmetic spacing
@@ -188,14 +215,14 @@ String username=sessionUserBean.getUserBean().getName();
 		,	slidable:				false
 		//	override default effect
 		,	fxName:					"none"
+		,	initClosed:				false
 		}
 	,	south: {
 			maxSize:				200
 		,	spacing_closed:			0			// HIDE resizer & toggler when 'closed'
+		,	resizable: 				false
 		,	slidable:				false		// REFERENCE - cannot slide if spacing_closed = 0
 		,	initClosed:				true
-		,	slidable:				false
-		,	resizable: 				false
 		//	CALLBACK TESTING...
 		,	onhide_start:			function () { return confirm("START South pane hide \n\n onhide_start callback \n\n Allow pane to hide?"); }
 		,	onhide_end:				function () { alert("END South pane hide \n\n onhide_end callback"); }
@@ -219,8 +246,8 @@ String username=sessionUserBean.getUserBean().getName();
 		,	resizerTip_open:		"Resize West Pane"
 		,	slideTrigger_open:		"click" 	// default
 		,	initClosed:				false
-		,	slidable:				false
 		,	resizable: 				false
+		//	add 'bounce' option to default 'slide' effect
 		,	fxSettings_open:		{ easing: "easeOutBounce" }
 		}
 	,	east: {
@@ -234,6 +261,7 @@ String username=sessionUserBean.getUserBean().getName();
 		,	resizerTip_open:		"Resize East Pane"
 		,	slideTrigger_open:		"mouseover"
 		,	initClosed:				true
+		//	override default effect, speed, and settings
 		,	fxName:					"drop"
 		,	fxSpeed:				"normal"
 		,	fxSettings:				{ easing: "" } // nullify default easing
@@ -246,31 +274,92 @@ String username=sessionUserBean.getUserBean().getName();
 		}
 	};
 
+	//$("#accordion").accordion();
+	var accord=$('#accordion').accordion('option', 'animated')
+	
+
+	/**
+	* createInnerLayout
+	*/
+	function createInnerLayout () {
+	    // innerLayout is INSIDE the center-pane of the outerLayout
+	    //debugData( layoutSettings_Inner );
+	    innerLayout = $( outerLayout.options.center.paneSelector ).layout( layoutSettings_Inner );
+	    // hide 'Create Inner Layout' commands and show the list of testing commands
+	    $('#createInner').hide();
+	    $('#createInner2').hide();
+	    $('#innerCommands').show();
+	}
+
 	var json0 = {"options":"[{\"mod\":\"sys\",\"modname\":\"系统管理\"}]"}
 	var json1 = {"options":"[{\"mod\":\"orgsys\",\"modname\":\"管理平台\"},{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
-	var json2 = {"options":"[{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"} 
+	var json2 = {"options":"[{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
 </script>
 </head>
 <body>
 
 <div class="ui-layout-west">
-	<div class="ui-layout-north">
-		<div class="content">
-			<div id="accordion">
-				<h3><a href='#' class="dcjq-parent active">系统管理</a></h3>
-				<div>
-				<ul>
-				<li><a href='#'></a></li></ul>
-				</div>
-			</div>
-		</div>
+
+	
+	<div class="header">导航栏</div>
+
+	<div class="content" style="position: relative; height: 174px; visibility: visible;">
+		<ul>
+			<li><a onclick="outerLayout.toggle('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Toggle North</a></li>
+			<li><a onclick="outerLayout.toggle('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Toggle South</a></li>
+			<li><a onclick="outerLayout.toggle('west')" href="http://layout.jquery-dev.net/demos/complex.html#"> Toggle West</a></li>
+			<li><a onclick="outerLayout.toggle('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Toggle East</a></li>
+			<li><a onclick="outerLayout.hide('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Hide North</a></li>
+			<li><a onclick="outerLayout.hide('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Hide South</a></li>
+			<li><a onclick="outerLayout.show('south', false)" href="http://layout.jquery-dev.net/demos/complex.html#">Unhide South</a></li>
+			<li><a onclick="outerLayout.hide('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Hide East</a></li>
+			<li><a onclick="outerLayout.show('east', false)" href="http://layout.jquery-dev.net/demos/complex.html#">Unhide East</a></li>
+			<li><a onclick="outerLayout.open('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Open East</a></li>
+			<li><a onclick="outerLayout.sizePane('north', 100); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize North=100</a></li>
+			<li><a onclick="outerLayout.sizePane('north', 300); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize North=300</a></li>
+			<li><a onclick="outerLayout.sizePane('north', 10000); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Resize North=10000</a></li>
+			<li><a onclick="outerLayout.sizePane('south', 100); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize South=100</a></li>
+			<li><a onclick="outerLayout.sizePane('south', 300); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize South=300</a></li>
+			<li><a onclick="outerLayout.sizePane('south', 10000); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Resize South=10000</a></li>
+			<li><a onclick="outerLayout.panes.north.css('backgroundColor','#FCC')" href="http://layout.jquery-dev.net/demos/complex.html#">North Color = Red</a></li>
+			<li><a onclick="outerLayout.panes.north.css('backgroundColor','#CFC')" href="http://layout.jquery-dev.net/demos/complex.html#">North Color = Green</a></li>
+			<li><a onclick="outerLayout.panes.north.css('backgroundColor','')" href="http://layout.jquery-dev.net/demos/complex.html#">    North Color = Default</a></li>
+			<li><a onclick="alert('outerLayout.name = \''+outerLayout.options.name+'\'')" href="http://layout.jquery-dev.net/demos/complex.html#">Show Layout Name</a></li>
+			<li><a onclick="showOptions(outerLayout,'defaults')" href="http://layout.jquery-dev.net/demos/complex.html#">Show Options.Defaults</a></li>
+			<li><a onclick="showOptions(outerLayout,'north')" href="http://layout.jquery-dev.net/demos/complex.html#">   Show Options.North</a></li>
+			<li><a onclick="showOptions(outerLayout,'south')" href="http://layout.jquery-dev.net/demos/complex.html#">   Show Options.South</a></li>
+			<li><a onclick="showOptions(outerLayout,'west')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show Options.West</a></li>
+			<li><a onclick="showOptions(outerLayout,'east')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show Options.East</a></li>
+			<li><a onclick="showOptions(outerLayout,'center')" href="http://layout.jquery-dev.net/demos/complex.html#">  Show Options.Center</a></li>
+			<li><a onclick="showState(outerLayout,'container')" href="http://layout.jquery-dev.net/demos/complex.html#"> Show State.Container</a></li>
+			<li><a onclick="showState(outerLayout,'north')" href="http://layout.jquery-dev.net/demos/complex.html#">     Show State.North</a></li>
+			<li><a onclick="showState(outerLayout,'south')" href="http://layout.jquery-dev.net/demos/complex.html#">     Show State.South</a></li>
+			<li><a onclick="showState(outerLayout,'west')" href="http://layout.jquery-dev.net/demos/complex.html#">      Show State.West</a></li>
+			<li><a onclick="showState(outerLayout,'east')" href="http://layout.jquery-dev.net/demos/complex.html#">      Show State.East</a></li>
+			<li><a onclick="showState(outerLayout,'center')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show State.Center</a></li>
+		</ul>
 	</div>
+
+	
+
+</div>
+
+
+<div class="ui-layout-north">
+	<div class="header">云端统一通信平台</div>
+	
+	<!--  
+	<div class="content">
+		
 	</div>
-<div class="ui-layout-north" style="background-image:url(images/head_bg.jpg)">
-	<div style="float:right;padding-right:30px;padding-top:10px;"><label id="username"><img width="25" src="css/im/images/noavatar_small.gif" />当前用户：<%=username %></label>&nbsp;|&nbsp;
-	<a id="personal" href="javascript:void(false)">个人设置</a>&nbsp;|&nbsp;
-	<a id="cancellation" href="login.jsp">注销 </a>
-	</div>
+	-->
+	<!--  
+	<ul class="toolbar">
+		<li id="tbarToggleNorth" class="first">邮件</li>
+		<li id="tbarOpenSouth">视频会议</li>
+		<li id="tbarCloseSouth">WebCall</li>
+	</ul>
+	-->
 </div>
 
 
@@ -284,12 +373,11 @@ String username=sessionUserBean.getUserBean().getName();
 
 <div id="mainContent">
 	<!-- DIVs for the INNER LAYOUT -->
-
 	<div class="ui-layout-center">
-		<div class="ui-layout-content" style="padding: 0px;">
 			<div id="tabs">
 				<ul id="ultab">
 				</ul>
+				<DIV class="ui-layout-content">
 				<div id="tabs-1">
 					
 				</div>
@@ -304,12 +392,7 @@ String username=sessionUserBean.getUserBean().getName();
 			</div>
 		</div>
 	</div>
-	
-		<div class="ui-layout-south">
-			<div id="webim">
-			</div>
-</div>
-	
+	<div class="ui-layout-south">详细信息显示内容栏</div>
 </div>
 
 <script>
@@ -323,15 +406,6 @@ String username=sessionUserBean.getUserBean().getName();
 		$( "#accordion" ).accordion( "option", "autoHeight", true );
 		$( "#accordion" ).accordion({ clearStyle: true });
 		$( "#accordion" ).accordion( "option", "icons", icons );
-		//innerLayout
-		//innerLayout.sizePane('south', 235);innerLayout.open('south');
-		outerLayout.open("west");
-		//innerWestLayout.sizePane('north', 300);innerWestLayout.open('north');
-
-		$(".ui-layout-content").css("padding","0px");
-    	$(".ui-layout-content").css("overflow","hidden");
-		//$(".ui-layout-center.ui-layout-pane.ui-layout-pane-center").css("height",200);
-		//innerWestLayout.sizePane('center', 130);innerWestLayout.open('center');
 	});
 	/**
 	* createInnerLayout
@@ -341,12 +415,12 @@ String username=sessionUserBean.getUserBean().getName();
 	    //debugData( layoutSettings_Inner );
 	    innerLayout = $( outerLayout.options.center.paneSelector ).layout( layoutSettings_Inner );
 	    // hide 'Create Inner Layout' commands and show the list of testing commands
-	    
+	    $('#createInner').hide();
+	    $('#createInner2').hide();
+	    $('#innerCommands').show();
+	    //innerLayout.toggle('north')
+	    //innerLayout.sizePane('north', 150)
 	}
-	
-	
-	
-	
 	</script>
 </body>
 </html>
