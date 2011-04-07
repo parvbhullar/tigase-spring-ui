@@ -32,9 +32,6 @@ String username=sessionUserBean.getUserBean().getName();
 	-->
 	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
-	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
-	
-	<link type="text/css" href="<%=ctxindex%>/js/webcall/css/css.css" rel="stylesheet" />
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jqgrid/css/ui.jqgrid.css" />
 	 
@@ -47,8 +44,8 @@ String username=sessionUserBean.getUserBean().getName();
 	<link href="css/index/screen.css" rel="stylesheet" type="text/css" />
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
-	<link rel="stylesheet" href="js/michenriksen/stylesheets/reset.css" media="screen">
-	<link rel="stylesheet" href="js/michenriksen/stylesheets/demo.css" media="screen">
+	
+	
 	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
 	
 	<script type="text/javascript" src="js/fgmenu/fg.menu.js"></script>
@@ -56,9 +53,9 @@ String username=sessionUserBean.getUserBean().getName();
     
     <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
     <link type="text/css" href="css/im/webim.min.css" media="screen" rel="stylesheet" />
-    <script type="text/javascript" src="js/im/webim.js"></script>
-    <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
-    <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
+    
+    
+    
     <script type="text/javascript" src="jsp/mail/mail2.js"></script>
     
     <!-- 
@@ -350,7 +347,7 @@ String username=sessionUserBean.getUserBean().getName();
 
 
 <div class="ui-layout-north">
-	<div class="header">云端统一通信平台</div>
+	<div class="header">统一通信平台</div>
 	
 	<!--  
 	<div class="content">
