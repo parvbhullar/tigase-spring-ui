@@ -108,7 +108,7 @@ s
 		$("<span></span>").addClass("pin-button").prependTo( westSelector );
 		//$("<span></span>").addClass("pin-button").prependTo( eastSelector );
 		// BIND events to pin-buttons to make them functional
-		outerLayout.addPinBtn( westSelector +" .pin-button", "west");
+		//outerLayout.addPinBtn( westSelector +" .pin-button", "west");
 		//outerLayout.addPinBtn( eastSelector +" .pin-button", "east" );
 
 		 // CREATE SPANs for close-buttons - using unique IDs as identifiers
