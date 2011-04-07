@@ -92,7 +92,6 @@ $(document).ready( function() {
 			},
 			viewrecords: true 
 	 	 });
-		$("#listDiv").css("padding","10px");
 	}
 
 function validateMeetingForm(){

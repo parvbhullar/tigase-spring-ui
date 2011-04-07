@@ -4,13 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<link href="js/friendchoose/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="css/index/userdetailinfo.css" rel="stylesheet" type="text/css" />
+	
 </head>
 <body>
 
 <input type="hidden" name="operation" id="operation">
-<div id="userMod">
+<div id="userMod" style="padding: 0px;">
 <a href="javascript:void(false)" class="button" id="plus"><span class="plus icon"></span>创建</a>
 <a href="javascript:void(false)" class="button" id="edit"><span class="book icon"></span>编辑</a>
 <a href="javascript:void(false)" class="button" id="trash"><span class="trash icon"></span>删除</a>
@@ -20,7 +19,7 @@
 <a href="javascript:void(false)" class="button" id="reload"><span class="reload icon"></span>取消</a>
 	<div id="listDiv"><table id="userList"></table></div>
 		<div id="page"></div>
-<div id="curdForm">
+<div id="curdForm" style="visibility: hidden;">
 <form id="userForm" name="userForm" action="" method="post">
 <fieldset>
 	<legend>添加用户</legend>
@@ -50,7 +49,6 @@
 	</table>
 </fieldset>
 </form>
-</div>
 
 <div id="UpdUserDiv">
 <form id="UpdUser" name="UpdUser" action="" method="post">
@@ -90,7 +88,7 @@
 <div id="dialogViewUser" title="查看用户">
 <div id="viewuser">
 
-<fieldset class="ui-widget ui-widget-content ui-state-hover">
+<fieldset ">
 	<legend>用户详细信息</legend>
 	<table border="1">
 	<tr><td width="10%">登录名:	   	</td><td width="40%"><label id="logname" >		</label></td><td width="10%">昵称 </td>		<td width="40%"><label id="nickname">		</label></td></tr>
@@ -197,6 +195,11 @@
 
 </div>
 </div>
+</div>
+
+
+
+
 
 <!--设置用户webcall冲值信息的窗口  -->
 <div id="settingcardDiv" title="webcall冲值卡" >

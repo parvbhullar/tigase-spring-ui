@@ -150,7 +150,7 @@ $(document).ready( function() {
 			},
 			viewrecords: true 
 	 	 	});
-			$("#listDiv").css("padding","10px");
+			
 		}
 	
 	/*
@@ -199,7 +199,6 @@ $(document).ready( function() {
 	 */	
 	
 	function viewUserDetail(id){
-		$("#mainContent .ui-layout-south.ui-layout-pane.ui-layout-pane-south").html($( "#dialogViewUser" ).html());
 		//innerLayout.
 		$.ajax({
 			  url: 'usersystem?action=viewuser&id='+id,
@@ -248,6 +247,9 @@ $(document).ready( function() {
 				$('#viewuser #othermessage').text(obj.othermessage);
 				$('#viewuser #photoname').text(obj.photoname);
 				$('#viewuser #state').text(vc_state);
+			  },
+			  complete:function(){
+				  $("#mainContent .ui-layout-south").html($( "#dialogViewUser" ).html());
 			  }
 			});
 	}
