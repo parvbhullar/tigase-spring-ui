@@ -38,6 +38,7 @@ $(document).ready( function() {
 				}
 		   },
 		   complete:function(){
+			   
 		   }
 	});
 	
@@ -119,6 +120,7 @@ $(document).ready( function() {
 
 //加载系统管理模块
 function loadsys(authIndex,index){
+	
 	$("#accordion").remove();
 	
 	$(".content").html("<div id='accordion'><h3><a href='#'>系统管理</a></h3><div><ul><li><a href='#'>机构管理</a></li></ul></div>");
@@ -130,6 +132,7 @@ function loadsys(authIndex,index){
 		    $("#tabs-"+(index+1)).html(data);
 		  },
 		  complete:function(){
+			  initButtonClick("mainContent","ui-layout-south");
 		  }
 	});
 }
@@ -149,6 +152,7 @@ function loadorgsys(authIndex,index){
 			  arrModules[authIndex][0].include=true;	//加载用户模块
 			  arrModules[authIndex][0].canloaded=true;	//加载用户模块
 			  loadFiile(arrModules[authIndex]);
+			  initButtonClick("mainContent","ui-layout-south");
 		  }
 	});
 }
@@ -164,7 +168,9 @@ function loaduser(authIndex,index){
 		  success: function(data) {
 		    $("#tabs-"+(index+1)).html(data);
 		  },
-		  complete:function(){}
+		  complete:function(){
+			  initButtonClick("mainContent","ui-layout-south");
+		  }
 	});
 }
 
