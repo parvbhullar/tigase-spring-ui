@@ -87,19 +87,32 @@
 
 <div id="dialogViewUser" title="查看用户">
 <div id="viewuser">
-
-<fieldset ">
-	<legend>用户详细信息</legend>
-	<table border="1">
-	<tr><td width="10%">登录名:	   	</td><td width="40%"><label id="logname" >		</label></td><td width="10%">昵称 </td>		<td width="40%"><label id="nickname">		</label></td></tr>
-	<tr><td width="10%">性别:		</td><td width="40%"><label id="sex">			</label></td><td width="10%">职务 </td>		<td><label id="job">			</label></td></tr>
-	<tr><td width="10%">电子邮箱: 	</td><td width="40%"><label id="email">			</label></td><td width="10%">详细地址 </td>	<td><label id="detailedaddress"></label></td></tr>
-	<tr><td width="10%">办公电话:	</td><td width="40%"><label id="officephone">	</label></td><td width="10%">其他电话 </td>	<td><label id="otherphone">		</label></td></tr>
-	<tr><td width="10%">手机号码: 	</td><td width="40%"><label id="mobilephone">	</label></td><td width="10%">传真号码 </td>	<td><label id="faxnumber">		</label></td></tr>
-	<tr><td width="10%">邮编: 		</td><td width="40%"><label id="postcode">		</label></td><td width="10%">其他信息 </td>	<td><label id="othermessage">	</label></tr>
-	<tr><td width="10%">状态: 		</td><td width="40%"><label id="state">			</label></td><td > </td><td></td></tr>
-	</table>
-</fieldset>
+<table class="cell">
+			
+			<tbody class="cell">
+			  <tr>
+			    <th class="cell"><label>登录名</label></th><td class="cell"><span id="logname" ></span></td>			<th class="cell"><label>昵称</label></th><td class="cell"><span id="logname" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>性别</label></th><td class="cell"><span id="sex" ></span></td>				<th class="cell"><label>职务</label></th><td class="cell"><span id="job" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>电子邮箱</label></th><td class="cell"><span id="email" ></span></td>			<th class="cell"><label>详细地址</label></th><td class="cell"><span id="detailedaddress" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>办公电话</label></th><td class="cell"><span id="officephone" ></span></td>	<th class="cell"><label>其他电话</label></th><td class="cell"><span id="otherphone" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>手机号码</label></th><td class="cell"><span id="mobilephone" ></span></td>	<th class="cell"><label>传真号码</label></th><td class="cell"><span id="faxnumber" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>邮编</label></th><td class="cell"><span id="postcode" ></span></td>			<th class="cell"><label>其他信息</label></th><td class="cell"><span id="othermessage" ></span></td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>状态</label></th><td class="cell"><span id="state" ></span></td>				<th class="cell"><label></label></th><td class="cell"></td>
+			  </tr>
+			  </tbody>
+</table>
 <div style="visibility: hidden;">
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
 		<p>
@@ -122,75 +135,6 @@
 		</p>
 	</fieldset>
 
-<div id="name01">
-<div class="img"><img src="images/renwu.png" /></div>
-<div class="mz"><label id="username"></label></div>
-</div>
-
-<div class="name">
-<div class="txt">登录名：</div>
-<span class="nr"><label id="logname" ></label></span>
-</div>
-
-<div class="name">
-<div class="txt">昵称：</div>
-<span class="nr"><label id="nickname"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">性别：</div>
-<span class="nr"><label id="sex"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">职务：</div>
-<span class="nr"><label id="job"></label></span>
-
-<div class="name">
-<div class="txt">电子邮箱：</div>
-<span class="nr"><label id="email"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">详细地址：</div>
-<span class="nr"><label id="detailedaddress"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">办公电话：</div>
-<span class="nr"><label id="officephone"></label></span>
-</div>
-</div>
-
-<div class="name">
-<div class="txt">其他电话：</div>
-<span class="nr"><label id="otherphone"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">手机号码：</div>
-<span class="nr"><label id="mobilephone"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">传真号码：</div>
-<span class="nr"><label id="faxnumber"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">邮编：</div>
-<span class="nr"><label id="postcode"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">其他信息：</div>
-<span class="nr"><label id="othermessage"></label></span>
-</div>
-
-<div class="name">
-<div class="txt">状态：</div>
-<span class="nr"><label id="state"></label></span>
-</div>
 </div>
 
 </div>
