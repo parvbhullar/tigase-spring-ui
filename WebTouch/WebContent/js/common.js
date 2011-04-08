@@ -59,6 +59,12 @@ function countHeight(type){
 	//innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 
+function initButtonClick(div, divclass){
+	$('.button').bind('click', function() {
+		$("#"+div+" ."+divclass).html("");
+	});
+}
+
 
 
 //自动关闭提示框
