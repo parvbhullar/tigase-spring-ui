@@ -85,10 +85,9 @@
 </form>
 </div>
 
-<div id="dialogViewUser" title="查看用户">
+<div id="dialogViewUser" >
 <div id="viewuser">
-<table class="cell">
-			
+<table>
 			<tbody class="cell">
 			  <tr>
 			    <th class="cell"><label>登录名</label></th><td class="cell"><span id="logname" ></span></td>			<th class="cell"><label>昵称</label></th><td class="cell"><span id="logname" ></span></td>
@@ -113,37 +112,9 @@
 			  </tr>
 			  </tbody>
 </table>
-<div style="visibility: hidden;">
-<fieldset class="ui-widget ui-widget-content ui-corner-all">
-		<p>
-			<label for="cname">Name (required, at least 2 characters)</label>
-			<input minlength="2" class="required ui-widget-content" name="name" id="cname">
-		</p><p>
-			<label for="cemail">E-Mail (required)</label>
-			<input class="required email ui-widget-content" name="email" id="cemail">
-		</p>
-		<p>
-			<label for="curl">URL (optional)</label>
-			<input value="" class="url ui-widget-content" name="url" id="curl">
-		</p>
-		<p>
-			<label for="ccomment">Your comment (required)</label>
-			<textarea class="required ui-widget-content" name="comment" id="ccomment"></textarea>
-		</p>
-		<p>
-			<button type="submit" class="submit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Submit</span></button>
-		</p>
-	</fieldset>
-
-</div>
-
 </div>
 </div>
 </div>
-
-
-
-
 
 <!--设置用户webcall冲值信息的窗口  -->
 <div id="settingcardDiv" title="webcall冲值卡" >
