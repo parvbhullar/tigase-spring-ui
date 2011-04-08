@@ -274,7 +274,7 @@ $(document).ready( function() {
 		  $("#userMod #listDiv").hide();  
 		  $("#userMod #UpdUserDiv").hide();  
 		  $("#userMod #curdForm").show();
-		  innerLayout.hide('south');
+		  //innerLayout.hide('south');
 		});
 	/*创建用户结束*/
 	

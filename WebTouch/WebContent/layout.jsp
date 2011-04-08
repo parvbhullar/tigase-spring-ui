@@ -307,40 +307,7 @@ s
 	<div class="header">导航栏</div>
 
 	<div class="content" style="position: relative; height: 174px; visibility: visible;">
-		<ul>
-			<li><a onclick="outerLayout.toggle('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Toggle North</a></li>
-			<li><a onclick="outerLayout.toggle('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Toggle South</a></li>
-			<li><a onclick="outerLayout.toggle('west')" href="http://layout.jquery-dev.net/demos/complex.html#"> Toggle West</a></li>
-			<li><a onclick="outerLayout.toggle('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Toggle East</a></li>
-			<li><a onclick="outerLayout.hide('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Hide North</a></li>
-			<li><a onclick="outerLayout.hide('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Hide South</a></li>
-			<li><a onclick="outerLayout.show('south', false)" href="http://layout.jquery-dev.net/demos/complex.html#">Unhide South</a></li>
-			<li><a onclick="outerLayout.hide('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Hide East</a></li>
-			<li><a onclick="outerLayout.show('east', false)" href="http://layout.jquery-dev.net/demos/complex.html#">Unhide East</a></li>
-			<li><a onclick="outerLayout.open('east')" href="http://layout.jquery-dev.net/demos/complex.html#"> Open East</a></li>
-			<li><a onclick="outerLayout.sizePane('north', 100); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize North=100</a></li>
-			<li><a onclick="outerLayout.sizePane('north', 300); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize North=300</a></li>
-			<li><a onclick="outerLayout.sizePane('north', 10000); outerLayout.open('north')" href="http://layout.jquery-dev.net/demos/complex.html#">Resize North=10000</a></li>
-			<li><a onclick="outerLayout.sizePane('south', 100); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize South=100</a></li>
-			<li><a onclick="outerLayout.sizePane('south', 300); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">  Resize South=300</a></li>
-			<li><a onclick="outerLayout.sizePane('south', 10000); outerLayout.open('south')" href="http://layout.jquery-dev.net/demos/complex.html#">Resize South=10000</a></li>
-			<li><a onclick="outerLayout.panes.north.css('backgroundColor','#FCC')" href="http://layout.jquery-dev.net/demos/complex.html#">North Color = Red</a></li>
-			<li><a onclick="outerLayout.panes.north.css('backgroundColor','#CFC')" href="http://layout.jquery-dev.net/demos/complex.html#">North Color = Green</a></li>
-			<li><a onclick="outerLayout.panes.north.css('backgroundColor','')" href="http://layout.jquery-dev.net/demos/complex.html#">    North Color = Default</a></li>
-			<li><a onclick="alert('outerLayout.name = \''+outerLayout.options.name+'\'')" href="http://layout.jquery-dev.net/demos/complex.html#">Show Layout Name</a></li>
-			<li><a onclick="showOptions(outerLayout,'defaults')" href="http://layout.jquery-dev.net/demos/complex.html#">Show Options.Defaults</a></li>
-			<li><a onclick="showOptions(outerLayout,'north')" href="http://layout.jquery-dev.net/demos/complex.html#">   Show Options.North</a></li>
-			<li><a onclick="showOptions(outerLayout,'south')" href="http://layout.jquery-dev.net/demos/complex.html#">   Show Options.South</a></li>
-			<li><a onclick="showOptions(outerLayout,'west')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show Options.West</a></li>
-			<li><a onclick="showOptions(outerLayout,'east')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show Options.East</a></li>
-			<li><a onclick="showOptions(outerLayout,'center')" href="http://layout.jquery-dev.net/demos/complex.html#">  Show Options.Center</a></li>
-			<li><a onclick="showState(outerLayout,'container')" href="http://layout.jquery-dev.net/demos/complex.html#"> Show State.Container</a></li>
-			<li><a onclick="showState(outerLayout,'north')" href="http://layout.jquery-dev.net/demos/complex.html#">     Show State.North</a></li>
-			<li><a onclick="showState(outerLayout,'south')" href="http://layout.jquery-dev.net/demos/complex.html#">     Show State.South</a></li>
-			<li><a onclick="showState(outerLayout,'west')" href="http://layout.jquery-dev.net/demos/complex.html#">      Show State.West</a></li>
-			<li><a onclick="showState(outerLayout,'east')" href="http://layout.jquery-dev.net/demos/complex.html#">      Show State.East</a></li>
-			<li><a onclick="showState(outerLayout,'center')" href="http://layout.jquery-dev.net/demos/complex.html#">    Show State.Center</a></li>
-		</ul>
+		
 	</div>
 
 	
@@ -350,19 +317,6 @@ s
 
 <div class="ui-layout-north">
 	<div class="header">云端统一通信平台</div>
-	
-	<!--  
-	<div class="content">
-		
-	</div>
-	-->
-	<!--  
-	<ul class="toolbar">
-		<li id="tbarToggleNorth" class="first">邮件</li>
-		<li id="tbarOpenSouth">视频会议</li>
-		<li id="tbarCloseSouth">WebCall</li>
-	</ul>
-	-->
 </div>
 
 
