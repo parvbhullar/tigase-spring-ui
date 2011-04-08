@@ -1,0 +1,32 @@
+﻿.ui-layout-south{}
+.ui-layout-south table{ 
+	border-collapse:collapse;
+	text-align:center; 
+	color:#5C6B87;
+	letter-spacing:1px;
+	width:100%;
+ 	}
+
+.ui-layout-south table,th,td{
+	//border:1px solid #B6D5F3;
+	line-height:25px;
+	height:25px;
+	}
+
+	
+.ui-layout-south thead th{
+	background:#F3F8FC;  
+	color: #2E7DBE;
+	}
+.ui-layout-south tbody th{
+	background:#F3F8FC;
+	font-weight:normal;
+	}
+	
+.ui-layout-south .cell{
+	border:1px solid #B6D5F3;
+	text-align:center;
+}
+
+
+																					
