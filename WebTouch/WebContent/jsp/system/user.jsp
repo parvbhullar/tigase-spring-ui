@@ -51,68 +51,68 @@
 </form>
 
 <div id="UpdUserDiv">
-<form id="UpdUser" name="UpdUser" action="" method="post">
-<fieldset>
-	<legend>编辑用户</legend>
-	<table id="updUserTable">
-		<tr>
-			<td width="20%" style="border: 0"><div class="txt">姓名：</div><div class="redstar">*</div></td>
-			<td width="30%"><input type="text" class="text" id="username" name="username" value=""></td>
-			<td width="50%"><div id="usernameMessageUpdate" style="color:red"></div></td>
-		</tr>
-		<tr>
-			<td width="20%" style="border: 0"><div class="txt">密码：</div><div class="redstar">*</div></td>	
-			<td width="30%"><input type="password" class="text" id="uuserpassword" name="uuserpassword" value="">
-			<div>密码只允许输入英文和数字！</div></td>
-			<td width="50%"><div id="passwordMessageUpdate" style="color:red"></div></td>
-		</tr>
-		<tr>
-			<td width="20%" style="border: 0"><div class="txt">状态：</div><div class="redstar">*</div></td>
-			<td width="30%">
-			<select name="ustate">
-			<option value="2">在职</option>
-			<option value="3">离职</option>
-			</select>
-			</td>
-			<td width="50%"></td>
-		</tr>
-	</table>
-<input type="hidden" name="userid" id="userid">
-<input type="hidden" name="nationality" id="nationality">
-<input type="hidden" name="province" id="province">
-<input type="hidden" name="city" id="city">
-</fieldset>
-</form>
+	<form id="UpdUser" name="UpdUser" action="" method="post">
+	<fieldset>
+		<legend>编辑用户</legend>
+		<table id="updUserTable">
+			<tr>
+				<td width="20%" style="border: 0"><div class="txt">姓名：</div><div class="redstar">*</div></td>
+				<td width="30%"><input type="text" class="text" id="username" name="username" value=""></td>
+				<td width="50%"><div id="usernameMessageUpdate" style="color:red"></div></td>
+			</tr>
+			<tr>
+				<td width="20%" style="border: 0"><div class="txt">密码：</div><div class="redstar">*</div></td>	
+				<td width="30%"><input type="password" class="text" id="uuserpassword" name="uuserpassword" value="">
+				<div>密码只允许输入英文和数字！</div></td>
+				<td width="50%"><div id="passwordMessageUpdate" style="color:red"></div></td>
+			</tr>
+			<tr>
+				<td width="20%" style="border: 0"><div class="txt">状态：</div><div class="redstar">*</div></td>
+				<td width="30%">
+				<select name="ustate">
+				<option value="2">在职</option>
+				<option value="3">离职</option>
+				</select>
+				</td>
+				<td width="50%"></td>
+			</tr>
+		</table>
+	<input type="hidden" name="userid" id="userid">
+	<input type="hidden" name="nationality" id="nationality">
+	<input type="hidden" name="province" id="province">
+	<input type="hidden" name="city" id="city">
+	</fieldset>
+	</form>
 </div>
 
-<div id="dialogViewUser" >
-<div id="viewuser">
-<table>
-			<tbody class="cell">
-			  <tr>
-			    <th class="cell"><label>登录名</label></th><td class="cell"><span id="logname" ></span></td>			<th class="cell"><label>昵称</label></th><td class="cell"><span id="logname" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>性别</label></th><td class="cell"><span id="sex" ></span></td>				<th class="cell"><label>职务</label></th><td class="cell"><span id="job" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>电子邮箱</label></th><td class="cell"><span id="email" ></span></td>			<th class="cell"><label>详细地址</label></th><td class="cell"><span id="detailedaddress" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>办公电话</label></th><td class="cell"><span id="officephone" ></span></td>	<th class="cell"><label>其他电话</label></th><td class="cell"><span id="otherphone" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>手机号码</label></th><td class="cell"><span id="mobilephone" ></span></td>	<th class="cell"><label>传真号码</label></th><td class="cell"><span id="faxnumber" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>邮编</label></th><td class="cell"><span id="postcode" ></span></td>			<th class="cell"><label>其他信息</label></th><td class="cell"><span id="othermessage" ></span></td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>状态</label></th><td class="cell"><span id="state" ></span></td>				<th class="cell"><label></label></th><td class="cell"></td>
-			  </tr>
-			  </tbody>
-</table>
-</div>
+<div id="dialogViewUser" style="visibility: hidden;">
+	<div id="viewuser">
+	<table>
+				<tbody class="cell">
+				  <tr>
+				    <th class="cell"><label>登录名</label></th><td class="cell"><span id="logname" ></span></td>			<th class="cell"><label>昵称</label></th><td class="cell"><span id="logname" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>性别</label></th><td class="cell"><span id="sex" ></span></td>				<th class="cell"><label>职务</label></th><td class="cell"><span id="job" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>电子邮箱</label></th><td class="cell"><span id="email" ></span></td>			<th class="cell"><label>详细地址</label></th><td class="cell"><span id="detailedaddress" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>办公电话</label></th><td class="cell"><span id="officephone" ></span></td>	<th class="cell"><label>其他电话</label></th><td class="cell"><span id="otherphone" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>手机号码</label></th><td class="cell"><span id="mobilephone" ></span></td>	<th class="cell"><label>传真号码</label></th><td class="cell"><span id="faxnumber" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>邮编</label></th><td class="cell"><span id="postcode" ></span></td>			<th class="cell"><label>其他信息</label></th><td class="cell"><span id="othermessage" ></span></td>
+				  </tr>
+				  <tr>
+				    <th class="cell"><label>状态</label></th><td class="cell"><span id="state" ></span></td>				<th class="cell"><label></label></th><td class="cell"></td>
+				  </tr>
+				  </tbody>
+	</table>
+	</div>
 </div>
 </div>
 
