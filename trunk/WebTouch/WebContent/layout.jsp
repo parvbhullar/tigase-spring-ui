@@ -14,6 +14,8 @@ String username=sessionUserBean.getUserBean().getName();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/index/complex.css" />
+	<link rel="stylesheet" type="text/css" href="css/ui/table.css" />
+	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/jquery.layout.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-ui-1.8.7.custom.min.js"></script>
@@ -38,7 +40,7 @@ s
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
-	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/ui/ui.css" 		 media="screen"  />
+	
 	<link href="css/index/screen.css" rel="stylesheet" type="text/css" />
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
@@ -295,6 +297,7 @@ s
 	var json1 = {"options":"[{\"mod\":\"orgsys\",\"modname\":\"管理平台\"},{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
 	var json2 = {"options":"[{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
 </script>
+	
 </head>
 <body>
 
@@ -392,7 +395,22 @@ s
 			</div>
 		</div>
 	</div>
-	<div class="ui-layout-south">详细信息显示内容栏</div>
+	<div class="ui-layout-south">
+		<table class="cell">
+			
+			<tbody class="cell">
+			  <tr>
+			    <th class="cell"><label>汽车</label></th><td class="cell">3000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">30000.00</td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>手机</label></th><td class="cell">1000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">10000.00</td>
+			  </tr>
+			  <tr>
+			    <th class="cell"><label>卡车</label></th><td class="cell">3000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">30000.00</td>
+			  </tr>
+			  </tbody>
+		</table>
+	</div>
 </div>
 
 <script>
