@@ -316,7 +316,7 @@ s
 
 
 <div class="ui-layout-north">
-	<div class="header">云端统一通信平台</div>
+	<div class="header">统一通信平台</div>
 </div>
 
 
@@ -349,7 +349,7 @@ s
 			</div>
 		</div>
 	</div>
-	<div class="ui-layout-south">
+	<div class="ui-layout-south sutable">
 		
 	</div>
 </div>
