@@ -38,8 +38,10 @@ $(document).ready( function() {
 
 	//初始化内容区域 显示与否 分成form和list两种状态
 	function initUserContent(parentdiv,type){
+		
 		if(type=="form"){
-			$(parentdiv+" #curdForm").show();
+			//$(parentdiv+" #curdForm").show();
+			$(parentdiv+" #curdForm").css("visibility","visible");
 			$(parentdiv+" #UpdUserDiv").hide();
 			$(parentdiv+" #listDiv").hide();
 		}else if(type=="edit"){
@@ -50,7 +52,7 @@ $(document).ready( function() {
 			$(parentdiv+" #curdForm").hide();
 			$(parentdiv+" #UpdUserDiv").hide();
 			$(parentdiv+" #listDiv").show();
-			countHeight("list");
+			//countHeight("list");
 		}
 	}
 
@@ -268,7 +270,7 @@ $(document).ready( function() {
 	$("#userMod #plus").click(function() {
 		  $('#operation').val("addUser");
 		  initUserButton("form");
-		  initUserContent("form");
+		  initUserContent("#userMod","form");
 		  
 		  
 		  $("#userMod #listDiv").hide();  

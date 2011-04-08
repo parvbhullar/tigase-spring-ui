@@ -1,5 +1,5 @@
-﻿.ui-layout-south{}
-.ui-layout-south table{ 
+﻿.sutable{}
+.sutable table{ 
 	border-collapse:collapse;
 	text-align:center; 
 	color:#5C6B87;
@@ -7,25 +7,37 @@
 	width:100%;
  	}
 
-.ui-layout-south table,th,td{
+.sutable table,th,td{
 	//border:1px solid #B6D5F3;
 	//line-height:25px;
 	//height:25px;
 	}
 
 	
-.ui-layout-south thead th{
+.sutable thead th{
 	background:#F3F8FC;  
 	color: #2E7DBE;
 	}
-.ui-layout-south tbody th{
+.sutable tbody th{
 	background:#F3F8FC;
 	font-weight:normal;
 	}
 	
-.ui-layout-south .cell{
+.sutable .cell{
 	border:1px solid #B6D5F3;
 	text-align:center;
+}
+
+.sutable .crudcell{
+	text-align:center;
+}
+
+.sutable .input{
+	text-align:center;
+}
+
+.sutable .input th{
+	align:right;
 }
 
 
