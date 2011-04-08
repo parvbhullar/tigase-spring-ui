@@ -23,13 +23,16 @@
 		<table align="center">
 				<tbody class="crudcell">
 				  <tr>
-				    <th class="crudcell" align="right"><label>登录名</label></th><td class="crudcell" align="left"><input type="text" value=""/></td>			
-				  </tr>
-				  <tr>
-				    <th class="crudcell" align="right"><label>登录名</label></th><td class="crudcell" align="left"><input type="text" value=""/></td>			
-				  </tr>
-				  <tr>
-				    <th class="crudcell" align="right"><label>登录名</label></th><td class="crudcell" align="left"><input type="text" value=""/></td>			
+				  	<!--  
+				    <th class="crudcell" align="right" width="26%"><label>登录名</label></th>
+				    <td class="crudcell" width="6%">111</td>			
+				    <td class="crudcell" align="left" width="2%"><input type="text" value=""/></td>
+				    <td class="crudcell" align="left" width="6%"><input type="text" value=""/></td>
+				    -->
+				    <th width="2%"></th>
+    <th width="26%">行业</th>
+    <th width="36%" >企业年固定经营成本(元)</th>
+    <th width="36%" >查看付费信息收费标准(元)</th>
 				  </tr>
 				  </tbody>
 		</table>

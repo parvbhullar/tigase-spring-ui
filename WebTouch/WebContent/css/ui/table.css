@@ -8,7 +8,7 @@
  	}
 
 .sutable table,th,td{
-	//border:1px solid #B6D5F3;
+	border:1px solid #B6D5F3;
 	//line-height:25px;
 	//height:25px;
 	}
@@ -29,6 +29,7 @@
 }
 
 .sutable .crudcell{
+	border:1px solid #B6D5F3;
 	text-align:center;
 }
 
