@@ -396,20 +396,7 @@ s
 		</div>
 	</div>
 	<div class="ui-layout-south">
-		<table class="cell">
-			
-			<tbody class="cell">
-			  <tr>
-			    <th class="cell"><label>汽车</label></th><td class="cell">3000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">30000.00</td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>手机</label></th><td class="cell">1000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">10000.00</td>
-			  </tr>
-			  <tr>
-			    <th class="cell"><label>卡车</label></th><td class="cell">3000000.00</td><th class="cell"><label>汽车</label></th><td class="cell">30000.00</td>
-			  </tr>
-			  </tbody>
-		</table>
+		
 	</div>
 </div>
 
