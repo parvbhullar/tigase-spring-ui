@@ -35,7 +35,6 @@ $(document).ready( function() {
 
 	//初始化内容区域的数据  分成form和list两种状态
 	function initContentFunc(parentdiv,type){
-		innerLayout.hide('south');
 		if(type=="form"){
 			
 		}else{

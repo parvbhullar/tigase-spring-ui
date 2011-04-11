@@ -166,7 +166,6 @@ function comIntiButtonClickFun(type)
 			  comIntiButtonClickFun("form");
 			  $("#meeting #listDiv").hide();
 			  $("#meeting #curdForm").show();
-			  innerLayout.hide('south');
 			});
 		/*
 		$("#meeting #trash").click(function() {
@@ -207,7 +206,6 @@ function comInitContent(parentdiv,type){
 		$(parentdiv+" #listDiv").hide();
 	}else{
 		$(parentdiv+" #curdForm").hide();
-		innerLayout.show('south');
 		$(parentdiv+" #listDiv").show();
 		$(parentdiv+" #listDiv").show();
 	}
