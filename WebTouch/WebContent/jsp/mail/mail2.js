@@ -14,10 +14,9 @@ $(document).ready( function() {
 						var vartab=$( "#tabs" ).tabs({
 								select: function(event, ui) {
 									if ( $("#tabs-"+(ui.index+1)+" #loop").css("display")=="inline-block"){
-										innerLayout.open('south');
 										$("#mainContent .ui-layout-south").html("");
 									}else{
-										innerLayout.close('south');
+										//innerLayout.close('south');
 									}
 									if(!arrModules[msg][ui.index].include)
 									{
