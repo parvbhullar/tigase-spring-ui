@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="orgpurviewBean" type="com.ivyinfo.orgpurview.bean.OrgPurviewBean" />
+	<!-- 查找所有的权限信息 -->
+	<select id="findOrgPurview" parameterClass="map" resultClass="orgpurviewBean">
+		<![CDATA[
+			SELECT *,b.name as pname FROM t_sys_org_purview a
+				LEFT JOIN t_sys_permissions b ON b.number = a.pnumber
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="orgid">
+				a.orgid = #orgid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 新增机构权限 -->
+	<insert id="saveOrgPurview" parameterClass="orgpurviewBean">
+		<![CDATA[
+			INSERT INTO t_sys_org_purview(orgid,pnumber,remark1,remark2,timestemp)
+			VALUES(#orgid#,#pnumber#,#remark1#,#remark2#,#timestemp#)
+		]]>
+	</insert>
+	
+	<!-- 删除机构权限信息 -->
+	<delete id="deleteOrgPurview" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_org_purview WHERE orgid=#orgid#
+		]]>
+	</delete>
+	
+</sqlMap>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+    
+<sqlMapConfig>
+	<sqlMap resource="com/ivyinfo/test/dao/test.xml"/>
+	<sqlMap resource="com/ivyinfo/mail/dao/sendmail.xml"/>
+	<sqlMap resource="com/ivyinfo/mail/dao/auxiliarymail.xml"/>
+	<sqlMap resource="com/ivyinfo/mail/dao/receivemail.xml"/>
+	<sqlMap resource="com/ivyinfo/mail/dao/deletemail.xml"/>
+	<sqlMap resource="com/ivyinfo/mail/dao/draftmail.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/organization/dao/organization.xml"/>
+	<sqlMap resource="com/ivyinfo/dept/dao/dept.xml"/>
+	<sqlMap resource="com/ivyinfo/role/dao/role.xml"/>
+	<sqlMap resource="com/ivyinfo/permissions/dao/permissions.xml"/>
+	<sqlMap resource="com/ivyinfo/user/dao/user.xml"/>
+	<sqlMap resource="com/ivyinfo/roleuserpurview/dao/roleuserpurview.xml"/>
+	<sqlMap resource="com/ivyinfo/purview/dao/purview.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/communication/dao/communication.xml"/>
+	<sqlMap resource="com/ivyinfo/communication/dao/communicationIM.xml"/>
+<!-- 	<sqlMap resource="com/ivyinfo/communication/dao/communicationMail.xml"/>   -->
+	
+	<sqlMap resource="com/ivyinfo/webdisk/dao/disk.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/orgpurview/dao/orgpurview.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/sysemail/dao/sysemail.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/im/dao/im.xml"/>
+	
+	<sqlMap resource="com/ivyinfo/user/dao/userpre.xml"/>
+	
+	
+</sqlMapConfig>

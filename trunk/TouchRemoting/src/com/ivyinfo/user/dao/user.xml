@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
+	<!-- 查找所有的用户 -->
+	<select id="findAllUser" parameterClass="map" resultClass="userBean">
+		<![CDATA[
+			SELECT * FROM t_sys_user_login a 
+			LEFT JOIN t_sys_user_basic b ON a.id = b.userid 
+			LEFT JOIN t_sys_user_contact c ON a.id = c.userid 
+			LEFT JOIN t_sys_user_photo d ON a.id = d.userid
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id">
+				a.ID = #id#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="state">
+				a.state = #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="orgid">
+				b.organizationid = #orgid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="type">
+				a.type = #type#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="logname">
+				a.logname = #logname#
+			</isNotEmpty>
+			<isNotNull prepend="AND" property="conname">
+				$conname$ $convalue$
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="order by">
+			<isNotNull property="order">
+				$order$ $orderby$
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="limit">
+			<isNotNull property="from">
+				#from#,#len#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 新增用户登陆信息 -->
+	<insert id="saveUser" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_login(id,logname,nickname,password,type,state,upduserid,timestemp,dirtyflag,meetuserid)
+			VALUES(#id#,#logname#,#nickname#,#password#,#type#,#state#,#upduserid#,#timestemp#,#dirtyflag#,#meetuserid#)
+		]]>
+	</insert>
+	<!-- 新增用户基本信息 -->
+	<insert id="saveUserBasic" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_basic(id,userid,name,sex,usersort,organizationid,deptid,job)
+			VALUES(#basicid#,#userid#,#name#,#sex#,#usersort#,#organizationid#,#deptid#,#job#)
+		]]>
+	</insert>
+	<!-- 新增用户联系信息 -->
+	<insert id="saveUserContact" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_contact(id,userid,email,otheremail,officephone,otherphone,mobilephone,
+				faxnumber,nationality,province,city,detailedaddress,postcode,othermessage)
+			VALUES(#contactid#,#userid#,#email#,#otheremail#,#officephone#,#otherphone#,#mobilephone#,
+				#faxnumber#,#nationality#,#province#,#city#,#detailedaddress#,#postcode#,#othermessage#)
+		]]>
+	</insert>
+	<!-- 新增用户照片信息 -->
+	<insert id="saveUserPhoto" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_photo(id,userid,photopath,photoname)
+			VALUES(#photoid#,#userid#,#photopath#,#photoname#)
+		]]>
+	</insert>
+	
+	<!-- 查看用户详细信息 
+	<select id="findUserById" parameterClass="int" resultClass="userBean">
+		<![CDATA[
+			SELECT * FROM t_sys_user_login a 
+			LEFT JOIN t_sys_user_basic b ON a.id = b.userid 
+			LEFT JOIN t_sys_user_contact c ON a.id = c.userid 
+			LEFT JOIN t_sys_user_photo d ON a.id = d.userid
+			WHERE a.id=#id#
+		]]>
+	</select>-->
+	
+	<!-- 修改用户登陆信息 -->
+	<update id="updateUser" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_login SET 
+			nickname=#nickname#,state=#state#,upduserid=#upduserid#,timestemp=#timestemp#,dirtyflag=#dirtyflag#  
+			WHERE id=#id#
+		]]>
+	</update>
+	<!-- 修改用户基本信息 -->
+	<update id="updateUserBasic" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_basic SET 
+			name=#name#,sex=#sex#,usersort=#usersort#,
+			job=#job# 
+			WHERE userid=#id#
+		]]>
+	</update>
+	<!-- 修改用户联系信息 -->
+	<update id="updateUserContact" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_contact SET 
+			email=#email#,otheremail=#otheremail#,officephone=#officephone#,otherphone=#otherphone#,mobilephone=#mobilephone#,faxnumber=#faxnumber#,
+			nationality=#nationality#,province=#province#,city=#city#,detailedaddress=#detailedaddress#,postcode=#postcode#,othermessage=#othermessage#
+			WHERE userid=#id#
+		]]>
+	</update>
+	<!-- 修改用户照片信息 -->
+	<update id="updateUserPhoto" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_photo SET 
+			photopath=#photopath#,photoname=#photoname#
+			WHERE userid=#id#
+		]]>
+	</update>
+	<!-- 修改用户邮箱信息 -->
+	<update id="updateUserEmail" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_contact SET 
+			email=#email#
+			WHERE userid=#id#
+		]]>
+	</update>
+	
+	<!-- 删除用户在职状态 -->
+	<update id="updUserState" parameterClass="int">
+		<![CDATA[
+			UPDATE t_sys_user_login SET 
+			state=2 
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 删除用户离职状态 -->
+	<update id="deleteUserState" parameterClass="int">
+		<![CDATA[
+			UPDATE t_sys_user_login SET 
+			state=3 
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 删除用户登陆信息 -->
+	<delete id="deleteUser" parameterClass="int">
+		<![CDATA[
+			DELETE FROM t_sys_user_login WHERE ID=#id#
+		]]>
+	</delete>
+	<!-- 删除用户基本信息 -->
+	<delete id="deleteUserBasic" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_user_basic WHERE userid=#id#
+		]]>
+	</delete>
+	<!-- 删除用户联系信息 -->
+	<delete id="deleteUserContact" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_user_contact WHERE userid=#id#
+		]]>
+	</delete>
+	<!-- 删除用户照片信息 -->
+	<delete id="deleteUserPhoto" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_user_photo WHERE userid=#id#
+		]]>
+	</delete>
+	
+	<!-- 修改用户密码信息 -->
+	<update id="updateUserPassword" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_login SET 
+			password=#password#,state=#state#,upduserid=#upduserid#,timestemp=#timestemp#,dirtyflag=#dirtyflag#  
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 重置用户密码信息 -->
+	<update id="ResetPassword" parameterClass="map">
+		<![CDATA[
+			UPDATE t_sys_user_login SET 
+			password=#password#  
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 查找所有的用户总记录数 -->
+	<select id="usercount" parameterClass="map" resultClass="String">
+		<![CDATA[
+			SELECT count(*) FROM t_sys_user_login a 
+			LEFT JOIN t_sys_user_basic b ON a.id = b.userid 
+			LEFT JOIN t_sys_user_contact c ON a.id = c.userid 
+			LEFT JOIN t_sys_user_photo d ON a.id = d.userid
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="state">
+				a.state = #state#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="orgid">
+				b.organizationid = #orgid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="type">
+				a.type = #type#
+			</isNotEmpty>
+			<isNotNull prepend="AND" property="conname">
+				$conname$ $convalue$
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 查找用户webcall冲值信息 -->
+	<select id="findUserCard" parameterClass="map" resultClass="userBean">
+		<![CDATA[
+			SELECT id as cardid,userid,cardnumber,cardpassword,czje FROM t_sys_user_chongzhi
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="userid">
+				userid = #userid#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 新增用户webcall冲值信息 -->
+	<insert id="saveUserCard" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_chongzhi(id,userid,cardnumber,cardpassword,timestemp,czje)
+			VALUES(#cardid#,#userid#,#cardnumber#,#cardpassword#,#cardtimestemp#,#czje#)
+		]]>
+	</insert>
+	
+	<!-- 修改用户webcall冲值信息 -->
+	<update id="updateUserCard" parameterClass="userBean">
+		<![CDATA[
+			UPDATE t_sys_user_chongzhi SET 
+			userid=#userid#,cardnumber=#cardnumber#,cardpassword=#cardpassword#,timestemp=#cardtimestemp#  
+			WHERE id=#cardid#
+		]]>
+	</update>
+	
+	<!-- 删除用户webcall冲值信息 -->
+	<delete id="deleteUserCard" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_user_chongzhi WHERE id=#id#
+		]]>
+	</delete>
+	
+	<!-- 验证登录名重复 -->
+	<select id="ValidationLogname" parameterClass="map" resultClass="String">
+		<![CDATA[
+			SELECT count(*) FROM t_sys_user_login 
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="logname">
+				logname = #logname#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 验证邮箱重复 -->
+	<select id="ValidationEmail" parameterClass="map" resultClass="String">
+		<![CDATA[
+			select count(*) from t_sys_user_login a,t_sys_user_basic b,t_sys_user_contact c
+				where a.id = b.userid and a.id = c.userid and b.organizationid = #orgid#
+				and c.email = #email# and a.id not in (#id#)
+		]]>
+	</select>
+	
+	<!-- 修改用户冲值金额信息 -->
+	<update id="UpdCardCZJE" parameterClass="map">
+		<![CDATA[
+			UPDATE t_sys_user_chongzhi SET 
+			czje=#czje#  
+			WHERE userid=#userid#
+		]]>
+	</update>
+	
+</sqlMap>

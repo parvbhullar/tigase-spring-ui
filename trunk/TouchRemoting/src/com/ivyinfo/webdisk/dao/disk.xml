@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="diskBean" type="com.ivyinfo.webdisk.bean.DiskBean" />
+	<!-- 查找所有的网络硬盘组 -->
+	<select id="findAllDisk" resultClass="diskBean">
+		<![CDATA[
+			SELECT *,id as groupid,userid as guserid,remark as gremark FROM t_disk_group WHERE userid=#guserid#
+		]]>
+	</select>
+	
+	<!-- 新增网络硬盘组 -->
+	<insert id="saveDisk" parameterClass="diskBean">
+		<![CDATA[
+			INSERT INTO t_disk_group(id,userid,groupname,superiorgroupid,remark,upduserid,timestemp,dirtyflag)
+			VALUES(#groupid#,#guserid#,#groupname#,#superiorgroupid#,#gremark#,#gupduserid#,#gtimestemp#,#gdirtyflag#)
+		]]>
+	</insert>
+	
+	<!-- 查看网络硬盘组详细信息 -->
+	<select id="findDiskById" parameterClass="int" resultClass="diskBean">
+		<![CDATA[
+			SELECT *,id as groupid,userid as guserid,remark as gremark FROM t_disk_group WHERE ID=#groupid#
+		]]>
+	</select>
+	
+	<!-- 修改网络硬盘组信息 -->
+	<update id="updateDisk" parameterClass="diskBean">
+		<![CDATA[
+			UPDATE t_disk_group SET 
+			groupname=#groupname#,superiorgroupid=#superiorgroupid#,remark=#gremark#,upduserid=#gupduserid#,timestemp=#gtimestemp#,dirtyflag=#gdirtyflag# 
+			WHERE id=#groupid#
+		]]>
+	</update>
+	
+	<!-- 删除网络硬盘组信息 -->
+	<delete id="deleteDisk" parameterClass="int">
+		<![CDATA[
+			DELETE FROM t_disk_group WHERE ID=#groupid#
+		]]>
+	</delete>
+	
+	<statement id="DiskTable" parameterClass="String">
+        create table $logname$_t_disk 
+		(
+		    id                   int                            not null,
+		    ftpid                varchar(50),
+		    filename             varchar(100),
+		    filepath             varchar(500),
+		    filesuffix           varchar(50),
+		    filesize             varchar(100),
+		    datetime             varchar(30),
+		    filegroupid          varchar(20),
+		    remark               varchar(300),
+		    timestemp            varchar(20),
+		    remark1               varchar(50),
+		    remark2               varchar(50),
+		    remark3               varchar(50),
+		    remark4               varchar(50),
+		    remark5               varchar(50),
+		    PRIMARY KEY  (id)
+		)ENGINE=MyISAM DEFAULT CHARSET=gbk;
+	</statement>
+	<statement id="DiskGroupTable" parameterClass="String">
+		create table $logname$_t_disk_group 
+		(
+		    id                   int                            not null,
+		    groupname            varchar(100),
+		    superiorgroupid      varchar(20),
+		    remark               varchar(300),
+		    timestemp            varchar(20),
+		    remark1               varchar(50),
+		    remark2               varchar(50),
+		    remark3               varchar(50),
+		    remark4               varchar(50),
+		    remark5               varchar(50),
+		    PRIMARY KEY  (id)
+		)ENGINE=MyISAM DEFAULT CHARSET=gbk;
+	</statement>
+	
+	<statement id="DropDiskTable" parameterClass="String">
+		DROP TABLE $logname$_t_disk;
+	</statement>
+	<statement id="DropDiskGroupTable" parameterClass="String">
+		DROP TABLE $logname$_t_disk_group;
+	</statement>
+	
+</sqlMap>
