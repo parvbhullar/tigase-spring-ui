@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="roleuserpurviewBean" type="com.ivyinfo.roleuserpurview.bean.RoleUserPurviewBean" />
+	<!-- 查找所有的角色用户权限 -->
+	<select id="findAllRoleUserPurview" parameterClass="map" resultClass="roleuserpurviewBean">
+		<![CDATA[
+			SELECT * FROM t_sys_role_user_purview
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="roleid">
+				roleid = #roleid#
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="limit">
+			<isNotNull property="limit">
+				#limit#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 新增角色用户权限 -->
+	<insert id="saveRoleUserPurview" parameterClass="roleuserpurviewBean">
+		<![CDATA[
+			INSERT INTO t_sys_role_user_purview(roleid,userid,purview)
+			VALUES(#roleid#,#userid#,#purview#)
+		]]>
+	</insert>
+	
+	<!-- 查看角色用户权限详细信息 
+	<select id="findRoleUserPurviewById" parameterClass="String" resultClass="roleuserpurviewBean">
+		<![CDATA[
+			SELECT * FROM t_sys_role_user_purview WHERE roleid=#roleid#
+		]]>
+	</select>-->
+	
+	<!-- 修改角色用户权限信息 -->
+	<update id="updateRoleUserPurview" parameterClass="roleuserpurviewBean">
+		<![CDATA[
+			UPDATE t_sys_role_user_purview SET 
+			userid=#userid#,purview=#purview# 
+			WHERE roleid=#roleid#
+		]]>
+	</update>
+	
+	<!-- 删除角色用户权限信息 -->
+	<delete id="deleteRoleUserPurview" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_role_user_purview WHERE roleid=#roleid#
+		]]>
+	</delete>
+	
+</sqlMap>

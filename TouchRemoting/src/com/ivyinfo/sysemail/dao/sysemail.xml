@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="sysemailBean" type="com.ivyinfo.sysemail.bean.SysEmailBean" />
+	
+	<!-- 查找系统邮箱设置的总记录数 -->
+	<select id="SysMailCount" resultClass="String">
+		<![CDATA[
+			SELECT count(*) FROM t_sys_mail_pact
+		]]>
+	</select>
+	
+	<!-- 查找所有的系统邮箱设置信息 -->
+	<select id="findAllSysMail" parameterClass="map" resultClass="sysemailBean">
+		<![CDATA[
+			SELECT * FROM t_sys_mail_pact
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id">
+				ID = #id#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				name = #name#
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="order by">
+			<isNotNull property="order">
+				$order$ $orderby$
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="limit">
+			<isNotNull property="from">
+				#from#,#len#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 新增系统邮箱设置信息 -->
+	<insert id="saveSysMail" parameterClass="sysemailBean">
+		<![CDATA[
+			INSERT INTO t_sys_mail_pact(id,name,smtpadd,smtpport,popadd,popport,sslvalidation)
+			VALUES(#id#,#name#,#smtpadd#,#smtpport#,#popadd#,#popport#,#sslvalidation#)
+		]]>
+	</insert>
+	
+	<!-- 修改系统邮箱设置信息 -->
+	<update id="updateSysMail" parameterClass="sysemailBean">
+		<![CDATA[
+			UPDATE t_sys_mail_pact SET 
+				name=#name#,smtpadd=#smtpadd#,smtpport=#smtpport#,
+				popadd=#popadd#,popport=#popport#,sslvalidation=#sslvalidation# 
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 删除系统邮箱设置信息 -->
+	<delete id="deleteSysMail" parameterClass="int">
+		<![CDATA[
+			DELETE FROM t_sys_mail_pact WHERE ID=#id#
+		]]>
+	</delete>
+</sqlMap>
