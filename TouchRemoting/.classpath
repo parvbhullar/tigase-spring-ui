@@ -11,5 +11,5 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/touch-common"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ivyinfo-common"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/im-common"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
