@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<!--<typeAlias alias="MeetTouchMessage" type="com.ivyinfo.im.meettouch.bean.MeetTouchMessage" />
+	<typeAlias alias="UserStatus" type="com.ivyinfo.im.meettouch.bean.UserStatus" />-->
+	<typeAlias alias="NidKeyPair" type="com.ivyinfo.im.ibatis.model.Nid_Key_Pair" />
+	<typeAlias alias="SubToken" type="com.ivyinfo.im.ibatis.model.SubToken" />
+	
+	<!-- 使用数据库存储过程添加用户，使用数据库内部函数进行密码加密  
+	<parameterMap id="getUidMap1" class="java.util.HashMap" >
+		<parameter property="userid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+		<parameter property="psw" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>	
+	</parameterMap>
+	<procedure id="addUser" parameterMap="getUidMap1" resultClass="long">  
+        <![CDATA[ 
+        {call webmeettouch.TigAddUserPlainPw(?,?) }
+        ]]>  
+    </procedure>    
+    -->
+    <!-- 添加虚拟用户 -->
+    <parameterMap id="getUidMap1" class="java.util.HashMap" >
+		<parameter property="userid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+		<parameter property="userid2" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="psw" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>	
+	</parameterMap>
+	<insert id="addUser" parameterMap="getUidMap1">
+		<![CDATA[
+			insert into tig_users (user_id, sha1_user_id, user_pw) values (?, sha1(?), ?);
+		]]>
+	</insert> 
+	
+	<!-- 添加普通用户 --> 
+	<parameterMap id="getUidMap5" class="java.util.HashMap" >
+		<parameter property="uid" jdbcType="INTEGER" javaType="java.lang.Long" mode="IN"/> 
+		<parameter property="logname" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="nickname" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="psw" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="upduserid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>	
+		<parameter property="timestemp" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="dirtyflag" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="state" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="type" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+		<parameter property="meetuserid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" nullValue=""/>
+	</parameterMap>
+	<insert id="addUser2" parameterMap="getUidMap5">
+		<![CDATA[
+			insert into t_sys_user_login (id, logname, nickname, password, upduserid, timestemp, dirtyflag, state, type, meetuserid) values (?, ?, ?,?,?,?,?,?,?,?);
+		]]>
+	</insert>
+	
+	<!-- 更新用户密码密码 -->
+	<parameterMap id="updateMap" class="java.util.HashMap" >
+		<parameter property="password" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+		<parameter property="logname" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	</parameterMap>
+	<update id="updateUserPSW" parameterMap="updateMap">
+		<![CDATA[
+			UPDATE t_sys_user_login SET password=? WHERE logname=?
+		]]>
+	</update>
+	
+	<!-- 查询用户密码 -->
+	<select id="getPSW" parameterClass = "string" resultClass="string">
+    	<![CDATA[
+			SELECT password FROM t_sys_user_login WHERE logname = #userid#
+		]]>
+    </select>
+	
+	
+	<!-- 获得虚拟用户UID -->
+	<select id="getUid2" parameterClass = "string" resultClass="long">
+    	<![CDATA[
+			SELECT uid FROM tig_users WHERE sha1_user_id = sha1(#userid#)
+		]]>
+    </select>	
+	<!-- 获得普通用户UID -->
+	<select id="getUid" parameterClass = "string" resultClass="long">
+    	<![CDATA[
+			SELECT id FROM t_sys_user_login WHERE logname = #userid#
+		]]>
+    </select>
+	
+	<!-- 获得tigase_pairs中KEY值对应的value -->
+	<select id="findKeyValue" parameterClass="NidKeyPair" resultClass="string">
+		<![CDATA[
+			SELECT pval FROM tig_pairs WHERE nid = #nid# AND pkey = #key#
+		]]>
+	</select>
+	
+	<!-- 获得特定的节点号nid -->
+	<parameterMap id="getNodeMap2" class="java.util.HashMap" > 
+		<parameter property="uid" jdbcType="BIGINT" javaType="java.lang.Long" mode="IN"/> 
+		<parameter property="node" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />	
+	</parameterMap>
+	<select id="getNID2" parameterMap="getNodeMap2" resultClass="long">
+		<![CDATA[
+			SELECT nid FROM tig_nodes WHERE uid = ? AND (parent_nid is null) AND node = ?
+		]]>
+	</select>
+	
+	<parameterMap id="getNodeMap" class="java.util.HashMap" >
+		<parameter property="uid" jdbcType="BIGINT" javaType="java.lang.Long" mode="IN"/> 	
+		<parameter property="pid" jdbcType="BIGINT" javaType="java.lang.Long" mode="IN" nullValue="-1"/> 
+		<parameter property="node" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />	
+	</parameterMap>
+	<select id="getNID1" parameterMap="getNodeMap" resultClass="long" >
+		<![CDATA[
+			SELECT nid FROM tig_nodes WHERE uid = ? AND parent_nid = ? AND node = ?
+		]]>
+	</select>
+	
+	
+	<!-- 获得root节点的nid -->
+	<select id="getrootnid" parameterClass="long" resultClass="long">
+		<![CDATA[
+			SELECT nid FROM tig_nodes WHERE uid = #uid# AND (parent_nid is null) AND node = 'root'
+		]]>
+	</select>
+	
+	<!-- 根据节点名和父节点号获得子节点号 -->
+	<select id="getsubnid" parameterClass="SubToken" resultClass="long">
+		<![CDATA[
+			SELECT nid FROM  tig_nodes where parent_nid = #pid#  AND node = #node#
+		]]>
+	</select>
+	
+	<!-- 获得UserCount -->
+    <select id="getUserCount" resultClass="long">
+    	<![CDATA[
+			SELECT count(*) FROM t_sys_user_login
+		]]>
+    </select>
+    
+    <!-- 根据域名获得UserCount -->
+    <select id="getUserCountFromDomain" parameterClass="string" resultClass="long">
+		<![CDATA[
+			SELECT count(*) FROM t_sys_user_login WHERE logname like #udomain#
+		]]>
+	</select>
+    
+    <!-- 根据父节点获得所有子节点 -->
+    <resultMap id="map-result" class="java.util.HashMap">
+       <result property="nid" jdbcType="BIGINT" javaType="java.lang.Long" column="nid"/>
+       <result property="node" jdbcType="VARCHAR" javaType="java.lang.String" column="node"/>
+    </resultMap>
+    <select id="findAllSubNodes" parameterClass="SubToken" resultMap="map-result">
+		<![CDATA[
+			SELECT nid, node from tig_nodes where parent_nid = #pid#
+		]]>
+	</select>
+	
+	<!-- 根据nid和key值删除对应的节点 -->
+	<delete id="deleteNode" parameterClass="NidKeyPair">
+		<![CDATA[
+			DELETE FROM tig_pairs where (nid = #nid#) AND (pkey = #key#)
+		]]>
+	</delete>
+	
+	
+	<!-- 增加节点 -->
+	<parameterMap id="addNodeMap" class="java.util.HashMap" >
+		<parameter property="pid" jdbcType="BIGINT" javaType="java.lang.Long" mode="IN" nullValue="-1"/> 
+		<parameter property="uid" jdbcType="BIGINT" javaType="java.lang.Long" mode="IN"/> 
+		<parameter property="node" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />	
+	</parameterMap>
+	<!--<procedure id="addNode" parameterMap="getUidMap3" resultClass="long">  
+        <![CDATA[ 
+        {call webmeettouch.TigAddNode(?, ?, ?)  }
+        ]]>  
+    </procedure>
+    
+    --><insert id="addNode" parameterMap="addNodeMap">
+		<![CDATA[
+			insert into tig_nodes(parent_nid, uid, node) values(?,?,?)
+		]]>
+	</insert>  
+	
+	<!-- 获得最近插入的node的ID -->
+	<select id="getLastInsertID" resultClass = "long">
+		<![CDATA[
+			select LAST_INSERT_ID()
+		]]>
+	</select>
+    
+    <!-- 增加tig_pair表中的内容 -->
+    <insert id="insertPairTable" parameterClass="NidKeyPair">
+		<![CDATA[
+			insert into tig_pairs (nid, uid, pkey, pval) values (#nid#, #uid#,#key# ,#value#)
+		]]>
+	</insert>
+	
+	<!-- 根据nid查找对应的多个key值 -->
+	<resultMap id="keymap-result" class="java.util.HashMap">
+       <result property="key" jdbcType="VARCHAR" javaType="java.lang.String" column="pkey"/>
+    </resultMap>
+	<select id="findKeys" parameterClass="long" resultMap = "keymap-result">
+		<![CDATA[
+			SELECT pkey FROM tig_pairs where nid = #nid#
+		]]>
+	</select>
+	
+	<!-- 获得所有用户列表 -->
+	<resultMap id="map-result2" class="java.util.HashMap">
+       <result property="userid" jdbcType="VARCHAR" javaType="java.lang.String" column="logname"/>
+    </resultMap>
+    <!--<procedure id="getAllUsers" resultMap="map-result2">  
+        <![CDATA[ 
+        {call webmeettouch.TigAllUsers()}
+        ]]>  
+    </procedure>
+    
+    -->
+    <select id="getAllUsers"  resultMap="map-result2">
+    	<![CDATA[
+			SELECT logname FROM t_sys_user_login
+		]]>
+    </select>
+    
+    <!-- 从tig_pairs表中删除对应的node -->
+    <delete id="deleteNodeFromPair" parameterClass="long">
+		<![CDATA[
+			DELETE FROM tig_pairs WHERE nid = #nid#
+		]]>
+	</delete>
+	
+	<!-- 从tig_nodes表中删除对应的node -->
+    <delete id="deleteNodeFromNode" parameterClass="long">
+		<![CDATA[
+			DELETE FROM tig_nodes WHERE nid = #nid#
+		]]>
+	</delete>
+	
+	 <!-- 从tig_pairs表中删除对应的user -->
+    <delete id="deleteUserFromPair" parameterClass="long">
+		<![CDATA[
+			DELETE FROM tig_pairs WHERE uid = #uid#
+		]]>
+	</delete>
+	
+	 <!-- 从tig_node表中删除对应的user -->
+    <delete id="deleteUserFromNode" parameterClass="long">
+		<![CDATA[
+			DELETE FROM tig_nodes WHERE uid = #uid#
+		]]>
+	</delete>
+	
+	<!--
+	<parameterMap id="deleteUserMap" class="java.util.HashMap" >
+		<parameter property="userid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 	
+	</parameterMap>
+    <procedure id="deleteUserFromUserTb"  parameterMap="deleteUserMap">  
+        <![CDATA[ 
+        {call webmeettouch.TigRemoveUser(?)}
+        ]]>  
+    </procedure>
+    
+    -->
+    <!-- 从tig_nodes表中删除对应的user -->
+    <delete id="deleteUserFromUserTb" parameterClass="long">
+		<![CDATA[
+			DELETE FROM t_sys_user_login WHERE id = #uid#
+		]]>
+	</delete>
+	
+	<!--<insert id="saveUserStatus" parameterClass="UserStatus">
+		<![CDATA[
+			INSERT INTO t_im_user_status(id,user,status,lasttime,clienttype)
+			VALUES(#id#,#user#,#status#,#lasttime#,#clienttype#)
+		]]>
+	</insert>
+	 删除 
+	<delete id="deleteUserStatus" parameterClass="int">
+		<![CDATA[
+			DELETE FROM t_im_user_status WHERE id=#id#
+		]]>
+	</delete>
+	
+	 从tig_users表中删除指定用户 
+	
+	 查找所有的 
+	<select id="findAllUserStatus" resultClass="UserStatus">
+		<![CDATA[
+			SELECT * FROM t_im_user_status 
+		]]>
+	</select>
+	
+	 更新信息 
+	<update id="updateUserStatus" parameterClass="UserStatus">
+		<![CDATA[
+			UPDATE t_im_user_status SET 
+			status=#status#,lasttime=#lasttime#
+			WHERE user=#user#
+		]]>
+	</update>
+	 查找特定 
+	<select id="findUserStatusById" parameterClass="String" resultClass="UserStatus">
+		<![CDATA[
+			SELECT * FROM t_im_user_status WHERE user=#user#
+		]]>
+	</select>
+	
+	
+	
+		 添加 
+	<insert id="saveMeetTouchMessage" parameterClass="MeetTouchMessage">
+		<![CDATA[
+			INSERT INTO $touser$_t_im_message(id,senduser,nicesenduser,touser,nicetouser,message,messagetype,sendtime,readtime,readflag)
+			VALUES(#id#,#senduser#,#nicesenduser#,#touser#,#nicetouser#,#message#,#messagetype#,#sendtime#,#readtime#,#readflag#)
+		]]>
+	</insert>
+	
+	 删除 
+	<delete id="deleteMeetTouchMessage" parameterClass="int">
+		<![CDATA[
+			DELETE FROM $touser$_t_im_message WHERE id=#id#
+		]]>
+	</delete>
+	
+	 查找所有的 
+	<select id="findAllMeetTouchMessage" resultClass="MeetTouchMessage">
+		<![CDATA[
+			SELECT * FROM $touser$_t_im_message 
+		]]>
+	</select>
+	 更新信息 
+	<update id="updateMeetTouchMessage" parameterClass="MeetTouchMessage">
+		<![CDATA[
+			UPDATE $touser$_t_im_message SET 
+			readtime=#readtime#,readflag=#readflag#
+			WHERE touser=#touser#
+		]]>
+	</update>
+	 查找特定 
+	<select id="findMeetTouchMessageById" parameterClass="MeetTouchMessage" resultClass="MeetTouchMessage">
+		<![CDATA[
+			SELECT * FROM $touser$_t_im_message WHERE touser=#touser# and readflag=#readflag#
+		]]>
+	</select>
+	
+	
+	<statement id="cretatIMUserMessageTable" parameterClass="String">
+        CREATE TABLE $logname$_t_im_message (
+		      id int(11) default NULL,
+  			  senduser varchar(50) default NULL,
+  			  nicesenduser varchar(50) default NULL,
+			  touser varchar(50) default NULL,
+			  nicetouser varchar(50) default NULL,
+			  message varchar(2000) default NULL,
+			  messagetype varchar(50) default NULL,
+			  sendtime varchar(50) default NULL,
+			  readtime varchar(50) default NULL,
+			  readflag int(11) default NULL,
+			  remark1               varchar(50),
+		    remark2               varchar(50),
+		    remark3               varchar(50),
+		    remark4               varchar(50),
+		    remark5               varchar(50)
+			) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+	</statement> 
+--></sqlMap>

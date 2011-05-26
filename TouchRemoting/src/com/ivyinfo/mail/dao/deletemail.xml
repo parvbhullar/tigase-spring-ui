@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="deleteMailBean" type="com.ivyinfo.mail.bean.DeleteMailBean" />
+	<!-- 添加已删除邮件 -->
+	<insert id="savedeleteMail" parameterClass="deleteMailBean">
+		<![CDATA[
+			INSERT INTO $logname$(id,sendname,receivename,copyname,secretname,subject,content,filename,datetime,level,
+				state,mailId,mailnumber,originalid,type)
+			VALUES(#id#,#sendname#,#receivename#,#copyname#,#secretname#,#subject#,#content#,#filename#,#datetime#,#level#
+				,#state#,#mailId#,#mailnumber#,#originalid#,#type#)
+		]]>
+	</insert>
+	
+	<!-- 查询已删除邮箱所有邮件 -->
+	<select id="findAllDelete" parameterClass="map" resultClass="deleteMailBean">
+		<![CDATA[
+			SELECT * FROM $logname$
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id">
+				ID = #id#
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="order by">
+			<isNotNull property="order">
+				$order$ $orderby$
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend="limit">
+			<isNotNull property="from">
+				#from#,#len#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 删除已删除邮箱邮件 -->
+	<delete id="deleteRemove" parameterClass="map">
+		<![CDATA[
+			DELETE FROM $logname$
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id">
+				ID = #id#
+			</isNotEmpty>
+		</dynamic>
+	</delete>
+	
+	<!-- 查询已删除邮箱所有邮件总记录数 -->
+	<select id="deletecount" parameterClass="map" resultClass="String">
+		<![CDATA[
+			SELECT count(*) FROM $logname$
+		]]>
+	</select>
+	
+	<statement id="DeleteTable" parameterClass="String">
+        CREATE TABLE $logname$_t_mail_delete (
+		  id int(11) NOT NULL,
+		  originalid varchar(50) NOT NULL,
+		  sendname varchar(100) default NULL,
+		  receivename mediumtext,
+		  copyname mediumtext,
+		  secretname mediumtext,
+		  subject varchar(1000) default NULL,
+		  content longtext,
+		  filename varchar(1000) default NULL,
+		  datetime varchar(20) default NULL,
+		  level varchar(10) default NULL,
+		  type varchar(10) default NULL,
+		  state varchar(10) default NULL,
+		  mailId varchar(1000) default NULL,
+		  mailnumber varchar(100) default NULL,
+		  remark1               varchar(50),
+		    remark2               varchar(50),
+		    remark3               varchar(50),
+		    remark4               varchar(50),
+		    remark5               varchar(50),
+		  PRIMARY KEY  (id)
+		) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+	</statement> 
+	
+	<statement id="DropDeleteTable" parameterClass="String">
+		DROP TABLE $logname$_t_mail_delete;
+	</statement>
+</sqlMap>

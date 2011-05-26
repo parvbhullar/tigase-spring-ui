@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="permissionsBean" type="com.ivyinfo.permissions.bean.PermissionsBean" />
+	<!-- 查找所有的权限 -->
+	<select id="findAllPermissions" resultClass="permissionsBean">
+		<![CDATA[
+			SELECT * FROM t_sys_permissions
+		]]>
+	</select>
+	
+	<!-- 新增权限 -->
+	<insert id="savePermissions" parameterClass="permissionsBean">
+		<![CDATA[
+			INSERT INTO t_sys_permissions(number,name,remark)
+			VALUES(#number#,#name#,#remark#)
+		]]>
+	</insert>
+	
+	<!-- 查看权限详细信息 
+	<select id="findPermissionsById" parameterClass="String" resultClass="permissionsBean">
+		<![CDATA[
+			SELECT * FROM t_sys_permissions WHERE NUMBER=#number#
+		]]>
+	</select>-->
+	
+	<!-- 修改权限信息 -->
+	<update id="updatePermissions" parameterClass="permissionsBean">
+		<![CDATA[
+			UPDATE t_sys_permissions SET 
+			name=#name#,remark=#remark# 
+			WHERE NUMBER=#number#
+		]]>
+	</update>
+	
+	<!-- 删除权限信息 -->
+	<delete id="deletePermissions" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_permissions WHERE NUMBER=#number#
+		]]>
+	</delete>
+	
+</sqlMap>

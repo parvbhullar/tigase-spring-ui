@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="deptBean" type="com.ivyinfo.dept.bean.DeptBean" />
+	<!-- 查找所有的部门 -->
+	<select id="findAllDept" parameterClass="map" resultClass="deptBean">
+		<![CDATA[
+			SELECT * FROM t_sys_dept
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id">
+				ID = #id#
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="limit">
+			<isNotNull property="limit">
+				#limit#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<!-- 新增部门 -->
+	<insert id="saveDept" parameterClass="deptBean">
+		<![CDATA[
+			INSERT INTO t_sys_dept(id,name,superiordept,remark,organizationid,upduserid,timestemp,dirtyflag)
+			VALUES(#id#,#name#,#superiordept#,#remark#,#organizationid#,#upduserid#,#timestemp#,#dirtyflag#)
+		]]>
+	</insert>
+	
+	<!-- 修改部门信息 -->
+	<update id="updateDept" parameterClass="deptBean">
+		<![CDATA[
+			UPDATE t_sys_dept SET 
+			name=#name#,superiordept=#superiordept#,remark=#remark#,organizationid=#organizationid#,upduserid=#upduserid#,timestemp=#timestemp#,dirtyflag=#dirtyflag# 
+			WHERE id=#id#
+		]]>
+	</update>
+	
+	<!-- 删除部门信息 -->
+	<delete id="deleteDept" parameterClass="int">
+		<![CDATA[
+			DELETE FROM t_sys_dept WHERE ID=#id#
+		]]>
+	</delete>
+	
+</sqlMap>
