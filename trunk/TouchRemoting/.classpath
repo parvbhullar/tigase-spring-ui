@@ -10,6 +10,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/touch-common"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ivyinfo-common"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/im-common"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
