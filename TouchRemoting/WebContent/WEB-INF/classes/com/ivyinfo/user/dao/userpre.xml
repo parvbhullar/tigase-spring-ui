@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="userPreBean" type="com.ivyinfo.user.bean.UserPreBean" />
+	<!-- 查找指定用户的信息 -->
+	<select id="UserPreList" parameterClass="map" resultClass="userPreBean">
+		<![CDATA[
+			SELECT * FROM t_sys_user_preferences 
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="logname">
+				username = #logname#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="keyword">
+				keyword = #keyword#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 新增用户参数信息 -->
+	<insert id="UserPreAdd" parameterClass="userPreBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_preferences(id,username,keyword,prefvalue)
+			VALUES(#id#,#username#,#keyword#,#prefvalue#)
+		]]>
+	</insert>
+	
+	<!-- 修改用户参数信息 -->
+	<update id="UserPreUpd" parameterClass="userPreBean">
+		<![CDATA[
+			UPDATE t_sys_user_preferences SET 
+			username=#username#,keyword=#keyword#,prefvalue=#prefvalue# 
+			WHERE id=#id#
+		]]>
+	</update>
+	
+</sqlMap>
