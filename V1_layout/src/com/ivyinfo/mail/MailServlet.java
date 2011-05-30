@@ -22,7 +22,6 @@ import com.ivyinfo.mail.services.AuxiliaryMailServices;
 import com.ivyinfo.mail.services.SaveMailServices;
 import com.ivyinfo.mail.services.SendMailServices;
 import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.system.Organization;
 import com.ivyinfo.webdisk.services.IWebDiskServices;
 
 public class MailServlet extends HttpServlet {
