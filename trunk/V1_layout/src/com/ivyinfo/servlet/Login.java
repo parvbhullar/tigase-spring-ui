@@ -41,7 +41,6 @@ public class Login extends HttpServlet {
 			if("SUCCESS".equals(loginBean.getState())){
 				SessionUserBean sessionUserBean = null;
 				try {
-					sessionUserBean = purviewServices.setSessionValue(loginBean.getUserid());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
