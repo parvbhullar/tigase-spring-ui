@@ -7,16 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ivyinfo.communication.services.CommunicationServices;
 import com.ivyinfo.framework.common.file.ResouceLoader;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.im.client.ICientEngine;
-import com.ivyinfo.im.db.conversion.JsonConversion;
-import com.ivyinfo.im.listener.ChatListener;
-import com.ivyinfo.mail.services.AuxiliaryMailServices;
 import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
 import com.zy.im.client.service.ClientSession;
@@ -55,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			
 			System.out.println("loginName : " + loginName);
 			
-			if(sessionUserBean.getCsession()==null){
+			if(true){
 			
 				ICientEngine clientEngineServices = (ICientEngine)SpringContextUtil.getBean("clientEngineServices"); 
 				
@@ -73,13 +70,10 @@ public class LoginServlet extends HttpServlet {
 						clientEngineServices.addRosterListener(loginName, csession);
 					}
 					
-					sessionUserBean.setCsession(csession);
 					session.setAttribute("sessionUserBean", sessionUserBean);
 					
 					//这里要组建好友数据			
-					jsonObj = JsonConversion.login_Pass_String_json(sessionUserBean);
 				}else{
-					jsonObj = JsonConversion.login_Error_String_json();
 				}
 				response.getWriter().print(jsonObj.toString());
 			}
@@ -89,9 +83,7 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception ex) {
 			String jsonObj = "";
 			try {
-				jsonObj = JsonConversion.login_Error_String_json();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.getWriter().print(jsonObj.toString());
