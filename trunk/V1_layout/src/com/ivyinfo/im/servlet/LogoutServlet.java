@@ -54,13 +54,9 @@ public class LogoutServlet extends HttpServlet {
 			ICientEngine clientEngineServices = (ICientEngine)SpringContextUtil.getBean("clientEngineServices"); 
 			
 			String jsonObj = "";
-			if(sessionUserBean.getCsession() !=null ){
-				ClientSession csession = sessionUserBean.getCsession();
-				clientEngineServices.stopClient(loginName,csession);
+			if(true){
 				
-				jsonObj = JsonConversion.logout_Pass_String_json();
 			}else{
-				jsonObj = JsonConversion.logout_Error_String_json("");
 			}
 			
 			response.getWriter().print(jsonObj.toString());
@@ -68,7 +64,6 @@ public class LogoutServlet extends HttpServlet {
 		} catch (Exception ex) {
 			String jsonObj = "";
 			try {
-				jsonObj = JsonConversion.login_Error_String_json();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
