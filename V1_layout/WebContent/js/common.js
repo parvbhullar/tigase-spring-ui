@@ -44,6 +44,7 @@ function initAccordionMenu(arrMenu){
 }
 
 function countHeight(type){
+	/*
 	var h1=document.documentElement.clientHeight;
 	if("list"==type){
 		var h2=$("#userMod").css("height").substring(0,($("#tabs").css("height").length-2));
@@ -56,6 +57,7 @@ function countHeight(type){
 			if($.browser.msie){ h=h+4;}
 		}
 	}
+	*/
 	//innerLayout.sizePane('south', (h));innerLayout.open('south');
 }
 

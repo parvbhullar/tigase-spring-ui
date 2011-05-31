@@ -174,7 +174,9 @@ function loadmeeting(authIndex,index){
 	
 	//加载会议模块
 	$("#accordion").remove();
-	$(".content").html("<div id='accordion'><h3><a href='#' class='dcjq-parent'>会议<span class='dcjq-icon'></span></a></h3><div><ul><li><a href='#' class='dcjq-parent'>会议列表<span class='dcjq-icon'></span></a></li></ul></div>");
+	
+	//$(".content").html("<div id='accordion'><h3><a href='#' class='dcjq-parent'>会议<span class='dcjq-icon'></span></a></h3><div><ul><li><a href='#' class='dcjq-parent'>会议列表<span class='dcjq-icon'></span></a></li></ul></div>");
+	
 	initAccordion();
 	initAccordionFun(authIndex,index);
 	$.ajax({
@@ -250,6 +252,7 @@ function initPersonalinfo(authIndex,index){
 
 //初始化折叠框
 function initAccordion(){
+	/*
 	var icons = {
 			header: "ui-icon-circle-arrow-e",
 			headerSelected: "ui-icon-circle-arrow-s"
@@ -260,6 +263,7 @@ function initAccordion(){
 	$( "#accordion" ).accordion({ clearStyle: true });
 	$( "#accordion" ).accordion( "option", "icons", icons );
 	$( "#accordion" ).accordion( "option", "collapsible", true );
+	*/
 }
 
 //初始化折叠框内点击函数

@@ -305,31 +305,18 @@ String username="qk";
 	<div class="content" style="position: relative; height: 174px; visibility: visible;">
 			<div id="demo" class="demo" style="height:200px;"></div>
 			<div id='alog' style="border:1px solid gray; padding:5px; height:100px; margin-top:15px; overflow:auto; font-family:Monospace;"></div>
-			<script type="text/javascript" >
+			<script type="text/javascript" class="source below">
 $(function () {
-$("#demo")
-	.bind("loaded.jstree", function (e, data) {
-		$("#alog").append(data.func + "<br />");
-	})
-	.jstree({ 
-		// List of active plugins
-		"plugins" : [ 
-			"json_data" 
-		],
 
-		// I usually configure the plugin that handles the data first
-		// This example uses JSON as it is most common
+$("#demo").jstree({ 
+		"plugins" : [ 
+			"themes","json_data"
+		],
 		"json_data" : { 
-			// This tree is ajax enabled - as this is most common, and maybe a bit more complex
-			// All the options are almost the same as jQuery's AJAX (read the docs)
 			"ajax" : {
-				// the URL to fetch the data
 				"url" : "mail?action=jstree",
-				// the `data` function is executed in the instance's scope
-				// the parameter is the node being loaded 
-				// (may be -1, 0, or undefined when loading the root nodes)
 				"data" : function (n) { 
-					// the result is fed to the AJAX request `data` option
+					console.info(n)
 					return { 
 						"operation" : "get_children", 
 						"id" : n.attr ? n.attr("id").replace("node_","") : 1 
@@ -337,15 +324,11 @@ $("#demo")
 				}
 			}
 		}
-	});
+	})
 	
-})
+});
 </script>
-		
 	</div>
-
-	
-
 </div>
 
 
