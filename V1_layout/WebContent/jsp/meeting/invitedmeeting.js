@@ -207,7 +207,7 @@ function comInitContent(parentdiv,type){
 		$(parentdiv+" #listDiv").hide();
 	}else{
 		$(parentdiv+" #curdForm").hide();
-		innerLayout.show('south');
+
 		$(parentdiv+" #listDiv").show();
 		$(parentdiv+" #listDiv").show();
 	}
