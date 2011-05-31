@@ -11,10 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.login.bean.LoginBean;
-import com.ivyinfo.purview.bean.PurviewBean;
 import com.ivyinfo.purview.services.PurviewServices;
 import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.user.bean.UserBean;
 
 public class Login extends HttpServlet {
 	private PurviewServices purviewServices = (PurviewServices) SpringContextUtil
@@ -45,7 +43,7 @@ public class Login extends HttpServlet {
 					e.printStackTrace();
 				}
 				//request.getRequestDispatcher("index.jsp").forward(request, response);
-				request.getRequestDispatcher("layout2.jsp").forward(request, response);
+				request.getRequestDispatcher("layout_tree.jsp").forward(request, response);
 			}else{
 				String errmessage = loginBean.getErrmessage();
 				out.print("<script type='text/javascript'>alert('"+errmessage+"');history.go(-1);</script>");

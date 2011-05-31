@@ -37,7 +37,12 @@ public class Mail extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		System.out.println("get");
+		try {
+			String json="[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]";
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -52,15 +57,8 @@ public class Mail extends HttpServlet {
 			String content=(String)request.getParameter("content");
 			MailUtilBean mailUtilBean=new MailUtilBean();
 			try {
-				List list=new ArrayList<String>();
-				list.add(to);
-				System.out.println("to="+to);
-				mailUtilBean.setFrom("qinkun1234@163.com");
-				mailUtilBean.setTo(list);
-				mailUtilBean.setSubject(subject);
-				mailUtilBean.setContent(content);
-				mailUtilBean.setToname("qinkun1234@163.com;");
-				sendMailServices.SendMail(mailUtilBean);
+				String json="[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]";
+				response.getWriter().print(json);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
