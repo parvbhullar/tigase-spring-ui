@@ -6,20 +6,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ivyinfo.framework.common.time.TimeTools;
 import com.ivyinfo.framework.service.sequence.ISequence;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
-import com.ivyinfo.generic.country.CountryCode;
 import com.ivyinfo.mail.bean.SetupMailBean;
 import com.ivyinfo.mail.services.AuxiliaryMailServices;
-import com.ivyinfo.organization.bean.OrganizationBean;
-import com.ivyinfo.organization.services.OrganizationServices;
 import com.ivyinfo.purview.bean.PurviewBean;
 import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
@@ -52,7 +49,6 @@ public class User {
 		/**
 		 * 根据输入的英文字母转换成对应的中文名
 		 */
-		CountryCode countrycode = new CountryCode();
 		String nationality = ZHnationality;//countrycode.getValue(ZHnationality);
 		String province = ZHprovince;//countrycode.getValue(ZHprovince);
 		String city = ZHcity;//countrycode.getValue(ZHcity);
@@ -102,7 +98,6 @@ public class User {
 		/**
 		 * 根据输入的英文字母转换成对应的中文名
 		 */
-		CountryCode countrycode = new CountryCode();
 		String nationality = ZHnationality;//countrycode.getValue(ZHnationality);
 		String province = ZHprovince;//countrycode.getValue(ZHprovince);
 		String city = ZHcity;//countrycode.getValue(ZHcity);
@@ -172,10 +167,9 @@ public class User {
 		
 		List arrayList=new ArrayList();
 		
-		int totalCount=userServices.UserListCount(state,orgid);
+		int totalCount=0;
 		page.setPageNo(new Integer(page1).intValue());
 		page.setTotalCount(totalCount);
-		arrayList=userServices.AllIndex(page.getStart(), page.getEnd(),state,orgid,sidx,sord);
 		
 		// 定义返回的数据类型：json，使用了json-lib
         JSONObject jsonObj = new JSONObject();

@@ -99,10 +99,9 @@ public class Organization {
 		
 		List arrayList=new ArrayList();
 		
-		int totalCount=organizationServices.OrgListCount();
+		int totalCount=0;
 		page.setPageNo(new Integer(page1).intValue());
 		page.setTotalCount(totalCount);
-		arrayList=organizationServices.AllIndex(page.getStart(), page.getEnd(),sidx,sord);
 		
 		// 定义返回的数据类型：json，使用了json-lib
         JSONObject jsonObj = new JSONObject();
