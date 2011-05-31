@@ -15,7 +15,7 @@ $(document).ready( function() {
 	//加载列表
 	function loadMeetingModList(){
 		var varmaillist=$("#meetingList").jqGrid({ 
-			url:'MyMeetingServlet?action=MyMeetingListNot', 
+			url:'mail?action=MyMeetingListNot', 
 			datatype: 'json', 
 			mtype: 'POST', 
 			colNames:['confkey','会议类型','开始时间','主题','主持人', '持续时间(分钟)','会议状态','操作'], 
