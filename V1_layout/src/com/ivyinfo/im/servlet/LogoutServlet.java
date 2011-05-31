@@ -11,15 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ivyinfo.communication.services.CommunicationServices;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.im.client.ICientEngine;
-import com.ivyinfo.im.db.conversion.JsonConversion;
-import com.ivyinfo.mail.services.AuxiliaryMailServices;
 import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
-import com.zy.im.client.service.ClientSession;
-import com.zy.im.client.service.ClientThreadState;
 
 public class LogoutServlet extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutServlet.class);
@@ -65,7 +60,6 @@ public class LogoutServlet extends HttpServlet {
 			String jsonObj = "";
 			try {
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.getWriter().print(jsonObj.toString());
