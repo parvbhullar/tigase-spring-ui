@@ -140,7 +140,7 @@ public class MailServlet extends HttpServlet {
 					// 设置字符编码
 		            response.setCharacterEncoding("UTF-8");
 		            // 返回json对象（通过PrintWriter输出）
-		            response.getWriter().print(jsonObj);
+		            response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
