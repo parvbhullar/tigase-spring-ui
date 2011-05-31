@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.ivyinfo.session.bean.SessionUserBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <% 
 String ctxindex = request.getContextPath();
-HttpSession getSession = request.getSession();
-SessionUserBean sessionUserBean = (SessionUserBean) getSession.getAttribute("sessionUserBean");
-String username=sessionUserBean.getUserBean().getName();
+
+String username="qk";
 %>
 <html>
 <head>

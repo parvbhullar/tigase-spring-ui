@@ -44,7 +44,6 @@ public class Login extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				session.setAttribute("sessionUserBean", sessionUserBean);
 				//request.getRequestDispatcher("index.jsp").forward(request, response);
 				request.getRequestDispatcher("layout2.jsp").forward(request, response);
 			}else{

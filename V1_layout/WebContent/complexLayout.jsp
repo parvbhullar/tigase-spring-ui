@@ -6,8 +6,8 @@
 <% 
 String ctxindex = request.getContextPath();
 HttpSession getSession = request.getSession();
-SessionUserBean sessionUserBean = (SessionUserBean) getSession.getAttribute("sessionUserBean");
-String username=sessionUserBean.getUserBean().getName();
+
+String username="qk";
 %>
 <html>
 <head>

@@ -32,7 +32,8 @@ public class LoginAuth extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				response.getWriter().print(sessionUserBean.getUserBean().getType());
+				//response.getWriter().print(sessionUserBean.getUserBean().getType());
+				response.getWriter().print("2");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
