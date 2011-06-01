@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/com/ivyinfo/framework/service/config/httpInvoker.properties</value>
+            </list>
+        </property>
+    </bean>
+	
+	<!--<bean id="httpInvokerRequestExecutor" class="org.springframework.remoting.httpinvoker.SimpleHttpInvokerRequestExecutor" 
+		/> -->
+	<bean id="httpInvokerRequestExecutor"
+		class="org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor">
+		<property name="httpClient">
+			<bean class="org.apache.commons.httpclient.HttpClient">
+				<property
+					name="connectionTimeout"
+					value="20000" />
+				<property
+					name="timeout"
+					value="50000" />
+				<property
+					name="httpConnectionManager">
+					<ref bean="multiThreadedHttpConnectionManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="multiThreadedHttpConnectionManager" class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager">
+		<property name="params">
+			<bean class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
+				<property
+					name="maxTotalConnections"
+					value="600" />
+				<property
+					name="defaultMaxConnectionsPerHost"
+					value="512" />
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

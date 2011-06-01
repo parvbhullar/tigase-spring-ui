@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0; padding:0;}
+body{font-size:12px; font-family:Arial, Helvetica, sans-serif;  background:#fff; color:#666;}
+ul{list-style:none;}
+img{border:0; vertical-align:middle;}
+.bold{font-weight:700;}
+.floatleft{float:left;}
+.floatright{float:right;}
+.algincenter{text-align:center;}
+.none{display:none;}
+.marginleft10{margin-left:10px;}
+.margin10{margin:0 10px;}
+.margin20{margin:0 20px; color:#8a8a8a;}
+
+.floatright{float:right;}
+.floatleft{float:left; margin-right:10px;}
+
+
+#main{width:220px; height:100%; position:relative;clear:both; background:#ffffff; padding:5px 0px;}
+#main_01{width:210px; height:40px; position:relative; }
+.bh_su{ float:left; width:155px; height:40px; background:url(../image/bh_sr.gif) no-repeat; clear:both; overflow:hidden;}
+.m_left{position:absolute; top:5px; left:15px; width:130px; height:35px; line-height:35px; font-size:18px; font-weight:bold; color:#000000;}
+.bh_an{ float:right; width:50px; height:40px;padding-left: 0px;}
+
+.bh_bh{ width:230px; height:100%; padding: 10px 0px;text-align:center;}
+.bh_bh ul li{float:left; padding:5px 1px;}
+.bh_bh ul li img{ width:62px; height:36px; overflow:hidden;}
