@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.eredlab.g4.demo.esb.httpinvoker.client.HelloWorldClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +38,13 @@ public class MailServlet extends HttpServlet {
 	
 	private SaveMailServices saveMailServices = (SaveMailServices) SpringContextUtil
 	.getBean("saveMailServices");
+	
+	private HelloWorldClient helloWorldClient = (HelloWorldClient) SpringContextUtil
+	.getBean("helloWorldService");
+	
+	
+	
+	
 	
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -136,7 +144,6 @@ public class MailServlet extends HttpServlet {
 				LOGGER.info("=========NULL=============");
 				JSONObject jsonObj = null;
 				try {
-					
 					// 设置字符编码
 		            response.setCharacterEncoding("UTF-8");
 		            // 返回json对象（通过PrintWriter输出）
@@ -149,8 +156,8 @@ public class MailServlet extends HttpServlet {
 			            jSONObject.put("attr", tempJSONObject);
 			            jSONArray.add(jSONObject);
 		            }
-		            
 		            //response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
+		            helloWorldClient.sayHello("qk");
 		            response.getWriter().print(jSONArray.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
