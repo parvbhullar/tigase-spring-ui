@@ -304,42 +304,84 @@ String username="qk";
 
 	<div class="content" style="position: relative; height: 174px; visibility: visible;">
 			<div id="demo" class="demo" style="height:200px;"></div>
-			<div id='alog' style="border:1px solid gray; padding:5px; height:100px; margin-top:15px; overflow:auto; font-family:Monospace;"></div>
 			<script type="text/javascript" class="source below">
 $(function () {
 
 	$("#demo").jstree({ 
 		"themes" : {
-	        "theme" : "default",
+	        "theme" : "classic",
 	        "dots" : true,
 	        "icons" : true 
     	}, 
 		"json_data" : {
-        "ajax" : {
-            "url" : "/zyz/manage/active/loadTree.action"
-        }
+			"data" : [
+		                { 
+		                    "data" : "A node", 
+		                    "attr" : { "id" : "1" ,time:1321},
+		                    "callback":function(){alert('sss')},
+		                    "children" : [ 
+		                        {
+		                            "data" : "ttt node", 
+		                            "children" : [ "Child 1", "Child 2" ]   
+		                        }
+		                     ]
+		                },
+		                { 
+		                    "attr" : { "id" : "2" }, 
+		                    "data" : { 
+		                        "title" : "Long format demo", 
+		                        "attr" : { "href" : "#" } 
+		                    } 
+		                },
+		                {
+		                    "data" : "sss node", 
+		                    "attr" : { "id" : "3" },
+		                    "children" : [ 
+		                        {
+		                            "data" : "bbb node"
+		                        }
+		                        ,
+		                        {
+		                            "data" : "kkkk node", 
+		                            "attr" : { "id" : "11" },
+		                            "children" : [ 
+		                                {
+		                                    "data" : "oooo node", 
+		                                    "children" : [ "pppp", "nnnn" ] 
+		                                }
+		                             ]
+		                        },
+		                    ]
+		                },
+		                {
+		                    "data" : "wwqq node",
+		                    "attr" : { "id" : "4" },
+		                    "children" : [ "Child 1", "Child 2" ]   
+		                },
+		                {
+		                    "data" : "hhh node",
+		                    "attr" : { "id" : "5" },
+		                    "metadata ":"i am the metadata",
+		                    "children" : [ 
+		                            {
+		                            "data" : "A node", 
+		                            "children" : [ 
+		                                {
+		                                    "data" : "ttt node", 
+		                                    "children" : [ "Child 1", "Child 2" ]   
+		                                }
+		                                ]
+		                            },
+		                            {
+		                            "data" : "bbb node"
+		                            }
+
+		                        ]   
+		                },
+		            ]
     },
 	"plugins" : [ "themes", "json_data" ]
 	});	
-
-
-$("#demo").jstree({ 
-		"plugins" : [ 
-			"themes","json_data"
-		],
-		"json_data" : { 
-			"ajax" : {
-				"url" : "mail?action=jstree",
-				"data" : function (n) { 
-					console.info(n)
-					return { 
-						"operation" : "get_children", 
-						"id" : n.attr ? n.attr("id").replace("node_","") : 1 
-					}; 
-				}
-			}
-		}
-	})
 	
 });
 </script>
