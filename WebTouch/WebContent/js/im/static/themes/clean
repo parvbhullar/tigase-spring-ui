@@ -1,3 +1,0 @@
-#!/bin/sh
-find . !  -name *ui.t* -depth 2 -type f -delete
-find . -name *ui.tabs* -depth 2 -type f -delete
