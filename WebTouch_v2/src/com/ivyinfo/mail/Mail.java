@@ -1,32 +1,19 @@
 package com.ivyinfo.mail;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.ivyinfo.communication.bean.CommunicationBean;
-import com.ivyinfo.framework.common.time.TimeTools;
-import com.ivyinfo.framework.service.sequence.ISequence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ivyinfo.framework.service.server.SpringContextUtil;
-import com.ivyinfo.mail.bean.SetupMailBean;
-import com.ivyinfo.organization.bean.OrganizationBean;
 import com.ivyinfo.organization.services.OrganizationServices;
-import com.ivyinfo.orgpurview.bean.OrgPurviewBean;
 import com.ivyinfo.orgpurview.services.OrgPurviewServices;
 import com.ivyinfo.permissions.bean.PermissionsBean;
 import com.ivyinfo.permissions.services.PermissionsServices;
-import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.user.bean.UserBean;
 import com.ivyinfo.user.services.UserServices;
-import com.ivyinfo.util.Constant;
-import com.ivyinfo.util.Page;
 
 public class Mail {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Mail.class);
