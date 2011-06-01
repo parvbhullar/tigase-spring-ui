@@ -312,74 +312,13 @@ $(function () {
 	        "theme" : "classic",
 	        "dots" : true,
 	        "icons" : true 
-    	}, 
-		"json_data" : {
-			"data" : [
-		                { 
-		                    "data" : "A node", 
-		                    "attr" : { "id" : "1" ,time:1321},
-		                    "callback":function(){alert('sss')},
-		                    "children" : [ 
-		                        {
-		                            "data" : "ttt node", 
-		                            "children" : [ "Child 1", "Child 2" ]   
-		                        }
-		                     ]
-		                },
-		                { 
-		                    "attr" : { "id" : "2" }, 
-		                    "data" : { 
-		                        "title" : "Long format demo", 
-		                        "attr" : { "href" : "#" } 
-		                    } 
-		                },
-		                {
-		                    "data" : "sss node", 
-		                    "attr" : { "id" : "3" },
-		                    "children" : [ 
-		                        {
-		                            "data" : "bbb node"
-		                        }
-		                        ,
-		                        {
-		                            "data" : "kkkk node", 
-		                            "attr" : { "id" : "11" },
-		                            "children" : [ 
-		                                {
-		                                    "data" : "oooo node", 
-		                                    "children" : [ "pppp", "nnnn" ] 
-		                                }
-		                             ]
-		                        },
-		                    ]
-		                },
-		                {
-		                    "data" : "wwqq node",
-		                    "attr" : { "id" : "4" },
-		                    "children" : [ "Child 1", "Child 2" ]   
-		                },
-		                {
-		                    "data" : "hhh node",
-		                    "attr" : { "id" : "5" },
-		                    "metadata ":"i am the metadata",
-		                    "children" : [ 
-		                            {
-		                            "data" : "A node", 
-		                            "children" : [ 
-		                                {
-		                                    "data" : "ttt node", 
-		                                    "children" : [ "Child 1", "Child 2" ]   
-		                                }
-		                                ]
-		                            },
-		                            {
-		                            "data" : "bbb node"
-		                            }
-
-		                        ]   
-		                },
-		            ]
-    },
+    	},
+    	"json_data" : {
+	        "ajax" : {
+	            "url" : "mail?action=jstree"
+	       }
+    	}
+		,
 	"plugins" : [ "themes", "json_data" ]
 	});	
 	

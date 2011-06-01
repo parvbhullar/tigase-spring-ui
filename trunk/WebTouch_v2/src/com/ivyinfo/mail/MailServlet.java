@@ -140,7 +140,18 @@ public class MailServlet extends HttpServlet {
 					// 设置字符编码
 		            response.setCharacterEncoding("UTF-8");
 		            // 返回json对象（通过PrintWriter输出）
-		            response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
+		            JSONArray jSONArray=new JSONArray();
+		            for(int i=0;i<5;i++){
+		            	JSONObject jSONObject=new JSONObject();
+			            jSONObject.put("data", "node"+i);
+			            JSONObject tempJSONObject=new JSONObject();
+			            tempJSONObject.put("id", i);
+			            jSONObject.put("attr", tempJSONObject);
+			            jSONArray.add(jSONObject);
+		            }
+		            
+		            //response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
+		            response.getWriter().print(jSONArray.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
