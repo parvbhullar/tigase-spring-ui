@@ -14,8 +14,15 @@
 	 <bean id="helloWorldService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"><value>${serviceUrlEsb}/helloWorldService</value></property>
 		<property name="serviceInterface" 
-			value="org.eredlab.g4.demo.esb.httpinvoker.client.HelloWorldClient" />
-	</bean>	
+			value="org.eredlab.g4.demo.esb.httpinvoker.HelloWorld" />
+	</bean>
+	
+	<bean id="organizationService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrlEsb}/organizationService</value></property>
+		<property name="serviceInterface" 
+			value="org.eredlab.g4.arm.service.OrganizationService" />
+	</bean>
+			
 	 
 	 
 	<bean id="Sequence" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
