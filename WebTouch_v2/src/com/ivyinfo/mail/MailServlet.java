@@ -163,9 +163,14 @@ public class MailServlet extends HttpServlet {
 		            List menuList=helloWorldService.queryBalanceInfoLimitRownum(12);
 		            for(int i=0;i<menuList.size();i++){
 		            	JSONObject jSONObject=new JSONObject();
-			            jSONObject.put("data",((BaseDto)menuList.get(i)).get("text"));
+		            	BaseDto dto=(BaseDto)menuList.get(i);
+			            jSONObject.put("data",dto.get("text"));
+			            if("0".equals(dto.get("leaf")))
+			            	jSONObject.put("children","[ 'Child 1', 'A Child 2' ]");
 			            JSONObject tempJSONObject=new JSONObject();
 			            tempJSONObject.put("id", i);
+			            
+			            tempJSONObject.put("leaf", dto.get("leaf"));
 			            jSONObject.put("attr", tempJSONObject);
 			            jSONArray.add(jSONObject);
 		            }
