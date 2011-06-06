@@ -1,0 +1,81 @@
+<html>
+<head></head>
+<body>
+<script>
+	//收件箱
+	$(function() {
+		/*tab2-button开始*/
+		$('select#markMail').selectmenu({style:'dropdown'});
+		$("#markMail-button").css("width","70px");
+		$("#markMail-button").css("height","28px");
+		$("#markMail").change(function(){
+			//console.info(this.value);
+			if(this.value!=100)
+			{
+				var value=0;
+				if(this.value==2)
+				{
+					value=2;
+				}else{
+					if(this.value==1)
+					{
+						value=1;
+						buttonNavType=1;//会议按钮添删改查初始化
+					}
+				}
+				$("#tabs" ).tabs( "option", "selected", value );
+			}
+		});
+		var varbutton=$("#buttonDeleteMail").button({
+												text: "删除"
+											}).click(function() { 
+												var selarrrow = $("#mailDraftList").getGridParam('selarrrow');
+												if(selarrrow==""){
+													blockUI('必须选择一条记录进行删除操作！',2000);
+												}else{
+													$.ajax({
+														url: 'mail?action=DraftRemove&selarrrow='+selarrrow,
+														type:'post',
+														success: function(data) {
+														$("#mailDraftList").trigger("reloadGrid");//刷新表格
+														}
+													});
+												}
+		});
+
+		$("#buttonRefreshMail").button({
+			text: "刷新"
+		}).click(function() {
+			$("#mailDraftList").trigger("reloadGrid");//刷新表格
+		});
+		/*tab2-button结束*/
+	});
+	</script>
+									<div class="span-2">
+										<select id="markMail" name="markMail" style="width: 60px;">
+											<option value="100">新建</option>
+											<option value="2">邮件</option>
+											<option value="1">会议</option>
+											<option value="0">消息</option>
+										</select>
+									</div>
+									<div class="span-6 last">
+										<button id="buttonDeleteMail">删除</button>
+										<button id="buttonRefreshMail">刷新</button>
+									</div>
+									<hr>
+									123<br>
+									123<br>
+									123<br>
+									123<br>
+									123<br>
+									123<br>
+									123<br>
+									123<br>
+									12321
+									1231
+									23213
+									213123
+									123
+	</body>		
+</html>

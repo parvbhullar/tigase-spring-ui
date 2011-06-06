@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 
+	<bean id="clientEngineServices" class="com.ivyinfo.im.client.ClientEngine"></bean>
+	 -->
+	 
+	 <bean id="helloWorldService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrlEsb}/helloWorldService</value></property>
+		<property name="serviceInterface" 
+			value="org.eredlab.g4.demo.esb.httpinvoker.HelloWorld" />
+	</bean>
+	
+	<bean id="organizationService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrlEsb}/organizationService</value></property>
+		<property name="serviceInterface" 
+			value="org.eredlab.g4.arm.service.OrganizationService" />
+	</bean>
+			
+	 
+	 
+	<bean id="Sequence" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//Sequence</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.framework.service.sequence.ISequence" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>	
+	
+	<bean id="testService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//testService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.test.services.ITestServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="deptService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//deptService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.dept.services.DeptServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="auxiliaryMailServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//auxiliaryMailServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.mail.services.AuxiliaryMailServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	<bean id="mailApiServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//mailApiServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.mail.services.MailApiServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	<bean id="saveMailServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//saveMailServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.mail.services.SaveMailServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	<bean id="sendMailServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//sendMailServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.mail.services.SendMailServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="meetingServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//meetingServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.meeting.services.MeetingServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="organizationServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//organizationServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.organization.services.OrganizationServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="permissionsServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//permissionsServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.permissions.services.PermissionsServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="purviewServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//purviewServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.purview.services.PurviewServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="roleServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//roleServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.role.services.RoleServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="roleuserpurviewServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//roleuserpurviewServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.roleuserpurview.services.RoleUserPurviewServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="userServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//userServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.user.services.UserServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="webDiskService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//webDiskService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.webdisk.services.IWebDiskServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="communicationService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//communicationService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.communication.services.CommunicationServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="communicationimService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//communicationimService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.communication.services.CommunicationIMServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+<!-- 	
+	<bean id="communicationmailService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//communicationmailService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.communication.services.CommunicationMailServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+ -->	
+	<bean id="diskService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//diskService</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.webdisk.services.DiskServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="meetingsysServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//meetingsysServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.meeting.services.MeetingSysServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="orgpurviewServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//orgpurviewServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.orgpurview.services.OrgPurviewServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+	<bean id="sysemailServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"><value>${serviceUrl}//sysemailServices</value></property>
+		<property name="serviceInterface" 
+			value="com.ivyinfo.sysemail.services.SysEmailServices" />
+		<property name="httpInvokerRequestExecutor">
+			<ref bean="httpInvokerRequestExecutor" />
+		</property>
+	</bean>
+	
+</beans>
