@@ -1,11 +1,11 @@
-<project basedir="." default="usage" name="myceaas"> 
+<project basedir="." default="usage" name="TouchRemoting"> 
 
 <target name="init"> 
 
 
 
-   <property name="Name" value="myceaas" /> 
-   <property name="name" value="myceaas" /> 
+   <property name="Name" value="TouchRemoting" /> 
+   <property name="name" value="TouchRemoting" /> 
    <property name="version" value="0.2" /> 
    <property name="year" value="2006" /> 
 
@@ -21,24 +21,23 @@
 
 
 
-   <!--<property name="mycedatasycn.location" value="D:/project/myce/mycedatasycn" />--> 
 
 
 
 <!--    java源文件路径 --> 
-
-   <property name="src.dir" value="${basedir}/src" /> 
-
-
+   
+   <property name="src.dir" value="${basedir}/src" />
+   <property name="touch-common.dir" 	value="../${basedir}/touch-common/src" />
+   <property name="ivyinfo-common" 	value="F:/wh/ivyinfo-common/src" />
 
 <!--    jar包路径 --> 
-   <property name="lib.dir" value="${basedir}/myceaas/WEB-INF/lib" /> 
-
+   <property name="lib.dir" value="${basedir}/TouchRemoting/WEB-INF/lib" />
+   <property name="ivyinfo-common" 	value="F:/wh/ivyinfo-common/lib" />
 
 
 <!--    webapp路径 --> 
-   <property name="webapp.dir" value="${basedir}/myceaas" /> 
-   <property name="packages" value="com.ce.myceaas.*" /> 
+   <property name="webapp.dir" value="${basedir}/WebContent" /> 
+    
 
 
 
@@ -147,7 +146,11 @@
    <!-- copy src files --> 
    <copy todir="${build.src}"> 
     <fileset dir="${src.dir}" /> 
-   </copy> 
+   </copy>
+	<copy todir="${build.src}"> 
+	    <fileset dir="${touch-common.dir}" /> 
+	</copy> 
+	
    <copy todir="${buildwar.dest}"> 
     <fileset dir="${webapp.dir}" /> 
    </copy> 
@@ -176,8 +179,8 @@
 <!-- 打war包--> 
 <!-- =================================================================== --> 
 
-<target name="myceaas.war" depends="build"> 
-   <war warfile="${war.dest}/myceaas.war" webxml="${buildwar.dest}/WEB-INF/web.xml"> 
+<target name="TouchRemoting.war" depends="build"> 
+   <war warfile="${war.dest}/TouchRemoting.war" webxml="${buildwar.dest}/WEB-INF/web.xml"> 
     <lib dir="${buildwar.dest}/WEB-INF/lib"/> 
     <classes dir = "${buildwar.dest}/WEB-INF/classes"/> 
     <fileset dir="${buildwar.dest}"> 
@@ -192,7 +195,7 @@
 <!-- 发布到本的resin和tomcat--> 
 <!-- =================================================================== --> 
 
-<target name="publish" depends="myceaas.war,clean"> 
+<target name="publish" depends="TouchRemoting.war,clean"> 
    <copy todir="${resin.home}/webapps"> 
     <fileset dir="${war.dest}" > 
      <include name="**/*.war"/> 
