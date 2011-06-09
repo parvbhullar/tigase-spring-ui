@@ -28,7 +28,7 @@
    
    	<property name="src.dir" value="${basedir}/src" />
 	<property name="touch-common.dir" 	value="F:/wh/touch-common/src" />
-   	<property name="ivyinfo-common" 		value="F:/wh/ivyinfo-common/src" />
+   	<property name="ivyinfo-common.dir" 		value="F:/wh/ivyinfo-common/src" />
 
 <!--    jar包路径 --> 
    <property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib" />
@@ -147,7 +147,10 @@
    </copy>
 	<copy todir="${build.src}"> 
 	    <fileset dir="${touch-common.dir}" /> 
-	</copy> 
+	</copy>
+	<copy todir="${build.src}"> 
+		    <fileset dir="${ivyinfo-common.dir}" /> 
+		</copy>
 	
    <copy todir="${buildwar.dest}"> 
     <fileset dir="${webapp.dir}" /> 
@@ -161,7 +164,8 @@
 <!-- 编译源文件--> 
 <!-- =================================================================== --> 
 <target name="build" depends="prepare-src"> 
-   <javac srcdir="${build.src}" destdir="${buildwar.dest}/WEB-INF/classes" debug="${debug}" optimize="${optimize}"> 
+   <javac srcdir="${build.src}" destdir="${buildwar.dest}/WEB-INF/classes" debug="${debug}" optimize="${optimize}"
+   	encoding="utf-8"> 
     <classpath refid="classpath" /> 
    </javac> 
    <copy todir="${buildwar.dest}/WEB-INF/classes"> 
