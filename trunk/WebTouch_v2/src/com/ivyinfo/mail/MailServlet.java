@@ -14,7 +14,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.eredlab.g4.arm.service.OrganizationService;
-import org.eredlab.g4.ccl.datastructure.Dto;
 import org.eredlab.g4.ccl.datastructure.impl.BaseDto;
 import org.eredlab.g4.demo.esb.httpinvoker.HelloWorld;
 import org.slf4j.Logger;
@@ -22,25 +21,10 @@ import org.slf4j.LoggerFactory;
 
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.mail.bean.MailUtilBean;
-import com.ivyinfo.mail.services.AuxiliaryMailServices;
-import com.ivyinfo.mail.services.SaveMailServices;
-import com.ivyinfo.mail.services.SendMailServices;
 import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.webdisk.services.IWebDiskServices;
 
 public class MailServlet extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailServlet.class);
-	private AuxiliaryMailServices auxiliaryMailServices = (AuxiliaryMailServices) SpringContextUtil
-			.getBean("auxiliaryMailServices");
-	
-	private SendMailServices sendMailServices = (SendMailServices) SpringContextUtil
-	.getBean("sendMailServices");
-	
-	private IWebDiskServices iWebDiskServices= (IWebDiskServices) SpringContextUtil
-	.getBean("webDiskService");
-	
-	private SaveMailServices saveMailServices = (SaveMailServices) SpringContextUtil
-	.getBean("saveMailServices");
 	
 	private HelloWorld helloWorldService = (HelloWorld) SpringContextUtil
 	.getBean("helloWorldService");
@@ -314,7 +298,6 @@ public class MailServlet extends HttpServlet {
 			mailUtilBean.setContent(content);
 			//mailUtilBean.setToname("qinkun1234@163.com;");
 			mailUtilBean.setToname(" ");
-			sendMailServices.SendMail(mailUtilBean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
