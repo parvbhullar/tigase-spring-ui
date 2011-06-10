@@ -28,13 +28,13 @@
 <!--    java源文件路径 --> 
 
    <property name="src.dir" value="${basedir}/src" /> 
-   <property name="ivyinfo-common" value="F:\wh\ivyinfo-common\src" />
+   <property name="ivyinfo-common" value="ivyinfo-common/src" />
 
 
 
 <!--    jar包路径 --> 
    <property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib" /> 
-   <property name="ivyinfo-commonlib" value="F:\wh\ivyinfo-common\lib" />
+   <property name="ivyinfo-commonlib" value="ivyinfo-common/lib" />
 
 
 
