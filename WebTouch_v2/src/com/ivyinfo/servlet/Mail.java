@@ -18,21 +18,13 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.mail.bean.MailUtilBean;
 import com.ivyinfo.mail.bean.ReceiveMailBean;
-import com.ivyinfo.mail.services.AuxiliaryMailServices;
-import com.ivyinfo.mail.services.SendMailServices;
 import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
 
 public class Mail extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Mail.class);
-	private AuxiliaryMailServices auxiliaryMailServices = (AuxiliaryMailServices) SpringContextUtil
-			.getBean("auxiliaryMailServices");
-	
-	private SendMailServices sendMailServices = (SendMailServices) SpringContextUtil
-	.getBean("sendMailServices");
 	
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -71,7 +63,6 @@ public class Mail extends HttpServlet {
 			List arrayList=new ArrayList();
 			
 			try {
-//				arrayList=auxiliaryMailServices.ReceiveList(0, 10, userBean.getName());
 				
 				
 //				purviewServices.ValidationLogin(logname, password);

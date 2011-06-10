@@ -16,7 +16,6 @@ import com.ivyinfo.framework.common.time.TimeTools;
 import com.ivyinfo.framework.service.sequence.ISequence;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.mail.bean.SetupMailBean;
-import com.ivyinfo.mail.services.AuxiliaryMailServices;
 import com.ivyinfo.purview.bean.PurviewBean;
 import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
@@ -30,8 +29,6 @@ public class User {
 	private UserServices userServices = (UserServices) SpringContextUtil
 	.getBean("userServices");
 	
-	private AuxiliaryMailServices auxiliaryMailServices = (AuxiliaryMailServices) SpringContextUtil
-	.getBean("auxiliaryMailServices");
 	
 	/**
 	 * 查看用户详细信息
@@ -89,7 +86,6 @@ public class User {
 	public String viewusermail(String id) throws Exception{
 		UserBean userBean=userServices.View(new Integer(id).intValue());
 		
-//		SetupMailBean setupmailBean = auxiliaryMailServices.ViewMailSetupEmail(userBean.getEmail(), userBean.getLogname());
 		
 		JSONObject  jsonObj=new JSONObject();
 		String ZHnationality = userBean.getNationality();
@@ -525,9 +521,7 @@ public class User {
 		setupmailBean.setTimestemp(TimeTools.getString());
 		setupmailBean.setUserlogname(logname);
 		
-//		auxiliaryMailServices.UpdMailSetup(setupmailBean);
 		
-		userServices.UpdSubmit(userBean,sessionUserBean.getUserBean(),sessionUserBean.getPurviewBean());
 		userServices.UpdSubmitBasic(userBean);
 		userServices.UpdSubmitContact(userBean);
 		userServices.UpdSubmitPhoto(userBean);
@@ -571,7 +565,6 @@ public class User {
 		
 		userServices.UpdUserMail(userBean);
 		
-//		auxiliaryMailServices.UpdUserMailSetup(setupmailBean);
 		
 		//修改后向session中重新赋值
 		sessionUserBean.getUserBean().setEmail(addname);
