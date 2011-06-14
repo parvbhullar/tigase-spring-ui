@@ -1,0 +1,209 @@
+/* GENERAL ELEMENTS */
+
+/* PAGE ELEMENTS */
+
+/* content-form */
+
+#content-form { margin: 0em auto; width: 765px; padding: 10px 0 10px 0; text-align: left; /* Win IE5 */ }
+.content-form { margin-left: 4.5em; margin-right: 4.5em; }
+.content-form ol, .content-form ul, .content-form li { font-size: 1.0em; line-height: 1.3em; margin: 0.2em 0 0.1em 1.5em; }
+.content-form ol.terms li { margin-bottom: 1em; }
+
+/* Header */
+
+#header { padding-bottom: 10em; }
+#headerlogo { float: left; }
+#headerlogo img { width: 188px; height: 83px;  }
+#headernav { float: right; }
+
+label { font-weight: bold; }
+#reminders label { font-weight: normal; }
+
+table.tabbedtable { padding-left: 3em; }
+table.tabbedtable td { padding-bottom: 5px; }
+table.tabbedtable label { text-align: right; padding-right: 9px; }
+.hiddenlabel { visibility: hidden; }
+.largelink { border: 1px solid #cacaca; padding: 10px; background-color: #E8EEF7; font-size: 1.2em; font-weight: bold; }
+.largelinkwrap { padding-top: 10px; padding-bottom: 10px; }
+
+
+
+#signuptab {
+  float:left;
+  width:100%;
+  background:#fff url("bg.gif") repeat-x bottom;
+  font-size: 1.0em;
+  line-height: normal;
+}
+#signuptab ul {
+  margin:0;
+  padding: 0px 10px 0px 10px;
+  list-style:none;
+}
+#signuptab li {
+  float:left;
+  background:url("left_white.png") no-repeat left top;
+  margin:0;
+  padding:0 3px 0 9px;
+  border-bottom:1px solid #CACACA;
+}
+#signuptab a {
+  float:left;
+  display:block;
+  width:.1em;
+  background:url("right_white.png") no-repeat right top;
+  padding:2px 15px 0px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#fff;
+  white-space: nowrap;
+}
+#signuptab > ul a {width:auto;}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#signuptab a {float:none;}
+/* End IE5-Mac hack */
+#signuptab a:hover {
+  color:#333;
+}
+#signuptab #signupcurrent {
+  background-position:0 -150px;
+  border-width:0;
+}
+#signuptab #signupcurrent a {
+  background-position:100% -150px;
+  padding-bottom:1px;
+  color:#000;
+}
+#signuptab li:hover, #signuptab li:hover a {
+  background-position:0% -150px;
+  color:#000;
+}
+#signuptab li:hover a {
+  background-position:100% -150px;
+}
+
+/* Signup box */
+
+#signupbox {
+  width: 100%;
+  text-align: center;
+  margin: 0em auto;
+}
+
+#signupwrap {
+  border: 1px solid #CACACA;
+  border-top: 0;
+  text-align: left;
+  padding: 35px 10px 20px 30px;
+  clear: both;
+}
+
+/* Unsupported browsers */
+
+.orange_rbcontent-form { padding: 0.4em; }
+.orange_rbroundbox { width: 100%; }
+
+#unsupported {
+  font-weight: bold;
+  text-align: left;
+}
+
+/*#content-form {
+  padding-top: 15px;
+}*/
+
+/* Signup form */
+
+#curdForm table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+#curdForm .label {
+  padding-right: 8px;
+  text-align: right;
+  width: 125px;
+  white-space: nowrap;
+  font-weight:bold;
+}
+
+#curdForm .field {
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+
+#curdForm .status {
+  padding-left: 8px;
+  width: 246px;
+  white-space: nowrap;
+}
+
+#curdForm .textfield {
+  width: 150px;
+}
+
+#curdForm label.error {
+  background:url("../images/unchecked.gif") no-repeat 0px 0px;
+  padding-left: 16px;
+  font-weight: bold;
+  color: #EA5200;
+  border:0;
+}
+
+#curdForm label.checked {
+  background:url("../images/checked.gif") no-repeat 0px 0px;
+  border: 0;
+}
+
+#curdForm .success_msg {
+  font-weight: bold;
+  color: #0060BF;
+  margin-left: 19px;
+}
+
+#curdForm #dateformatStatus, #curdForm #termsStatus {
+  margin-left: 6px;
+}
+
+#curdForm #dateformat_eu {
+ vertical-align: middle;
+}
+
+#curdForm #ldateformat_eu {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+#curdForm #dateformat_am {
+  vertical-align: middle;
+}
+
+#curdForm #ldateformat_am {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+#curdForm #termswrap {
+  float: left;
+}
+
+#curdForm #terms {
+  vertical-align: middle;
+  float: left;
+  display: block;
+  margin-right: 5px;
+}
+
+#curdForm #lterms {
+  font-weight: normal;
+  vertical-align: middle;
+  float: left;
+  display: block;
+  width: 350px;
+  white-space: normal;
+}
+
+#curdForm #lsignupsubmit {
+  visibility: hidden;
+}
