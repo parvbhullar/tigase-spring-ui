@@ -172,7 +172,12 @@ public class MailServlet extends HttpServlet {
 		            cdrBean.setPhone("123213");
 		            cdrBean.setSipuri("123213");
 		            
-		            cdrServices.AddCdr(cdrBean);
+		            int id=cdrServices.AddCdr(cdrBean);
+		            cdrBean=new CdrBean();
+		            cdrBean.setId(id);
+		            cdrBean.setEndtime(87654321);
+		            cdrServices.updateCdr(cdrBean);
+		            List list=cdrServices.queryCdr(cdrBean);
 		            response.getWriter().print(jSONArray.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
