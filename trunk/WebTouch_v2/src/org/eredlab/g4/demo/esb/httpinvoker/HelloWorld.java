@@ -34,4 +34,11 @@ public interface HelloWorld {
 	 */
 	public List queryBalanceInfoLimitRownum(Integer rownum);
 	
+	/**
+	 * 查询菜单
+	 * @param nodeid
+	 * @return
+	 */
+	public List queryMenuItems(String nodeid);
+	
 }
