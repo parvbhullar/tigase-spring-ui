@@ -132,30 +132,30 @@ public class MailServlet extends HttpServlet {
 		            response.setCharacterEncoding("UTF-8");
 		            // 返回json对象（通过PrintWriter输出）
 		            JSONArray jSONArray=new JSONArray();
-		            for(int i=0;i<5;i++){
-		            	JSONObject jSONObject=new JSONObject();
-			            jSONObject.put("data", "node"+i);
-			            JSONObject tempJSONObject=new JSONObject();
-			            tempJSONObject.put("id", i);
-			            jSONObject.put("attr", tempJSONObject);
-			            jSONArray.add(jSONObject);
-		            }
-		            //response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
-//		            helloWorldService.sayHello("qk");
-		            List menuList=helloWorldService.queryBalanceInfoLimitRownum(12);
-//		            for(int i=0;i<menuList.size();i++){
+//		            for(int i=0;i<5;i++){
 //		            	JSONObject jSONObject=new JSONObject();
-//		            	BaseDto dto=(BaseDto)menuList.get(i);
-//			            jSONObject.put("data",dto.get("text"));
-//			            if("0".equals(dto.get("leaf")))
-//			            	jSONObject.put("children","[ 'Child 1', 'A Child 2' ]");
+//			            jSONObject.put("data", "node"+i);
 //			            JSONObject tempJSONObject=new JSONObject();
 //			            tempJSONObject.put("id", i);
-//			            
-//			            tempJSONObject.put("leaf", dto.get("leaf"));
 //			            jSONObject.put("attr", tempJSONObject);
 //			            jSONArray.add(jSONObject);
 //		            }
+		            //response.getWriter().print("[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]");
+//		            helloWorldService.sayHello("qk");
+		            List menuList=helloWorldService.queryBalanceInfoLimitRownum(12);
+		            for(int i=0;i<menuList.size();i++){
+		            	JSONObject jSONObject=new JSONObject();
+		            	BaseDto dto=(BaseDto)menuList.get(i);
+			            jSONObject.put("data",dto.get("text"));
+			            if("0".equals(dto.get("leaf")))
+			            	jSONObject.put("children","[ 'Child 1', 'A Child 2' ]");
+			            JSONObject tempJSONObject=new JSONObject();
+			            tempJSONObject.put("id", i);
+			            
+			            tempJSONObject.put("leaf", dto.get("leaf"));
+			            jSONObject.put("attr", tempJSONObject);
+			            jSONArray.add(jSONObject);
+		            }
 //		            Dto inDto = new BaseDto(); 
 //		            inDto.put("parentid", "001");
 //		            organizationService.queryDeptItems(inDto);
