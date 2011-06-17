@@ -147,8 +147,9 @@ public class MailServlet extends HttpServlet {
 		            	JSONObject jSONObject=new JSONObject();
 		            	BaseDto dto=(BaseDto)menuList.get(i);
 			            jSONObject.put("data",dto.get("text"));
+			            LOGGER.info((String)dto.get("text"));
 			            if("0".equals(dto.get("leaf")))
-			            	jSONObject.put("children","[ 'Child 1', 'A Child 2' ]");
+			            	jSONObject.put("children","");
 			            JSONObject tempJSONObject=new JSONObject();
 			            tempJSONObject.put("id", i);
 			            
@@ -159,7 +160,12 @@ public class MailServlet extends HttpServlet {
 //		            Dto inDto = new BaseDto(); 
 //		            inDto.put("parentid", "001");
 //		            organizationService.queryDeptItems(inDto);
-		            response.getWriter().print(jSONArray.toString());
+//		            response.getWriter().print(jSONArray.toString());
+//		            str=jSONArray.toString();
+		            LOGGER.info("str="+str);
+		            str=this.querySubTree("01");
+		            LOGGER.info("str="+str);
+		            response.getWriter().print(str);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -299,5 +305,28 @@ public class MailServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private String querySubTree(String nodeid){
+		JSONArray jSONArray=new JSONArray();
+		List menuList=helloWorldService.queryMenuItems(nodeid);
+        for(int i=0;i<menuList.size();i++){
+        	JSONObject jSONObject=new JSONObject();
+        	BaseDto dto=(BaseDto)menuList.get(i);
+            jSONObject.put("data",dto.get("text"));
+            LOGGER.info((String)dto.get("text"));
+            if("0".equals(dto.get("leaf")))
+            	jSONObject.put("children","");
+            JSONObject tempJSONObject=new JSONObject();
+            tempJSONObject.put("id", i);
+            tempJSONObject.put("leaf", dto.get("leaf"));
+            jSONObject.put("attr", tempJSONObject);
+            jSONArray.add(jSONObject);
+        }
+        return jSONArray.toString();
 	}
 }
