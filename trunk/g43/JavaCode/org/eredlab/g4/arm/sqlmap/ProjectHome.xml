@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 项目主页手工映射SQL语句 -->
+<sqlMap>
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto"/>
+	<typeAlias alias="topicVo" type="org.eredlab.g4.arm.vo.TopicVo"/>
+	<typeAlias alias="replyVo" type="org.eredlab.g4.arm.vo.ReplyVo"/>
+	
+	<!-- 查询社区讨论主题 -->
+	<select id="queryTopics" parameterClass="map" resultClass="dto">
+		SELECT
+				topicid,
+				topictype,
+				userid,
+				username,
+				replyable,
+				addtime,
+				updatetime,
+				sortno,
+				replycount,
+				viewcount,
+				title,
+				cast(concat(replycount,'/',viewcount) as char) as replyview
+		FROM
+		ea_web_topic a WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="locked"> 
+									a.locked = #locked#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="topictype"> 
+									a.topictype = #topictype#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="title"> 
+									a.title like '%$title$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="username"> 
+									a.username like '%$username$%'
+			</isNotEmpty>
+		</dynamic>
+		order by sortno asc, updatetime desc 
+	</select>
+	
+	<!-- 查询社区讨论主题 -->
+	<select id="countTopics" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM   ea_web_topic a WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="locked"> 
+									a.locked = #locked#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="topictype"> 
+									a.topictype = #topictype#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="title"> 
+									a.title like '%$title$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="username"> 
+									a.username like '%$username$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 插入一条主题记录 -->
+	<insert id="saveTopicItem" parameterClass="dto">
+		INSERT INTO EA_WEB_TOPIC (
+				topictype,
+				userid,
+				username,
+				replyable,
+				addtime,
+				updatetime,
+				sortno,
+				locked,
+				replycount,
+				viewcount,
+				title,
+				content) 
+		VALUES (#topictype#, #userid#, #username#,
+		    #replyable#, #addtime#,#updatetime#,#sortno#,#locked#,
+		    #replycount#,#viewcount#, #title#,#content# )
+	</insert>
+	
+	<!-- 查询社区讨论主题 -->
+	<select id="queryTopicsById" parameterClass="map" resultClass="topicVo">
+		SELECT
+				topicid,
+				topictype,
+				userid,
+				username,
+				replyable,
+				addtime,
+				updatetime,
+				sortno,
+				replycount,
+				viewcount,
+				title,
+				content
+		FROM
+		ea_web_topic a WHERE topicid = #topicid#
+	</select>
+	
+	<!-- 查询社区讨论回复贴 -->
+	<select id="queryReplys" parameterClass="map" resultClass="replyVo">
+		SELECT
+				replyid,    
+				topicid,    
+				userid,     
+				username,   
+				replytime,  
+				floor,     
+				replycontent
+		   FROM ea_web_reply a WHERE topicid = #topicid# order by replyid asc
+	</select>
+	
+	<!-- 插入一条回帖记录 -->
+	<insert id="saveReplyItem" parameterClass="dto">
+		INSERT INTO EA_WEB_REPLY (
+				topicid,    
+				userid,     
+				username,   
+				replytime,  
+				floor,     
+				replycontent) 
+		VALUES (#topicid#, #userid#, #username#,
+		    #replytime#, #floor#, #replycontent# )
+	</insert>
+	
+	<!-- 更新浏览人次 -->
+	<update id="updateviewcount" parameterClass="dto">
+         UPDATE ea_web_topic set viewcount = viewcount + 1 WHERE topicid = #topicid#  
+	</update>
+	
+	<!-- 更新回帖人次 -->
+	<update id="updateTopicTableWhenReply" parameterClass="dto">
+         UPDATE ea_web_topic set replycount = replycount + 1, updatetime = #updatetime#  
+          WHERE topicid = #topicid#  
+	</update>
+	
+	<!-- 更新回帖人次 -->
+	<update id="updateTopic" parameterClass="dto">
+         UPDATE ea_web_topic set title = #title#, topictype = #topictype#, content= #contentEdit#  
+          WHERE topicid = #topicid#  
+	</update>
+	
+	<!-- 删除主题帖 -->
+	<delete id="deleteTopic" parameterClass="dto" >
+		DELETE 
+		  FROM ea_web_topic WHERE topicid = #topicid#  
+	</delete>
+	
+	<!-- 删除和主题帖相关的回帖 -->
+	<delete id="deleteReplyByTopicId" parameterClass="dto" >
+		DELETE 
+		  FROM ea_web_reply WHERE topicid = #topicid#  
+	</delete>
+	
+	<!-- 更新回帖-->
+	<update id="updateReply" parameterClass="dto">
+         UPDATE ea_web_reply set replycontent= #contentEdit#  
+          WHERE replyid = #replyid#  
+	</update>
+	
+	<!-- 删除回帖 -->
+	<delete id="deleteReply" parameterClass="dto" >
+		DELETE 
+		  FROM ea_web_reply WHERE replyid = #replyid#  
+	</delete>
+	
+</sqlMap>

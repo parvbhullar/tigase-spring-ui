@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 系统监控手工映射SQL语句 -->
+<sqlMap>
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto"/>
+	<typeAlias alias="userInfo" type="org.eredlab.g4.arm.vo.UserInfoVo"/>
+	
+	<!-- 查询HTTP会话信息 -->
+	<select id="queryHttpSessions" parameterClass="map" resultClass="userInfo">
+		 SELECT 
+			   sessionid as sessionID, userid, username, account, createtime as sessionCreatedTime,explorer, loginip as loginIP
+	      FROM eahttpsession
+	</select>
+	<select id="queryHttpSessionsForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+		 SELECT 
+			   count(*) as count
+	      FROM eahttpsession
+	</select>
+	
+	<!-- 查询HTTP会话信息 -->
+	<select id="queryHttpSessionsByID" parameterClass="java.lang.String" resultClass="userInfo">
+		 SELECT 
+			   sessionid as sessionID, userid, username, account, createtime as sessionCreatedTime, explorer, loginip as loginIP
+	      FROM eahttpsession where sessionid = #sessionid#
+	</select>
+	
+	<!-- 插入一条HTTP会话记录 -->
+	<insert id="saveHttpSession" parameterClass="userInfo">
+		INSERT INTO eahttpsession (
+		   sessionid, username, account, 
+		   createtime, loginip,userid,explorer) 
+		VALUES (#sessionID#, #username#, #account#, 
+		   #sessionCreatedTime#, #loginIP#, #userid#,#explorer#)
+	</insert>
+	
+	<!-- 删除会话 -->
+	<delete id="deleteHttpSession" parameterClass="dto" >
+		DELETE 
+		  FROM eahttpsession
+		<dynamic prepend="WHERE"> 
+			<isNotEmpty prepend="and" property="sessionid">
+	         sessionid = #sessionid#
+			</isNotEmpty>						
+		</dynamic> 
+	</delete>
+	
+	<!-- 创建一个事件 -->
+	<insert id="saveEvent" parameterClass="dto">
+		INSERT INTO eaevent (
+		   eventid, userid, account, 
+		   username, description, activetime,requestpath,methodname,costtime) 
+		VALUES (#eventid#, #userid#, #account#, 
+		   #username#, #description#, #activetime#,#requestpath#,#methodname#,#costtime#)
+	</insert>
+	
+	<!-- 查询事件 -->
+	<select id="queryEventsByDto" parameterClass="map" resultClass="dto">
+		SELECT   eventid, userid, ACCOUNT, username, description, activetime,
+		         requestpath, methodname, NVL(costtime, 0) || '毫秒' AS costtime
+		    FROM eaevent a
+		   WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="eventid">
+	         eventid = #eventid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="userid">
+	         userid = #userid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="account">
+	         account like '%$account$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+	         username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	         (description like '%$keyword$%' or requestpath like '%$keyword$%' or methodname like '%$keyword$%')
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="description">
+	         description = #description#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="ksrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#ksrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[<=]]> to_date(#jsrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+		</dynamic> 
+		ORDER BY eventid DESC
+	</select>
+	
+	<!-- 查询事件 -->
+	<select id="queryEventsByDtoForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eaevent a WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="eventid">
+	         eventid = #eventid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="userid">
+	         userid = #userid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="account">
+	         account like '%$account$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+	         username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	         (description like '%$keyword$%' or requestpath like '%$keyword$%' or methodname like '%$keyword$%')
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="description">
+	         description = #description#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="ksrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#ksrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[<=]]> to_date(#jsrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询事件 -->
+	<select id="queryEventsByDtoMysql" parameterClass="map" resultClass="dto">
+		SELECT   eventid, userid, account, username, description, activetime,
+		         requestpath, methodname,  concat(cast(if(costtime is null,0,costtime) as char),'毫秒') AS costtime 
+		    FROM eaevent a
+		   WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="eventid">
+	         eventid = #eventid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="userid">
+	         userid = #userid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="account">
+	         account like '%$account$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+	         username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	         (description like '%$keyword$%' or requestpath like '%$keyword$%' or methodname like '%$keyword$%')
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="description">
+	         description = #description#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="ksrq">
+			activetime  <![CDATA[>=]]> #ksrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			activetime  <![CDATA[<=]]> #jsrq#
+			</isNotEmpty>
+		</dynamic> 
+		ORDER BY eventid DESC
+	</select>
+	
+	<!-- 查询事件 -->
+	<select id="queryEventsByDtoForPageCountMysql" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eaevent a WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="eventid">
+	         eventid = #eventid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="userid">
+	         userid = #userid#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="account">
+	         account like '%$account$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="username">
+	         username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	         (description like '%$keyword$%' or requestpath like '%$keyword$%' or methodname like '%$keyword$%')
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="description">
+	         description = #description#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="ksrq">
+			activetime  <![CDATA[>=]]> #ksrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			activetime  <![CDATA[<=]]> #jsrq#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 删除事件 -->
+	<delete id="deleteEvent" parameterClass="java.lang.String" >
+		DELETE 
+		  FROM eaevent WHERE eventid = #eventid#
+	</delete>
+	
+	<!-- 查询事件 -->
+	<select id="queryEventByEventID" parameterClass="java.lang.String" resultClass="dto">
+		SELECT eventid, userid, account, username, description, activetime,requestpath,methodname,costtime
+	      FROM eaevent WHERE eventid = #eventId#
+	</select>
+	
+	<!-- 重置事件 -->
+	<delete id="resetEvent">
+		DELETE 
+		  FROM eaevent
+	</delete>
+	
+	<!-- 插入一条SpringBean监控记录 -->
+	<insert id="saveEaBeanMonitorDomain" parameterClass="dto">
+		INSERT INTO eabeanmonitor (monitorid, clazz, methodname, pointcuttype, advisetype, activetime, costtime, exception) 
+		      VALUES ( #monitorid#, #clazz#, #methodname#, #pointcuttype#, #advisetype#, #activetime#, #costtime#, #exception# )
+	</insert>
+	
+	<!-- 查询监控记录 -->
+	<select id="queryBeanMonitorRecordsByDto" parameterClass="map" resultClass="dto">
+		SELECT   monitorid, clazz, methodname, pointcuttype, advisetype, activetime,
+		         NVL (costtime, 0) || '毫秒' AS costtime, exception AS exception
+		    FROM eabeanmonitor a
+		   WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="pointcuttype">
+	           pointcuttype = #pointcuttype#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="advisetype">
+	           advisetype = #advisetype#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="clazz">
+	           clazz like '%$clazz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="methodname">
+	           methodname like '%$methodname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="exception">
+	           exception like '%$exception$%'
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="ksrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#ksrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[<=]]> to_date(#jsrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	           (clazz like '%$keyword$%' or methodname like '%$keyword$%' or exception like '%$keyword$%')
+			</isNotEmpty>	
+		</dynamic> 
+		ORDER BY monitorid DESC
+	</select>
+	
+	<!-- 查询监控记录 -->
+	<select id="queryBeanMonitorRecordsByDtoForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eabeanmonitor a WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="pointcuttype">
+	           pointcuttype = #pointcuttype#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="advisetype">
+	           advisetype = #advisetype#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="clazz">
+	           clazz like '%$clazz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="methodname">
+	           methodname like '%$methodname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="exception">
+	           exception like '%$exception$%'
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="ksrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#ksrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			to_date(activetime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[<=]]> to_date(#jsrq#,'yyyy-mm-dd')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	        (clazz like '%$keyword$%' or methodname like '%$keyword$%' or exception like '%$keyword$%')
+			</isNotEmpty>	
+		</dynamic> 
+	</select>
+	
+	<!-- 查询监控记录 -->
+	<select id="queryBeanMonitorRecordsByDtoMysql" parameterClass="map" resultClass="dto">
+		SELECT   monitorid, clazz, methodname, pointcuttype, advisetype, activetime,
+		         concat(cast(if(costtime is null,0,costtime) as char),'毫秒') AS costtime, exception AS exception
+		    FROM eabeanmonitor a
+		   WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="pointcuttype">
+	           pointcuttype = #pointcuttype#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="advisetype">
+	           advisetype = #advisetype#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="clazz">
+	           clazz like '%$clazz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="methodname">
+	           methodname like '%$methodname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="exception">
+	           exception like '%$exception$%'
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="ksrq">
+			activetime  <![CDATA[>=]]> #ksrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			activetime  <![CDATA[<=]]> #jsrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	           (clazz like '%$keyword$%' or methodname like '%$keyword$%' or exception like '%$keyword$%')
+			</isNotEmpty>	
+		</dynamic> 
+		ORDER BY monitorid DESC
+	</select>
+	
+	<!-- 查询监控记录 -->
+	<select id="queryBeanMonitorRecordsByDtoForPageCountMysql" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eabeanmonitor a WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="pointcuttype">
+	           pointcuttype = #pointcuttype#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="advisetype">
+	           advisetype = #advisetype#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="clazz">
+	           clazz like '%$clazz$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="methodname">
+	           methodname like '%$methodname$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="exception">
+	           exception like '%$exception$%'
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="ksrq">
+			activetime  <![CDATA[>=]]> #ksrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrq">
+			activetime  <![CDATA[<=]]> #jsrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="keyword">
+	        (clazz like '%$keyword$%' or methodname like '%$keyword$%' or exception like '%$keyword$%')
+			</isNotEmpty>	
+		</dynamic> 
+	</select>
+	
+	<!-- 删除SpringBean监控记录 -->
+	<delete id="deleteBeanMonitorRecord" parameterClass="java.lang.String" >
+		DELETE 
+		  FROM eabeanmonitor WHERE monitorid = #monitorid#
+	</delete>
+	<!-- 重置SpringBean监控 -->
+	<delete id="resetBeanMonitorRecords">
+		DELETE 
+		  FROM eabeanmonitor
+	</delete>
+	
+	<!-- 查询JDBC监控记录 -->
+	<select id="queryJdbcMonitorRecordsByDto" parameterClass="map" resultClass="dto">
+		SELECT monitorid, sqltext as sqltext, starttime, NVL(costtime,0) || '毫秒' as costtime, decode(rowcount,'-1','-',rowcount) as rowcount, type
+          FROM eajdbcmonitor WHERE 1 = 1
+		<dynamic > 
+			<isNotEmpty prepend="and" property="sql">
+	           sqltext like '%$sql$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="starttime">
+			to_date(starttime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#starttime#,'yyyy-mm-dd hh24:mi:ss')
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="costtime">
+			costtime <![CDATA[>=]]> #costtime#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rowcount">
+			rowcount <![CDATA[>=]]> #rowcount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+	           type = #type#
+			</isNotEmpty>
+		</dynamic> 
+		     ORDER BY starttime desc
+	</select>
+	
+	<!-- 查询JDBC监控记录 -->
+	<select id="queryJdbcMonitorRecordsByDtoForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eajdbcmonitor WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="sql">
+	           sqltext like '%$sql$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="starttime">
+			to_date(starttime,'yyyy-mm-dd hh24:mi:ss')  <![CDATA[>=]]> to_date(#starttime#,'yyyy-mm-dd hh24:mi:ss')
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="costtime">
+			costtime <![CDATA[>=]]> #costtime#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rowcount">
+			rowcount <![CDATA[>=]]> #rowcount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+	           type = #type#
+			</isNotEmpty>
+		</dynamic> 
+	</select>
+	
+	<!-- 查询JDBC监控记录 -->
+	<select id="queryJdbcMonitorRecordsByDtoMysql" parameterClass="map" resultClass="dto">
+		SELECT monitorid, sqltext as sqltext, starttime, concat(cast(if(costtime is null,0,costtime) as char),'毫秒') AS costtime, cast(case rowcount when '-1' then '-' else rowcount end as char) as rowcount, type
+          FROM eajdbcmonitor WHERE 1 = 1
+		<dynamic > 
+			<isNotEmpty prepend="and" property="sql">
+	           sqltext like '%$sql$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="starttime">
+			starttime  <![CDATA[>=]]> #starttime#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="costtime">
+			costtime <![CDATA[>=]]> #costtime#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rowcount">
+			rowcount <![CDATA[>=]]> #rowcount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+	           type = #type#
+			</isNotEmpty>
+		</dynamic> 
+		     ORDER BY starttime desc
+	</select>
+	
+	<!-- 查询JDBC监控记录 -->
+	<select id="queryJdbcMonitorRecordsByDtoForPageCountMysql" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eajdbcmonitor WHERE 1 = 1
+		<dynamic> 
+			<isNotEmpty prepend="and" property="sql">
+	           sqltext like '%$sql$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="starttime">
+			starttime  <![CDATA[>=]]> #starttime#
+			</isNotEmpty>	
+			<isNotEmpty prepend="and" property="costtime">
+			costtime <![CDATA[>=]]> #costtime#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="rowcount">
+			rowcount <![CDATA[>=]]> #rowcount#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+	           type = #type#
+			</isNotEmpty>
+		</dynamic> 
+	</select>
+	
+	<!-- 删除JDBC监控记录 -->
+	<delete id="resetJdbcMonitorData" >
+		DELETE 
+		  FROM eajdbcmonitor
+	</delete>
+</sqlMap>

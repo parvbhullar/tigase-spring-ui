@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 用户管理与授权手工映射SQL语句 -->
+<sqlMap>
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto"/>
+	
+	<!-- 用户管理与授权-用户列表 -->
+	<select id="queryUsersForManage" parameterClass="map" resultClass="dto">
+		 SELECT userid, username, deptid, ACCOUNT, usertype,
+		       (SELECT deptname
+		          FROM eadept
+		         WHERE deptid = a.deptid) AS deptname, sex, LOCKED, remark
+		  FROM eauser a WHERE a.usertype != '3'
+		<dynamic>
+			<isNotEmpty prepend="AND" property="usertype"> 
+									a.usertype != #usertype#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="userid"> 
+									a.userid like '$userid$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="deptid"> 
+									a.deptid like '$deptid$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="rolename"> 
+									a.username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="queryParam"> 
+				                    a.username like '%$queryParam$%' 
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 用户管理与授权-用户列表 -->
+	<select id="queryUsersForManageForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		  FROM eauser a WHERE a.usertype != '3'
+		<dynamic>
+			<isNotEmpty prepend="AND" property="userid"> 
+									a.userid like '$userid$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="deptid"> 
+									a.deptid like '$deptid$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="rolename"> 
+									a.username like '%$username$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="queryParam"> 
+				                    a.username like '%$queryParam$%' 
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 插入一条用户表记录 -->
+	<insert id="saveUserItem" parameterClass="dto">
+		INSERT INTO EAUSER (
+		   userid, username, account, 
+		   password, sex, deptid, 
+		   locked, remark, usertype) 
+		VALUES (#userid#, #username#, #account#,
+		    #password#, #sex#, #deptid#,
+		    #locked#,#remark#, #usertype# )
+	</insert>
+	
+	<!-- 保存用户附属信息 -->
+	<insert id="saveEausersubinfoItem" parameterClass="dto">
+		INSERT INTO eausersubinfo (
+		   userid, theme) 
+		VALUES ( #userid#, #theme#)
+	</insert>
+	
+	<!-- 删除用户表  -->
+	<delete id="deleteEauserInUserManage" parameterClass="map" >
+		DELETE FROM eauser
+		      WHERE userid = #userid#
+	</delete>
+	
+	<!-- 删除人员授权表  -->
+	<delete id="deleteEauserauthorizeInUserManage" parameterClass="map" >
+		DELETE FROM eauserauthorize
+		      WHERE userid = #userid#
+	</delete>
+	
+	<!-- 根据主键更新用户 -->
+	<update id="updateUserItem" parameterClass="dto">
+         UPDATE eauser
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="userid">
+	         userid = #userid#
+			</isNotNull>
+			<isNotNull prepend="," property="username">
+	         username = #username#
+			</isNotNull>
+			<isNotNull prepend="," property="account">
+	         account = #account#
+			</isNotNull>
+			<isNotNull prepend="," property="updatemode">
+	         password = #password#
+			</isNotNull>
+			<isNotNull prepend="," property="sex">
+	         sex = #sex#
+			</isNotNull>
+			<isNotNull prepend="," property="deptid">
+	         deptid = #deptid#
+			</isNotNull>
+			<isNotNull prepend="," property="locked">
+	         locked = #locked#
+			</isNotNull>
+			<isNotNull prepend="," property="remark">
+	         remark = #remark#
+			</isNotNull>
+			<isNotNull prepend="," property="usertype">
+	         usertype = #usertype#
+			</isNotNull>							
+		</dynamic> 
+	        WHERE userid = #userid#    
+	</update>
+	
+	<!-- 根据用户删除角色用户关联信息  -->
+	<delete id="deleteEaUserAuthorizeByUserId" parameterClass="map" >
+		DELETE FROM eauserauthorize
+		      WHERE userid = #userid#
+	</delete>
+	
+	<!-- 插入一条用户角色关联记录 -->
+	<insert id="saveSelectedRole" parameterClass="dto">
+		INSERT INTO EAUSERAUTHORIZE (
+		   userid, roleid, authorizeid) 
+		VALUES ( #userid#, #roleid#, #authorizeid#)
+	</insert>
+	
+	<!-- 根据用户删除人员菜单关联信息  -->
+	<delete id="deleteEausermenumapByUserId" parameterClass="map" >
+		DELETE FROM eausermenumap
+		      WHERE userid = #userid#
+	</delete>
+	
+	<!-- 根据用户删除人员附属信息  -->
+	<delete id="deleteEausersubinfoByUserid" parameterClass="map" >
+		DELETE FROM eausersubinfo
+		      WHERE userid = #userid#
+	</delete>
+	
+	<!-- 插入一条用户菜单关联记录 -->
+	<insert id="saveSelectedMenu" parameterClass="dto">
+		INSERT INTO eausermenumap (
+		   userid, menuid, authorizeid, 
+		   authorizelevel) 
+		VALUES ( #userid#, #menuid#, #authorizeid#, #authorizelevel#)
+	</insert>
+	
+	<!-- 删除人员菜单关联  -->
+	<delete id="deleteEausermenumapByUserid" parameterClass="map" >
+		DELETE 
+		  FROM eausermenumap 
+		 WHERE userid = #userid#
+	</delete>
+	
+	<!-- 根据登录账户查询人员信息  -->
+	<select id="checkAccount" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*) FROM eauser where account = #account#
+	</select>
+	
+	<!-- 根据主键查询个人信息  -->
+	<select id="getUserInfoByKey" parameterClass="map" resultClass="dto">
+		SELECT userid, username, account, 
+		   password, sex, deptid, 
+		   locked, remark, usertype
+		 FROM EAUSER  WHERE userid = #userid#
+	</select>
+</sqlMap>
