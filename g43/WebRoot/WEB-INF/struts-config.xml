@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<!-- 配置ActionFormBean -->
+	<form-beans> 
+		<!-- 公共Form -->  
+		<form-bean name="commonActionForm" type="org.eredlab.g4.rif.web.CommonActionForm" />  
+	</form-beans>
+
+	<!-- Action映射 -->
+	<action-mappings type="org.apache.struts.action.ActionMapping"> 
+	
+		<!-- 登录页面 -->
+		<action name="commonActionForm" path="/login" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.LoginAction">
+			<forward name="loginView" path="/login.jsp" /> 
+		</action>  
+		 
+		<!-- 首页 -->
+		<action name="commonActionForm" path="/index" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.IndexAction">
+			<forward name="indexView" path="/index.jsp" /> 
+			<forward name="welcomeView" path="/arm/welcome.jsp" /> 
+		</action> 
+		
+		<!-- 资源管理 -->
+		<action name="commonActionForm" path="/resource" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.ResourceAction">
+			<forward name="manageMenuResourceView" path="/arm/manageMenuResource.jsp" />
+			<forward name="codeTableView" path="/arm/manageCodeTable.jsp" /> 
+			<forward name="manageIconView" path="/arm/manageIcon.jsp" />
+			<forward name="colorPaletteView" path="/arm/colorPalette.jsp" />
+		</action> 
+		
+		<!-- 组织机构管理 -->
+		<action name="commonActionForm" path="/organization" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.OrganizationAction">
+			<forward name="manageDepartmentView" path="/arm/manageDepartment.jsp" />
+		</action>  
+		  
+		<!-- 角色管理与授权 -->
+		<action name="commonActionForm" path="/role" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.RoleAction">
+			<forward name="manageRoleView" path="/arm/manageRole.jsp" />
+			<forward name="operatorTabView" path="/arm/grantroletab/operatorTab.jsp" />
+			<forward name="selectUserTabView" path="/arm/grantroletab/selectUserTab.jsp" />
+			<forward name="managerTabView" path="/arm/grantroletab/managerTab.jsp" />
+		</action> 
+		
+		<!-- 人员管理与授权 -->
+		<action name="commonActionForm" path="/user" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.UserAction">
+			<forward name="manageUserView" path="/arm/manageUser.jsp" />
+			<forward name="selectRoleTreeView" path="/arm/selectRoleTree.jsp" />
+			<forward name="selectMenuTreeView" path="/arm/selectMenuTree.jsp" />
+		</action>  
+		
+		<!-- 全局参数表管理 -->
+		<action name="commonActionForm" path="/param" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.ParamAction">
+			<forward name="manageParamView" path="/arm/manageParam.jsp" />
+		</action> 
+		
+		<!-- 会话监控 -->
+		<action name="commonActionForm" path="/sessionMonitor" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.HttpSessionMonitorAction">
+			<forward name="sessionMonitorView" path="/arm/sessionMonitor.jsp" />
+		</action> 
+		
+		<!-- JDBC监控 -->
+		<action name="commonActionForm" path="/jdbcMonitor" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.JdbcMonitorAction">
+			<forward name="jdbcInitView" path="/arm/jdbcMonitor.jsp" />
+		</action>  
+		
+		<!-- 事件跟踪 -->
+		<action name="commonActionForm" path="/eventTrack" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.EventTrackAction">
+			<forward name="eventTrackView" path="/arm/eventTrack.jsp" />
+		</action> 
+		
+		<!-- SpringBean切面监控 -->
+		<action name="commonActionForm" path="/beanMonitor" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.BeanMonitorAction">
+			<forward name="beanMonitorView" path="/arm/beanMonitor.jsp" />
+		</action>   
+		
+		<!-- Web报表引擎 -->
+		<action name="commonActionForm" path="/report" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.rif.report.jasper.ReportAcion">
+			<forward name="printInitView" path="/resource/jasper/printInit.jsp" />
+			<forward name="pdfInitView" path="/resource/jasper/pdfInit.jsp" />
+			<forward name="excelInitView" path="/resource/jasper/excelInit.jsp" />
+		</action>  
+		
+		<!-- 项目主页相关功能 -->
+		<action name="commonActionForm" path="/projectHome" scope="request" validate="false" parameter="reqCode"
+			type="org.eredlab.g4.arm.web.ProjectHomeAction">
+			<forward name="forumView" path="/arm/projecthome/forum.jsp" />
+			<forward name="topicDetailView" path="/arm/projecthome/topicDetail.jsp" />
+		</action> 
+		
+	</action-mappings>
+	<!-- 系统初始化插件 
+		<plug-in className="org.eredlab.g4.rif.web.util.SystemInitPlugin" />
+		-->
+</struts-config>
