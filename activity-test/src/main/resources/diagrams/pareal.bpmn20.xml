@@ -39,7 +39,7 @@ execution.setVariable('wf_actualPercent', newApprovedPercentage);
       </multiInstanceLoopCharacteristics>
     </userTask>
     <exclusiveGateway id="exclusivegateway1" name="Review Decision"></exclusiveGateway>
-    <userTask id="usertask2" name="Document Approved" activiti:candidateGroups="${initiator.properties.userName}" activiti:formKey="wf:approvedParallelTask">
+    <userTask id="usertask2" name="文档通过" activiti:candidateGroups="${initiator.properties.userName}" activiti:formKey="wf:approvedParallelTask">
       <extensionElements>
         <activiti:taskListener event="create" activiti:class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
           <activiti:field name="script">
@@ -55,7 +55,7 @@ task.setVariableLocal('wf_approveCount', wf_approveCount);</activiti:string>
         </activiti:taskListener>
       </extensionElements>
     </userTask>
-    <userTask id="usertask3" name="Document Rejected" activiti:candidateGroups="${initiator.properties.userName}" activiti:formKey="wf:rejectedParallelTask">
+    <userTask id="usertask3" name="文档驳回" activiti:candidateGroups="${initiator.properties.userName}" activiti:formKey="wf:rejectedParallelTask">
       <extensionElements>
         <activiti:taskListener event="create" activiti:class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
           <activiti:field name="script">

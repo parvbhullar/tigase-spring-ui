@@ -84,7 +84,7 @@
         <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
       </anchors>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="Document Approved">
+        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="&#x6587;&#x6863;&#x901a;&#x8fc7;">
           <font name="Arial" size="8"/>
         </graphicsAlgorithm>
         <link businessObjects="usertask2"/>
@@ -106,7 +106,7 @@
         <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
       </anchors>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="Document Rejected">
+        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="&#x6587;&#x6863;&#x9a73;&#x56de;">
           <font name="Arial" size="8"/>
         </graphicsAlgorithm>
         <link businessObjects="usertask3"/>
@@ -320,11 +320,11 @@
   </bpmn2:AlfrescoUserTask>
   <bpmn2:ExclusiveGateway id="exclusivegateway1" name="Review Decision" incoming="flow2" outgoing="flow3 flow4"/>
   <bpmn2:CandidateGroup group="${initiator.properties.userName}"/>
-  <bpmn2:AlfrescoUserTask id="usertask2" name="Document Approved" incoming="flow3" outgoing="flow5" candidateGroups="/6" formKey="wf:approvedParallelTask">
+  <bpmn2:AlfrescoUserTask id="usertask2" name="&#x6587;&#x6863;&#x901a;&#x8fc7;" incoming="flow3" outgoing="flow5" candidateGroups="/6" formKey="wf:approvedParallelTask">
     <activitiListeners implementationType="alfrescoScriptType" implementation="if (typeof bpm_workflowDueDate != 'undefined') task.setVariableLocal('bpm_dueDate', bpm_workflowDueDate);&#xA;if (typeof bpm_workflowPriority != 'undefined') task.priority = bpm_workflowPriority;&#xA;&#xA;// Set parallel review params on task, to be kept in history&#xA;task.setVariableLocal('wf_reviewerCount', wf_reviewerCount);&#xA;task.setVariableLocal('wf_requiredPercent', wf_requiredPercent);&#xA;task.setVariableLocal('wf_actualPercent', wf_actualPercent);&#xA;task.setVariableLocal('wf_approveCount', wf_approveCount);" event="create"/>
   </bpmn2:AlfrescoUserTask>
   <bpmn2:CandidateGroup group="${initiator.properties.userName}"/>
-  <bpmn2:AlfrescoUserTask id="usertask3" name="Document Rejected" incoming="flow4" outgoing="flow6" candidateGroups="/8" formKey="wf:rejectedParallelTask">
+  <bpmn2:AlfrescoUserTask id="usertask3" name="&#x6587;&#x6863;&#x9a73;&#x56de;" incoming="flow4" outgoing="flow6" candidateGroups="/8" formKey="wf:rejectedParallelTask">
     <activitiListeners implementationType="alfrescoScriptType" implementation="if (typeof bpm_workflowDueDate != 'undefined') task.setVariableLocal('bpm_dueDate', bpm_workflowDueDate);&#xA;if (typeof bpm_workflowPriority != 'undefined') task.priority = bpm_workflowPriority;&#xA;&#xA;// Set parallel review params on task, to be kept in history&#xA;task.setVariableLocal('wf_reviewerCount', wf_reviewerCount);&#xA;task.setVariableLocal('wf_requiredPercent', wf_requiredPercent);&#xA;task.setVariableLocal('wf_actualPercent', wf_actualPercent);&#xA;task.setVariableLocal('wf_approveCount', wf_approveCount);" event="create"/>
   </bpmn2:AlfrescoUserTask>
   <bpmn2:EndEvent id="endevent1" name="End" incoming="flow5 flow6"/>
