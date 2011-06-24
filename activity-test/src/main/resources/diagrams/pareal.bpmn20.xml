@@ -12,7 +12,7 @@ execution.setVariable('wf_requiredPercent', wf_requiredApprovePercent);</activit
       </activiti:executionListener>
     </extensionElements>
     <startEvent id="startevent1" name="Start" activiti:formKey="wf:submitParallelReviewTask"></startEvent>
-    <userTask id="usertask1" name="Review Task" activiti:candidateGroups="${reviewAssignee.properties.userName}" activiti:formKey="wf:activitiReviewTask">
+    <userTask id="usertask1" name="回看任务" activiti:candidateGroups="${reviewAssignee.properties.userName}" activiti:formKey="wf:activitiReviewTask">
       <extensionElements>
         <activiti:taskListener event="create" activiti:class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
           <activiti:field name="script">

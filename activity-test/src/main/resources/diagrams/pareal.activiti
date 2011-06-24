@@ -25,7 +25,7 @@
         <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
       </anchors>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="Review Task">
+        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="&#x56de;&#x770b;&#x4efb;&#x52a1;">
           <font name="Arial" size="8"/>
         </graphicsAlgorithm>
         <link businessObjects="usertask1"/>
@@ -313,7 +313,7 @@
   </bpmn2:Process>
   <bpmn2:AlfrescoStartEvent id="startevent1" name="Start" outgoing="flow1" formKey="wf:submitParallelReviewTask"/>
   <bpmn2:CandidateGroup group="${reviewAssignee.properties.userName}"/>
-  <bpmn2:AlfrescoUserTask id="usertask1" name="Review Task" incoming="flow1" outgoing="flow2" candidateGroups="/3" formKey="wf:activitiReviewTask">
+  <bpmn2:AlfrescoUserTask id="usertask1" name="&#x56de;&#x770b;&#x4efb;&#x52a1;" incoming="flow1" outgoing="flow2" candidateGroups="/3" formKey="wf:activitiReviewTask">
     <loopCharacteristics xsi:type="bpmn2:MultiInstanceLoopCharacteristics" inputDataItem="bpm_assignees" completionCondition="${wf_actualPercent >= wf_requiredApprovePercent}" elementVariable="reviewAssignee"/>
     <activitiListeners implementationType="alfrescoScriptType" implementation="if (typeof bpm_workflowDueDate != 'undefined') task.setVariableLocal('bpm_dueDate', bpm_workflowDueDate);&#xA;if (typeof bpm_workflowPriority != 'undefined') task.priority = bpm_workflowPriority;" event="create"/>
     <activitiListeners implementationType="alfrescoScriptType" implementation="if(task.getVariableLocal('wf_reviewOutcome') == 'Approve') {&#xA;var newApprovedCount = wf_approveCount + 1;&#xA;var newApprovedPercentage = (newApprovedCount / wf_reviewerCount) * 100;&#xA;&#xA;execution.setVariable('wf_approveCount', newApprovedCount);&#xA;execution.setVariable('wf_actualPercent', newApprovedPercentage);&#xA;}" event="complete"/>
