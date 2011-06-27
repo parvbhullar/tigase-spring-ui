@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:activiti="http://activiti.org/bpmn" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="" id="sid-51710d7c-915f-447e-80df-7b4002fbe484" targetNamespace="http://www.signavio.com/bpmn20" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+   <process name="EasyBugFilingProcess" id="EasyBugFilingProcess" isExecutable="false">
+      <startEvent id="new_bug_report" name="new bug report">
+         <documentation id="sid-4e5b99c6-a032-4dc5-bd89-f5d941e5fa75">Original ID: "sid-E8C40807-0720-4850-A93C-092C88ED19A4"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </startEvent>
+      <userTask id="Handle_bug" name="Handle bug">
+         <documentation id="sid-2518f521-9a42-4912-b5e8-8e6621e6434e">Original ID: "sid-75333D57-D1CB-431F-933C-03003A704320"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </userTask>
+      <exclusiveGateway gatewayDirection="Diverging" id="is_bug_" name="is bug?">
+         <documentation id="sid-306b7c47-c788-4c13-8aab-370558b3ca82">Original ID: "sid-7EF6423A-4550-41B3-BBC1-86F3A39A34BE"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </exclusiveGateway>
+      <serviceTask id="Insert_into_issue_tracker" name="Insert into issue tracker">
+      	<!--  
+         <documentation id="sid-378eecbf-d4de-4305-8965-8b8fee177d02">Original ID: "sid-BA16E912-3019-447C-8A65-DC0675F79FC7"</documentation>
+         -->
+         <extensionElements>
+            
+         </extensionElements>
+      </serviceTask>
+      <exclusiveGateway gatewayDirection="Converging" id="Exclusive_Databased_Gateway" name="Exclusive_Databased_Gateway">
+         <documentation id="sid-b62b5fb3-bf95-40ee-bad5-21b964bcb641">Original Name: "" Original ID: "sid-1CFAA1E8-6B01-4EAF-B146-73BCF0217639"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </exclusiveGateway>
+      <userTask id="Send_notification_to_customer" name="Send notification to customer">
+         <documentation id="sid-64486d2e-44a5-4b30-b73e-240d932d7af8">Original ID: "sid-5D78CBE0-C5DA-4787-9091-D588AD85452B"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </userTask>
+      <endEvent id="EndNoneEvent" name="EndNoneEvent">
+         <documentation id="sid-ef36e209-a7ce-4ccf-bf6f-580837304bd6">Original Name: "" Original ID: "sid-0D9B9F02-B73C-47FA-B1CB-6AED5F7849E5"</documentation>
+         <extensionElements>
+            
+         </extensionElements>
+      </endEvent>
+      <sequenceFlow id="SequenceFlow_3" name="SequenceFlow" sourceRef="new_bug_report" targetRef="Handle_bug">
+         <documentation id="sid-1adfe85a-0d9a-4c76-8357-b1fa0eadcbb0">Original Name: "" Original ID: "sid-092BA3F4-48A4-46FF-B661-C199CAB53EFC"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow_2" name="SequenceFlow" sourceRef="Handle_bug" targetRef="is_bug_">
+         <documentation id="sid-88e5703a-f959-4e24-ac17-b1ee54d377d5">Original Name: "" Original ID: "sid-AF065E70-A980-4001-8041-0AAC80279EC7"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="yes" name="yes" sourceRef="is_bug_" targetRef="Insert_into_issue_tracker">
+         <documentation id="sid-0cfec70e-7643-477d-9e66-9310cbb15246">Original ID: "sid-E3056B1C-7CF6-41C5-8B6E-164949AD6B83"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="no" name="no" sourceRef="is_bug_" targetRef="Send_notification_to_customer">
+         <documentation id="sid-5b2239a1-1cd3-4f05-a581-02bf0b013a1d">Original ID: "sid-656F398E-BE36-4936-8061-9F89B269A8A8"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow_4" name="SequenceFlow" sourceRef="Insert_into_issue_tracker" targetRef="Exclusive_Databased_Gateway">
+         <documentation id="sid-f941833e-3c4b-4a13-86f9-0dc0f0799473">Original Name: "" Original ID: "sid-23467E9D-0622-488F-A50B-096DE06EA2F7"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow_5" name="SequenceFlow" sourceRef="Send_notification_to_customer" targetRef="Exclusive_Databased_Gateway">
+         <documentation id="sid-0e99946c-b9c3-44f1-a2e3-98be624e2959">Original Name: "" Original ID: "sid-FA0C0DEE-DB90-4649-B33E-BFB29A5A5D4F"</documentation>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow" name="SequenceFlow" sourceRef="Exclusive_Databased_Gateway" targetRef="EndNoneEvent">
+         <documentation id="sid-9a9b5f0c-fdae-4931-95b4-c494a2e061e2">Original Name: "" Original ID: "sid-3B9A0957-A59A-4035-A91B-1B3D922A3ADA"</documentation>
+      </sequenceFlow>
+   </process>
+   <bpmndi:BPMNDiagram id="sid-4d6b1e3e-a242-4ffd-b480-38c55924146b">
+      <bpmndi:BPMNPlane bpmnElement="EasyBugFilingProcess" id="sid-58b026ef-c275-47c0-9721-a6dc93c77649">
+         <bpmndi:BPMNShape bpmnElement="new_bug_report" id="new_bug_report_gui">
+            <omgdc:Bounds height="30.0" width="30.0" x="111.0" y="274.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="Handle_bug" id="Handle_bug_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="203.0" y="249.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="is_bug_" id="is_bug__gui" isMarkerVisible="true">
+            <omgdc:Bounds height="40.0" width="40.0" x="355.0" y="269.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="Insert_into_issue_tracker" id="Insert_into_issue_tracker_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="508.0" y="160.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="Exclusive_Databased_Gateway" id="Exclusive_Databased_Gateway_gui" isMarkerVisible="true">
+            <omgdc:Bounds height="40.0" width="40.0" x="648.0" y="269.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="Send_notification_to_customer" id="Send_notification_to_customer_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="514.0" y="327.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="EndNoneEvent" id="EndNoneEvent_gui">
+            <omgdc:Bounds height="28.0" width="28.0" x="739.0" y="275.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNEdge bpmnElement="no" id="no_gui">
+            <omgdi:waypoint x="375.0" y="309.0"/>
+            <omgdi:waypoint x="375.5" y="367.0"/>
+            <omgdi:waypoint x="514.0" y="367.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="yes" id="yes_gui">
+            <omgdi:waypoint x="375.0" y="269.0"/>
+            <omgdi:waypoint x="375.5" y="200.0"/>
+            <omgdi:waypoint x="508.0" y="200.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow" id="SequenceFlow_gui">
+            <omgdi:waypoint x="688.0" y="289.0"/>
+            <omgdi:waypoint x="739.0" y="289.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_4" id="SequenceFlow_4_gui">
+            <omgdi:waypoint x="608.0" y="200.0"/>
+            <omgdi:waypoint x="668.5" y="200.0"/>
+            <omgdi:waypoint x="668.0" y="269.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_5" id="SequenceFlow_5_gui">
+            <omgdi:waypoint x="614.0" y="367.0"/>
+            <omgdi:waypoint x="668.0" y="367.0"/>
+            <omgdi:waypoint x="668.0" y="309.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="SequenceFlow_2_gui">
+            <omgdi:waypoint x="303.0" y="289.0"/>
+            <omgdi:waypoint x="355.0" y="289.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_3" id="SequenceFlow_3_gui">
+            <omgdi:waypoint x="141.0" y="289.0"/>
+            <omgdi:waypoint x="203.0" y="289.0"/>
+         </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+   </bpmndi:BPMNDiagram>
+</definitions>
