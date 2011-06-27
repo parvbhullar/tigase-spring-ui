@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
-  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="BPMNdiagram" name="bugReport.activiti" snapToGrid="true" showGuides="true" pictogramLinks="/0/@children.0/@link /0/@children.1/@link /0/@children.1/@children.0/@link /0/@connections.0/@link /0/@children.2/@link /0/@connections.1/@link /0/@children.3/@link /0/@children.3/@children.0/@link /0/@connections.2/@link">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="BPMNdiagram" name="bugReport.activiti" snapToGrid="true" showGuides="true" pictogramLinks="/0/@children.0/@link /0/@children.1/@link /0/@children.1/@children.0/@link /0/@connections.0/@link /0/@children.2/@link /0/@connections.1/@link /0/@children.3/@link /0/@children.3/@children.0/@link /0/@connections.2/@link /0/@children.4/@link /0/@children.4/@children.0/@link /0/@connections.3/@link">
     <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" width="1000" height="1000"/>
     <children xsi:type="pi:ContainerShape" visible="true" active="true">
       <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false" width="35" height="35" x="70" y="240">
@@ -47,7 +47,7 @@
         <points y="20"/>
       </graphicsAlgorithm>
       <link businessObjects="exclusivegateway1"/>
-      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.2" incomingConnections="/0/@connections.1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.2 /0/@connections.3" incomingConnections="/0/@connections.1"/>
       <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="0.51" relativeHeight="0.1">
         <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
       </anchors>
@@ -85,6 +85,25 @@
       </children>
       <children visible="true">
         <graphicsAlgorithm xsi:type="al:Image" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" filled="false" lineVisible="false" width="105" height="55" x="451" y="328">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.3"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" width="105" height="20" y="20" style="/0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="Service Task">
+          <font name="Arial" size="8"/>
+        </graphicsAlgorithm>
+        <link businessObjects="servicetask1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
       </children>
     </children>
     <styles foreground="/0/@colors.2" lineWidth="20" id="EVENT">
@@ -212,6 +231,24 @@
       </connectionDecorators>
       <bendpoints x="350" y="144"/>
     </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.2/@anchors.0" end="/0/@children.4/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" filled="false"/>
+      <link businessObjects="flow4"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" x="10" style="/0/@styles.1" value="">
+          <font name="Arial" size="8"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="350" y="355"/>
+    </connections>
     <colors red="227" green="238" blue="249"/>
     <colors red="255" green="255" blue="255"/>
     <colors/>
@@ -222,8 +259,10 @@
   <bpmn2:StartEvent id="startevent1" name="Start" outgoing="flow1"/>
   <bpmn2:UserTask id="usertask1" name="Handle bug" incoming="flow1" outgoing="flow2"/>
   <bpmn2:SequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"/>
-  <bpmn2:ExclusiveGateway id="exclusivegateway1" name="is bug" incoming="flow2" outgoing="flow3"/>
+  <bpmn2:ExclusiveGateway id="exclusivegateway1" name="is bug" incoming="flow2" outgoing="flow3 flow4"/>
   <bpmn2:SequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="exclusivegateway1"/>
   <bpmn2:UserTask id="usertask2" name="Insert into issue tracker" incoming="flow3"/>
   <bpmn2:SequenceFlow id="flow3" name="" sourceRef="exclusivegateway1" targetRef="usertask2"/>
+  <bpmn2:ServiceTask id="servicetask1" name="Service Task" incoming="flow4"/>
+  <bpmn2:SequenceFlow id="flow4" name="" sourceRef="exclusivegateway1" targetRef="servicetask1"/>
 </xmi:XMI>
