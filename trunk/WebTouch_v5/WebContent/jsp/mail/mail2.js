@@ -41,7 +41,7 @@ $(document).ready( function() {
 		   }
 	});
 	
-	/*WebQQ初始化开始*/
+	/*WebQQ初始化开始
 	(function(webim){
 		var _IMC = {
 				production_name: 'dz',
