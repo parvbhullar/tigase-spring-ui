@@ -41,6 +41,7 @@ $(document).ready( function() {
 		   }
 	});
 	
+	/*WebQQ初始化开始*/
 	(function(webim){
 		var _IMC = {
 				production_name: 'dz',
@@ -115,6 +116,7 @@ $(document).ready( function() {
 	    ui.render();
 	    _IMC['is_login'] && im.autoOnline() && im.online();
 	})(webim);
+	/*WebQQ初始化结束*/
 })
 
 //加载系统管理模块
