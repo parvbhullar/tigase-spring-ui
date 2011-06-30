@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+
+    <property name="mappings">
+
+         <props>
+
+             <prop key="index.do">indexController</prop>
+
+             <prop key="login.do">loginController</prop>
+
+             <prop key="user.do">userController</prop>
+
+         </props>
+
+    </property>
+
+    </bean>
+
+
+<bean id="indexController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+
+    <bean id="loginController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+
+    <property name="viewName" value="login" />
+
+    </bean>
+
+    <bean id="userController" class="com.teana.controller.UserController">
+
+    <property name="commandClass" value="com.teana.vo.User" />
+
+    </bean>
+
+   
+
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"><!-- 指定策略解析 -->
+
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /><!-- 指定视图处理 -->
+
+    <property name="prefix" value="/WEB-INF/jsp/" />
+
+    <property name="suffix" value=".jsp" />
+
+    </bean>
+    
+    <context:component-scan base-package="com.ivyinfo.controller" />			
+	
+</beans>
