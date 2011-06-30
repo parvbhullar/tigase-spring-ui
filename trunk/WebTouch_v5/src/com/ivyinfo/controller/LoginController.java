@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 	protected final Log logger = LogFactory.getLog(getClass());  
 	  
-    @RequestMapping("/login")  
+    @RequestMapping("login")  
     public ModelAndView helloWorld(){  
         logger.info("login");  
         return new ModelAndView("layout_tree.jsp");  
