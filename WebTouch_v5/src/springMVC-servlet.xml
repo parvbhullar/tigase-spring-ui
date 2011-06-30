@@ -49,6 +49,8 @@
 
     <property name="suffix" value=".jsp" />
 
-    </bean>			
+    </bean>
+    
+    <context:component-scan base-package="com.ivyinfo.controller" />			
 	
 </beans>
