@@ -53,7 +53,9 @@ String username="qk";
     <script type="text/javascript" src="js/im/webim.js"></script>
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
-    <script type="text/javascript" src="jsp/mail/mail2.js"></script>
+    
+    <script type="text/javascript" src="jsp/common/common.js"></script>
+    
     
     <!-- 
     <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
