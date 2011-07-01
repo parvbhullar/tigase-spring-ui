@@ -11,8 +11,8 @@ $(document).ready( function() {
 	  		colModel :[  
 	  		    {name:'id', 		index:'id', 			hidden:true},
 	  		    {name:'state', 		index:'state', 			width:50,align:"center"},
-	  			{name:'sendname', 	index:'sendname', 		width:150,align:"left"},  
-	  			{name:'subject', 	index:'subject', 		width:300,align:"left"},  
+	  			{name:'sendname', 	index:'sendname', 		width:150,align:"center"},  
+	  			{name:'subject', 	index:'subject', 		width:300,align:"center"},  
 	  			{name:'datetime', 	index:'datetime', 		width:100,align:"center"}, 
 	  			{name:'filename',	index:'filename', 		width:50 ,align:"center"},
 	  			{name:'name',		index:'name', 			width:50 ,align:"center",hidden:true}
