@@ -147,7 +147,6 @@ public class MailServlet extends HttpServlet {
 		            	JSONObject jSONObject=new JSONObject();
 		            	BaseDto dto=(BaseDto)menuList.get(i);
 			            jSONObject.put("data",dto.get("text"));
-			            LOGGER.info((String)dto.get("text"));
 			            if("0".equals(dto.get("leaf")))
 			            	jSONObject.put("children","");
 			            JSONObject tempJSONObject=new JSONObject();
