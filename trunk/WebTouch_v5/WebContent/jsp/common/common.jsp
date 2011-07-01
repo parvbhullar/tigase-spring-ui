@@ -9,6 +9,9 @@
 
 </head>
 <body>
+<a href="#" class="button">查询</a>
+<a href="#" class="button">新增</a>
+<a href="#" class="button">删除</a>
 
 	<table id="listTable"></table>
 	<div id="page"></div>
