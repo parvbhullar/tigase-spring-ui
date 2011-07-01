@@ -15,5 +15,13 @@
 
 	<table id="listTable"></table>
 	<div id="page"></div>
+	<div style="visibility:hidden;">
+		<div id="addForm" >
+		<p>111</p>
+		<p>222</p>
+		<p>333</p>
+	</div>
+	</div>
+	
 </body>
 </html>

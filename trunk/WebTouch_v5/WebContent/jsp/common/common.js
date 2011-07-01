@@ -40,7 +40,7 @@ $(document).ready( function() {
 	          $.blockUI({ 
 	              theme:     true, 
 	              title:    'This is your title', 
-	              message:  '<p>This is your message.</p>', 
+	              message:  $("#addForm"), 
 	              timeout:   2000 
 	          }); 
 	      });
