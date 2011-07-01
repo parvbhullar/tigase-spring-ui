@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+<script type="text/javascript" src="jsp/common/common.js"></script>
+
 </head>
 <body>
 
-<div id="listDiv"><table id="organizationList"></table>
+<div id="listDiv"><table id="tableList"></table>
 	jsp/common/common.jsp</div>
 								<div id="page"></div>
 </body>

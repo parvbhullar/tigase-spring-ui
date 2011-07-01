@@ -2,11 +2,11 @@
  * 
  */
 $(document).ready( function() {
-	$("#mailList").jqGrid({ 
+	$("#listDiv").jqGrid({ 
 		url:'mail/mailReceive.do', 
 		datatype: 'json', 
 		mtype: 'post', 
-		colNames:['id','状态','发件人','主题', '时间','附件','名字'], 
+		colNames:['id','材料费','包仓费','标签费', '仓储费','打托费','加固费'], 
 		colModel :[  
 		    {name:'id', 		index:'id', 			hidden:true},
 		    {name:'state', 		index:'state', 			width:50,align:"center"},
@@ -26,17 +26,14 @@ $(document).ready( function() {
 		rowList:[10], 
 		sortname: 'id', 
 		sortorder: "desc",
-		recordtext: "显示记录从{0}到{1},总数 {2} 条",	//显示记录数的格式
+		recordtext: "显示记录从{0}到{1},总数 {2} 条",		//显示记录数的格式
 		emptyrecords: "无数据",							//空记录时的提示信息
 		pgtext : "第 {0}页 总页数 {1}",					//页数显示格式
 		jsonReader:{
             repeatitems : false
     	},
 		loadComplete:function(){
-			$("#mailList td").css("border-left","0px");
-			$("#mailList td").css("border-right","0px");
-			$("#mailList .ui-jqgrid-view").css("border","0px");
-			$("#mailList tr").each(function()
+			$("#listDiv tr").each(function()
 			{
 						var state=$('td:eq(2)',this).html();
 						if(0==state)
