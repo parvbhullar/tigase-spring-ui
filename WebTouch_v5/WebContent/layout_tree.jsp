@@ -364,15 +364,6 @@ $(function () {
 				</ul>
 				<DIV class="ui-layout-content">
 				<div id="tabs-1">
-					
-				</div>
-				<div id="tabs-2">
-					<div><table id="mailList"></table></div>
-				</div>
-				<div id="tabs-3">
-					<table id="mailList"></table>
-				</div>	
-				<div id="tabs-4">
 				</div>
 			</div>
 		</div>
