@@ -3,7 +3,7 @@
  */
 $(document).ready( function() {
 	$("#listDiv").jqGrid({ 
-		url:'mail/mailReceive.do', 
+		url:'mail/mailReceive.action', 
 		datatype: 'json', 
 		mtype: 'post', 
 		colNames:['id','材料费','包仓费','标签费', '仓储费','打托费','加固费'], 
@@ -32,49 +32,6 @@ $(document).ready( function() {
 		jsonReader:{
             repeatitems : false
     	},
-		loadComplete:function(){
-			$("#listDiv tr").each(function()
-			{
-						var state=$('td:eq(2)',this).html();
-						if(0==state)
-						{
-							$('td:eq(2)',this).html("");
-							$('td:eq(2)',this).append('<img title="未读" src="images/mail/unRd3.gif"');
-						}else
-						{
-							if(1==state)
-							{
-								$('td:eq(2)',this).html("");
-							}
-							else
-							{
-								if(2==state)
-								{
-									$('td:eq(2)',this).html("");
-									$('td:eq(2)',this).append('<img title="回复" src="images/mail/replied3.gif"');
-								}
-							}
-						}
-						var filename=$('td:eq(6)',this).html();
-						if("&nbsp;"!=filename)
-						{
-							$('td:eq(6)',this).html("");
-							$('td:eq(6)',this).append('<img title="附件" src="images/mail/atchm.gif"');
-						}
-						var id=$('td:eq(1)',this).html();
-						var name=$('td:eq(7)',this).html();
-						$('td:not(:eq(0))',this).click(function(){
-							//查看信件
-							viewMail("#dialogViewMail",id,name,"/mail/receiveDetail.do");
-							
-							return false;
-						});
-			});
-			$(".ui-pg-table").find("select").hide();
-			var str=$("#page_right div").html();
-			$("#mailCount").html("");
-			$("#mailCount").html("<h4 style='display: inline;'>收件箱</h4>(共 "+str.substring(str.indexOf("of")+3)+" 封)");
-		},
 		viewrecords: true 
  	 });
 })
