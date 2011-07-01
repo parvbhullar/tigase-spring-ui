@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<div id="listDiv"><table id="tableList"></table>
-	jsp/common/common.jsp</div>
+<table id="tableList"></table>
+<div id="listDiv"></div>
 								<div id="page"></div>
 </body>
 </html>
