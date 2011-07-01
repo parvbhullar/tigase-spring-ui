@@ -31,20 +31,15 @@ String username="qk";
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
 	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
 	
-	<link type="text/css" href="<%=ctxindex%>/js/webcall/css/css.css" rel="stylesheet" />
-	
 	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jqgrid/css/ui.jqgrid.css" />
 	 
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
 	
-	
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
-	
 	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
-	
     
     <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
     
