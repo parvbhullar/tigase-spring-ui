@@ -35,20 +35,16 @@ String username="qk";
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jqgrid/css/ui.jqgrid.css" />
 	 
-	<script type="text/javascript" src="<%=ctxindex%>/js/common.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
-	<link rel="stylesheet" type="text/css" href="<%=ctxindex%>/css/ui/ui.css" 		 media="screen"  />
-	<link href="css/index/screen.css" rel="stylesheet" type="text/css" />
+	
+	
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
-	<!--  <link rel="stylesheet" href="js/michenriksen/stylesheets/reset.css" media="screen">-->
-	<!--  <link rel="stylesheet" href="js/michenriksen/stylesheets/demo.css" media="screen">-->
+	
 	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
 	
-	<script type="text/javascript" src="js/fgmenu/fg.menu.js"></script>
-    <link type="text/css" href="js/fgmenu/fg.menu.css" media="screen" rel="stylesheet" />
     
     <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
     
@@ -56,10 +52,6 @@ String username="qk";
     
     <script type="text/javascript" src="jsp/common/system.js"></script>
     
-    
-    <!-- 
-    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
-	 -->
 <script type="text/javascript">
 /*
  * complex.html
