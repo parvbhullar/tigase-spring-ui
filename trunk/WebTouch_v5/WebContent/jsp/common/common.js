@@ -35,4 +35,13 @@ $(document).ready( function() {
 	      	},
 	  		viewrecords: true 
 	   	 });
+	      
+	      $('#add').click(function() { 
+	          $.blockUI({ 
+	              theme:     true, 
+	              title:    'This is your title', 
+	              message:  '<p>This is your message.</p>', 
+	              timeout:   2000 
+	          }); 
+	      });
 })
