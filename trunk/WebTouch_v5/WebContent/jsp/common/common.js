@@ -10,12 +10,12 @@ $(document).ready( function() {
 	  		colNames:['id','材料费','包仓费','标签费', '仓储费','打托费','加固费'], 
 	  		colModel :[  
 	  		    {name:'id', 		index:'id', 			hidden:true},
-	  		    {name:'state', 		index:'state', 			width:50,align:"center"},
-	  			{name:'sendname', 	index:'sendname', 		width:150,align:"center"},  
-	  			{name:'subject', 	index:'subject', 		width:300,align:"center"},  
-	  			{name:'datetime', 	index:'datetime', 		width:100,align:"center"}, 
-	  			{name:'filename',	index:'filename', 		width:50 ,align:"center"},
-	  			{name:'name',		index:'name', 			width:50 ,align:"center",hidden:true}
+	  		    {name:'state', 		index:'state' 			},
+	  			{name:'sendname', 	index:'sendname' 		},  
+	  			{name:'subject', 	index:'subject' 		},  
+	  			{name:'datetime', 	index:'datetime' 		}, 
+	  			{name:'filename',	index:'filename' 		},
+	  			{name:'name',		index:'name', 			hidden:true}
 	  			], 
 	  		pager: '#page', 
 	  		rowNum:10,
