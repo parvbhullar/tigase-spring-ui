@@ -34,17 +34,10 @@ public class LoginController{
         return new ModelAndView("layout_tree.jsp");   
     }   
     
-    @RequestMapping(value="/mail/mailReceive.do",method = RequestMethod.POST)
+    @RequestMapping(value="/mail/mailReceive")
 	public void mailReceive(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		SessionUserBean sessionUserBean=(SessionUserBean)session.getAttribute("sessionUserBean");
-		UserBean userBean=sessionUserBean.getUserBean();
-		
-		LOGGER.info("收件箱 session="+session+";sessionUserBean="+sessionUserBean);
-		userBean=(UserBean)sessionUserBean.getUserBean();
-		LOGGER.info("收件箱 userBean="+userBean);
-		LOGGER.info("收件箱 userBean.getLogname()="+userBean.getLogname()+";userBean"+userBean.getName());
 		
 		String page1=(String)request.getParameter("page");
 		String sidx=(String)request.getParameter("sidx");
@@ -57,10 +50,10 @@ public class LoginController{
 		int intpage1=new Integer(page1).intValue();
 		int totalCount=0;
 		try {
-			totalCount=auxiliaryMailServices.ReceiveListCount(userBean.getLogname());
+			totalCount=13;
 			page.setPageNo(new Integer(page1).intValue());
 			page.setTotalCount(totalCount);
-			arrayList=auxiliaryMailServices.ReceiveList(page.getStart(), page.getEnd(), userBean.getLogname(),sidx,sord);
+			
 //			purviewServices.ValidationLogin(logname, password);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,30 +68,22 @@ public class LoginController{
         jsonObj.put("records", totalCount);        // 总记录数
         // 定义rows，存放数据
         JSONArray rows = new JSONArray();
-        for(int i=0;i<arrayList.size();i++)
+        for(int i=0;i<13;i++)
         {
-        	ReceiveMailBean receiveMailBean =  (ReceiveMailBean)arrayList.get(i);
                 // 存放一条记录的对象
                 JSONObject cell = new JSONObject();
-                cell.put("id", receiveMailBean.getId());
-                cell.put("state", receiveMailBean.getState());
-                cell.put("sendname", receiveMailBean.getSendname());
-                cell.put("subject", receiveMailBean.getSubject());
-                cell.put("datetime", receiveMailBean.getDatetime());
-                cell.put("filename", receiveMailBean.getFilename());
-                cell.put("name", userBean.getLogname());
+                cell.put("id", i);
+                cell.put("state", 1);
+                cell.put("sendname", 2);
+                cell.put("subject", 3);
+                cell.put("datetime", 4);
+                cell.put("filename", "34");
+                cell.put("name", "qk");
                 // 将该记录放入rows中
                 rows.add(cell);
         }
         // 将rows放入json对象中
         jsonObj.put("rows", rows);
-        // 自控制台打印输出，以检验json对象生成是否正确
-        LOGGER.info("\n sidx="+sidx+";sord="+sord+
-        		"\n;(page.getStart()=="+page.getStart()+";;page.getEnd()="+page.getEnd()+";;page.getTotalPages()="+page.getTotalPages()+";totalCount="+totalCount+";page1="+page1+";arrayList.size()="+arrayList.size()+
-        		";\n要返回的json对象：\n" + jsonObj.toString());
-        // 设置字符编码
-        
-        // 返回json对象（通过PrintWriter输出）
         response.getWriter().print(jsonObj);
 	}
 }
