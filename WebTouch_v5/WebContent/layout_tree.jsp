@@ -12,7 +12,9 @@ String username="qk";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/index/complex.css" />
+	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-1.4.4.min.js"></script>
+	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/jquery.layout.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-ui-1.8.7.custom.min.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/themeswitchertool.js"></script>
@@ -20,7 +22,7 @@ String username="qk";
 	<script type="text/javascript" src="<%=ctxindex%>/js/jstree/jquery.jstree.js"></script>
 	
 	<script src="<%=ctxindex%>/js/jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script src="<%=ctxindex%>/js/jqgrid/js/jquery.jqGrid.min2.js" type="text/javascript"></script>
+	<script src="<%=ctxindex%>/js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 	
 	<script src="<%=ctxindex%>/js/jquery.blockUI.js" type="text/javascript"></script>
 	 
@@ -49,9 +51,7 @@ String username="qk";
     <link type="text/css" href="js/fgmenu/fg.menu.css" media="screen" rel="stylesheet" />
     
     <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
-    <link type="text/css" href="css/im/webim.min.css" media="screen" rel="stylesheet" />
-    <script type="text/javascript" src="js/im/webim.js"></script>
-    <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
+    
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
     
     <script type="text/javascript" src="jsp/common/system.js"></script>
