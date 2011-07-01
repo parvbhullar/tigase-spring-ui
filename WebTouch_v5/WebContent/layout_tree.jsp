@@ -54,7 +54,7 @@ String username="qk";
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
     
-    <script type="text/javascript" src="jsp/common/common.js"></script>
+    <script type="text/javascript" src="jsp/common/system.js"></script>
     
     
     <!-- 
@@ -291,10 +291,7 @@ String username="qk";
 	    $('#createInner2').hide();
 	    $('#innerCommands').show();
 	}
-
-	var json0 = {"options":"[{\"mod\":\"sys\",\"modname\":\"系统管理\"}]"}
-	var json1 = {"options":"[{\"mod\":\"orgsys\",\"modname\":\"管理平台\"},{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
-	var json2 = {"options":"[{\"mod\":\"meeting\",\"modname\":\"会议\"},{\"mod\":\"personal\",\"modname\":\"个人设置\"}]"}
+	
 </script>
 </head>
 <body>
@@ -333,18 +330,8 @@ $(function () {
 <div class="ui-layout-north">
 	<div class="header">云端统一通信平台</div>
 	
-	<!--  
-	<div class="content">
-		
-	</div>
-	-->
-	<!--  
-	<ul class="toolbar">
-		<li id="tbarToggleNorth" class="first">邮件</li>
-		<li id="tbarOpenSouth">视频会议</li>
-		<li id="tbarCloseSouth">WebCall</li>
-	</ul>
-	-->
+	
+	
 </div>
 
 
