@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-jsp/common/common.jsp
+
+<div id="listDiv"><table id="organizationList"></table>
+	jsp/common/common.jsp</div>
+								<div id="page"></div>
 </body>
 </html>
