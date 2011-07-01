@@ -1,54 +1,38 @@
 /**
  * 
  */
-$(document).ready( function() {
-	var mydata = [
-	      		{id:"1",invdate:"2010-05-24",name:"test",note:"note",tax:"10.00",total:"2111.00"} ,
-	      		{id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
-	      		{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
-	      		{id:"4",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
-	      		{id:"5",invdate:"2007-10-05",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
-	      		{id:"6",invdate:"2007-09-06",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
-	      		{id:"7",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
-	      		{id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"21.00",total:"320.00"},
-	      		{id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"11",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"12",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"13",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"14",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"15",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"16",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"17",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"18",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"19",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"21",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"22",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"23",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"24",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"25",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"26",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-	      		{id:"27",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-	      		{id:"28",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-	      		{id:"29",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
-	      	];
-	      jQuery("#list47").jqGrid({
-	      	data: mydata,
-	      	datatype: "local",
-	      	height: 150,
-	      	rowNum: 10,
-	      	rowList: [10,20,30],
-	         	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
-	         	colModel:[
-	         		{name:'id',index:'id', width:60, sorttype:"int"},
-	         		{name:'invdate',index:'invdate', width:90, sorttype:"date", formatter:"date"},
-	         		{name:'name',index:'name', width:100},
-	         		{name:'amount',index:'amount', width:80, align:"right",sorttype:"float", formatter:"number"},
-	         		{name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},		
-	         		{name:'total',index:'total', width:80,align:"right",sorttype:"float"},		
-	         		{name:'note',index:'note', width:150, sortable:false}		
-	         	],
-	         	pager: "#plist47",
-	         	viewrecords: true,
-	         	caption: "Manipulating Array Data"
-	      });
+$(document).ready( function() {	
+	      
+	      $("#listTable").jqGrid({ 
+	  		url:'mail/mailReceive.action', 
+	  		datatype: 'json', 
+	  		mtype: 'post', 
+	  		colNames:['id','材料费','包仓费','标签费', '仓储费','打托费','加固费'], 
+	  		colModel :[  
+	  		    {name:'id', 		index:'id', 			hidden:true},
+	  		    {name:'state', 		index:'state', 			width:50,align:"center"},
+	  			{name:'sendname', 	index:'sendname', 		width:150,align:"left"},  
+	  			{name:'subject', 	index:'subject', 		width:300,align:"left"},  
+	  			{name:'datetime', 	index:'datetime', 		width:100,align:"center"}, 
+	  			{name:'filename',	index:'filename', 		width:50 ,align:"center"},
+	  			{name:'name',		index:'name', 			width:50 ,align:"center",hidden:true}
+	  			], 
+	  		pager: '#page', 
+	  		rowNum:10,
+	  		autowidth:true,
+	  		height:320,
+	  		loadtext: '正在加载...',
+	  		loadui : 'block',
+	  		multiselect : true,
+	  		rowList:[10], 
+	  		sortname: 'id', 
+	  		sortorder: "desc",
+	  		recordtext: "显示记录从{0}到{1},总数 {2} 条",		//显示记录数的格式
+	  		emptyrecords: "无数据",							//空记录时的提示信息
+	  		pgtext : "第 {0}页 总页数 {1}",					//页数显示格式
+	  		jsonReader:{
+	              repeatitems : false
+	      	},
+	  		viewrecords: true 
+	   	 });
 })

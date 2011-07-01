@@ -10,9 +10,7 @@
 </head>
 <body>
 
-<table id="list47"></table>
-<div id="plist47"></div>
-
-								<div id="page"></div>
+	<table id="listTable"></table>
+	<div id="page"></div>
 </body>
 </html>
