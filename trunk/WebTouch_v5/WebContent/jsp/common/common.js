@@ -1,8 +1,7 @@
 /**
  * 
  */
-$(document).ready( function() {	
-	      
+$(document).ready( function() {		      
 	      $("#listTable").jqGrid({ 
 	  		url:'mail/mailReceive.action', 
 	  		datatype: 'json', 
