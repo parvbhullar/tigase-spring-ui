@@ -232,6 +232,7 @@ public class OrgService {
 						if(i==0)
 						{
 							sb.append("\"data\"").append(":\"").append(org.getOrgName()).append("\"");
+							
 							sb.append(",\"attr\" : { \"id\" : \"").append(org.getOrgId()).append("\",\"alt\":\"").append(org.getBelongOrgId()).append("\"}");
 							i++;
 						}
