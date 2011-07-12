@@ -1,7 +1,6 @@
 package com.ivyinfo.mail;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,15 +12,13 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.eredlab.g4.arm.service.OrganizationService;
+import org.eredlab.g4.ccl.datastructure.Dto;
 import org.eredlab.g4.ccl.datastructure.impl.BaseDto;
 import org.eredlab.g4.demo.esb.httpinvoker.HelloWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ivyinfo.framework.service.server.SpringContextUtil;
-import com.ivyinfo.mail.bean.MailUtilBean;
-import com.ivyinfo.session.bean.SessionUserBean;
 
 public class MailServlet extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailServlet.class);
@@ -51,7 +48,6 @@ public class MailServlet extends HttpServlet {
 		action = (action == null)?"":action;
 		LOGGER.info("action="+action);
 		HttpSession session = request.getSession();
-		SessionUserBean sessionUserBean=(SessionUserBean)session.getAttribute("sessionUserBean");
 		
 		try{
 			Mail organization=new Mail();
@@ -192,7 +188,6 @@ public class MailServlet extends HttpServlet {
 		action = (action == null)?"":action;
 		LOGGER.info("action="+action);
 		HttpSession session = request.getSession();
-		SessionUserBean sessionUserBean=(SessionUserBean)session.getAttribute("sessionUserBean");
 		
 		try{
 			Mail organization=new Mail();
@@ -281,30 +276,6 @@ public class MailServlet extends HttpServlet {
 	
 	}
 
-	/**
-	 * 查看邮件
-	 * @param request
-	 * @param response
-	 */
-	private void view(HttpServletRequest request, HttpServletResponse response){
-		String to=(String)request.getParameter("to")+";";
-		String subject=(String)request.getParameter("subject");
-		String content=(String)request.getParameter("content");
-		MailUtilBean mailUtilBean=new MailUtilBean();
-		try {
-			List list=new ArrayList<String>();
-			list.add(to);
-			//mailUtilBean.setFrom("qinkun1234@163.com");
-			mailUtilBean.setFrom(" ");
-			mailUtilBean.setTo(list);
-			mailUtilBean.setSubject(subject);
-			mailUtilBean.setContent(content);
-			//mailUtilBean.setToname("qinkun1234@163.com;");
-			mailUtilBean.setToname(" ");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * 
@@ -312,16 +283,49 @@ public class MailServlet extends HttpServlet {
 	 */
 	private String querySubTree(String nodeid){
 		JSONArray jSONArray=new JSONArray();
-		List menuList=helloWorldService.queryMenuItems(nodeid);
+		Dto paramDto=new BaseDto();
+		paramDto.put("menuid", nodeid);
+		List menuList=helloWorldService.queryMenuItems(paramDto);
         for(int i=0;i<menuList.size();i++){
         	JSONObject jSONObject=new JSONObject();
         	BaseDto dto=(BaseDto)menuList.get(i);
             jSONObject.put("data",dto.get("text"));
             LOGGER.info((String)dto.get("text"));
             if("0".equals(dto.get("leaf")))
-            	jSONObject.put("children","");
+            {
+            	this.queryChildTree((String)dto.get("id"));
+            	jSONObject.put("children","['Child 1', 'Child 2' ]");
+            }
+            
+            	
             JSONObject tempJSONObject=new JSONObject();
-            tempJSONObject.put("id", i);
+            tempJSONObject.put("id", dto.get("id"));
+            tempJSONObject.put("leaf", dto.get("leaf"));
+            jSONObject.put("attr", tempJSONObject);
+            jSONArray.add(jSONObject);
+        }
+        return jSONArray.toString();
+	}
+	
+	private String queryChildTree(String nodeid){
+		JSONArray jSONArray=new JSONArray();
+		Dto paramDto=new BaseDto();
+		paramDto.put("parentid", nodeid);
+		List menuList=helloWorldService.queryMenuItems(paramDto);
+        for(int i=0;i<menuList.size();i++){
+        	JSONObject jSONObject=new JSONObject();
+        	BaseDto dto=(BaseDto)menuList.get(i);
+            jSONObject.put("data",dto.get("text"));
+            LOGGER.info((String)dto.get("text"));
+            if("0".equals(dto.get("leaf")))
+            {
+
+            	this.queryChildTree((String)dto.get("id"));
+            	jSONObject.put("children","['Child 1', 'Child 2' ]");
+            
+            }
+            JSONObject tempJSONObject=new JSONObject();
+            tempJSONObject.put("id", dto.get("id"));
             tempJSONObject.put("leaf", dto.get("leaf"));
             jSONObject.put("attr", tempJSONObject);
             jSONArray.add(jSONObject);
