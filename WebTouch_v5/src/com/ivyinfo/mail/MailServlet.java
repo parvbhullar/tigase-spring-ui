@@ -158,7 +158,9 @@ public class MailServlet extends HttpServlet {
 //		            response.getWriter().print(jSONArray.toString());
 //		            str=jSONArray.toString();
 		            LOGGER.info("str="+str);
-		            str=this.querySubTree("01");
+//		            str=this.querySubTree("01");
+		            str=this.getTreeJson("010102");
+		            
 		            LOGGER.info("str="+str);
 		            response.getWriter().print(str);
 				} catch (Exception e) {
@@ -331,5 +333,53 @@ public class MailServlet extends HttpServlet {
             jSONArray.add(jSONObject);
         }
         return jSONArray.toString();
+	}
+	
+	/**
+	 * 
+	 * @param nodeid
+	 * @return
+	 */
+	private String getTreeJson(String nodeid){
+		StringBuffer sb2=new StringBuffer("[{");
+		StringBuffer sb=new StringBuffer("[{");
+		Dto paramDto=new BaseDto();
+		paramDto.put("parentid", nodeid);
+		List menuList=helloWorldService.queryMenuItems(paramDto);
+		for(int i=0;i<menuList.size();i++){
+        	JSONObject jSONObject=new JSONObject();
+        	BaseDto dto=(BaseDto)menuList.get(i);
+
+			if(i==0)
+			{
+				sb.append("\"data\"").append(":\"").append(dto.get("text")).append("\"");
+				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"}}");
+				
+			}
+			else
+			{
+				sb.append(",{\"data\"").append(":\"").append(dto.get("text")).append("\"");
+				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"}}");
+				
+			}
+        }
+		if(menuList.size()>1)
+		{
+				sb.append("]");
+		}
+		paramDto=new BaseDto();
+		paramDto.put("menuid", nodeid);
+		menuList=helloWorldService.queryMenuItems(paramDto);
+		BaseDto dto=(BaseDto)menuList.get(0);
+
+		sb2.append("\"data\"").append(":\"").append(dto.get("text")).append("\",").append("\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"},").append("\"children\"").append(":").append(sb.toString());
+		sb2.append(",\"state\" : \"open\" }]");
+	
+		return sb2.toString();
+	}
+	
+	private String getChildrenJson(String nodeid){
+		
+		return "";
 	}
 }
