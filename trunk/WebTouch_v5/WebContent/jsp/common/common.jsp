@@ -19,15 +19,15 @@
 		<div id="addForm" >
 			
       <div class="span-10">
-        <form id="dummy" action="" method="post">
+        <form id="userForm" action="" method="post">
             <p>
-              <label for="dummy0">用户名</label><br>
-              <input type="text" class="text" name="dummy0" id="dummy0" value=>
+              <label for="logname">用户名</label><br>
+              <input type="text" class="text" name="logname" id="logname" value=>
             </p>
 
             <p>
-              <label for="dummy1">密     码</label><br>
-              <input type="text" class="text" id="dummy1" name="dummy1" value="">
+              <label for="password">密     码</label><br>
+              <input type="text" class="text" id="password" name="password" value="">
             </p>
 
             <p>
