@@ -21,12 +21,12 @@
       <div class="span-10">
         <form id="dummy" action="" method="post">
             <p>
-              <label for="dummy0">Text input (title)</label><br>
-              <input type="text" class="title" name="dummy0" id="dummy0" value=>
+              <label for="dummy0">用户名</label><br>
+              <input type="text" class="text" name="dummy0" id="dummy0" value=>
             </p>
 
             <p>
-              <label for="dummy1">Another field</label><br>
+              <label for="dummy1">密     码</label><br>
               <input type="text" class="text" id="dummy1" name="dummy1" value="">
             </p>
 
