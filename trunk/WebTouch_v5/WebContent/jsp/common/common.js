@@ -39,8 +39,7 @@ $(document).ready( function() {
 	          $.blockUI({ 
 	              theme:     true, 
 	              title:    'This is your title', 
-	              message:  $("#addForm"), 
-	              timeout:   2000 
+	              message:  $("#addForm")
 	          }); 
 	      });
 })
