@@ -38,8 +38,13 @@ $(document).ready( function() {
 	      $('#add').click(function() { 
 	          $.blockUI({ 
 	              theme:     true, 
-	              title:    'This is your title', 
-	              message:  $("#addForm")
+	              title:    '添加用户', 
+	              message:  $("#addForm"),
+	              css: { 
+	            	  top:  ($(window).height() - 400) /2 + 'px', 
+	                  left: ($(window).width() - 400) /2 + 'px', 
+	                  width: '400px'
+	              }
 	          }); 
 	      });
 })
