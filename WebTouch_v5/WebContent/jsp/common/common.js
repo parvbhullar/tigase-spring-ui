@@ -1,7 +1,8 @@
 /**
  * 
  */
-$(document).ready( function() {		      
+$(document).ready( function() {		
+	/*表格初始化开始*/
 	      $("#listTable").jqGrid({ 
 	  		url:'mail/mailReceive.action', 
 	  		datatype: 'json', 
@@ -34,7 +35,9 @@ $(document).ready( function() {
 	      	},
 	  		viewrecords: true 
 	   	 });
+	      /*表格初始化结束*/
 	      
+	      /*点击事件开始*/
 	      $('#add').click(function() { 
 	          $.blockUI({ 
 	              theme:     true, 
@@ -47,8 +50,22 @@ $(document).ready( function() {
 	          }); 
 	      });
 	      
+	      
+	      $('#save').click(function() { 
+	    	  $.ajax({
+	    		   type: "POST",
+	    		   url: "user/saveUserItem.action",
+	    		   data: $('#userForm').formSerialize(),
+	    		   success: function(msg){
+	    		     alert( "Data Saved: " + msg );
+	    		   }
+	    		 }); 
+	            return false; 
+	        });
+	      
 	      $('#cancel').click(function() { 
 	            $.unblockUI(); 
 	            return false; 
 	        });
+	      /*点击事件结束*/
 })
