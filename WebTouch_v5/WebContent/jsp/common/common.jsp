@@ -17,35 +17,25 @@
 	<div id="page"></div>
 	<div style="visibility:hidden;">
 		<div id="addForm" >
-			<div class="container">
-  <div class="column span-8 last">
-	
-          <p>
-            <label for="dummy5">Select field</label>
-            <select id="dummy5" name="dummy5">
-              <option value="1">Ottawa</option>
-              <option value="2">Calgary</option>
-              <option value="3">Moosejaw</option>
-            </select>
-          </p>
+			
+      <div class="span-12">
+        <form id="dummy" action="" method="post">
+            <p>
+              <label for="dummy0">Text input (title)</label><br>
+              <input type="text" class="title" name="dummy0" id="dummy0" value="Field with class .title">
+            </p>
 
-          <p>
-            <label for="dummy6">Text input (title)</label>
-            <input type="text" class="title" name="dummy6" id="dummy6" value="Field with class .title">
-          </p>
+            <p>
+              <label for="dummy1">Another field</label><br>
+              <input type="text" class="text" id="dummy1" name="dummy1" value="Field with class .text">
+            </p>
 
-          <p>
-            <label for="dummy7">Select field</label>
-            <select id="dummy7" name="dummy7">
-              <option value="1">Ottawa</option>
-              <option value="2">Calgary</option>
-              <option value="3">Moosejaw</option>
-            </select>
-            <label for="dummy8">Another field</label>
-            <input type="text" class="text" id="dummy8" name="dummy8" value="Field with class .text">
-          </p>
-  </div>
-</div>
+            <p>
+              	<a href="#" class="button" id="save">保存</a>
+				<a href="#" class="button" id="cancel">关闭</a>
+            </p>
+        </form>
+      </div>
 		</div>
 	</div>
 	
