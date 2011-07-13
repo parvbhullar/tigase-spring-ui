@@ -40,8 +40,6 @@ String username="qk";
     
     <script type="text/javascript" src="jsp/common/system.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/css/index/screen.css" />
-    
-    
 <script type="text/javascript">
 /*
  * complex.html
