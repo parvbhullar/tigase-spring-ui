@@ -12,26 +12,22 @@ String username="qk";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/index/complex.css" />
-	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-1.4.4.min.js"></script>
-	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/jquery.layout.js"></script>
-	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/jquery-ui-1.8.7.custom.min.js"></script>
-	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/themeswitchertool.js"></script>
-	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/debug.js"></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-ui-1.8.14/js/jquery-ui-1.8.14.custom.min.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jstree/jquery.jstree.js"></script>
 	
-	<script src="<%=ctxindex%>/js/jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script src="<%=ctxindex%>/js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="<%=ctxindex%>/js/jquery.jqGrid-4.1.1/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+	<script src="<%=ctxindex%>/js/jquery.jqGrid-4.1.1/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 	
 	<script src="<%=ctxindex%>/js/jquery.blockUI.js" type="text/javascript"></script>
 	 
-	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/redmond2/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
+	<link type="text/css" href="<%=ctxindex%>/js/jquery-ui-1.8.14/css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
 
-	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/js/ui.selectmenu.js"></script> 
-	<link type="text/css" href="<%=ctxindex%>/js/jqueryui/css/ui.selectmenu.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jquery.jqGrid-4.1.1/css/ui.jqgrid.css" />
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/js/jqgrid/css/ui.jqgrid.css" />
+	
+	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
 	 
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
@@ -39,13 +35,12 @@ String username="qk";
 	
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>
-	<link rel="stylesheet" href="js/michenriksen/stylesheets/css3buttons.css" media="screen">
-    
-    <link type="text/css" href="js/accordion/grey.css" media="screen" rel="stylesheet" />
     
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
     
     <script type="text/javascript" src="jsp/common/system.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/css/index/screen.css" />
+    
     
 <script type="text/javascript">
 /*
