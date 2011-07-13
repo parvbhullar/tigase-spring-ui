@@ -43,8 +43,12 @@ $(document).ready( function() {
 	              css: { 
 	            	  top:  ($(window).height() - 400) /2 + 'px', 
 	                  left: ($(window).width() - 400) /2 + 'px' 
-	                  
 	              }
 	          }); 
 	      });
+	      
+	      $('#cancel').click(function() { 
+	            $.unblockUI(); 
+	            return false; 
+	        });
 })
