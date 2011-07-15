@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.eredlab.g4.ccl.datastructure.Dto;
-import org.eredlab.g4.ccl.datastructure.impl.BaseDto;
-import org.eredlab.g4.demo.esb.httpinvoker.HelloWorld;
+import org.njdt.gg.ccl.datastructure.Dto;
+import org.njdt.gg.ccl.datastructure.impl.BaseDto;
+import org.njdt.gg.demo.esb.httpinvoker.HelloWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -14,7 +14,7 @@
 	 <bean id="helloWorldService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"><value>${serviceUrlEsb}/helloWorldService</value></property>
 		<property name="serviceInterface" 
-			value="org.eredlab.g4.demo.esb.httpinvoker.HelloWorld" />
+			value="org.njdt.gg.demo.esb.httpinvoker.HelloWorld" />
 	</bean>
 	
 
