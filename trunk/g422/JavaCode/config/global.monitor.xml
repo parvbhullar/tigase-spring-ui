@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SpringBean切面监控 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- 系统管理模块Service监控 
+	             说明：在系统正式部署到生产环境后建议将切面监控全部拦截掉,否则所有service方法将会被拦截。
+	     global.g4.properties中的beanMonitor属性配置只是决定是否将监控数据持久化到数据库
+	 -->
+	<aop:config>  
+		<aop:aspect id="armServiceMonitor" ref="aspectBean">   
+			<aop:pointcut id="armServicePointcut"  
+				expression="execution(* org.eredlab.g4.arm.service.*.*(..))" />  
+			<aop:around pointcut-ref="armServicePointcut" method="doServiceAround"/>  
+			<aop:after-throwing pointcut-ref="armServicePointcut" method="doServiceThrowing" throwing="ex"/>  
+		</aop:aspect>  
+	</aop:config> 
+	
+	<!-- 切面Bean -->
+	<bean id="aspectBean" class="org.eredlab.g4.bmf.aop.SpringBeanAspect" /> 
+</beans>

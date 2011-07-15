@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- eRedG4社区开源版发布脚本 -->
+<project name="eRedG4" default="publish" basedir="../../">
+	
+	<!-- 发布 -->
+	<target name="publish">
+
+	</target>
+</project>
