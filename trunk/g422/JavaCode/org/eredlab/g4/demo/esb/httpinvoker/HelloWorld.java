@@ -39,6 +39,6 @@ public interface HelloWorld {
 	 * @param nodeid
 	 * @return
 	 */
-	public List queryMenuItems(String nodeid);
+	public List queryMenuItems(Dto inDto);
 	
 }
