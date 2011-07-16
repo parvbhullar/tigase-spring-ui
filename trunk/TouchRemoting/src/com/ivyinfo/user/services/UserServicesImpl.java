@@ -261,4 +261,9 @@ public class UserServicesImpl implements UserServices{
 		UserDAO userDAO =(UserDAO) SpringContextUtil.getBean("userDAO");
 		userDAO.UpdCardCZJE(userid, czje);
 	}
+
+	public void saveUserItem(Dto inDto) throws Exception {
+		UserDAO userDAO =(UserDAO) SpringContextUtil.getBean("userDAO");
+		userDAO.UpdCardCZJE(userid, czje);
+	}
 }
