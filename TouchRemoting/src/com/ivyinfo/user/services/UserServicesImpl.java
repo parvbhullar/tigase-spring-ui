@@ -3,6 +3,9 @@ package com.ivyinfo.user.services;
 import java.util.List;
 import java.util.Map;
 
+import org.njdt.gg.ccl.datastructure.Dto;
+
+import com.ivyinfo.framework.service.base.BaseService;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.initializationtable.services.InitializationTableServices;
 import com.ivyinfo.mail.bean.SetupMailBean;
@@ -12,7 +15,7 @@ import com.ivyinfo.user.bean.UserBean;
 import com.ivyinfo.user.dao.UserDAO;
 import com.ivyinfo.webtouch.conversion.UserConversion;
 
-public class UserServicesImpl implements UserServices{
+public class UserServicesImpl extends BaseService implements UserServices{
 
 	public int UserListCount(String state,String orgid,String conname,String convalue) throws Exception{
 		UserDAO userDAO =(UserDAO) SpringContextUtil.getBean("userDAO");
@@ -264,6 +267,7 @@ public class UserServicesImpl implements UserServices{
 
 	public void saveUserItem(Dto inDto) throws Exception {
 		UserDAO userDAO =(UserDAO) SpringContextUtil.getBean("userDAO");
-		userDAO.UpdCardCZJE(userid, czje);
+		this.iDao.insert("saveEausersubinfoItem", inDto);
+//		userDAO.UpdCardCZJE(userid, czje);
 	}
 }
