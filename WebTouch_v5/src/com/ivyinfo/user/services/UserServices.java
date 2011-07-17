@@ -2,6 +2,8 @@ package com.ivyinfo.user.services;
 
 import java.util.List;
 
+import org.njdt.gg.ccl.datastructure.Dto;
+
 import com.ivyinfo.framework.service.base.IBaseService;
 import com.ivyinfo.mail.bean.SetupMailBean;
 import com.ivyinfo.purview.bean.PurviewBean;
@@ -117,4 +119,12 @@ public interface UserServices extends IBaseService{
 	 * @throws Exception
 	 */
 	public void UpdCardCZJE(String userid,String czje) throws Exception;
+	
+	/**
+	 * 保存用户
+	 * @param userid
+	 * @param czje
+	 * @throws Exception
+	 */
+	public void saveUserItem(Dto inDto) throws Exception;
 }
