@@ -3,7 +3,7 @@ package org.njdt.gg.ccl.util;
 /**
  * 常量表
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-13
  */
 public interface GlobalConstants {

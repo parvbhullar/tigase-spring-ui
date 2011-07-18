@@ -2,7 +2,7 @@ package org.njdt.gg.ccl.datastructure;
 
 /**
  * 非空数据传输对象接口<br>
- * @author XiongChun
+* @author njdt
  * @since 2009-07-06
  * @see com.eredlab.eredbos.eredccp.datastructure.Dto
  */

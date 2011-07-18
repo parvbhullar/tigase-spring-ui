@@ -37,7 +37,7 @@ import org.njdt.gg.ccl.properties.PropertiesHelper;
 /**
  * 常见的辅助类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-15
  */
 public class G4Utils {

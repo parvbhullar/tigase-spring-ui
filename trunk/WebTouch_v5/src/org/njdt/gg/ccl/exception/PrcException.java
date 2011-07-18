@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 调用存储过程异常
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-01-24
  */
 public class PrcException extends RuntimeException {

@@ -17,7 +17,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 /**
  * XML处理器<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-07
  */
 public class XmlHelper {
