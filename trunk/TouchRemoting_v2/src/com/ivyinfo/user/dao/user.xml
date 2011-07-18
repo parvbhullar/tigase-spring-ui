@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
+	
+	<!-- 新增用户登陆信息 -->
+	<insert id="saveUser" parameterClass="userBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_login(id,logname,nickname,password,type,state,upduserid,timestemp,dirtyflag)
+			VALUES(#id#,#logname#,#nickname#,#password#,#type#,#state#,#upduserid#,#timestemp#,#dirtyflag#)
+		]]>
+	</insert>
+	
+</sqlMap>
