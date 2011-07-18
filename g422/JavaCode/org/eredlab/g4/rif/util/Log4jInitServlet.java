@@ -10,7 +10,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * Log4J初始化
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-04-26
  */
 public class Log4jInitServlet extends HttpServlet {

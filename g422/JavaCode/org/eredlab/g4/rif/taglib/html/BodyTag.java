@@ -20,7 +20,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * Body标签
- * @author XiongChun
+* @author njdt
  * @since 2010-01-30
  */
 public class BodyTag extends TagSupport{

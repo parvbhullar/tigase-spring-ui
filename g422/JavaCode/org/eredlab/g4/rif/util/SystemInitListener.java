@@ -26,7 +26,7 @@ import org.springframework.context.ApplicationContext;
 /**
  * 系统启动监听器
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-04-13
  */
 public class SystemInitListener implements ServletContextListener {

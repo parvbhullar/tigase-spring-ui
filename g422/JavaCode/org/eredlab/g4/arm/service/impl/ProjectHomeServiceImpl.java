@@ -8,7 +8,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 /**
  * 项目主页服务接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-12-25
  */
 public class ProjectHomeServiceImpl extends BaseServiceImpl implements ProjectHomeService {

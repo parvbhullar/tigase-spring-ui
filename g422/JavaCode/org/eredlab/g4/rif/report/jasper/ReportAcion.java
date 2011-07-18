@@ -28,7 +28,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * JasperReport报表服务Acion
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  * @see BaseAction
  */

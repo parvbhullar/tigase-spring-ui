@@ -2,7 +2,7 @@ package org.njdt.gg.ccl.tplengine;
 
 /**
  * 模板引擎类型
- * @author XiongChun
+* @author njdt
  * @since 2009-07-26
  */
 public class TemplateType {

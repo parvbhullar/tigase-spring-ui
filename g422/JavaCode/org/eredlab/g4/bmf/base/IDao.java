@@ -14,7 +14,7 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
  * 数据访问接口(原生)<br>
  * 基于iBatis实现,支持自定义的数据操作
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-23
  * @see com.ibatis.dao.client.Dao
  */

@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 数据传输对象接口<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-06
  * @see java.util.Map
  */

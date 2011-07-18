@@ -39,7 +39,7 @@ import sun.misc.BASE64Encoder;
 /**
  * 常见的辅助类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-15
  */
 public class G4Utils {

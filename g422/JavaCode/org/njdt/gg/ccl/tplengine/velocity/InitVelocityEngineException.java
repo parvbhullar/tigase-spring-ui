@@ -4,7 +4,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * 初始模板引擎异常类
- * @author XiongChun
+* @author njdt
  * @since 2009-07-28
  * @see RuntimeException
  */

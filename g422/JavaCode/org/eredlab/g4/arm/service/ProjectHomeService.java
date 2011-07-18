@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 /**
  * 项目主页服务接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-12-25
  */
 public interface ProjectHomeService extends BaseService {

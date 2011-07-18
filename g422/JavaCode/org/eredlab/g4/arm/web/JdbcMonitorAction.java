@@ -19,7 +19,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * JDBC监控
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-03
  * @see BaseAction
  */

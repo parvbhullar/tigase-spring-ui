@@ -18,7 +18,7 @@ import org.njdt.gg.ccl.json.JsonHelper;
 /**
  * 表单及表单元素标准范例暨教程Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-23
  * @see BaseAction
  */

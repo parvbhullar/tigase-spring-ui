@@ -6,7 +6,7 @@ import org.apache.struts.action.ActionServlet;
 
 /**
  * ActionServlet基类
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  * @see ActionServlet
  */

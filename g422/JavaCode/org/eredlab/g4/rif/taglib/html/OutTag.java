@@ -15,7 +15,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * Out标签<br>
  * 输出request,session,application作用域的变量值
- * @author XiongChun
+* @author njdt
  * @since 2010-02-30
  */
 public class OutTag extends TagSupport {

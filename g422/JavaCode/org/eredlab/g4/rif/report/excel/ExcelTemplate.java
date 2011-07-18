@@ -18,7 +18,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 导出Excel的模板对象
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-08-12
  */
 public class ExcelTemplate {

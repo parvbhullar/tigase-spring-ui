@@ -7,7 +7,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 /**
  * Excel数据对象
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-08-12
  */
 public class ExcelData {

@@ -10,7 +10,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 
 /**
  * 角色管理与授权业务实现类
- * @author XiongChun
+* @author njdt
  * @since 2010-04-13
  */
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService{

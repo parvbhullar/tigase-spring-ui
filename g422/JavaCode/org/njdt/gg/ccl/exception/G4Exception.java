@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * G4公共异常类<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-04-27
  */
 public class G4Exception extends RuntimeException {

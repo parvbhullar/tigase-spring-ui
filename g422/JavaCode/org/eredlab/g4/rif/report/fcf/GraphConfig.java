@@ -6,7 +6,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 
 /**
  * FlashReport样式配置对象
- * @author XiongChun
+* @author njdt
  * @since 2010-07-13
  * @see BaseAction
  */

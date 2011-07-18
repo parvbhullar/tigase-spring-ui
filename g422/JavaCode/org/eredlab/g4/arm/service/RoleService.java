@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /**
  * 角色管理与授权业务接口
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public interface RoleService extends BaseService{

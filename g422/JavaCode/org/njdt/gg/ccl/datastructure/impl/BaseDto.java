@@ -17,7 +17,7 @@ import org.njdt.gg.ccl.xml.XmlHelper;
  * 数据传输对象(DateTransferObject)<br>
  * 建议在参数传递过程中尽量使用Dto来传递<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-06-23
  * @see Dto
  * @see java.io.Serializable

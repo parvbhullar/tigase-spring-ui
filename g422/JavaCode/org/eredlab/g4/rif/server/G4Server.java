@@ -16,7 +16,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * G4Server服务器,基于Jetty构建<br>
  * 使用G4Server将大大提高应用启动速度,并能有效解决在开发过程中classes不同步的问题
- * @author XiongChun
+* @author njdt
  * @since 2009-07-22
  */
 public class G4Server {

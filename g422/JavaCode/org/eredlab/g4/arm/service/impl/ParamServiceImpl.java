@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 /**
  * 全局参数数据访问实现
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-05-13
  * @see BaseServiceImpl
  */

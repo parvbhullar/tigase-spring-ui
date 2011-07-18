@@ -31,7 +31,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 请求拦截过滤器
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-04-13
  */
 public class RequestFilter implements Filter {

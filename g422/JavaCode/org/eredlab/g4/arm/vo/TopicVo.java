@@ -7,7 +7,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
 /**
  * 项目主页:社区主题VO
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-12-25
  */
 public class TopicVo extends BaseVo {

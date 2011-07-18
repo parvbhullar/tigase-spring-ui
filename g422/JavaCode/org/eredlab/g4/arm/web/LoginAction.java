@@ -27,7 +27,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 登录页面Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  * @see BaseAction
  */

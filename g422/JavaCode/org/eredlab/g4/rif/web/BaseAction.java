@@ -24,7 +24,7 @@ import org.njdt.gg.ccl.json.JsonHelper;
 /**
  * DispatchAction基类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  * @see DispatchAction
  */

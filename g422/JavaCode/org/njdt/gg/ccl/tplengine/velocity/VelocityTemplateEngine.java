@@ -15,7 +15,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * Velocity模板引擎
- * @author XiongChun
+* @author njdt
  * @since 2009-07-28
  * @see com.eredlab.eredbos.eredccp.templateengine.AbstractTemplateEngine
  */

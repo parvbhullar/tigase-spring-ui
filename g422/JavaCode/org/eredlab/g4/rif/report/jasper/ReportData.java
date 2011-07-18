@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /**
  * 报表数据模板
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  */
 public class ReportData {

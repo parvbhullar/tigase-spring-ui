@@ -28,7 +28,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * ArmSelectUserTreeTag标签:eRedG4_ARM专用
- * @author XiongChun
+* @author njdt
  * @since 2010-05-22
  */
 public class ArmSelectUserTreeTag extends TagSupport {

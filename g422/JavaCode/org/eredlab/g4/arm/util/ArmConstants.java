@@ -4,7 +4,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * 常量表
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public interface ArmConstants extends GlobalConstants{

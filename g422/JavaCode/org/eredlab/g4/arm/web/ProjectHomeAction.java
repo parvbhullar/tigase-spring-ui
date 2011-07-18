@@ -30,7 +30,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 项目主页Action 在线演示系统里面的项目主页相关功能
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-30
  * @see BaseAction
  */

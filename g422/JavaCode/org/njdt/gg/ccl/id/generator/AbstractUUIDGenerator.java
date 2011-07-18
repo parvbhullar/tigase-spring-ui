@@ -8,7 +8,7 @@ import org.njdt.gg.ccl.id.IDGenerator;
  * AbstractUUIDGenerator
  * 此代码源于开源项目E3,原作者：黄云辉
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-03-17
  * @see IDGenerator
  */

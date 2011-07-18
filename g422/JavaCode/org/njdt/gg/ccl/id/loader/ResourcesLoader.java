@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.id.storer.FileSequenceStorer;
 /**
  * ResourcesLoader
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-03-17
  */
 public class ResourcesLoader {

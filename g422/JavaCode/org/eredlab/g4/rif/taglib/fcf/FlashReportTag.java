@@ -22,7 +22,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * FlashReport标签
- * @author XiongChun
+* @author njdt
  * @since 2010-01-30
  */
 public class FlashReportTag extends TagSupport{

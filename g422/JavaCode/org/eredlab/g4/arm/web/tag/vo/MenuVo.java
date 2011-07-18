@@ -4,7 +4,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
 
 /**
  * 菜单值对象
- * @author XiongChun
+* @author njdt
  * @since 2010-01-22
  */
 public class MenuVo extends BaseVo{

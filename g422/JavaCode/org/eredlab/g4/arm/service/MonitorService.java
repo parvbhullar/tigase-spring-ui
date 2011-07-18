@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /**
  * 系统监控业务接口
- * @author XiongChun
+* @author njdt
  * @since 2010-05-13
  */
 public interface MonitorService extends BaseService{

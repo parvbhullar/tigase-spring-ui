@@ -20,7 +20,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * SpringBean监控切面
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-21
  */
 public class SpringBeanAspect {

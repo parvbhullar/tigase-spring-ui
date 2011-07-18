@@ -8,7 +8,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 /**
  * 系统演示接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-02-13
  */
 public interface DemoService extends BaseService {

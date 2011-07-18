@@ -16,7 +16,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 /**
  * FlashReport数据包装类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-13
  * @see BaseAction
  */

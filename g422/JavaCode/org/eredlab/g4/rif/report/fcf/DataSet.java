@@ -8,7 +8,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 /**
  * FlashReport组合图数据实体
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-07-13
  * @see BaseAction
  */

@@ -15,7 +15,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * ID生成器
- * @author XiongChun
+* @author njdt
  * @since 2009-07-13
  */
 public class IdGenerator {

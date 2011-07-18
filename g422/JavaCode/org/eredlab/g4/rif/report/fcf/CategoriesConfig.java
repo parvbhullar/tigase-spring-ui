@@ -8,7 +8,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 /**
  * FlashReport组合图种类配置对象
  * <b>只适用与组合图
- * @author XiongChun
+* @author njdt
  * @since 2010-07-13
  * @see BaseAction
  */

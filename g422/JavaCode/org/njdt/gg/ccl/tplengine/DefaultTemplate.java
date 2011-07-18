@@ -2,7 +2,7 @@ package org.njdt.gg.ccl.tplengine;
 
 /**
  * 模板接口
- * @author XiongChun
+* @author njdt
  * @since 2009-07-28
  */
 public interface DefaultTemplate {

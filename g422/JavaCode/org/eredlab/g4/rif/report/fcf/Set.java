@@ -7,7 +7,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 /**
  * FlashReport数据元对象
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-07-04
  * @see BaseAction
  */

@@ -17,7 +17,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * Excel数据读取器
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-08-12
  */
 public class ExcelReader {

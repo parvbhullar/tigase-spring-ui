@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 
 /**
  * JSP自定义标签(eRedUI)内部使用的辅助工具类
- * @author XiongChun
+* @author njdt
  * @since 2010-01-23
  * @see DispatchAction
  */

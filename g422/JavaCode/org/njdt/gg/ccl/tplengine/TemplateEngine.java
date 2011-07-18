@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /**
  * 模板引擎接口
- * @author XiongChun
+* @author njdt
  * @since 2009-07-26
  */
 public interface TemplateEngine {

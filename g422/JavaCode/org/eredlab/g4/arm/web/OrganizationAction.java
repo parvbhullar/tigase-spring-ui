@@ -19,7 +19,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 组织机构模型
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-04-10
  * @see BaseAction
  */

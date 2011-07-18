@@ -4,7 +4,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
 
 /**
  * 部门值对象
- * @author XiongChun
+* @author njdt
  * @since 2010-05-22
  */
 public class DeptVo extends BaseVo{
