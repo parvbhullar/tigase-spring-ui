@@ -23,7 +23,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 角色管理与授权
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-04-21
  * @see BaseAction
  */

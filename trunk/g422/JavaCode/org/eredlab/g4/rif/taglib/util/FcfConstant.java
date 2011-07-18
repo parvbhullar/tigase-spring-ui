@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 
 /**
  * FlashReport常量表
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public class FcfConstant {

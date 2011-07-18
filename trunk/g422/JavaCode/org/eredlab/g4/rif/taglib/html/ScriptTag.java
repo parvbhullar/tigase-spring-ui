@@ -11,7 +11,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * Script标签
- * @author XiongChun
+* @author njdt
  * @since 2010-02-30
  */
 public class ScriptTag extends TagSupport {

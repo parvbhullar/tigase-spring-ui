@@ -4,7 +4,7 @@ import org.apache.struts.action.ActionForm;
 
 /**
  * ActionForm基类
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  * @see ActionForm
  */

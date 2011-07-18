@@ -4,7 +4,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
 
 /**
  * 角色值对象
- * @author XiongChun
+* @author njdt
  * @since 2010-04-22
  */
 public class RoleVo extends BaseVo {

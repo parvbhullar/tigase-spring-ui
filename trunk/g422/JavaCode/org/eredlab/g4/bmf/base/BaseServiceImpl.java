@@ -7,7 +7,7 @@ import org.eredlab.g4.ccl.properties.PropertiesHelper;
 /**
  * 业务模型实现基类<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-21
  */
 public class BaseServiceImpl implements BaseService {

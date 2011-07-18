@@ -19,7 +19,7 @@ import org.njdt.gg.ccl.json.JsonHelper;
 /**
  * 树标准范例暨教程Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-27
  * @see BaseAction
  */

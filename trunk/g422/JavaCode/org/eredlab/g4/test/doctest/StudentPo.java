@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.datastructure.impl.BasePo;
  * 一个学生信息实体持久化对象
  *  技术白皮书随书代码示例
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-03-29
  */
 public class StudentPo extends BasePo {

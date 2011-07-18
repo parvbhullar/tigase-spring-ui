@@ -21,7 +21,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * Excel导入导出标准范例暨教程Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-13
  * @see BaseAction
  */

@@ -27,7 +27,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 其他标准范例暨教程Action 文件管理、
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-04-09
  * @see BaseAction
  */

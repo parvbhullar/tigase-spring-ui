@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /*
  * 权限模型标签业务接口
- * @author XiongChun
+* @author njdt
  * @since 2010-05-13
  */
 public interface ArmTagSupportService extends BaseService{

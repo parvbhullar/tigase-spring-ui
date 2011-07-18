@@ -14,7 +14,7 @@ import org.njdt.gg.ccl.xml.XmlHelper;
 /**
  * WebService实现类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-13
  * @see BasePo
  */

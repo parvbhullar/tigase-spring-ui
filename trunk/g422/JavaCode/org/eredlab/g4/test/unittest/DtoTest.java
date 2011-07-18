@@ -10,7 +10,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 数据结构DTO单元测试用例
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-03-29
  */
 public class DtoTest extends TestCase {

@@ -2,7 +2,7 @@ package org.njdt.gg.ccl.tplengine;
 
 /**
  * 文件模板
- * @author XiongChun
+* @author njdt
  * @since 2009-07-28
  * @see DefaultTemplate
  */

@@ -10,7 +10,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 /**
  * 系统监控业务接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-13
  */
 public class MonitorServiceImpl extends BaseServiceImpl implements MonitorService {

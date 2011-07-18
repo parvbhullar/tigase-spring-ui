@@ -13,7 +13,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 
 /**
  * 权限模型标签业务实现类
- * @author XiongChun
+* @author njdt
  * @since 2010-05-13
  */
 public class ArmTagSupportServiceImpl extends BaseServiceImpl implements ArmTagSupportService {

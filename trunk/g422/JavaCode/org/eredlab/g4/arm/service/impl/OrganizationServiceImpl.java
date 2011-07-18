@@ -15,7 +15,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 组织机构模型业务实现类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public class OrganizationServiceImpl extends BaseServiceImpl implements OrganizationService {

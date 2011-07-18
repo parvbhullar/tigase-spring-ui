@@ -23,7 +23,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * Excel数据填充器
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-08-12
  */
 public class ExcelFiller {

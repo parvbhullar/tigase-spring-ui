@@ -18,7 +18,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * SpringBean监控
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-20
  * @see BaseAction
  */

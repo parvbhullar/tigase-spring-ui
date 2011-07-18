@@ -11,7 +11,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 /**
  * 常用UI组件标准范例暨教程Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-30
  * @see BaseAction
  */

@@ -18,7 +18,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 事件跟踪Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-12
  * @see BaseAction
  */

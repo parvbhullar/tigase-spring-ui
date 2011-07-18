@@ -8,7 +8,7 @@ import org.njdt.gg.ccl.datastructure.impl.BasePo;
 /**
  * Httpinvoker接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-13
  * @see BasePo
  */

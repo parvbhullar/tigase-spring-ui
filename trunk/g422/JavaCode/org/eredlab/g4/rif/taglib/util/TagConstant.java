@@ -2,7 +2,7 @@ package org.eredlab.g4.rif.taglib.util;
 
 /**
  * 常量表
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public interface TagConstant {

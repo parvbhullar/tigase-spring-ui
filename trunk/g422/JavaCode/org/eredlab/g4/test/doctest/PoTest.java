@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 技术白皮书随书代码示例
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-03-29
  */
 public class PoTest {

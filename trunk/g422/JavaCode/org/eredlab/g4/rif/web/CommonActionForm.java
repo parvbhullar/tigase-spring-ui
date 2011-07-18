@@ -16,7 +16,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * ActionForm公共类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-09-03
  * @see ActionForm
  */

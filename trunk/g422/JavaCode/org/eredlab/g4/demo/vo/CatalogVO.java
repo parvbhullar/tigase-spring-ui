@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
  * 
  * 药品目录简单值对象
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-03-15
  */
 public class CatalogVO extends BaseVo {

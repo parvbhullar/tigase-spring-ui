@@ -11,7 +11,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseDto;
  * 这里是类注释的描述部分,这部分支持HTML标记哦。<br>换行了哦
  * <p>文本块显示哦<p>很方便的哈<strong>这里是粗体显示哦</strong>
  * 还支持更多的html标记,请查看《eRedBOS产品代码注释规范》文档
- * @author XiongChun <必需项>
+* @author njdt <必需项>
  * @since 2009-06-22 <必须项>
  * @see com.eredlab.eredbos.eredccp.datastructure.impl.BaseDto <可选项>
  */

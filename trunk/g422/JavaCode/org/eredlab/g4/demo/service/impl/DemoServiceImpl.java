@@ -16,7 +16,7 @@ import com.ibatis.sqlmap.client.SqlMapExecutor;
 /**
  * 系统演示实现类
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-02-13
  */
 public class DemoServiceImpl extends BaseServiceImpl implements DemoService {

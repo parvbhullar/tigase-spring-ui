@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.id.generator.DefaultIDGenerator;
  * ID生成器 静态类解决多线程并发访问生成ID的问题
  * 此类第一次实例化会执行所有的static代码块，如果想按需加载这些ID生成器，则应该一个ID写一个静态类就可以
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-09-16s
  */
 public class IDHelper {

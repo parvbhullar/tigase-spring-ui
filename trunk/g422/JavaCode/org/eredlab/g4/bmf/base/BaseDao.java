@@ -12,7 +12,7 @@ import org.njdt.gg.ccl.datastructure.impl.BasePo;
  * <b>为了简化Dao层面的开发,已经放弃这种封装方式！不推荐使用。<br>
  * 以后不推荐使用
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-18
  * @see com.ibatis.dao.client.Dao
  */

@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
 /**
  * 和用户相关的字段,用于存储到Session容器中的值对象
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public class UserInfoVo extends BaseVo {

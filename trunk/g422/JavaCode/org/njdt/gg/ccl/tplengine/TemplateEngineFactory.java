@@ -8,7 +8,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * 模板引擎工厂
- * @author XiongChun
+* @author njdt
  * @since 2009-07-26
  */
 public class TemplateEngineFactory {

@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.id.StoreSequenceException;
 
 /**
  * ID数据库逻辑存储器
- * @author XiongChun
+* @author njdt
  * @since 2010-03-21
  */
 public class DBSequenceStorer implements SequenceStorer{

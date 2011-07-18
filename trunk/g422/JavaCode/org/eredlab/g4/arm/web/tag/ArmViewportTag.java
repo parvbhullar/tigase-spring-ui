@@ -31,7 +31,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * ARMViewport标签:eRedG4_ARM专用
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-01-22
  */
 public class ArmViewportTag extends TagSupport {

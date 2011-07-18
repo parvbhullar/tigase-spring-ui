@@ -21,7 +21,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 综合实例Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-11-30
  * @see BaseAction
  */

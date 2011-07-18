@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 /**
  * 资源模型业务接口
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public interface ResourceService extends BaseService{

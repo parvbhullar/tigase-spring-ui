@@ -23,7 +23,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * FlashReport标准范例暨教程Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-10-13
  * @see BaseAction
  */

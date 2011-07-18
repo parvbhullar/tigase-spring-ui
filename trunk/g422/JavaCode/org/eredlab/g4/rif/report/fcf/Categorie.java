@@ -7,7 +7,7 @@ import org.eredlab.g4.rif.web.BaseAction;
 /**
  * FlashReport种类元对象<br>
  * <b>只适用与组合图
- * @author XiongChun
+* @author njdt
  * @since 2010-07-04
  * @see BaseAction
  */

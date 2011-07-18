@@ -18,7 +18,7 @@ import org.njdt.gg.ccl.json.JsonHelper;
 /**
  * 全局参数表管理Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-05-05
  * @see BaseAction
  */

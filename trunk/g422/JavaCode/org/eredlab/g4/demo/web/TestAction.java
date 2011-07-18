@@ -20,7 +20,7 @@ import org.njdt.gg.ccl.util.G4Utils;
 /**
  * 演示用 Action
  * 
- * @author XiongChun
+* @author njdt
  * @since 2010-06-13
  * @see BaseAction
  */

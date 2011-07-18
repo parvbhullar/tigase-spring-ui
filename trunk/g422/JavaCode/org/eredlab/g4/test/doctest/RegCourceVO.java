@@ -6,7 +6,7 @@ import org.njdt.gg.ccl.datastructure.impl.BaseVo;
  * 一个学生选课VO对象 
  * 技术白皮书随书代码示例
  * 
- * @author XiongChun
+* @author njdt
  * @since 2011-03-29
  */
 public class RegCourceVO extends BaseVo {

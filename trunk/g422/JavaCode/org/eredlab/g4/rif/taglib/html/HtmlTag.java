@@ -30,7 +30,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * HTML标签
- * @author XiongChun
+* @author njdt
  * @since 2010-01-30
  */
 public class HtmlTag extends TagSupport{
