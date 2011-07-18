@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.eredlab.g4.ccl.properties.PropertiesFactory;
-import org.eredlab.g4.ccl.properties.PropertiesFile;
-import org.eredlab.g4.ccl.properties.PropertiesHelper;
+import org.njdt.gg.ccl.properties.PropertiesFactory;
+import org.njdt.gg.ccl.properties.PropertiesFile;
+import org.njdt.gg.ccl.properties.PropertiesHelper;
 import org.njdt.gg.ccl.datastructure.Dto;
 import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 import org.njdt.gg.ccl.exception.G4Exception;
