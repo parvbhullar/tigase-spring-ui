@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.datastructure.Dto;
 
 /**
  * 组织机构模型模型业务接口
- * @author XiongChun
+* @author njdt
  * @since 2010-01-13
  */
 public interface OrganizationService extends BaseService{

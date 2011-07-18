@@ -13,7 +13,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 
 /**
  * Properties处理器
- * @author XiongChun
+* @author njdt
  * @since 2009-07-10
  */
 public class PropertiesHelper {

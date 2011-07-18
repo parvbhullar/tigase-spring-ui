@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 /**
  * 类型转换工具类<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-06
  * @see java.lang.RuntimeException
  */

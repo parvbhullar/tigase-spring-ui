@@ -5,7 +5,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * 非空异常校验类<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-15
  */
 public class NullAbleException extends RuntimeException {

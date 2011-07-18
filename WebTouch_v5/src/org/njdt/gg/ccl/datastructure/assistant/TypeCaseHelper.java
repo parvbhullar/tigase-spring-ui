@@ -15,7 +15,7 @@ import org.njdt.gg.ccl.exception.TypeCastException;
 /**
  * 类型转换辅助工具类<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-06
  */
 public class TypeCaseHelper {
