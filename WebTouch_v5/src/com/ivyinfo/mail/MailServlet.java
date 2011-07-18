@@ -50,7 +50,6 @@ public class MailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try{
-			Mail organization=new Mail();
 		
 			if("online".equals(action)){
 				LOGGER.info("=========online=============");
@@ -192,7 +191,6 @@ public class MailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try{
-			Mail organization=new Mail();
 		
 			if("online".equals(action)){
 				LOGGER.info("=========online=============");
