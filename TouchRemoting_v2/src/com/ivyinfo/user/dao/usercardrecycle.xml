@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="userCardRecycleBean" type="com.ivyinfo.user.bean.UserCardRecycleBean" />
+	<!-- 查找用户的号码回收信息 -->
+	<select id="getListUserCardRecycle" resultClass="userCardRecycleBean">
+		<![CDATA[
+			SELECT * FROM t_sys_user_card_recycle 
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="logname">
+				username = #logname#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 新增用户的号码回收信息 -->
+	<insert id="AddUserCardRecycle" parameterClass="userCardRecycleBean">
+		<![CDATA[
+			INSERT INTO t_sys_user_card_recycle(username,cardnumber,timestemp)
+			VALUES(#username#,#cardnumber#,#timestemp#)
+		]]>
+	</insert>
+	
+	<!-- 删除用户的号码回收信息 -->
+	<delete id="DelUserCardRecycle" parameterClass="String">
+		<![CDATA[
+			DELETE FROM t_sys_user_card_recycle WHERE cardnumber=#cardnumber#
+		]]>
+	</delete>
+	
+</sqlMap>
