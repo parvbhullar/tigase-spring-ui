@@ -9,7 +9,7 @@ import org.njdt.gg.ccl.exception.NullAbleException;
  * 非空数据传输对象(DateTransferObject)<br>
  * 建议对于****ByKey的数据操作的方法中的数据传递或者其他需要进行参数非空性校验的数据操作方法都使用此对象来传输参数<br>
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-06-23
  */
 public class BasePKey extends BaseDto implements PKey {

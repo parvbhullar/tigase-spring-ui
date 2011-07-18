@@ -11,7 +11,7 @@ import org.njdt.gg.ccl.util.GlobalConstants;
 /**
  * Properties文件静态工厂
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-08-2
  */
 public class PropertiesFactory {

@@ -11,7 +11,7 @@ import org.njdt.gg.ccl.util.G4Utils;
  * 实体对象<br>
  * 每一个实体对象对应一张数据库表结构,表字段分别和实体对象属性一一对应<br>
  * <b>注意：实体对象类只允许由平台的代码生成工具生成,不允许手工改动
- * @author XiongChun
+* @author njdt
  * @since 2009-06-23
  * @see java.io.Serializable
  */

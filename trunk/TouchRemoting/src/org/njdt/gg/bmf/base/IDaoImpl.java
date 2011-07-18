@@ -22,7 +22,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * 数据访问实现类(原生)<br>
  * 基于Spring对iBatis的支持机制实现,支持自定义的数据操作
  * 
- * @author XiongChun
+* @author njdt
  * @since 2009-07-23
  * @see org.springframework.orm.ibatis.support.SqlMapClientDaoSupport
  */

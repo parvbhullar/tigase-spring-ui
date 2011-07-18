@@ -10,7 +10,7 @@ import org.njdt.gg.ccl.util.G4Utils;
  * 简单值对象和数据库表没有一一对应关系<br>
  * <b>注意：没有特殊需要建议不用VO,对于固定的数据存储结构请使用PO;对于动态可变的
  * 的数据存储结构请使用Dto来代替.
- * @author XiongChun
+* @author njdt
  * @since 2009-06-23
  * @see java.io.Serializable
  */

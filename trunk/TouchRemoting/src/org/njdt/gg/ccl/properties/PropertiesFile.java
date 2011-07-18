@@ -2,7 +2,7 @@ package org.njdt.gg.ccl.properties;
 
 /**
  * Properties文件类型
- * @author XiongChun
+* @author njdt
  * @since 2009-08-2
  */
 public interface PropertiesFile {
