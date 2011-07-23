@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.login.bean.LoginBean;
 import com.ivyinfo.purview.services.PurviewServices;
-import com.ivyinfo.session.bean.SessionUserBean;
 
 public class Login extends HttpServlet {
 	private PurviewServices purviewServices = (PurviewServices) SpringContextUtil
@@ -37,7 +36,6 @@ public class Login extends HttpServlet {
 			System.err.println("getState:"+loginBean.getState());
 			
 			if("SUCCESS".equals(loginBean.getState())){
-				SessionUserBean sessionUserBean = null;
 				try {
 				} catch (Exception e) {
 					e.printStackTrace();
