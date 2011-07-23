@@ -1,8 +1,7 @@
 package com.ivyinfo.user.bean;
 
-import com.ivyinfo.framework.service.base.BaseBean;
 
-public class UserBean extends BaseBean implements java.io.Serializable{
+public class UserBean implements java.io.Serializable{
 	private static final long serialVersionUID = -4433034043604684248L;
 	
 	/**
