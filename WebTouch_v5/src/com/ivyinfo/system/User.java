@@ -12,12 +12,10 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ivyinfo.framework.common.time.TimeTools;
 import com.ivyinfo.framework.service.sequence.ISequence;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.mail.bean.SetupMailBean;
 import com.ivyinfo.purview.bean.PurviewBean;
-import com.ivyinfo.session.bean.SessionUserBean;
 import com.ivyinfo.user.bean.UserBean;
 import com.ivyinfo.user.services.UserServices;
 import com.ivyinfo.util.Constant;
@@ -295,14 +293,11 @@ public class User {
 		userBean.setUserid(String.valueOf(id));
 		
 		userBean.setUpduserid(suserBean.getUserid());
-		userBean.setTimestemp(TimeTools.getString());
-		userBean.setDirtyflag(TimeTools.getString()+TimeTools.getMilliSecond());
 		
 		SetupMailBean setupmailBean = new SetupMailBean();
 		long usermailid = sequenceService.getMaxId(logname+"_t_mail_setup");
 		setupmailBean.setId(String.valueOf(usermailid));
 		setupmailBean.setAddname(email);
-		setupmailBean.setTimestemp(TimeTools.getString());
 		setupmailBean.setUserlogname(logname);
 		
 		userServices.AddSubmit(userBean,suserBean,setupmailBean,spurviewBean.getMeetorgid());
@@ -334,8 +329,6 @@ public class User {
 		puserBean.setPassword("admin");
 		
 		userBean.setUpduserid(suserBean.getUserid());
-		userBean.setTimestemp(TimeTools.getString());
-		userBean.setDirtyflag(TimeTools.getString()+TimeTools.getMilliSecond());
 		
 		userServices.UpdPassword(userBean);
 		
@@ -420,7 +413,6 @@ public class User {
 		userBean.setUserid(userid);
 		userBean.setCardnumber(cardnumber);
 		userBean.setCardpassword(cardpassword);
-		userBean.setCardtimestemp(TimeTools.getString());
 		
 		userServices.AddCard(userBean);
 	}
@@ -441,139 +433,8 @@ public class User {
 		userBean.setUserid(userid);
 		userBean.setCardnumber(cardnumber);
 		userBean.setCardpassword(cardpassword);
-		userBean.setCardtimestemp(TimeTools.getString());
 		
 		userServices.UpdCard(userBean);
-	}
-	
-	/**
-	 * 修改用户个人邮箱设置
-	 * @param request
-	 * @param suserBean
-	 * @throws Exception
-	 */
-	public void Updusersteup(HttpServletRequest request,SessionUserBean sessionUserBean,HttpSession session) throws Exception{
-		String id=(String)request.getParameter("userid");
-		System.err.println("id:"+id);
-		String logname=(String)request.getParameter("lognamehidden");
-		String nickname=(String)request.getParameter("nickname");
-		String username=(String)request.getParameter("username");
-		String sex=(String)request.getParameter("sex");
-		String email=(String)request.getParameter("email");
-		String officephone=(String)request.getParameter("officephone");
-		String otherphone=(String)request.getParameter("otherphone");
-		String mobilephone=(String)request.getParameter("mobilephone");
-		String faxnumber=(String)request.getParameter("faxnumber");
-		String detailedaddress=(String)request.getParameter("detailedaddress");
-		String postcode=(String)request.getParameter("postcode");
-		String othermessage=(String)request.getParameter("othermessage");
-		String photoname=(String)request.getParameter("photoname");
-		
-		String usersort = request.getParameter("usersort");
-		String job = request.getParameter("job");
-		String nationality=(String)request.getParameter("nationality");
-		System.err.println("nationality:"+nationality);
-		String province=(String)request.getParameter("province");
-		System.err.println("province:"+province);
-		String city=(String)request.getParameter("city");
-		System.err.println("city:"+city);
-		String state = request.getParameter("state");
-		
-		String usermailsetupid = request.getParameter("usermailsetupid");
-		System.err.println("usermailsetupid:"+usermailsetupid);
-		String mailusername = request.getParameter("mailusername");
-		String mailpassword = request.getParameter("mailpassword");
-		
-		UserBean userBean = new UserBean();
-		userBean.setId(id);
-		userBean.setNickname(nickname);
-		userBean.setName(username);
-		userBean.setSex(sex);
-		userBean.setEmail(email);
-		userBean.setOfficephone(officephone);
-		userBean.setOtherphone(otherphone);
-		userBean.setMobilephone(mobilephone);
-		userBean.setFaxnumber(faxnumber);
-		userBean.setDetailedaddress(detailedaddress);
-		userBean.setPostcode(postcode);
-		userBean.setOthermessage(othermessage);
-		userBean.setPhotoname(photoname);
-		userBean.setPhotopath("");
-		
-		//隐藏值不修改
-		userBean.setUsersort(usersort);
-		userBean.setJob(job);
-		userBean.setNationality(nationality);
-		userBean.setProvince(province);
-		userBean.setCity(city);
-		userBean.setState(state);
-		
-		userBean.setUpduserid(sessionUserBean.getUserBean().getUserid());
-		userBean.setTimestemp(TimeTools.getString());
-		userBean.setDirtyflag(TimeTools.getString()+TimeTools.getMilliSecond());
-		
-		//个人邮箱设置
-		SetupMailBean setupmailBean = new SetupMailBean();
-		setupmailBean.setId(usermailsetupid);
-		setupmailBean.setLogname(mailusername);
-		setupmailBean.setAddname(email);
-		setupmailBean.setLogpassword(mailpassword);
-		setupmailBean.setTimestemp(TimeTools.getString());
-		setupmailBean.setUserlogname(logname);
-		
-		
-		userServices.UpdSubmitBasic(userBean);
-		userServices.UpdSubmitContact(userBean);
-		userServices.UpdSubmitPhoto(userBean);
-		
-		//修改后向session中重新赋值
-		sessionUserBean.getUserBean().setEmail(email);
-		
-		sessionUserBean.getSetupmailBean().setAddname(email);
-		sessionUserBean.getSetupmailBean().setLogname(mailusername);
-		sessionUserBean.getSetupmailBean().setLogpassword(mailpassword);
-		
-		session.setAttribute("sessionUserBean", sessionUserBean);
-	}
-	
-	/**
-	 * 修改个人邮箱账号密码
-	 * @param request
-	 * @param suserBean
-	 * @throws Exception
-	 */
-	public void Updusermailsteup(HttpServletRequest request,SessionUserBean sessionUserBean,HttpSession session) throws Exception{
-		
-		String usermailsetupid = request.getParameter("usermailid");
-		System.err.println("usermailsetupid:"+usermailsetupid);
-		String mailusername = request.getParameter("mailusername");
-		String mailpassword = request.getParameter("mailpassword");
-		String addname = request.getParameter("email");
-		
-		//个人邮箱设置
-		SetupMailBean setupmailBean = new SetupMailBean();
-		setupmailBean.setId(usermailsetupid);
-		setupmailBean.setAddname(addname);
-		setupmailBean.setLogname(mailusername);
-		setupmailBean.setLogpassword(mailpassword);
-		setupmailBean.setTimestemp(TimeTools.getString());
-		setupmailBean.setUserlogname(sessionUserBean.getUserBean().getLogname());
-		
-		UserBean userBean = new UserBean();
-		userBean.setId(sessionUserBean.getUserBean().getId());
-		userBean.setEmail(addname);
-		
-		userServices.UpdUserMail(userBean);
-		
-		
-		//修改后向session中重新赋值
-		sessionUserBean.getUserBean().setEmail(addname);
-		
-		sessionUserBean.getSetupmailBean().setAddname(addname);
-		sessionUserBean.getSetupmailBean().setLogname(mailusername);
-		sessionUserBean.getSetupmailBean().setLogpassword(mailpassword);
-		
-		session.setAttribute("sessionUserBean", sessionUserBean);
 	}
 	
 	/**
@@ -651,8 +512,6 @@ public class User {
 		userBean.setState("2");
 		
 		userBean.setUpduserid(suserBean.getUserid());
-		userBean.setTimestemp(TimeTools.getString());
-		userBean.setDirtyflag(TimeTools.getString()+TimeTools.getMilliSecond());
 		// 当前登录用户权限不够,使用系统管理员
 		UserBean puserBean = new UserBean();
 		puserBean.setLogname("admin");

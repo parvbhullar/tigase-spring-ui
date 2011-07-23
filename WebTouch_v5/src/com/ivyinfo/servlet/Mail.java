@@ -20,8 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ivyinfo.mail.bean.MailUtilBean;
 import com.ivyinfo.mail.bean.ReceiveMailBean;
-import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.user.bean.UserBean;
 
 public class Mail extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Mail.class);
@@ -58,8 +56,6 @@ public class Mail extends HttpServlet {
 		else
 		{
 			HttpSession session = request.getSession();
-			SessionUserBean sessionUserBean=(SessionUserBean)session.getAttribute("sessionUserBean");
-			UserBean userBean=(UserBean)sessionUserBean.getUserBean();
 			List arrayList=new ArrayList();
 			
 			try {

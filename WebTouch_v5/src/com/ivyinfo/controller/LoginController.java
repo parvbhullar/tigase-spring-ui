@@ -15,12 +15,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ivyinfo.mail.bean.ReceiveMailBean;
-import com.ivyinfo.session.bean.SessionUserBean;
-import com.ivyinfo.user.bean.UserBean;
 import com.ivyinfo.util.Constant;
 import com.ivyinfo.util.Page;
   
