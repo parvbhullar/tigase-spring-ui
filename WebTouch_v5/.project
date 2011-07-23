@@ -2,11 +2,6 @@
 <projectDescription>
 	<name>WebTouch</name>
 	<comment></comment>
-	<projects>
-		<project>touch-common</project>
-		<project>ivyinfo-common</project>
-		<project>im-common</project>
-	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
