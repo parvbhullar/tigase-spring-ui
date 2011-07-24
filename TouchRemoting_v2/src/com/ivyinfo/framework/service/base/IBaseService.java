@@ -2,6 +2,6 @@ package com.ivyinfo.framework.service.base;
 
 import java.util.List;
 
-public interface IBaseService<T extends BaseBean> {
+public interface IBaseService {
 
 }
