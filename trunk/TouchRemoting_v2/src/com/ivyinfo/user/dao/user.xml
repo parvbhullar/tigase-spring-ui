@@ -3,7 +3,7 @@
     PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
-	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
+	<typeAlias alias="dto" type="org.njdt.gg.ccl.datastructure.impl.BaseDto"/>
 	
 	<!-- 新增用户登陆信息 -->
 	<insert id="saveUser" parameterClass="userBean">
@@ -12,5 +12,10 @@
 			VALUES(#id#,#logname#,#nickname#,#password#,#type#,#state#,#upduserid#,#timestemp#,#dirtyflag#)
 		]]>
 	</insert>
+	
+	<!-- 根据登录账户查询人员信息  -->
+	<select id="validateAccount" parameterClass="map" resultClass="dto">
+		SELECT count* FROM t_sys_user_login where logname = #logname# and password=#password#
+	</select>
 	
 </sqlMap>

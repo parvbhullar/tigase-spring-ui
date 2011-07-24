@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.ftpclient.userManage.FtpUserManage;
 import com.ftpclient.util.CompressingFtpUtil;
-import com.ivyinfo.user.bean.FtpUserBean;
 
 public class FtpTools {
 	
@@ -111,63 +110,4 @@ public class FtpTools {
 		}
 	}
 	
-	/**
-	 * 创建FTP用户
-	 * @param ftpuserBean
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean CreateFtpUser(FtpUserBean ftpuserBean) throws Exception{
-		try{
-			FtpUserManage ftpuserManage = new FtpUserManage();
-			Map<String,String> map = new HashMap<String,String>();
-			map.put(ftpuserManage.USER_NAME, ftpuserBean.getFtpusername());
-			map.put(ftpuserManage.PASSWORD, ftpuserBean.getFtppassword());
-			boolean returnvalue = ftpuserManage.createNewUser(map);
-			
-			return returnvalue;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	/**
-	 * 修改FTP用户
-	 * @param ftpuserBean
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean UpdateFtpUser(FtpUserBean ftpuserBean) throws Exception{
-		try{
-			FtpUserManage ftpuserManage = new FtpUserManage();
-			Map<String,String> map = new HashMap<String,String>();
-			map.put(ftpuserManage.USER_NAME, ftpuserBean.getFtpusername());
-			map.put(ftpuserManage.PASSWORD, ftpuserBean.getFtppassword());
-			boolean returnvalue = ftpuserManage.modifyUser(map);
-			
-			return returnvalue;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	/**
-	 * 删除FTP用户
-	 * @param ftpuserBean
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean DeleteFtpUser(FtpUserBean ftpuserBean) throws Exception{
-		try{
-			FtpUserManage ftpuserManage = new FtpUserManage();
-			boolean returnvalue = ftpuserManage.deleteUser(ftpuserBean.getFtpusername());
-			
-			return returnvalue;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
 }

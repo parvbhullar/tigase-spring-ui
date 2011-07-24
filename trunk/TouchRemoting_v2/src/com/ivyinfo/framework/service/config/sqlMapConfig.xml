@@ -4,6 +4,4 @@
     
 <sqlMapConfig>
 	<sqlMap resource="com/ivyinfo/user/dao/user.xml"/>
-	<sqlMap resource="com/ivyinfo/user/dao/userpre.xml"/>
-	<sqlMap resource="com/ivyinfo/purview/dao/purview.xml"/>
 </sqlMapConfig>
