@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ivyinfo.framework.service.sequence.ISequence;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
-import com.ivyinfo.mail.bean.SetupMailBean;
 import com.ivyinfo.purview.bean.PurviewBean;
 import com.ivyinfo.user.bean.UserBean;
 import com.ivyinfo.user.services.UserServices;
@@ -294,13 +292,8 @@ public class User {
 		
 		userBean.setUpduserid(suserBean.getUserid());
 		
-		SetupMailBean setupmailBean = new SetupMailBean();
 		long usermailid = sequenceService.getMaxId(logname+"_t_mail_setup");
-		setupmailBean.setId(String.valueOf(usermailid));
-		setupmailBean.setAddname(email);
-		setupmailBean.setUserlogname(logname);
 		
-		userServices.AddSubmit(userBean,suserBean,setupmailBean,spurviewBean.getMeetorgid());
 		userServices.AddSubmitBasic(userBean);
 		userServices.AddSubmitContact(userBean);
 		userServices.AddSubmitPhoto(userBean);

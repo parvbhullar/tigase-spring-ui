@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.njdt.gg.ccl.datastructure.Dto;
+import org.njdt.gg.ccl.datastructure.impl.BaseDto;
+
 import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.login.bean.LoginBean;
-import com.ivyinfo.purview.services.PurviewServices;
+import com.ivyinfo.user.services.UserServices;
 
 public class Login extends HttpServlet {
-	private PurviewServices purviewServices = (PurviewServices) SpringContextUtil
-			.getBean("purviewServices");
+	private UserServices userServices = (UserServices) SpringContextUtil
+			.getBean("userServices");
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -24,7 +27,6 @@ public class Login extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		System.out.println("Post");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter   out   =   response.getWriter(); 
 		String logname = (String) request.getParameter("logname");
@@ -32,8 +34,10 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		LoginBean loginBean = null;
 		try {
-			loginBean = purviewServices.ValidationLogin(logname, password);
-			System.err.println("getState:"+loginBean.getState());
+			Dto dto=new BaseDto();
+			dto.put("logname", logname);
+			dto.put("password", password);
+			userServices.ValidationLogin(dto);
 			
 			if("SUCCESS".equals(loginBean.getState())){
 				try {
