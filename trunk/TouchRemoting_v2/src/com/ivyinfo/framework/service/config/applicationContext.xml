@@ -50,9 +50,7 @@
 		</property>		
 	</bean>
 	<!-- inject DAO begin -->
-	<bean id="purviewDAO" class="com.ivyinfo.purview.dao.PurviewDAOImpl">
-		<property name="sqlMapClient" ref="sqlMapClient" />
-	</bean>
+	
 	<bean id="userDAO" class="com.ivyinfo.user.dao.UserDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
