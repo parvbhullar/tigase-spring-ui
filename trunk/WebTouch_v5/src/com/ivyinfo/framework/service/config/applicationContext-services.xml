@@ -17,7 +17,7 @@
 			value="org.njdt.gg.demo.esb.httpinvoker.HelloWorld" />
 	</bean>
 	
-
+	<!--  
 	<bean id="Sequence" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"><value>${serviceUrl}//Sequence</value></property>
 		<property name="serviceInterface" 
@@ -36,7 +36,7 @@
 		</property>
 	</bean>
 	
-	
+	-->
 	<bean id="userServices" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"><value>${serviceUrl}//userServices</value></property>
 		<property name="serviceInterface" 
