@@ -52,20 +52,14 @@ public class UserServlet extends HttpServlet{
 		}else if("viewuser".equals(action)){
 				String id=(String)request.getParameter("id");
 				try {
-					String jsonObj = user.Viewuser(id);
 					
-					response.getWriter().print(jsonObj.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 		}else if("upd".equals(action)){
 			String id=(String)request.getParameter("id");
 			try {
-				String jsonObj = user.Viewuser(id);
-				System.err.println("jsonObj:"+jsonObj.toString());
-				response.getWriter().print(jsonObj.toString());
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}else if("Upduser".equals(action)){
 			try {
@@ -82,29 +76,23 @@ public class UserServlet extends HttpServlet{
 			}
 		}else if("Addcard".equals(action)){
 			try {
-				user.Addcard(request);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if("viewusercard".equals(action)){
 			String id=(String)request.getParameter("id");
 			try {
-				String jsonObj = user.viewusercard(id);				
-				response.getWriter().print(jsonObj.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if("Updcard".equals(action)){
 			try {
-				user.Updcard(request);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if("viewusermail".equals(action)){
 			String id=(String)request.getParameter("id");
 			try {
-				String jsonObj = user.viewusermail(id);				
-				response.getWriter().print(jsonObj.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
