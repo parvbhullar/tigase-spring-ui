@@ -11,7 +11,7 @@ public interface UserServices extends IBaseService{
 	/*
 	 * 
 	 */
-	public void saveUserItem(Dto inDto) throws Exception;
+	public Dto saveUserItem(Dto inDto) throws Exception;
 	
 	/**
 	 * 用户登录
