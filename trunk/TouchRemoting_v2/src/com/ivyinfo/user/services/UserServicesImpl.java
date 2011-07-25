@@ -17,7 +17,7 @@ public class UserServicesImpl extends BaseService implements UserServices{
 //		userDAO.UpdCardCZJE(userid, czje);
 	}
 
-	public Dto ValidationLogin(Dto inDto) throws Exception {
-		return (Dto)this.iDao.queryForObject("validateAccount",inDto);
+	public Dto ValidationLogin(UserBean userBean) throws Exception {
+		return (Dto)this.iDao.queryForObject("validateAccount",userBean);
 	}
 }
