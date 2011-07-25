@@ -4,6 +4,7 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
 	<typeAlias alias="dto" type="org.njdt.gg.ccl.datastructure.impl.BaseDto"/>
+	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
 	
 	<!-- 新增用户登陆信息 -->
 	<insert id="saveUser" parameterClass="userBean">
@@ -14,7 +15,7 @@
 	</insert>
 	
 	<!-- 根据登录账户查询人员信息  -->
-	<select id="validateAccount" parameterClass="map" resultClass="dto">
+	<select id="validateAccount" parameterClass="userBean" resultClass="userBean">
 		SELECT count* FROM t_sys_user_login where logname = #logname# and password=#password#
 	</select>
 	

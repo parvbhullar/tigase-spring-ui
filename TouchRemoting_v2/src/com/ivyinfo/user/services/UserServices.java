@@ -18,5 +18,5 @@ public interface UserServices extends IBaseService{
 	 * @param inDto
 	 * @throws Exception
 	 */
-	public Dto ValidationLogin(Dto inDto) throws Exception;
+	public Dto ValidationLogin(UserBean userBean) throws Exception;
 }
