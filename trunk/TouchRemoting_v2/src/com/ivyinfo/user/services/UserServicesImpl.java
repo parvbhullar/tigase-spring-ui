@@ -2,17 +2,19 @@ package com.ivyinfo.user.services;
 
 import org.njdt.gg.bmf.base.IDao;
 import org.njdt.gg.ccl.datastructure.Dto;
+import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 
 import com.ivyinfo.framework.service.base.BaseService;
 import com.ivyinfo.framework.service.server.SpringContextUtil;
-import com.ivyinfo.user.bean.UserBean;
 
 public class UserServicesImpl extends BaseService implements UserServices{
 
-	public void saveUserItem(Dto inDto) throws Exception {
+	public Dto saveUserItem(Dto inDto) throws Exception {
 		IDao iDao =(IDao) SpringContextUtil.getBean("iDao");
+		Dto dto=new BaseDto();
 		iDao.insert("saveUserItem", inDto);
-//		userDAO.UpdCardCZJE(userid, czje);
+		dto.put("id", "");
+		return dto;
 	}
 
 	public Dto ValidationLogin(Dto inDto) throws Exception {
