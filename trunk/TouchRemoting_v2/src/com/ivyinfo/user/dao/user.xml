@@ -7,11 +7,14 @@
 	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
 	
 	<!-- 新增用户登陆信息 -->
-	<insert id="saveUser" parameterClass="userBean">
+	<insert id="saveUserItem" parameterClass="dto">
 		<![CDATA[
-			INSERT INTO t_sys_user_login(id,logname,nickname,password,type,state,upduserid,timestemp,dirtyflag)
-			VALUES(#id#,#logname#,#nickname#,#password#,#type#,#state#,#upduserid#,#timestemp#,#dirtyflag#)
+			INSERT INTO t_sys_user_login(logname,nickname,password,type,state,upduserid,timestemp,dirtyflag)
+			VALUES(#logname#,#nickname#,#password#,#type#,#state#,#upduserid#,#timestemp#,#dirtyflag#)
 		]]>
+		 <selectKey resultClass="long" keyProperty="id">  
+             SELECT LAST_INSERT_ID() AS ID  
+        </selectKey>
 	</insert>
 	
 	<!-- 根据登录账户查询人员信息  -->
