@@ -32,14 +32,12 @@ public class Login extends HttpServlet {
 		String logname = (String) request.getParameter("logname");
 		String password = (String) request.getParameter("password");
 		HttpSession session = request.getSession();
-		LoginBean loginBean = null;
 		try {
-			Dto dto=new BaseDto();
-			dto.put("logname", logname);
-			dto.put("password", password);
-			userServices.ValidationLogin(dto);
-			
-			if("SUCCESS".equals(loginBean.getState())){
+			Dto inDto=new BaseDto();
+			inDto.put("logname", logname);
+			inDto.put("password", password);
+			Dto dto=userServices.ValidationLogin(inDto);
+			if("2".equals(dto.get("state"))){
 				try {
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +45,7 @@ public class Login extends HttpServlet {
 				//request.getRequestDispatcher("index.jsp").forward(request, response);
 				request.getRequestDispatcher("layout_tree.jsp").forward(request, response);
 			}else{
-				String errmessage = loginBean.getErrmessage();
+				String errmessage = (String) dto.get("errmessage");
 				out.print("<script type='text/javascript'>alert('"+errmessage+"');history.go(-1);</script>");
 			}
 		} catch (Exception e) {
