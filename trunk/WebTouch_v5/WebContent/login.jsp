@@ -262,7 +262,7 @@
                             <a href="/recoverpassword.html" class="findpassword">忘记密码?</a>
                             -->
                         </div>
-                        <form method="post" action="login" id="loginform"><input type="hidden" value="YXV0b2xvZ2luI2ludmlzaWJsZQ==" name="__PROCESSINPUTVIEWSTATE">
+                        <form method="post" action="login.action" id="loginform"><input type="hidden" value="YXV0b2xvZ2luI2ludmlzaWJsZQ==" name="__PROCESSINPUTVIEWSTATE">
                         <div class="formgroup loginform">
                             
                             <div class="formrow formrow-user">
