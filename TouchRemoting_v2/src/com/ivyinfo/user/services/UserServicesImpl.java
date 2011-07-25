@@ -11,7 +11,7 @@ public class UserServicesImpl extends BaseService implements UserServices{
 
 	public void saveUserItem(Dto inDto) throws Exception {
 		IDao iDao =(IDao) SpringContextUtil.getBean("iDao");
-//		super.iDao.insert("saveEausersubinfoItem", inDto);
+		iDao.insert("saveUserItem", inDto);
 //		userDAO.UpdCardCZJE(userid, czje);
 	}
 
