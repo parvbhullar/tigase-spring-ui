@@ -34,6 +34,7 @@ public class UserController{
         logger.info("Return View="+request.getParameter("logname"));
         Dto inDto = new BaseDto();
         inDto.put("logname", request.getParameter("logname"));
+        inDto.put("password", request.getParameter("password"));
         try {
 			userServices.saveUserItem(inDto);
 		} catch (Exception e) {
