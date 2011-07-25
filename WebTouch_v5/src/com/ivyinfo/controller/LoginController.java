@@ -1,6 +1,7 @@
 package com.ivyinfo.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,21 +14,49 @@ import net.sf.json.JSONObject;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.njdt.gg.ccl.datastructure.Dto;
+import org.njdt.gg.ccl.datastructure.impl.BaseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.ivyinfo.framework.service.server.SpringContextUtil;
+import com.ivyinfo.user.services.UserServices;
 import com.ivyinfo.util.Constant;
 import com.ivyinfo.util.Page;
   
 @Controller  
 public class LoginController{   
-    protected final Log logger = LogFactory.getLog(getClass());   
+    protected final Log logger = LogFactory.getLog(getClass());
+    private UserServices userServices = (UserServices) SpringContextUtil
+			.getBean("userServices");
   
     @RequestMapping("/login")   
-    public ModelAndView helloWorld(){   
-        logger.info("Return View");   
-        return new ModelAndView("layout_tree.jsp");   
+    public void helloWorld(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    	response.setContentType("text/html;charset=utf-8");
+		PrintWriter   out   =   response.getWriter(); 
+		String logname = (String) request.getParameter("logname");
+		String password = (String) request.getParameter("password");
+		HttpSession session = request.getSession();
+    	try {
+    		logger.info("Return View");
+			Dto inDto=new BaseDto();
+			inDto.put("logname", logname);
+			inDto.put("password", password);
+			Dto dto=userServices.ValidationLogin(inDto);
+			if("2".equals(dto.get("state"))){
+				try {
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				//request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("layout_tree.jsp").forward(request, response);
+			}else{
+				String errmessage = (String) dto.get("errmessage");
+				out.print("<script type='text/javascript'>alert('"+errmessage+"');history.go(-1);</script>");
+			}
+		
+		} catch (Exception e) {
+		}
     }   
     
     @RequestMapping(value="/mail/mailReceive")
@@ -35,7 +64,7 @@ public class LoginController{
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		
-		String page1=(String)request.getParameter("page");
+		String page1="1";
 		String sidx=(String)request.getParameter("sidx");
 		String sord=(String)request.getParameter("sord");
 		Page page=new Page(Constant.PAGE_SIZE_10);
@@ -43,7 +72,8 @@ public class LoginController{
 		if("".equals(page1))
 			page1="1";
 		List arrayList=new ArrayList();
-		int intpage1=new Integer(page1).intValue();
+//		int intpage1=new Integer(page1).intValue();
+		int intpage1=1;
 		int totalCount=0;
 		try {
 			totalCount=13;
