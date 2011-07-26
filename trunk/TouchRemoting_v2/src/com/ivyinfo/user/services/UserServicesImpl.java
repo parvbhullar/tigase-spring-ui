@@ -37,6 +37,8 @@ public class UserServicesImpl extends BaseService implements UserServices{
 		IDao iDao =(IDao) SpringContextUtil.getBean("iDao");
 		List list=(List)iDao.queryForList("queryUserForManage", map);
 		System.out.println(list.size());
-		return new BaseDto();
+		Dto dto=new BaseDto();
+		dto.setDefaultAList(list);
+		return dto;
 	}
 }
