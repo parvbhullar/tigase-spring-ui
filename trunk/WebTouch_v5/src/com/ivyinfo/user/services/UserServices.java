@@ -1,5 +1,7 @@
 package com.ivyinfo.user.services;
 
+import java.util.Map;
+
 import org.njdt.gg.ccl.datastructure.Dto;
 
 import com.ivyinfo.framework.service.base.IBaseService;
@@ -20,4 +22,6 @@ public interface UserServices extends IBaseService{
 	 * @throws Exception
 	 */
 	public Dto ValidationLogin(Dto inDto) throws Exception;
+	
+	public Dto queryUserForManage(Map map)throws Exception;
 }
