@@ -37,7 +37,16 @@ $(document).ready( function() {
 	   	 });
 	      /*表格初始化结束*/
 	      
-	      /*点击事件开始*/
+	      /**/
+	      var options = { 
+	    	        
+	    	    }; 
+	    	 
+    	    $('#userForm').validate();
+ 
+	      /**/
+	      
+	      /*添加按钮点击事件开始*/
 	      $('#add').click(function() { 
 	          $.blockUI({ 
 	              theme:     true, 
@@ -64,6 +73,12 @@ $(document).ready( function() {
 	            return false; 
 	        });
 	      
+	      $('#cancel').click(function() { 
+	            $.unblockUI(); 
+	            return false; 
+	        });
+	      /*添加按钮点击事件结束*/
+	      
 	      $('#delete').click(function() { 
 	    	  var selarrrow=$("#listTable").getGridParam('selarrrow');
 	    	  $.ajax({
@@ -77,11 +92,4 @@ $(document).ready( function() {
 	    		 }); 
 	            return false;
 	        });
-	      
-	      
-	      $('#cancel').click(function() { 
-	            $.unblockUI(); 
-	            return false; 
-	        });
-	      /*点击事件结束*/
 })
