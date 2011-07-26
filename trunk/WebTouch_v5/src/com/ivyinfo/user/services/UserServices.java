@@ -17,6 +17,14 @@ public interface UserServices extends IBaseService{
 	public Dto saveUserItem(Dto inDto) throws Exception;
 	
 	/**
+	 * 删除用户
+	 * 
+	 * @param pDto
+	 * @return
+	 */
+	public Dto deleteUserItems(Dto pDto);
+	
+	/**
 	 * 用户登录
 	 * @param userBean
 	 * @throws Exception
