@@ -92,7 +92,6 @@ public class LoginController{
 			map.put("primary_field", "id");
 			map.put("pagesize", 25);
 			dto=userServices.queryUserForManage(map);
-//			purviewServices.ValidationLogin(logname, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
