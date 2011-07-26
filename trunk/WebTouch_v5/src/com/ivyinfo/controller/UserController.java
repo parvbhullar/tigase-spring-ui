@@ -40,8 +40,21 @@ public class UserController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        PrintWriter pw = response.getWriter();
-		pw.print("1");   
-    }   
+//        PrintWriter pw = response.getWriter();
+    }  
+    
+    @RequestMapping("/user/deleteUserItems")   
+    public void deleteUserItem(HttpServletRequest request, HttpServletResponse response) throws IOException{   
+        logger.info("selarrrow="+request.getParameter("selarrrow"));
+        Dto inDto = new BaseDto();
+        inDto.put("selarrrow", request.getParameter("selarrrow"));
+        try {
+			userServices.deleteUserItems(inDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    
     
 }
