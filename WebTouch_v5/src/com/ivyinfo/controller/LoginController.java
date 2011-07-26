@@ -73,10 +73,9 @@ public class LoginController{
 		
 		if("".equals(page1))
 			page1="1";
-		List arrayList=new ArrayList();
-//		int intpage1=new Integer(page1).intValue();
 		int intpage1=1;
 		int totalCount=0;
+		Dto dto=new BaseDto();
 		try {
 			totalCount=13;
 			page.setPageNo(new Integer(page1).intValue());
@@ -92,12 +91,12 @@ public class LoginController{
 			map.put("asc_field", 1);
 			map.put("primary_field", "id");
 			map.put("pagesize", 25);
-			userServices.queryUserForManage(map);
+			dto=userServices.queryUserForManage(map);
 //			purviewServices.ValidationLogin(logname, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		logger.info(dto.getDefaultAList());
 		
         // 定义返回的数据类型：json，使用了json-lib
         JSONObject jsonObj = new JSONObject();
@@ -107,12 +106,15 @@ public class LoginController{
         jsonObj.put("records", totalCount);        // 总记录数
         // 定义rows，存放数据
         JSONArray rows = new JSONArray();
-        for(int i=0;i<13;i++)
+        
+        for(int i=0;i<dto.getDefaultAList().size();i++)
         {
                 // 存放一条记录的对象
+        		Dto tempDto=new BaseDto();
                 JSONObject cell = new JSONObject();
-                cell.put("id", i);
-                cell.put("state", 1);
+                tempDto=(Dto)dto.getDefaultAList().get(i);
+                cell.put("id", tempDto.get("id"));
+                cell.put("state", tempDto.get("logname"));
                 cell.put("sendname", 2);
                 cell.put("subject", 3);
                 cell.put("datetime", 4);
