@@ -3,7 +3,9 @@ package com.ivyinfo.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +81,18 @@ public class LoginController{
 			totalCount=13;
 			page.setPageNo(new Integer(page1).intValue());
 			page.setTotalCount(totalCount);
-			
+			Dto inDto=new BaseDto();
+			List list=new ArrayList();
+			Map map=new HashMap();
+			map.put("currpage", 1);
+			map.put("columns", "id,logname");
+			map.put("tablename", "t_sys_user_login");
+			map.put("sCondition", "id<>0");
+			map.put("order_field", "id");
+			map.put("asc_field", 1);
+			map.put("primary_field", "id");
+			map.put("pagesize", 25);
+			userServices.queryUserForManage(map);
 //			purviewServices.ValidationLogin(logname, password);
 		} catch (Exception e) {
 			e.printStackTrace();
