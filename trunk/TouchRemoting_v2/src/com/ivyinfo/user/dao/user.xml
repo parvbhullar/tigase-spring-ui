@@ -28,6 +28,12 @@
         </selectKey>
 	</insert>
 	
+	<!-- 删除用户表  -->
+	<delete id="deleteUserItems" parameterClass="dto" >
+		DELETE FROM t_sys_user_login
+		      WHERE id in(#selarrrow#)
+	</delete>
+	
 	<!-- 根据登录账户查询人员信息  -->
 	<select id="validateAccount" parameterClass="dto" resultClass="dto">
 		SELECT * FROM t_sys_user_login where logname = #logname# and password=#password#

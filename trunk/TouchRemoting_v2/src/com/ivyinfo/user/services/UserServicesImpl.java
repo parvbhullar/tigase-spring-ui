@@ -40,4 +40,17 @@ public class UserServicesImpl extends BaseService implements UserServices{
 		dto.setDefaultAList(list);
 		return dto;
 	}
+	
+	/**
+	 * 删除用户
+	 * 
+	 * @param pDto
+	 * @return
+	 */
+	public Dto deleteUserItems(Dto pDto){
+		Dto dto = new BaseDto();
+		IDao iDao =(IDao) SpringContextUtil.getBean("iDao");
+		iDao.delete("deleteUserItems", pDto);
+		return null;
+	}
 }

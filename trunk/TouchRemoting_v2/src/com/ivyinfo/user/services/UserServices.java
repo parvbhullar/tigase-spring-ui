@@ -30,4 +30,12 @@ public interface UserServices extends IBaseService{
 	 * @throws Exception
 	 */
 	public Dto queryUserForManage(Map map)throws Exception;
+	
+	/**
+	 * 删除用户
+	 * 
+	 * @param pDto
+	 * @return
+	 */
+	public Dto deleteUserItems(Dto pDto);
 }
