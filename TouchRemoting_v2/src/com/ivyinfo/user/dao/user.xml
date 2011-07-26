@@ -6,6 +6,17 @@
 	<typeAlias alias="dto" type="org.njdt.gg.ccl.datastructure.impl.BaseDto"/>
 	<typeAlias alias="userBean" type="com.ivyinfo.user.bean.UserBean" />
 	
+	<parameterMap id="usefulMap" class="java.util.HashMap" >  
+		<parameter property="currpage" 		jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>  
+		<parameter property="columns" 		jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>  
+		<parameter property="tablename" 	jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="sCondition" 	jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>  
+		<parameter property="order_field" 	jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>  
+		<parameter property="asc_field" 	jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>  
+		<parameter property="primary_field" jdbcType="CHAR" javaType="java.lang.String" mode="IN"  />
+		<parameter property="pagesize" 		jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>
+	</parameterMap>
+	
 	<!-- 新增用户登陆信息 -->
 	<insert id="saveUserItem" parameterClass="dto">
 		<![CDATA[
@@ -21,5 +32,16 @@
 	<select id="validateAccount" parameterClass="dto" resultClass="dto">
 		SELECT * FROM t_sys_user_login where logname = #logname# and password=#password#
 	</select>
+	
+	<procedure id="queryUserForManage" parameterMap="usefulMap" resultClass="dto">
+	   <![CDATA[
+	   
+	      {call prc_page_result (?,?,?,?,?,?,?,?)}
+	   ]]>
+	</procedure>
+	
+	<procedure id="addUsefulProcedure" parameterMap="usefulMap">  
+		{call adduseful(?,?,?)}  
+	</procedure>
 	
 </sqlMap>
