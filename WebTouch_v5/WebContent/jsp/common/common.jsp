@@ -22,12 +22,12 @@
         <form id="userForm" action="" method="post">
             <p>
               <label for="logname">用户名</label><br>
-              <input type="text" class="text" name="logname" id="logname" value=>
+              <input type="text" class="text required" minlength="2" name="logname" id="logname" value=>
             </p>
 
             <p>
               <label for="password">密     码</label><br>
-              <input type="text" class="text" id="password" name="password" value="">
+              <input type="text" class="required text" id="password" name="password" value="">
             </p>
 
             <p>
