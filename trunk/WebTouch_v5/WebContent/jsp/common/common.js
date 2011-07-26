@@ -7,7 +7,7 @@ $(document).ready( function() {
 	  		url:'mail/mailReceive.action', 
 	  		datatype: 'json', 
 	  		mtype: 'post', 
-	  		colNames:['id','材料费','包仓费','标签费', '仓储费','打托费','加固费'], 
+	  		colNames:['id','姓名','包仓费','标签费', '仓储费','打托费','加固费'], 
 	  		colModel :[  
 	  		    {name:'id', 		index:'id', 			hidden:true},
 	  		    {name:'state', 		index:'state' 			},
@@ -50,18 +50,34 @@ $(document).ready( function() {
 	          }); 
 	      });
 	      
-	      
 	      $('#save').click(function() { 
 	    	  $.ajax({
 	    		   type: "POST",
 	    		   url: "user/saveUserItem.action",
 	    		   data: $('#userForm').formSerialize(),
 	    		   success: function(msg){
-	    		     alert( "Data Saved: " + msg );
+	    			   $.unblockUI();
+	    			   $("#listTable").trigger("reloadGrid");
+	   	            	return false;
 	    		   }
 	    		 }); 
 	            return false; 
 	        });
+	      
+	      $('#delete').click(function() { 
+	    	  var selarrrow=$("#listTable").getGridParam('selarrrow');
+	    	  $.ajax({
+	    		   type: "POST",
+	    		   url: "user/deleteUserItems.action",
+	    		   data: "selarrrow="+selarrrow,
+	    		   success: function(msg){
+	    			   $("#listTable").trigger("reloadGrid");
+	   	            	return false;
+	    		   }
+	    		 }); 
+	            return false;
+	        });
+	      
 	      
 	      $('#cancel').click(function() { 
 	            $.unblockUI(); 
