@@ -1,10 +1,13 @@
 package com.ivyinfo.user.services;
 
 import java.util.List;
+import java.util.Map;
 
+import org.njdt.gg.bmf.base.IDao;
 import org.njdt.gg.ccl.datastructure.Dto;
 
 import com.ivyinfo.framework.service.base.IBaseService;
+import com.ivyinfo.framework.service.server.SpringContextUtil;
 import com.ivyinfo.user.bean.UserBean;
 
 public interface UserServices extends IBaseService{
@@ -19,4 +22,12 @@ public interface UserServices extends IBaseService{
 	 * @throws Exception
 	 */
 	public Dto ValidationLogin(Dto inDto) throws Exception;
+	
+	/**
+	 * 
+	 * @param inDto
+	 * @return
+	 * @throws Exception
+	 */
+	public Dto queryUserForManage(Map map)throws Exception;
 }

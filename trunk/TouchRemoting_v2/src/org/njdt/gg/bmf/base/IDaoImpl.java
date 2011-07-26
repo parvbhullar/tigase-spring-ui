@@ -160,12 +160,12 @@ public class IDaoImpl extends SqlMapClientDaoSupport implements IDao {
 	 *             存储过程调用异常
 	 */
 	public void callPrc(String prcName, Dto prcDto) throws PrcException {
-		PropertiesHelper pHelper = PropertiesFactory.getPropertiesHelper(PropertiesFile.G4);
-		String callPrcSuccessFlag = pHelper.getValue("callPrcSuccessFlag", "1");
+//		PropertiesHelper pHelper = PropertiesFactory.getPropertiesHelper(PropertiesFile.G4);
+//		String callPrcSuccessFlag = pHelper.getValue("callPrcSuccessFlag", "1");
 		getSqlMapClientTemplate().queryForObject(prcName, prcDto);
-		if (G4Utils.isEmpty(prcDto.getAppCode()) || !prcDto.getAppCode().equals(callPrcSuccessFlag)) {
-			throw new PrcException(prcName, prcDto.getAppCode(), prcDto.getErrorMsg());
-		}
+//		if (G4Utils.isEmpty(prcDto.getAppCode()) || !prcDto.getAppCode().equals(callPrcSuccessFlag)) {
+//			throw new PrcException(prcName, prcDto.getAppCode(), prcDto.getErrorMsg());
+//		}
 	}
 
 	/**
