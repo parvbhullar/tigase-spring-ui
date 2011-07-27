@@ -32,6 +32,8 @@ String username="qk";
 	<script type="text/javascript" src="<%=ctxindex%>/js/json2.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery.form.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
+	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-validate/jquery.validate.js" ></script>
+	<link type="text/css" href="<%=ctxindex%>/js/jquery-validate/demo/milk/milk.css" rel="stylesheet" />
 	
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/index.js"></script>

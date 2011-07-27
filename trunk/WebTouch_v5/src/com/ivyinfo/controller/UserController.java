@@ -47,7 +47,8 @@ public class UserController{
     public void deleteUserItem(HttpServletRequest request, HttpServletResponse response) throws IOException{   
         logger.info("selarrrow="+request.getParameter("selarrrow"));
         Dto inDto = new BaseDto();
-        inDto.put("selarrrow", request.getParameter("selarrrow"));
+        logger.info(request.getParameter("selarrrow").toString());
+        inDto.put("selarrrow", request.getParameter("selarrrow").toString());
         try {
 			userServices.deleteUserItems(inDto);
 		} catch (Exception e) {
