@@ -18,7 +18,7 @@
 	<div style="visibility:hidden;">
 		<div id="addForm" >
 			
-      <div class="span-10">
+      <div class="span-9">
         <form id="userForm" action="" method="post">
             <p>
               <label for="logname">用户名</label><br>
