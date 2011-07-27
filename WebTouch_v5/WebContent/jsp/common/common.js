@@ -37,23 +37,6 @@ $(document).ready( function() {
 	   	 });
 	      /*表格初始化结束*/
 	      
-	      /**/
-	      		
-	      /*
-	      var validator =$('#userForm').validate({
-    	    	rules: { 
-    	    		logname: "required", 
-    	    		password: "required"
-    	            
-    	        }, 
-    	        messages: { 
-    	        	logname: "Enter your firstname", 
-    	        	password: "Enter your lastname"
-    	        }
-    	    }).form();
- 
-	      /**/
-	      
 	      /*添加按钮点击事件开始*/
 	      $('#add').click(function() { 
 	          $.blockUI({ 
