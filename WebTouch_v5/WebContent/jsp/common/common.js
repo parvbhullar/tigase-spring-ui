@@ -72,14 +72,12 @@ $(document).ready( function() {
 	    	    	rules: { 
 	    	    		logname: "required", 
 	    	    		password: "required"
-	    	            
 	    	        }, 
 	    	        messages: { 
 	    	        	logname: "登陆名必填", 
 	    	        	password: "密码必填"
 	    	        },
 	    	        success: function(label) { 
-	    	            // set   as text for IE 
 	    	            label.html(" ").addClass("checked"); 
 	    	        }
 	    	    }).form();
@@ -95,7 +93,6 @@ $(document).ready( function() {
 		    		   }
 		    		 }); 
 	    	  }
-	    	  
 	            return false; 
 	        });
 	      
