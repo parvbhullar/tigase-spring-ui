@@ -75,8 +75,8 @@ $(document).ready( function() {
 	    	            
 	    	        }, 
 	    	        messages: { 
-	    	        	logname: "Enter your firstname", 
-	    	        	password: "Enter your lastname"
+	    	        	logname: "登陆名必填", 
+	    	        	password: "密码必填"
 	    	        },
 	    	        success: function(label) { 
 	    	            // set   as text for IE 
