@@ -18,16 +18,16 @@
 	<div style="visibility:hidden;">
 		<div id="addForm" >
 			
-      <div class="span-14">
+      <div class="span-10">
         <form id="userForm" action="" method="post">
             <p>
               <label for="logname">用户名</label><br>
-              <input type="text" class="text" name="logname" id="logname" value="">
+              <input type="text" class="text" name="logname" id="logname" value="" style="width:200px">
             </p>
 
             <p>
               <label for="password">密     码</label><br>
-              <input type="text" class="required text" id="password" name="password" value="">
+              <input type="text" class="required text" id="password" name="password" value="" style="width:200px">
             </p>
 
             <p>
