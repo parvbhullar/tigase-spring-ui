@@ -18,11 +18,11 @@
 	<div style="visibility:hidden;">
 		<div id="addForm" >
 			
-      <div class="span-10">
+      <div class="span-14">
         <form id="userForm" action="" method="post">
             <p>
               <label for="logname">用户名</label><br>
-              <input type="text" class="text required" minlength="2" name="logname" id="logname" value=>
+              <input type="text" class="text" name="logname" id="logname" value="">
             </p>
 
             <p>

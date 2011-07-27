@@ -143,7 +143,7 @@ table.tabbedtable label { text-align: right; padding-right: 9px; }
   width: 150px;
 }
 
-#curdForm label.error {
+ label.error {
   background:url("../images/unchecked.gif") no-repeat 0px 0px;
   padding-left: 16px;
   font-weight: bold;
@@ -151,7 +151,7 @@ table.tabbedtable label { text-align: right; padding-right: 9px; }
   border:0;
 }
 
-#curdForm label.checked {
+ label.checked {
   background:url("../images/checked.gif") no-repeat 0px 0px;
   border: 0;
 }

@@ -38,11 +38,19 @@ $(document).ready( function() {
 	      /*表格初始化结束*/
 	      
 	      /**/
-	      var options = { 
-	    	        
-	    	    }; 
-	    	 
-    	    $('#userForm').validate();
+	      		
+	      /*
+	      var validator =$('#userForm').validate({
+    	    	rules: { 
+    	    		logname: "required", 
+    	    		password: "required"
+    	            
+    	        }, 
+    	        messages: { 
+    	        	logname: "Enter your firstname", 
+    	        	password: "Enter your lastname"
+    	        }
+    	    }).form();
  
 	      /**/
 	      
@@ -60,16 +68,34 @@ $(document).ready( function() {
 	      });
 	      
 	      $('#save').click(function() { 
-	    	  $.ajax({
-	    		   type: "POST",
-	    		   url: "user/saveUserItem.action",
-	    		   data: $('#userForm').formSerialize(),
-	    		   success: function(msg){
-	    			   $.unblockUI();
-	    			   $("#listTable").trigger("reloadGrid");
-	   	            	return false;
-	    		   }
-	    		 }); 
+	    	  var validator=$('#userForm').validate({
+	    	    	rules: { 
+	    	    		logname: "required", 
+	    	    		password: "required"
+	    	            
+	    	        }, 
+	    	        messages: { 
+	    	        	logname: "Enter your firstname", 
+	    	        	password: "Enter your lastname"
+	    	        },
+	    	        success: function(label) { 
+	    	            // set   as text for IE 
+	    	            label.html(" ").addClass("checked"); 
+	    	        }
+	    	    }).form();
+	    	  if(validator){
+	    		  $.ajax({
+		    		   type: "POST",
+		    		   url: "user/saveUserItem.action",
+		    		   data: $('#userForm').formSerialize(),
+		    		   success: function(msg){
+		    			   $.unblockUI();
+		    			   $("#listTable").trigger("reloadGrid");
+		   	            	return false;
+		    		   }
+		    		 }); 
+	    	  }
+	    	  
 	            return false; 
 	        });
 	      
