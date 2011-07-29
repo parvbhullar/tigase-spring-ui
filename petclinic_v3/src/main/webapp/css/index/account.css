@@ -1,0 +1,136 @@
+﻿/*==========================================================
+==========================================================*/
+.container{background:none;}
+
+.section-account .content{float:none;width:auto;margin:0 auto 10px;padding:10px 30px;background:url(../../images/index/info_top.png) no-repeat;}
+.section-account .content-inner{margin-left:0;}
+.section-account .content-main-inner{padding:10px 0;}
+
+/*= Login ================================================*/
+.section-account-login .content-main{float:right;width:100%;}
+.section-account-login .content-main-inner{margin-left:650px;}
+.section-account-login .content-sub{float:left;width:630px;margin-right:-650px;}
+
+.loginformcaption{width:230px;height:50px;line-height:50px;margin-bottom:20px;border-bottom:1px dashed #dbe7f5;}
+.loginformcaption h3{float:left;width:100px;height:50px;text-indent:-9999px;overflow:hidden;background:url(../../images/index/login_title.gif) no-repeat 0 50%;}
+.loginformcaption .findpassword{float:right;}
+.loginform{width:230px;}
+.loginform .formrow{margin-bottom:20px;line-height:1.8;}
+.loginform .formrow .label{font-size:117%;float:left;width:70px;font-weight:normal;}
+.loginform .formrow .form-enter{float:left;}
+.loginform .formrow .form-enter input.text{width:154px;padding:4px 2px;}
+.loginform .formrow .form-tip{clear:both;margin:5px 0 0 70px;white-space:normal;}
+.loginform .formrow-captcha .form-enter input.validcode{float:left;width:65px;margin-right:10px;}
+.loginform .formrow-captcha .captcha{float:left;}
+.loginform .formrow-captcha .captcha img{display:block;border:1px solid #ddd;height:25px;}
+.loginform .formrow-option{margin-bottom:15px;}
+.loginform .formrow-option input{margin:0;vertical-align:middle;}
+.loginform .formrow-option .remember{float:left;}
+.loginform .formrow-option .invisible{float:right;}
+
+.loginform .formrow-action .button-login{float:left;margin-right:22px;background:url(../../images/index/button_login.png) no-repeat;}
+.loginform .formrow-action .button-login input.button{display:block;font-size:0;width:87px;height:35px;overflow:hidden;text-indent:-9999px; border:0;background:none transparent;}
+.loginform .formrow-action .button-register{float:left;background:url(../../images/index/button_register.png) no-repeat;}
+.loginform .formrow-action .button-register a.button{display:block;width:117px;height:35px;overflow:hidden;text-indent:-9999px;}
+
+.rotator{position:relative;width:500px;height:340px;margin:10px auto 0;overflow:hidden;}
+.rotator .rotator-item{width:500px;height:340px;}
+.rotator .rotator-item,
+.rotator .rotator-item img{display:block;}
+.rotator .rotator-toggle{position:absolute;bottom:15px;right:15px;overflow:hidden;}
+.rotator .rotator-toggle li{float:left;margin-right:4px;}
+.rotator .rotator-toggle a{float:left;width:17px;height:17px;overflow:hidden;text-indent:-9999px;background:url(../../images/index/rotator_number.png) no-repeat;}
+.rotator .rotator-toggle .no1 a{background-position:0 -17px;}
+.rotator .rotator-toggle .no1 a.current,
+.rotator .rotator-toggle .no1 a:hover{background-position:0 0;}
+.rotator .rotator-toggle .no2 a{background-position:-17px -17px;}
+.rotator .rotator-toggle .no2 a.current,
+.rotator .rotator-toggle .no2 a:hover{background-position:-17px 0;}
+.rotator .rotator-toggle .no3 a{background-position:-34px -17px;}
+.rotator .rotator-toggle .no3 a.current,
+.rotator .rotator-toggle .no3 a:hover{background-position:-34px 0;}
+.rotator .rotator-toggle .no4 a{background-position:-51px -17px;}
+.rotator .rotator-toggle .no4 a.current,
+.rotator .rotator-toggle .no4 a:hover{background-position:-51px 0;}
+.rotator .rotator-toggle .no5 a{background-position:-68px -17px;}
+.rotator .rotator-toggle .no5 a.current,
+.rotator .rotator-toggle .no5 a:hover{background-position:-68px 0;}
+
+/*= register =============================================*/
+.registerstep{width:800px;height:25px;margin:0 auto 20px;overflow:hidden;}
+.registerstep-inner{width:850px;height:25px;}
+.registerstep li{float:left;font-weight:bold;font-size:117%;margin-right:-16px;width:275px;height:25px;line-height:25px;overflow:hidden;text-align:center;/**/}
+.registerstep li span{display:block;padding-left:16px;background:url(../../images/index/steptab.png) no-repeat 0 -150px;}
+.registerstep li span span{padding-left:0;padding-right:16px;background:url(../../images/index/steptab.png) no-repeat 100% -150px;}
+.registerstep li span span span{height:25px;padding:0;background:url(../../images/index/steptab.png) repeat-x 0 -75px;}
+
+.registerstep li.step1 span{background-position:0 -50px;}
+.registerstep li.step1 span span{background-position:100% -150px;}
+.registerstep li.step1 span span span{background-position:0 -75px;}
+.registerstep li.step3 span span{background-position:100% -200px;}
+.registerstep li.step3 span span span{background-position:0 -75px;}
+
+.registerstep li span.active{position:relative;color:#fff;background-position:0 -125px;}
+.registerstep li span.active span{background-position:100% -100px;}
+.registerstep li span.active span span{background-position:0 -25px;}
+
+.registerstep li.step1 span.active{background-position:0 0;}
+.registerstep li.step1 span.active span{background-position:100% -100px;}
+.registerstep li.step1 span.active span span{background-position:0 -25px;}
+.registerstep li.step3 span.active span{background-position:100% -175px;}
+.registerstep li.step3 span.active span span{background-position:0 -25px;}
+
+.register-inviter{width:800px;margin:0 auto 10px;padding-bottom:10px;border-bottom:1px dashed #dcdcdc;}
+.register-inviter-inner{padding-left:180px;line-height:1.6;}
+.register-inviter .inviter-avatar{float:left;display:inline;width:52px;margin:5px 0 0 -75px;}
+.register-inviter .inviter-avatar img{padding:3px;border:1px solid #ccc;background:#fff;}
+.register-inviter .inviter-message h3{font-size:114%;margin-bottom:5px;}
+
+.registerform{width:800px;margin:0 auto;}
+.registerform .formrow{margin-bottom:15px;padding-left:175px;}
+.registerform .formrow .label{font-size:117%;float:left;display:inline;width:90px;margin-left:-100px;}
+.registerform .formrow .form-enter input.text{float:left;width:160px;padding:4px 2px;}
+.registerform .formrow .form-tip{float:left;display:inline;}
+.registerform .formrow .form-note{float:left;clear:both;margin-top:5px;width:600px;color:#999;}
+.registerform .formrow-captcha .form-enter input.validcode{float:left;width:65px;margin-right:10px;}
+.registerform .formrow-captcha .captcha{float:left;}
+.registerform .formrow-captcha .captcha img{display:block;border:1px solid #ddd;height:25px;}
+
+.registeragreement{padding:10px;border:1px solid #dcdcdc;background:#fafafa url(../../images/index/agreement_bg.gif) repeat-x;zoom:1;}
+.registeragreement .agreement-title{font-size:117%;margin-bottom:10px;color:#12469a;}
+.registeragreement .agreement{height:80px;margin-bottom:10px;padding:10px;overflow:auto;border:1px solid #e6e6e6;color:#000;background:#fff;}
+.registeragreement .agreement-agree{color:#666;}
+
+.registerform .formrow-action .btn-wrap,
+.registerverify-check .btn-wrap{background:url(../../images/index/button_2.png) no-repeat 100% 0;}
+.registerform .formrow-action .btn-wrap .btn,
+.registerverify-check .btn{height:30px;line-height:30px;background:url(../../images/index/button_2.png) no-repeat 0 -30px;}
+.registerform .formrow-action .btn-wrap .button,
+.registerverify-check .button{height:30px;color:#fff;}
+
+.registerverify{width:800px;margin:0 auto 15px;}
+.registerverify-tip{margin-bottom:20px;padding:6px 10px 6px 25px;border:1px solid #e6db55;background:#fffbcc url(../../images/index/icons/lightbulb.gif) no-repeat 5px 50%;}
+
+.registerverify-step{font-size:117%;margin-bottom:10px;}
+.registerverify-step li{padding:10px;border-top:1px solid #eee;color:#666;}
+.registerverify-step li strong{color:#333;margin-right:40px;}
+.registerverify-step .mail-login:link,.registerverify-step .mail-login:visited{color:#f60;}
+
+.registernotice{width:800px;margin:50px auto;}
+.registernotice p{font-size:117%;padding:10px 10px 10px 35px;border:1px solid #fae2b9;background:#ffffe3 url(../../images/index/icons/alert.gif) no-repeat 10px 50%;}
+
+/*= Account extra form ===================================*/
+.formcaption{margin:20px 0 40px 0;}
+.formcaption h3{font-size:114%;margin-bottom:10px;}
+.formcaption p{color:#999;}
+
+.accountform .formrow{margin-bottom:15px;padding-left:175px;}
+.accountform .formrow .label{font-size:117%;float:left;display:inline;width:90px;margin-left:-100px;}
+.accountform .formrow .form-enter input.text{width:160px;padding:4px 3px;}
+.accountform .formrow .form-enter input.validcode{width:85px;}
+.accountform .formrow .form-note,
+.accountform .formrow-captcha .captcha-note{margin-top:5px;width:600px;color:#999;}
+.accountform .formrow-captcha .captcha img{border:1px solid #ccc;}
+
+.findpassowrdnotice{width:800px;margin:50px auto;}
+.findpassowrdnotice p{font-size:117%;padding:10px 10px 10px 35px;border:1px solid #fae2b9;background:#ffffe3 url(../../images/index/icons/alert.gif) no-repeat 10px 50%;}
