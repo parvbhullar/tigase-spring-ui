@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>统一通信</title>
 
 
-<link href="css/index/favicon.ico" type="image/x-ico" rel="shortcut icon">
-
-<link rel="stylesheet" type="text/css" href="css/index/common.css">
-<link rel="stylesheet" type="text/css" href="css/index/account.css">
+<link rel="shortcut icon"	href="<spring:url value="/static/css/index/favicon.ico" htmlEscape="true" />" 	type="image/x-ico" />
+<link rel="stylesheet" 		href="<spring:url value="/static/css/index/common.css" htmlEscape="true" />" 	type="text/css"/>
+<link rel="stylesheet" 		href="<spring:url value="/static/css/index/account.css" htmlEscape="true" />" 	type="text/css"/>
 <!--[if IE]>
 <style type="text/css">
 *[id="focus_bigpic"]{filter:progid:DXImageTransform.Microsoft.GradientWipe(duration=2,gradientSize=1,wipestyle=1,motion=forward);}
@@ -262,7 +261,7 @@
                             <a href="/recoverpassword.html" class="findpassword">忘记密码?</a>
                             -->
                         </div>
-                        <form method="post" action="login.action" id="loginform"><input type="hidden" value="YXV0b2xvZ2luI2ludmlzaWJsZQ==" name="__PROCESSINPUTVIEWSTATE">
+                        <form method="post" action="login.do" id="loginform"><input type="hidden" value="YXV0b2xvZ2luI2ludmlzaWJsZQ==" name="__PROCESSINPUTVIEWSTATE">
                         <div class="formgroup loginform">
                             
                             <div class="formrow formrow-user">
@@ -296,7 +295,7 @@
                             <div class="formrow formrow-action">
                                 <input type="hidden" value="/default.html" name="returnurl">
                                 <span class="button-login"><input type="submit" tabindex="7" value="登录" name="login" class="button" id="max_unnamedsubmit_6"></span>
-                                <span class="button-register"><a tabindex="8" href="register.html" class="button">立即注册</a></span>
+                                <span class="button-register"><a tabindex="8" href="register" class="button">立即注册</a></span>
                             </div>
                         </div>
                         </form>
@@ -306,11 +305,12 @@
                 <div class="content-sub">
                     <div class="content-sub-inner">
                     	<div id="focus_bigpic" class="rotator">
-                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu1.jpg" alt=""></a>
-                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu2.jpg" alt=""></a>
-                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu3.jpg" alt=""></a>
-                            <a href="" target="_blank" class="rotator-item" style=""><img src="images/index/usertu.jpg" alt=""></a>
-                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images/chinaz/usertu5.jpg" alt=""></a>
+                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images//usertu1.jpg" alt=""></a>
+                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images//usertu2.jpg" alt=""></a>
+                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images//usertu3.jpg" alt=""></a>
+                            <a href="" target="_blank" class="rotator-item" style=""><img src=<spring:url value="/static/images/index/usertu.jpg" htmlEscape="true" /> alt=""></a>
+                            
+                            <a href="" target="_blank" class="rotator-item" style="display: none;"><img src="/max-templates/passport/images//usertu5.jpg" alt=""></a>
                             <ul id="focus_tabsbg" class="rotator-toggle">
                                 <li class="no1"><a href="javascript:void(Mea(0));" class="">1</a></li>
                                 <li class="no2"><a href="javascript:void(Mea(1));" class="">2</a></li>
