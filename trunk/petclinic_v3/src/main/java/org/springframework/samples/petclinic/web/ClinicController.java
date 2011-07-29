@@ -38,7 +38,7 @@ public class ClinicController {
 	 * determine the logical view name based on the request URL: "/welcome.do"
 	 * -&gt; "welcome".
 	 */
-	@RequestMapping("/welcom")
+	@RequestMapping("/welcome")
 	public String welcomeHandler() {
 		return "welcome";
 	}
