@@ -38,7 +38,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/applicationContext-jdbc.xml,
-		/WEB-INF/spring/spring/applicationContext-security.xml
+		/WEB-INF/spring/applicationContext-security.xml
 		</param-value>
 		
         <!--
