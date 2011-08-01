@@ -296,7 +296,7 @@ $(function () {
     	},
     	"json_data" : {
 	        "ajax" : {
-	            "url" : "mail?action=jstree"
+	            "url" : "menuTree.action"
 	       }
     	}
 		,
