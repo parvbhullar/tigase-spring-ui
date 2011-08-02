@@ -29,7 +29,6 @@ String username="qk";
 	<link type="text/css" href="<%=ctxindex%>/js/jquery-validate/demo/milk/milk.css" rel="stylesheet" />
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
-    <script type="text/javascript" src="jsp/common/system.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/css/index/screen.css" />
 <script type="text/javascript">
 /*
