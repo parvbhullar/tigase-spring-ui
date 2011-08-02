@@ -23,7 +23,6 @@ $(document).ready( function() {
 		   $.ajax({
 				  url: url,
 				  success: function(data) {
-					  console.info($("#tabs-1").html())
 					  $("#tabs-1").html("");
 					  $("#tabs-1").html(data);
 				  },
