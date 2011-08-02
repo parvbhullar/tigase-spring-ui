@@ -3,28 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>jQuery File Upload Example</title>
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" id="theme">
 <link rel="stylesheet" href="js/blueimp/jquery.fileupload-ui.css">
-<style>
-body {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 13px;
-  margin: 0;
-  padding: 20px;
-}
-</style>
 </head>
 <body>
 <form id="file_upload" action="uploadServlet" method="POST" enctype="multipart/form-data">
     <input id="fileId" type="file" name="file" multiple>
     <button>Upload</button>
-    <div>Upload files</div>
+    <div>点我上传文件,可点多次</div>
 </form>
 <table id="files"></table>
-<!--  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
--->
 <script src="js/blueimp/jquery.fileupload.js"></script>
 <script src="js/blueimp/jquery.fileupload-ui.js"></script>
 <script>
