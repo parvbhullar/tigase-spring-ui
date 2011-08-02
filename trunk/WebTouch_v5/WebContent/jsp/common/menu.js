@@ -18,7 +18,9 @@ $(document).ready( function() {
 	}).bind("click.jstree", function (event) {
 		   var node = $(event.target).closest("li");
 		   var data = node.data("jstree");
-		   console.info("node="+node);
+		   alert("node.id="+node[0].id+";node="+node[0].getAttribute("alt"));
+		   //alert("data="+data);
+		   console.info("node="+node[1]);
 		   // Do my action
 		});
 })
