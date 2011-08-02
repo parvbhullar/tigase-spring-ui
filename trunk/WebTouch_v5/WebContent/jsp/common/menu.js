@@ -19,11 +19,13 @@ $(document).ready( function() {
 		   var node = $(event.target).closest("li");
 		   var data = node.data("jstree");
 		   //alert("node.id="+node[0].id+";node="+node[0].getAttribute("alt"));
-		   var url="jsp/"+node[0].getAttribute("alt");
+		   var url=node[0].getAttribute("alt");
 		   $.ajax({
 				  url: url,
 				  success: function(data) {
-				    $("#tabs-1").html(data);
+					  console.info($("#tabs-1").html())
+					  $("#tabs-1").html("");
+					  $("#tabs-1").html(data);
 				  },
 				  complete:function(){
 					  
