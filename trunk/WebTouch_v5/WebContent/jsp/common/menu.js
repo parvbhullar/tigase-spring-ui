@@ -18,9 +18,18 @@ $(document).ready( function() {
 	}).bind("click.jstree", function (event) {
 		   var node = $(event.target).closest("li");
 		   var data = node.data("jstree");
-		   alert("node.id="+node[0].id+";node="+node[0].getAttribute("alt"));
+		   //alert("node.id="+node[0].id+";node="+node[0].getAttribute("alt"));
+		   var url="jsp/"+node[0].getAttribute("alt");
+		   $.ajax({
+				  url: url,
+				  success: function(data) {
+				    $("#tabs-1").html(data);
+				  },
+				  complete:function(){
+					  
+				  }
+			});
 		   //alert("data="+data);
-		   console.info("node="+node[1]);
 		   // Do my action
 		});
 })

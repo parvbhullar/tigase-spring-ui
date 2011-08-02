@@ -51,6 +51,16 @@
         <servlet-name>SpringMVC3</servlet-name>  
         <url-pattern>*.action</url-pattern>  
     </servlet-mapping>
+    
+    <servlet> 
+		<servlet-name>UploadServlet</servlet-name> 
+		<servlet-class>com.ivyinfo.controller.UploadServlet</servlet-class> 
+	</servlet>
+	
+	<servlet-mapping> 
+		<servlet-name>UploadServlet</servlet-name> 
+		<url-pattern>/uploadServlet</url-pattern> 
+	</servlet-mapping>
  	
 	<!-- 配置 servlet开始 -->
 	<servlet> 
@@ -134,10 +144,7 @@
 		<servlet-class>com.ivyinfo.im.servlet.LogoutServlet</servlet-class> 
 	</servlet>
 	
-	<servlet> 
-		<servlet-name>UploadServlet</servlet-name> 
-		<servlet-class>com.ivyinfo.mail.UploadServlet</servlet-class> 
-	</servlet>
+	
 	<servlet>
 		<description>
 		</description>
@@ -155,10 +162,6 @@
 		com.ivyinfo.system.ValidateServlet</servlet-class>
 	</servlet>
 	
-	<servlet-mapping> 
-		<servlet-name>UploadServlet</servlet-name> 
-		<url-pattern>/uploadServlet</url-pattern> 
-	</servlet-mapping>
 	
 	<servlet-mapping> 
 		<servlet-name>System</servlet-name> 
