@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery File Upload Example</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="js/blueimp/jquery.fileupload-ui.css">
+<style>
+body {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+<form id="file_upload" action="uploadServlet" method="POST" enctype="multipart/form-data">
+    <input id="fileId" type="file" name="file" multiple>
+    <button>Upload</button>
+    <div>Upload files</div>
+</form>
+<table id="files"></table>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script src="js/blueimp/jquery.fileupload.js"></script>
+<script src="js/blueimp/jquery.fileupload-ui.js"></script>
+<script>
+/*global $ */
+$(function () {
+	var fileName;
+	$('input[type=file]').change(function(e){
+		  $in=$(this);
+		  fileName=$in.val();
+		  $in.next().html($in.val());
+		});
+	
+    $('#file_upload').fileUploadUI({
+        uploadTable: $('#files'),
+        downloadTable: $('#files'),
+        buildUploadRow: function (files, index) {
+    		
+            return $('<tr><td>' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td>' +
+                    '<td class="file_upload_progress"><div><\/div><\/td>' +
+                    '<td class="file_upload_cancel">' +
+                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                    '<\/button><\/td><\/tr>');
+        },
+        buildDownloadRow: function (file) {
+            return $('<tr><td class="filename">' + fileName.substring(fileName.lastIndexOf('\\')+1) + '<\/td><td class="file_delete"><button title="Delete" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"><\/span><\/button><\/td><\/tr>');
+        },
+        onComplete: function (event, files, index, xhr, handler) {
+            //handler.onCompleteAll(files);
+        	$(".file_delete").click(function () {
+        		window.location.href = "./tet1.txt";        		
+            });
+        }
+    });
+});
+
+function getPercent()
+{
+	$.ajax({ 
+		  url: 'getUploadStatus.htm',
+		  type:'post',
+		  success: function(data){
+		  	console.info(data);
+	    }}
+	  );
+}
+</script> 
+</body> 
+</html>

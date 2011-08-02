@@ -45,7 +45,8 @@ public class MenuController{
 		PrintWriter   out   =   response.getWriter(); 
 		
     	try {
-    		String str=this.getTreeJson("010102");
+//    		String str=this.getTreeJson("010102");
+    		String str=this.getTreeJson("0103");
     		logger.info("str="+str);
             response.getWriter().print(str);
     	} catch (Exception e) {
@@ -70,13 +71,13 @@ public class MenuController{
 			if(i==0)
 			{
 				sb.append("\"data\"").append(":\"").append(dto.get("text")).append("\"");
-				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"}}");
+				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
 				
 			}
 			else
 			{
 				sb.append(",{\"data\"").append(":\"").append(dto.get("text")).append("\"");
-				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"}}");
+				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
 				
 			}
         }

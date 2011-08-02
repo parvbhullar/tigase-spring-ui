@@ -285,26 +285,8 @@ String username="qk";
 
 	<div class="content" style="position: relative; height: 174px; visibility: visible;">
 			<div id="demo" class="demo" style="height:200px;"></div>
-			<script type="text/javascript" class="source below">
-$(function () {
+			<script type="text/javascript" src="jsp/common/menu.js"></script>
 
-	$("#demo").jstree({ 
-		"themes" : {
-	        "theme" : "classic",
-	        "dots" : true,
-	        "icons" : true 
-    	},
-    	"json_data" : {
-	        "ajax" : {
-	            "url" : "menuTree.action"
-	       }
-    	}
-		,
-	"plugins" : [ "themes", "json_data" ]
-	});	
-	
-});
-</script>
 	</div>
 </div>
 
