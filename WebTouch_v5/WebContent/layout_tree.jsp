@@ -30,6 +30,10 @@ String username="qk";
 	<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=ctxindex%>/calendar.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="<%=ctxindex%>/css/index/screen.css" />
+    
+    <link type="text/css" href="css/im/webim.min.css" media="screen" rel="stylesheet" />
+    <script type="text/javascript" src="js/im/webim.js"></script>
+    <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
 <script type="text/javascript">
 /*
  * complex.html
