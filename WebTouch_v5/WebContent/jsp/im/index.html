@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<title>Skins - CKEditor Sample</title>
+	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<link type="text/css" href="css/im/webim.min.css" media="screen" rel="stylesheet" />
+    <script type="text/javascript" src="js/im/webim.js"></script>
+    <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready( function() {
+		(function(webim){
+		var _IMC = {
+				production_name: 'dz',
+				version: '1.0',
+				path: '',
+				is_login: "0",
+				login_options: "",
+				user: "",
+				setting: "",
+				menu: "",
+				disable_chatlink: "1",
+				enable_shortcut:"1",
+				disable_menu: "1",
+				theme: "",
+				local: "zh-CN",
+				jsonp: "",
+				min: ".min"
+				};
+		
+	    var path = "/";
+	    //webim.extend( webim.setting.defaults.data, _IMC.setting );
+	    var webim = window.webim;
+	    webim.defaults.urls = {
+	        online:"mail?action=online",
+	        offline:"mail?action=offline",
+	        message:"mail?action=message",
+	        presence:"mail?action=presence",
+	        refresh:"mail?action=refresh",
+	        status:"mail?action=status"
+	        
+	    };
+	    webim.setting.defaults.url = "mail?action=setting";
+	    webim.history.defaults.urls = {
+	        load: "mail?action=history",
+	        clear: "mail?action=clear_history",
+	        download: "mail?action=download_history"
+	    };
+	    webim.room.defaults.urls = {
+	        member: "mail?action=members",
+	        join: "mail?action=join",
+	        leave: "mail?action=leave"
+	    };
+	    webim.buddy.defaults.url = "mail?action=buddies";
+	    webim.notification.defaults.url =  "mail?action=notifications";
+
+	    webim.ui.emot.init({"/":  + "/js/im/static/images/emot/default"});
+	    var soundUrls = {
+	        lib: "/js/im/static/assets/sound.swf",
+	        msg: "/js/im/static/assets/sound/msg.mp3"
+	    };
+	    var ui = new webim.ui(document.body, {
+	        imOptions: {
+	            jsonp: _IMC.jsonp
+	        },
+	        soundUrls: soundUrls
+	    }), im = ui.im;
+
+	    if( _IMC.user ) im.user( _IMC.user );
+	    if( _IMC.menu ) ui.addApp("menu", { "data": _IMC.menu } );
+	    if( _IMC.enable_shortcut ) ui.layout.addShortcut( _IMC.menu );
+
+	    ui.addApp("buddy", {
+	        is_login: _IMC['is_login'],
+	        loginOptions: _IMC['login_options']
+	    } );
+	    ui.addApp("room");
+	    ui.addApp("notification");
+	    ui.addApp("setting", {"data": webim.setting.defaults.data});
+	    if( !_IMC.disable_chatlink )ui.addApp("chatlink", {
+	        off_link_class: /r_option|spacelink/i
+	    });
+	    ui.render();
+	    _IMC['is_login'] && im.autoOnline() && im.online();
+	})(webim);
+	})
+	</script>
+	
+</head>
+<body>
+	
+	
+</body>
+</html>
