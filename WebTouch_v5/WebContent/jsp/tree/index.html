@@ -27,8 +27,8 @@
 <!-- the tree container (notice NOT an UL node) -->
 <div id="demo" class="demo" style="height:200px;"></div>
 <div style="height:30px; text-align:center;">
-	<input type="button" style='width:170px; height:24px; margin:5px auto;' value="reconstruct" onclick="$.get('http://216.108.229.26/jstree/_demo/server.php?reconstruct', function () { $('#demo').jstree('refresh',-1); });" />
-	<input type="button" style='width:170px; height:24px; margin:5px auto;' id="analyze" value="analyze" onclick="$('#alog').load('http://216.108.229.26/jstree/_demo/server.php?analyze');" />
+	<input type="button" style='width:170px; height:24px; margin:5px auto;' value="reconstruct" onclick="$.get('menuTreeTest?reconstruct', function () { $('#demo').jstree('refresh',-1); });" />
+	<input type="button" style='width:170px; height:24px; margin:5px auto;' id="analyze" value="analyze" onclick="$('#alog').load('menuTreeTest?analyze');" />
 	<input type="button" style='width:170px; height:24px; margin:5px auto;' value="refresh" onclick="$('#demo').jstree('refresh',-1);" />
 </div>
 <div id='alog' style="border:1px solid gray; padding:5px; height:100px; margin-top:15px; overflow:auto; font-family:Monospace;"></div>
@@ -53,7 +53,7 @@ $("#demo")
 			// All the options are almost the same as jQuery's AJAX (read the docs)
 			"ajax" : {
 				// the URL to fetch the data
-				"url" : "http://216.108.229.26/jstree/_demo/server.php",
+				"url" : "menuTreeTest",
 				// the `data` function is executed in the instance's scope
 				// the parameter is the node being loaded 
 				// (may be -1, 0, or undefined when loading the root nodes)
@@ -71,7 +71,7 @@ $("#demo")
 			// As this has been a common question - async search
 			// Same as above - the `ajax` config option is actually jQuery's AJAX object
 			"ajax" : {
-				"url" : "http://216.108.229.26/jstree/_demo/server.php",
+				"url" : "menuTreeTest",
 				// You get the search string as a parameter
 				"data" : function (str) {
 					return { 
@@ -142,7 +142,7 @@ $("#demo")
 	})
 	.bind("create.jstree", function (e, data) {
 		$.post(
-			"http://216.108.229.26/jstree/_demo/server.php", 
+			"menuTreeTest", 
 			{ 
 				"operation" : "create_node", 
 				"id" : data.rslt.parent.attr("id").replace("node_",""), 
@@ -165,7 +165,7 @@ $("#demo")
 			$.ajax({
 				async : false,
 				type: 'POST',
-				url: "http://216.108.229.26/jstree/_demo/server.php",
+				url: "menuTreeTest",
 				data : { 
 					"operation" : "remove_node", 
 					"id" : this.id.replace("node_","")
@@ -180,7 +180,7 @@ $("#demo")
 	})
 	.bind("rename.jstree", function (e, data) {
 		$.post(
-			"http://216.108.229.26/jstree/_demo/server.php", 
+			"menuTreeTest", 
 			{ 
 				"operation" : "rename_node", 
 				"id" : data.rslt.obj.attr("id").replace("node_",""),
@@ -198,7 +198,7 @@ $("#demo")
 			$.ajax({
 				async : false,
 				type: 'POST',
-				url: "http://216.108.229.26/jstree/_demo/server.php",
+				url: "menuTreeTest",
 				data : { 
 					"operation" : "move_node", 
 					"id" : $(this).attr("id").replace("node_",""), 
