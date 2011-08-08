@@ -284,7 +284,7 @@ String username="qk";
 
 
 <div class="ui-layout-north">
-	<div class="header">云端统一通信平台</div>
+	<div class="header">统一开发通信平台</div>
 	
 	
 	
@@ -303,43 +303,14 @@ String username="qk";
 	<!-- DIVs for the INNER LAYOUT -->
 	<div class="ui-layout-center">
 			<div id="tabs">
-				<ul id="ultab">
-				</ul>
-				<DIV class="ui-layout-content">
-				<div id="tabs-1">
+				<DIV class="ui-layout-content" style="overflow: hidden;">
+					<div id="tabs-1">
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ui-layout-south">详细信息显示内容栏</div>
+	<div class="ui-layout-south" style="background-color: ">详细信息显示内容栏</div>
 </div>
 
-<script>
-	$(function() {
-		var icons = {
-				header: "ui-icon-circle-arrow-e",
-				headerSelected: "ui-icon-circle-arrow-s"
-			};
-		$( "#accordion" ).show();
-		$( "#accordion" ).accordion();
-		$( "#accordion" ).accordion( "option", "autoHeight", true );
-		$( "#accordion" ).accordion({ clearStyle: true });
-		$( "#accordion" ).accordion( "option", "icons", icons );
-	});
-	/**
-	* createInnerLayout
-	*/
-	function createInnerLayout () {
-	    // innerLayout is INSIDE the center-pane of the outerLayout
-	    //debugData( layoutSettings_Inner );
-	    innerLayout = $( outerLayout.options.center.paneSelector ).layout( layoutSettings_Inner );
-	    // hide 'Create Inner Layout' commands and show the list of testing commands
-	    $('#createInner').hide();
-	    $('#createInner2').hide();
-	    $('#innerCommands').show();
-	    //innerLayout.toggle('north')
-	    //innerLayout.sizePane('north', 150)
-	}
-	</script>
 </body>
 </html>
