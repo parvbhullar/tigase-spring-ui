@@ -3,6 +3,7 @@
 		undefined, isRegExpBroken = 'B'.replace(/A(.)|B/, '$1') === '$1';
 
 	var tinymce = {
+			
 		majorVersion : '3',
 
 		minorVersion : '4.3.2',
@@ -10,6 +11,7 @@
 		releaseDate : '2011-06-30',
 
 		_init : function() {
+			//console.info("init");
 			var t = this, d = document, na = navigator, ua = na.userAgent, i, nl, n, base, p, v;
 
 			t.isOpera = win.opera && opera.buildNumber;
@@ -43,7 +45,9 @@
 
 			// If base element found, add that infront of baseURL
 			nl = d.getElementsByTagName('base');
+			//console.info("nl="+nl.length);
 			for (i=0; i<nl.length; i++) {
+				//console.info("i="+i);
 				if (v = nl[i].href) {
 					// Host only value like http://site.com or http://site.com:8008
 					if (/^https?:\/\/[^\/]+$/.test(v))
@@ -8295,6 +8299,7 @@ window.tinymce.dom.Sizzle = Sizzle;
 })(tinymce);
 (function(tinymce) {
 	tinymce.dom.ScriptLoader = function(settings) {
+		//console.info("tinymce.dom.ScriptLoader=");
 		var QUEUED = 0,
 			LOADING = 1,
 			LOADED = 2,
@@ -8307,6 +8312,7 @@ window.tinymce.dom.Sizzle = Sizzle;
 
 		function loadScript(url, callback) {
 			var t = this, dom = tinymce.DOM, elm, uri, loc, id;
+			//console.info("url="+url);
 
 			// Execute callback when script is loaded
 			function done() {
@@ -8409,6 +8415,7 @@ window.tinymce.dom.Sizzle = Sizzle;
 		};
 
 		this.add = this.load = function(url, callback, scope) {
+			//console.info("url="+url)
 			var item, state = states[url];
 
 			// Add url to load queue
@@ -11091,7 +11098,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 
 				if (s.theme && s.theme.charAt(0) != '-' && !ThemeManager.urls[s.theme])
 					ThemeManager.load(s.theme, 'themes/' + s.theme + '/editor_template' + tinymce.suffix + '.js');
-
+				//console.info("s.theme="+s.theme);
 				each(explode(s.plugins), function(p) {
 					if (p &&!PluginManager.urls[p]) {
 						if (p.charAt(0) == '-') {
@@ -12004,6 +12011,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 			}
 
 			// Plugin commands
+			//console.info("plugin commands");
 			each(t.plugins, function(p) {
 				if (p.execCommand && p.execCommand(cmd, ui, val)) {
 					t.onExecCommand.dispatch(t, cmd, ui, val, a);
@@ -14621,6 +14629,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 }(tinymce));
 (function(tinymce) {
 	tinymce.Formatter = function(ed) {
+		//console.info("tinymce");;
 		var formats = {},
 			each = tinymce.each,
 			dom = ed.dom,
