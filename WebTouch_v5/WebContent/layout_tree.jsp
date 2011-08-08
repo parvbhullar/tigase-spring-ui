@@ -35,10 +35,6 @@ String username="qk";
     <script type="text/javascript" src="js/im/webim.js"></script>
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
-    ckeditor.js
-    <!--  
-    <script type="text/javascript" src="js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-    -->
 <script type="text/javascript">
 /*
  * complex.html
