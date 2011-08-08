@@ -3,6 +3,7 @@
  */
 $(document).ready( function() {		
 	/*表格初始化开始*/
+			
 	      $("#listTable").jqGrid({ 
 	  		url:'mail/mailReceive.action', 
 	  		datatype: 'json', 

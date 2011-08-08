@@ -383,7 +383,7 @@ $(function () {
 
 
 <div class="ui-layout-north">
-	<div class="header">云端统一通信平台</div>
+	<div class="header">统一开发通信平台</div>
 	
 	
 	
@@ -510,6 +510,7 @@ $(function () {
 
 <script>
 	$(function() {
+		alert("513");
 		var icons = {
 				header: "ui-icon-circle-arrow-e",
 				headerSelected: "ui-icon-circle-arrow-s"
