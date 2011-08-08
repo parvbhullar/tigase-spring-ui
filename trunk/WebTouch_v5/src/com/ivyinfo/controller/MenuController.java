@@ -53,6 +53,20 @@ public class MenuController{
 		}
     }   
     
+    @RequestMapping("/menuTreeTest")   
+    public void menuTreeTest(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    	response.setContentType("text/html;charset=utf-8");
+		PrintWriter   out   =   response.getWriter(); 
+		
+    	try {
+//    		String str=this.getTreeJson("010102");
+    		String str=this.getTreeJson("0102");
+    		logger.info("str="+str);
+            response.getWriter().print(str);
+    	} catch (Exception e) {
+		}
+    }
+    
     /**
 	 * 
 	 * @param nodeid
