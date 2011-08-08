@@ -309,7 +309,7 @@ String username="qk";
 			</div>
 		</div>
 	</div>
-	<div class="ui-layout-south" style="background-color: ">详细信息显示内容栏</div>
+	<div class="ui-layout-south" style="background-color: "></div>
 </div>
 
 </body>
