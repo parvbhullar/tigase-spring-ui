@@ -51,7 +51,7 @@ $("#demotree")
 					// the result is fed to the AJAX request `data` option
 					return { 
 						"operation" : "get_children", 
-						"id" : n.attr ? n.attr("id").replace("node_","") : "0102" 
+						"id" : n.attr ? n.attr("id") : "0102" 
 					}; 
 				}
 				//"data":  "parentid":"0102"
