@@ -57,10 +57,12 @@ public class MenuController{
     public void menuTreeTest(HttpServletRequest request, HttpServletResponse response) throws IOException{
     	response.setContentType("text/html;charset=utf-8");
 		PrintWriter   out   =   response.getWriter(); 
-		
+		String parentid=(String)request.getParameter("id");
     	try {
 //    		String str=this.getTreeJson("010102");
-    		String str=this.getTreeJson("0102");
+    		
+    		String str=this.getTreeJson(parentid);
+    		logger.info("parentid="+parentid);
     		logger.info("str="+str);
 //    		str="[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]";
             response.getWriter().print(str);
