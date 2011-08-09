@@ -62,6 +62,7 @@ public class MenuController{
 //    		String str=this.getTreeJson("010102");
     		String str=this.getTreeJson("0102");
     		logger.info("str="+str);
+//    		str="[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]";
             response.getWriter().print(str);
     	} catch (Exception e) {
 		}
@@ -81,18 +82,25 @@ public class MenuController{
 		for(int i=0;i<menuList.size();i++){
         	JSONObject jSONObject=new JSONObject();
         	BaseDto dto=(BaseDto)menuList.get(i);
-
+        	String leaf=(String)dto.get("leaf");
+        	String state="closed";
+        	if("1".equals(leaf))
+        		state="";
 			if(i==0)
 			{
-				sb.append("\"data\"").append(":\"").append(dto.get("text")).append("\"");
-				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
-				
+				sb.append("\"data\"").append(":\"").append(dto.get("text"))
+				.append("\",\"state\":\"").append(state).append("\"")
+				.append(",\"attr\" : { \"id\" : \"").append(dto.get("id"))
+				.append("\",\"rel\":\"").append("folder").append("")
+				.append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
 			}
 			else
 			{
-				sb.append(",{\"data\"").append(":\"").append(dto.get("text")).append("\"");
-				sb.append(",\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
-				
+				sb.append(",{\"data\"").append(":\"").append(dto.get("text"))
+				.append("\",\"state\":\"").append(state).append("\"")
+				.append(",\"attr\" : { \"id\" : \"").append(dto.get("id"))
+				.append("\",\"rel\":\"").append("default").append("")
+				.append("\",\"alt\":\"").append(dto.get("request")).append("\"}}");
 			}
         }
 		if(menuList.size()>1)
