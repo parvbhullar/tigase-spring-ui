@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jQuery File Upload Example</title>
+<script type="text/javascript" src="jsp/date/date.js"></script>
+
+
+</head>
+<body>
+<a href="#" class="button">查询</a>
+<a href="#" class="button" id="add">新增</a>
+<a href="#" class="button" id="delete">删除</a>
+
+	<div>
+		<div id="addForm" >
+			
+			<div class="span-2">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+      <div class="span-18">
+        <form id="userForm" action="" method="post">
+            <p>
+              <label for="logname">用户名:</label>
+              <input type="text" class="text" name="logname" id="logname" value="" style="width:200px">
+              <label for="logname">日&nbsp;&nbsp;&nbsp;&nbsp;期:</label>
+              <input type="text" class="text Wdate" name="date1" id="date1" value="" style="width:200px" onClick="WdatePicker()" readonly="readonly">
+            </p>
+
+            <p>
+              <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+              <input type="text" class="required text" id="password" name="password" value="" style="width:200px">
+              <label for="logname">日&nbsp;&nbsp;&nbsp;&nbsp;期:</label>
+              <input type="text" class="text Wdate" name="date2" id="date2" value="" style="width:200px" onClick="WdatePicker()" readonly="readonly">
+            </p>
+
+            <p>
+              	<a href="#" class="button" id="save">保存</a>
+				<a href="#" class="button" id="cancel">关闭</a>
+            </p>
+        </form>
+      </div>
+		</div>
+	</div>
+</body> 
+</html>
