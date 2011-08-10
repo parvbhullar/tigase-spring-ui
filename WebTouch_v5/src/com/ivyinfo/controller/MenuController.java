@@ -59,12 +59,9 @@ public class MenuController{
 		PrintWriter   out   =   response.getWriter(); 
 		String parentid=(String)request.getParameter("id");
     	try {
-//    		String str=this.getTreeJson("010102");
-    		
     		String str=this.getTreeJson(parentid);
     		logger.info("parentid="+parentid);
     		logger.info("str="+str);
-//    		str="[{'attr':{'id':'node_2','rel':'drive'},'data':'C:','state':'closed'},{'attr':{'id':'node_6','rel':'drive'},'data':'D:','state':''}]";
             response.getWriter().print(str);
     	} catch (Exception e) {
 		}
@@ -113,10 +110,13 @@ public class MenuController{
 		paramDto.put("menuid", nodeid);
 		menuList=helloWorldService.queryMenuItems(paramDto);
 		BaseDto dto=(BaseDto)menuList.get(0);
-
-		sb2.append("\"data\"").append(":\"").append(dto.get("text")).append("\",").append("\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"},").append("\"children\"").append(":").append(sb.toString());
-		sb2.append(",\"state\" : \"open\" }]");
-	
+		if(((String)dto.get("id")).length()==4){//如果是根节点情况
+			sb2.append("\"data\"").append(":\"").append(dto.get("text")).append("\",").append("\"attr\" : { \"id\" : \"").append(dto.get("id")).append("\",\"alt\":\"").append(dto.get("id")).append("\"},").append("\"children\"").append(":").append(sb.toString());
+			sb2.append(",\"state\" : \"open\" }]");
+		}else{
+			sb2=new StringBuffer("");
+			sb2.append(sb.toString());
+		}
 		return sb2.toString();
 	}
 }
