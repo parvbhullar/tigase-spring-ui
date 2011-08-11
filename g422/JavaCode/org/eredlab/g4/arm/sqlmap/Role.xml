@@ -133,7 +133,7 @@
 	
 	<!-- 插入一条角色用户关联记录 -->
 	<insert id="saveSelectUser" parameterClass="dto">
-		INSERT INTO eauserAUTHORIZE (
+		INSERT INTO eauserauthorize (
 		   userid, roleid, authorizeid) 
 		VALUES ( #userid#, #roleid#, #authorizeid#)
 	</insert>
