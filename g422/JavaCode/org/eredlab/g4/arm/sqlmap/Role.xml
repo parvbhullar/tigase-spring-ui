@@ -60,7 +60,7 @@
 	
 	<!-- 插入一条角色表记录 -->
 	<insert id="saveRoleItem" parameterClass="dto">
-		INSERT INTO EAROLE (
+		INSERT INTO earole (
 		   roleid, rolename, deptid, 
 		   roletype, remark,locked) 
 		VALUES (#roleid#, #rolename#, #deptid#,

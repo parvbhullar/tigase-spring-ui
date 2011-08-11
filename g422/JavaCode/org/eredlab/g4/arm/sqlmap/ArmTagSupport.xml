@@ -73,7 +73,7 @@
 	<select id="queryRolesForUserGrant" parameterClass="map" resultClass="roleVo">
 		SELECT 
 			roleid, rolename, deptid, roletype, locked
-		FROM EAROLE WHERE locked = '0' and deptid = #deptid#
+		FROM earole WHERE locked = '0' and deptid = #deptid#
 		<dynamic> 
 			<isNotEmpty prepend="and" property="roletype">
 	          roletype = #roletype#
