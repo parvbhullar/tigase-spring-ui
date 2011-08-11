@@ -123,7 +123,7 @@
 	
 	<!-- 插入一条用户角色关联记录 -->
 	<insert id="saveSelectedRole" parameterClass="dto">
-		INSERT INTO eauserAUTHORIZE (
+		INSERT INTO eauserauthorize (
 		   userid, roleid, authorizeid) 
 		VALUES ( #userid#, #roleid#, #authorizeid#)
 	</insert>
