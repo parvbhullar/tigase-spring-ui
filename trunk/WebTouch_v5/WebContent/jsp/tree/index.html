@@ -43,17 +43,11 @@ $("#demotree")
 			"ajax" : {
 				"url" : "menuTreeTest.action",
 				"data" : function (n) { 
-					// the result is fed to the AJAX request `data` option
 					return { 
 						"operation" : "get_children", 
 						"id" : n.attr ? n.attr("id") : "0102" 
 					}; 
 				}
-				//"data":  "parentid":"0102"
-				//"data" : function (n) { 
-				//	return { 
-				//		"parentid" : "0102" 
-				//	};
 			}
 		},
 	"themes" : {
@@ -63,7 +57,6 @@ $("#demotree")
 	}
 	});
 });
-
 </script>
 </body> 
 </html>

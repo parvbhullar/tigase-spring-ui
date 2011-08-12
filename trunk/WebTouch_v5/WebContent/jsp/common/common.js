@@ -99,4 +99,32 @@ $(document).ready( function() {
 	    		 }); 
 	            return false;
 	        });
+	      
+	      $('#dept').click(function() { 
+	    	  $( "#depttree" ).dialog( "open" );
+	    	  $("#depttree")
+	    		.jstree({ 
+	    			"plugins" : [ 
+	    				"themes","json_data" 
+	    			],
+	    			"json_data" : { 
+	    				"ajax" : {
+	    					"url" : "menuTreeTest.action",
+	    					"data" : function (n) { 
+	    						return { 
+	    							"operation" : "get_children", 
+	    							"id" : n.attr ? n.attr("id") : "0102" 
+	    						}; 
+	    					}
+	    				}
+	    			},
+	    		"themes" : {
+	    	        "theme" : "classic",
+	    	        "dots" : true,
+	    	        "icons" : true 
+	    		}
+	    		});
+	    	  
+	        });
+	      $( "#depttree" ).dialog({autoOpen: false,modal: true});
 })
