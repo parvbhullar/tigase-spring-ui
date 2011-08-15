@@ -100,8 +100,10 @@ $(document).ready( function() {
 	            return false;
 	        });
 	      
-	      $('#dept').click(function() { 
-	    	  $( "#depttree" ).dialog( "open" );
+	      $('#dept').click(function() {
+	    	  $("#parentdepttree").show();
+	    	  $("#depttree" ).dialog( "open" );
+	    	  
 	    	  $("#depttree")
 	    		.jstree({ 
 	    			"plugins" : [ 
