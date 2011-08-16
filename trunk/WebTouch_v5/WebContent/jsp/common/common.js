@@ -100,6 +100,8 @@ $(document).ready( function() {
 	            return false;
 	        });
 	      
+	      var singleCheckNode;
+	      
 	      $('#dept').click(function() { 
 	    	  $( "#depttree" ).dialog( "open" );
 	    	  $("#depttree").show();
@@ -128,8 +130,12 @@ $(document).ready( function() {
 	    		checkbox : { "two_state" : true }
 	    		})
 	    		.bind("change_state.jstree", function(e, data){
+	    			if(data.inst.get_checked().length==1){ 
+	    				singleCheckNode=data.rslt[0]; 
+	            }
 	    	        if(data.inst.get_checked().length>1){ 
-	                    data.inst.uncheck_node(data.rslt[0]); 
+	                    data.inst.uncheck_node(singleCheckNode);
+	                    singleCheckNode=data.rslt[0];
 	            }})
 	            .bind("loaded.jstree", function(event, data) {
 	            	$('.jstree-last').find('ins.jstree-checkbox').hide();
