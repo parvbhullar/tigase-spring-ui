@@ -100,14 +100,14 @@ $(document).ready( function() {
 	            return false;
 	        });
 	      
-	      $('#dept').click(function() {
-	    	  $("#parentdepttree").show();
-	    	  $("#depttree" ).dialog( "open" );
-	    	  
+	      $('#dept').click(function() { 
+	    	  $( "#depttree" ).dialog( "open" );
+	    	  $("#depttree").show();
+	    	  //console.info("open");
 	    	  $("#depttree")
 	    		.jstree({ 
 	    			"plugins" : [ 
-	    				"themes","json_data" 
+	    				"themes","json_data","checkbox","ui"
 	    			],
 	    			"json_data" : { 
 	    				"ajax" : {
@@ -124,9 +124,18 @@ $(document).ready( function() {
 	    	        "theme" : "classic",
 	    	        "dots" : true,
 	    	        "icons" : true 
-	    		}
-	    		});
-	    	  
+	    		},
+	    		checkbox : { "two_state" : true }
+	    		})
+	    		.bind("change_state.jstree", function(e, data){
+	    	        if(data.inst.get_checked().length>1){ 
+	                    data.inst.uncheck_node(data.rslt[0]); 
+	            }})
+	            .bind("loaded.jstree", function(event, data) {
+	            	$('.jstree-last').find('ins.jstree-checkbox').hide();
+	            	$('.jstree-closed').find('ins.jstree-checkbox').hide();
+				})
+	            ;
 	        });
 	      $( "#depttree" ).dialog({autoOpen: false,modal: true});
 })
