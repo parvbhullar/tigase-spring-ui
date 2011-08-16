@@ -28,6 +28,11 @@ $(document).ready( function() {
 				  },
 				  complete:function(){
 					  
+					  var modules = [
+					                 { include: true, incfile:'../jsp/common/common.js'}
+					             ];
+					  jsInclude(modules);
+					  
 				  }
 			});
 		   //alert("data="+data);
