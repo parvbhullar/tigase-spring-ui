@@ -25,7 +25,9 @@ $(document).ready( function() {
 				  success: function(data) {
 					  $("#tabs-1").html("");
 					  $("#tabs-1").html(data);
-				  },
+				  }
+		   			/*
+		   			,
 				  complete:function(){
 					  
 					  var modules = [
@@ -33,7 +35,7 @@ $(document).ready( function() {
 					             ];
 					  jsInclude(modules);
 					  
-				  }
+				  }*/
 			});
 		   //alert("data="+data);
 		   // Do my action
