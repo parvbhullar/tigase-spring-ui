@@ -168,7 +168,7 @@
 <!-- 编译源文件--> 
 <!-- =================================================================== --> 
 <target name="build" depends="prepare-src"> 
-   <javac srcdir="${build.src}" destdir="${buildwar.dest}/WEB-INF/classes" debug="${debug}" optimize="${optimize}"> 
+   <javac srcdir="${build.src}" encoding="ASCII" destdir="${buildwar.dest}/WEB-INF/classes" debug="${debug}" optimize="${optimize}"> 
     <classpath refid="classpath" /> 
    </javac> 
    <copy todir="${buildwar.dest}/WEB-INF/classes"> 
