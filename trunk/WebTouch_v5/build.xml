@@ -87,12 +87,14 @@
 <!--    classpath --> 
    <path id="classpath"> 
    
+   	<!-- 
     <fileset dir="${j2eelib.dir}"> 
      <include name="**/*.jar"/> 
     </fileset> 
    	<fileset dir="${ivyinfo-commonlib}"> 
    	     <include name="**/*.jar"/> 
    	    </fileset>
+   	-->
     <fileset dir="${lib.dir}"> 
      <include name="**/*.jar"/> 
     </fileset> 
