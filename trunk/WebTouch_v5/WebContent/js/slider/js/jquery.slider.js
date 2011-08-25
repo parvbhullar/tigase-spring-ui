@@ -10,18 +10,17 @@
 * usage as:
 *     var slider = $.fn.jSlider({...});
 *     slider.setSliderValue(value,callback);
-* Copyright 2008, 2009 Jericho [ thisnamemeansnothing[at]gmail.com ]
+* Copyright 2008, 2009 Jericho [ thisnamemeansnothing[at]gmail.com ] 
 */
 (function($) {
-    $.extend($, {
+    $.extend($.fn, {
         ///<summary>
         /// apply a slider UI
         ///</summary>
-        airad: function(setting) {
+        jSlider: function(setting) {
             var ps = $.extend({
                 //content holder(Object || css Selector)
                 renderTo: $(document.body),
-                url:	"jsp/ad/defaultTemplate.html",
                 //whether the slider can be dragged
                 enable: true,
                 //'max' or 'min'
@@ -41,19 +40,14 @@
                 //fired when the users doppped the slider
                 onChanged: function() { }
             }, setting);
-            $.ajax({
-				  url: ps.url,
-				  success: function(data) {
-					  $(ps.renderTo).html("");
-					  $(ps.renderTo).html(data);
-				  }
-			});
+            
+            ps.renderTo = (typeof ps.renderTo == 'string' ? $(ps.renderTo) : ps.renderTo);
 
             /* ---------->
             html tree:
             <div> ---->sliderbar
             <div>&nbsp;</div>   ----> completed bar
-            <div>&nbsp;</div>   ----> slider
+            <div>&nbsp;</div>   ----> slider                  
             </div>
             <-----------*/
             var sliderbar = $('<div><div>&nbsp;</div><div>&nbsp;</div></div>')
@@ -125,7 +119,7 @@
 
                 var s = this;
 
-                //validate
+                //validate 
                 if (typeof s == 'undefined' ||
                     typeof s.data == 'undefined' ||
                         typeof s.data.bar == 'undefined') {

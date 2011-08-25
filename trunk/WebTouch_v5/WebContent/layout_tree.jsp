@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<% 
+<%
 String ctxindex = request.getContextPath();
 
 String username="qk";
@@ -32,9 +32,9 @@ String username="qk";
     <script type="text/javascript" src="js/im/webim.js"></script>
     <script type="text/javascript" src="js/im/i18n/webim-zh-CN.js"></script>
     <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
-    <!--  
+
     <script type="text/javascript" src="jsp/common/system.js"></script>
-    -->
+
 <script type="text/javascript">
 /*
  * complex.html
@@ -68,7 +68,7 @@ String username="qk";
 		 */
 
 		// BIND events to hard-coded buttons in the NORTH toolbar
-		
+
 		//outerLayout.addToggleBtn( "#tbarToggleNorth", "north" );
 		//outerLayout.addOpenBtn( "#tbarOpenSouth", "south" );
 		//outerLayout.addCloseBtn( "#tbarCloseSouth", "south" );
@@ -252,7 +252,7 @@ String username="qk";
 
 	//$("#accordion").accordion();
 	var accord=$('#accordion').accordion('option', 'animated')
-	
+
 
 	/**
 	* createInnerLayout
@@ -266,14 +266,14 @@ String username="qk";
 	    $('#createInner2').hide();
 	    $('#innerCommands').show();
 	}
-	
+
 </script>
 </head>
 <body>
 
 <div class="ui-layout-west">
 
-	
+
 	<div class="header">导航栏</div>
 
 	<div class="content" style="position: relative; height: 174px; visibility: visible;">
@@ -286,9 +286,9 @@ String username="qk";
 
 <div class="ui-layout-north">
 	<div class="header">统一开发通信平台</div>
-	
-	
-	
+
+
+
 </div>
 
 
