@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Slider Demo</title>
+    <link rel="Stylesheet" href="js/slider/css/jquery.slider.css" type="text/css"/>
+    <style type="text/css">
+        *
+        {
+        	font-family:Verdana;
+        	font-size:10px;
+        	-moz-user-select:none;
+        	}
+        fieldset
+        {
+        	border:solid 1px #dedede;
+        	padding:0 10px;
+        	}
+        fieldset legend
+        {
+        	background-color:#FFF5FA;
+            border:1px solid #F8B3D0;
+            padding:5px 10px;
+        	}
+        .slidercontainer
+        {
+        	margin:20px auto 10px auto;
+        	}
+        #myFont
+        {
+        	height:50px;
+        	line-height:50px;
+        	}
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.slider.js"></script>
+    <script type="text/javascript">
+        $().ready(function() {
+            document.onselectstart = new Function('return false');
+
+            /* simple slider[default skin] */
+            var maxFont = 30;
+            var mf = $('#myFont').css('font-size', 30);
+
+            $.fn.jSlider({
+                renderTo: '#slidercontainer1',
+                size: { barWidth: 400, sliderWidth: 5 },
+                onChanging: function(percentage, e) {
+                    mf.css('font-size', maxFont * percentage);
+                    window.console && console.log('percentage: %s', percentage);
+                }
+            });
+            /* end------------------------- */
+
+            /* slider with setValue method [blue skin] */
+            var size = { width: 128, height: 128 };
+
+            var img = $('#imgCS').css(size);
+            // get slider
+var blue = $.fn.jSlider({
+    renderTo: '#slidercontainer2',
+    size: { barWidth: 500, sliderWidth: 10 },
+    barCssName: 'bluebar',
+    onChanging: function(percentage, e) {
+        img.css({
+            width: size.width * percentage,
+            height: size.height * percentage
+        });
+    },
+    onChanged:function(percentage,e)
+    {
+    	 img.css({
+            width: size.width * percentage,
+            height: size.height * percentage
+        });
+    }
+});
+
+            //set percentage with a callback function
+            blue.setSliderValue(0.65, function(percentage) {
+                img.css({
+                    width: size.width * percentage,
+                    height: size.height * percentage
+                });
+            });
+            /* end------------------------- */
+
+            /* The slider modeled its appearance after that of Downloader.[progress skin] */
+            var s = $.fn.jSlider({
+                renderTo: '#slidercontainer3',
+                size: { barWidth: 90, sliderWidth: 0 },
+                barCssName: 'progressbar',
+                enable: false
+            });
+
+            var v1 = $('<div>0%</div>').insertAfter(s.data.bar);
+
+            var s2 = $.fn.jSlider({
+                renderTo: '#slidercontainer3',
+                size: { barWidth: 164, sliderWidth: 0 },
+                barCssName: 'progressbar2',
+                enable: false
+            });
+            //set percentage without the callback function
+            //initialize the properties of timer
+            window.$step = 0.01;
+            window.$value = 0;
+            window.$p = s;
+            window.$p2 = s2;
+            window.$v1 = v1;
+            //timer start
+            timer();
+        });
+        //downloader effect
+        function timer() {
+            this.setValue = function() {
+                $p.setSliderValue($value);
+                $p2.setSliderValue($value);
+                $v1.html(parseInt($value * 100) + '%');
+            }
+            this.setValue();
+            $value += $step;
+            if ($value <= 1) {
+                setTimeout('timer()', 100);
+            }
+            else {
+                $value = 1;
+                this.setValue();
+            }
+        }
+    </script>
+</head>
+<body>
+<fieldset style="width:420px">
+    <legend>Using Slider to change the font-size(Default Skin)</legend>
+    <div id="myFont">Hello, world!</div>
+    <div id="slidercontainer1" class="slidercontainer"></div>
+</fieldset>
+<br />
+<br />
+<fieldset style="width:520px;height:200px;">
+    <legend>Using Slider to change the size of image(Blue Skin)</legend>
+    <div id="slidercontainer2" class="slidercontainer"></div>
+    <img id="imgCS" src="images/cs.png" alt="Zoom me!" />
+</fieldset>
+<br />
+<br />
+<fieldset style="width:520px;">
+    <legend>Using Slider as a downloader(Progress Skin)</legend>
+    <div id="slidercontainer3" class="slidercontainer"></div>
+</fieldset>
+</body>
+</html>
