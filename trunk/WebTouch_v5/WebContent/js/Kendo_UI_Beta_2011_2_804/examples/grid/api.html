@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>API</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+
+            <div class="configuration" style="width:200px">
+                <span class="configHead">Configuration</span>
+                <span class="configTitle">API Functions</span>
+                <ul class="options">
+                    <li>
+                        <input type="number" value="0" id="selectRow"/>
+                        <button class="selectRow t-button">Select row</button>
+                    </li>
+                    <li>
+                        <button class="clearSelection t-button">Clear selected rows</button>
+                    </li>
+                    <li>
+                        <input type="number" value="0" id="groupRow"/>
+                        <button class="toggleGroup t-button">Collapse/Expand group</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="grid" style="width:500px;"></div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#grid").kendoGrid({
+                        dataSource: {
+                            data: createRandomData(20),
+                            pageSize: 5,
+                            group: {
+                                field: "Age",
+                                dir: "asc"
+                            }
+                        },
+                        selectable: "multiple row",
+                        pageable: true,
+                        scrollable: false,
+                        groupable: true,
+                        columns: [
+                            {
+                                field: "FirstName",
+                                title: "First Name"
+                            },
+                            {
+                                field: "LastName",
+                                title: "Last Name"
+                            },
+                            {
+                                field: "Age"
+                            }
+                        ]
+                    });
+
+                    $(".clearSelection").click(function() {
+                        $("#grid").data("kendoGrid").clearSelection();
+                    });
+
+                    $(".selectRow").click(function(e) {
+                        var grid = $("#grid").data("kendoGrid"),
+                            rowIndex = $("#selectRow").val(),
+                            row = grid.tbody.find(">tr:not(.t-grouping-row)").eq(rowIndex);
+
+                        grid.select(row);
+                    });
+
+                    $(".toggleGroup").click(function(e) {
+                        var grid = $("#grid").data("kendoGrid"),
+                            rowIndex = $("#groupRow").val(),
+                            row = grid.tbody.find(">tr.t-grouping-row").eq(rowIndex);
+
+                        if(row.has(".t-collapse").length) {
+                            grid.collapseGroup(row);
+                        } else {
+                            grid.expandGroup(row);
+                        }
+                    });
+                });
+            </script>
+
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs -->
+                <li>Configuration (9)</li>
+                <li>Methods (5)</li>
+                <li>Events (2)</li><!-- help-tabs -->
+                        </ul><!-- description -->
+        <div class="description">
+        <p>     The Grid widget displays tabular data and offers rich support interacting with data,     including paging, sorting, grouping, and selection. Grid is a powerful widget with     many configuration options. It can be bound to local JSON data or to remote data     using the Kendo DataSource component. </p> <h3>Getting Started</h3> There are two primary ways to create a Kendo Grid: <ol>     <li>From an existing HTML table element, defining columns, rows, and data in HTML</li>     <li>From an HTML div element, defining columns and rows with configuration, and binding to data</li> </ol><div class="code-sample"><h4 class="code-title">Creating a <b>Grid</b> from existing HTML Table element</h4><pre class="code prettyprint"><code> &lt;!-- Define the HTML table, with rows, columns, and data --&gt; &lt;table id="grid"&gt;  &lt;thead&gt;      &lt;tr&gt;          &lt;th data-field="title"&gt;Title&lt;th&gt;          &lt;th data-field="year"&gt;Year&lt;th&gt;      &lt;/tr&gt;  &lt;/thead&gt;  &lt;tbody&gt;      &lt;tr&gt;          &lt;td&gt;Star Wars: A New Hope&lt;td&gt;          &lt;td&gt;1977&lt;td&gt;      &lt;/tr&gt;      &lt;tr&gt;          &lt;td&gt;Star Wars: The Empire Strikes Back&lt;td&gt;          &lt;td&gt;1980&lt;td&gt;      &lt;/tr&gt;  &lt;/tbody&gt; &lt;/table&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">Initialize the Kendo Grid</h4><pre class="code prettyprint"><code>  $(document).ready(function(){      $("#grid").kendoGrid();  });</code></pre></div><div class="code-sample"><h4 class="code-title">Creating a <b>Grid</b> from existing HTML Div element</h4><pre class="code prettyprint"><code> &lt;!-- Define the HTML div that will hold the Grid --&gt; &lt;div id="grid"&gt; &lt;/div&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">Initialize the Kendo Grid and configure columns & data binding</h4><pre class="code prettyprint"><code>   $(document).ready(function(){      $("#grid").kendoGrid({          columns:[              {                  field: "FirstName",                  title: "First Name"              },              {                  field: "LastName",                  title: "Last Name"          }],          dataSource: {              data: [                  {                      FirstName: "Joe",                      LastName: "Smith"                  },                  {                      FirstName: "Jane",                      LastName: "Smith"              }]          }      });  });</code></pre></div><h3>Configuring Grid Behavior</h3> Kendo Grid supports paging, sorting, grouping, and scrolling. Configuring any of these Grid behaviors is done using simple boolean configuration options. For example, the follow snippet shows how to enable all of these behaviors.<div class="code-sample"><h4 class="code-title">Enabling Grid paging, sorting, grouping, and scrolling</h4><pre class="code prettyprint"><code>   $(document).ready(function(){      $("#grid").kendoGrid({         groupable: true,         scrollable: true,         sortable: true,         pageable: true      });  });</code></pre></div>By default, paging, grouping, and sorting are <strong>disabled</strong>. Scrolling is enabled by default. <h3>Performance with Virtual Scrolling</h3> When binding to large data sets or when using large page sizes, reducing active in-memory DOM objects is important for performance. Kendo Grid provides built-in UI virtualization for highly optimized binding to large data sets. Enabling UI virtualization is done via simple configuration.<div class="code-sample"><h4 class="code-title">Enabling Grid UI virtualization</h4><pre class="code prettyprint"><code>   $(document).ready(function(){      $("#grid").kendoGrid({         scrollable: {             virtual: true         }      });  });</code></pre></div>
+        </div><!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data -->
+            <div class="optionsContainer">
+                <!-- configuration -->
+                <div class="detailHandle"><div class="detailCollapsed"></div><a name="autoBind"><code class="symbol">autoBind</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Indicates whether the grid will call query on DataSource initially.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="columns"><code class="symbol">columns</code></a>: <span class="type">Array</span></div><div class="detailBody"><div class="desc">A collection of column objects or collection of strings that represents the name of the fields.</div><div class="detailHandle"><div class="detailCollapsed"></div><a name="field"><code class="symbol">field</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The field that will displayed in the column.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="template"><code class="symbol">template</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The template for column's cells.</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>$(".t-grid").kendoGrid({     dataSource: {         data: createRandomData(50),         pageSize: 10     },     columns: [         {             field: "Name"         },         {             field: "BirthDate",             title: "Birth Date",             template: '<#= kendo.toString(BirthDate,"dd MMMM yyyy") #>'        }     ]  });</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="title"><code class="symbol">title</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The title that will displayed in the column header.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="width"><code class="symbol">width</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The width of the column.</div></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="dataSource"><code class="symbol">dataSource</code></a>: <span class="type">kendo.data.DataSource|Object</span></div><div class="detailBody"><div class="desc">Instance of DataSource or Object with DataSource configuration.</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>var sharedDataSource = new kendo.data.DataSource({     data: [{title: "Star Wars: A New Hope", year: 1977}, {title: "Star Wars: The Empire Strikes Back", year: 1980}],     pageSize: 1});$("#grid").kendoGrid({     dataSource: sharedDataSource }); //or $("#grid").kendoGrid({     dataSource: {         data: [{title: "Star Wars: A New Hope", year: 1977}, {title: "Star Wars: The Empire Strikes Back", year: 1980}],         pageSize: 1     } });</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="groupable"><code class="symbol">groupable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Indicates whether grouping is enabled/disabled.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="navigatable"><code class="symbol">navigatable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Indicates whether keyboard navigation is enabled/disabled.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="pageable"><code class="symbol">pageable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Indicates whether paging is enabled/disabled.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="rowTemplate"><code class="symbol">rowTemplate</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Template to be used for rendering the rows in the grid.</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>//template &lt;script id="rowTemplate" type="text/x-kendo-tmpl"&gt;     &lt;tr&gt;         &lt;td&gt;             &lt;img src="${ BoxArt.SmallUrl }" alt="${ Name }" /&gt;         &lt;/td&gt;         &lt;td&gt;             ${ Name }         &lt;/td&gt;         &lt;td&gt;             ${ AverageRating }         &lt;/td&gt;     &lt;/tr&gt; &lt;/script&gt; //grid intialization &lt;script&gt;     $("#grid").kendoGrid({         dataSource: dataSource,         rowTemplate: kendo.template($("#rowTemplate").html()),         height: 200     }); &lt;/script&gt;</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="scrollable"><code class="symbol">scrollable</code></a>: <span class="type">Boolean|Object</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc"> Enable/disable grid scrolling. Possible values:   <dl>        <dt>             true        </dt>        <dd>             Enables grid vertical scrolling        </dd>        <dt>             false        </dt>        <dd>             Disables grid vertical scrolling        </dd>        <dt>             { virtual: false }        </dt>        <dd>             Enables grid vertical scrolling without data virtualization. Same as first option.        </dd>        <dt>             { virtual: true }        </dt>        <dd>             Enables grid vertical scrolling with data virtualization.        </dd>   </dl></div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>$("#grid").kendoGrid({     scrollable: {         virtual: true //false     } });</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="selectable"><code class="symbol">selectable</code></a>: <span class="type">String</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Indicates whether selection is enabled/disabled. Possible values:   <dl>        <dt>             "row"        </dt>        <dd>             Single row selection.        </dd>        <dt>             "cell"        </dt>        <dd>             Single cell selection.        </dd>        <dt>             "multiple, row"        </dt>        <dd>             Multiple row selection.        </dd>        <dt>             "multiple, cell"        </dt>        <dd>             Multiple cell selection.        </dd>   </dl></div></div>
+                <!-- configuration -->
+            </div>
+            <div class="methodsContainer">
+                <!-- methods -->
+                <ul class="methodDetail" id="MethodDetail">
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="clearSelection"><code>clearSelection</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Clears currently selected items.
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="collapseGroup"><code>collapseGroup</code></a> (group)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Collapses specified group.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>// collapses first group itemgrid.collapseGroup(grid.tbody.find(">tr.t-grouping-row:first"));</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>group</code><span class="light fixedFont">: Selector|DOMElement</span>
+                                        </dt>
+                                        <dd>Target group item to collapse.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="expandGroup"><code>expandGroup</code></a> (group)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Expands specified group.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>// expands first group itemgrid.expandGroup(grid.tbody.find(">tr.t-grouping-row:first"));</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>group</code><span class="light fixedFont">: Selector|DOMElement</span>
+                                        </dt>
+                                        <dd>Target group item to expand.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="refresh"><code>refresh</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Reloads the data and repaints the grid.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var grid = $("#grid").data("kendoGrid");// refreshes the gridgrid.refresh();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="select"><code>select</code></a> (items)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Selects the specified Grid rows/cells. If called without arguments - returns the selected rows/cells.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>// selects first grid itemgrid.select(grid.tbody.find(">tr:first"));</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>items</code><span class="light fixedFont">: Selector|Array</span>
+                                        </dt>
+                                        <dd>Items to select.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                </ul>
+                <!-- methods -->
+            </div>
+            <div class="eventsContainer">
+                <!-- events -->
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="change"><code>change</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the grid selection has changed.
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="dataBound"><code>dataBound</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the grid has received data from the data source.
+                        </div>
+                    </div>
+                <!-- events -->
+            </div><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>
+
+

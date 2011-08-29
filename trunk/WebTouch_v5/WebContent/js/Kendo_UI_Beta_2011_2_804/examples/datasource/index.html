@@ -1,0 +1,577 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>Basic usage</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+            <table id="movies">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Rating</th>
+                        <th>Title</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <script id="template" type="text/x-kendo-template">
+                <tr>
+                    <td><#= rank #></td>
+                    <td><#= rating #></td>
+                    <td><#= title #></td>
+                    <td><#= year #></td>
+                </tr>
+            </script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    // create a template using the above definition
+                    var template = kendo.template($("#template").html());
+
+                    var movies = [
+                        { "rank": 1,  "rating": 9.2, "year": 1994, "title": "The Shawshank Redemption" },
+                        { "rank": 2,  "rating": 9.2, "year": 1972, "title": "The Godfather" },
+                        { "rank": 3,  "rating": 9,   "year": 1974, "title": "The Godfather: Part II" },
+                        { "rank": 4,  "rating": 8.9, "year": 1966, "title": "Il buono, il brutto, il cattivo." },
+                        { "rank": 5,  "rating": 8.9, "year": 1994, "title": "Pulp Fiction" },
+                        { "rank": 6,  "rating": 8.9, "year": 1957, "title": "12 Angry Men" },
+                        { "rank": 7,  "rating": 8.9, "year": 1993, "title": "Schindler's List" },
+                        { "rank": 8,  "rating": 8.8, "year": 1975, "title": "One Flew Over the Cuckoo's Nest" },
+                        { "rank": 9,  "rating": 8.8, "year": 2010, "title": "Inception" },
+                        { "rank": 10, "rating": 8.8, "year": 2008, "title": "The Dark Knight" }
+                    ];
+
+                    var dataSource = new kendo.data.DataSource({
+                        data: movies,
+                        change: function() { // subscribe to the CHANGE event of the data source
+                            $("#movies tbody").html(kendo.render(template, this.view())); // populate the table
+                        }
+                    });
+
+                    // read data from the "movies" array
+                    dataSource.read();
+                });
+            </script>
+
+            <style scoped>
+                #movies {
+                    border-collapse: separate;
+                    border-spacing: 0;
+                }
+
+                #movies th {
+                    background-color: #ef652a;
+                    padding: 9px 6px;
+                    color: #fff;
+                    text-align: left;
+                    line-height: 14px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #d75b26 #d75b26 #d75b26 #f28455;
+                }
+
+                #movies td {
+                    line-height: 23px;
+                    padding: 0 6px;
+                    background: #eaeaea;
+                    color: #3d3d3d;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #f4f4f4 #d6d6d6 #d6d6d6 #f4f4f4;
+                }
+            </style>
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs -->
+                <li>Configuration (14)</li>
+                <li>Methods (13)</li>
+                <li>Events (2)</li><!-- help-tabs -->
+                        </ul><!-- description -->
+        <div class="description">
+        <p>     The DataSource component is an abstraction for using local (arrays of JavaScript objects) or     remote (XML, JSON, JSONP) data. It fully supports CRUD (Create, Read, Update, Destroy) data     operations and provides both local and server-side support for Sorting, Paging, Filtering, Grouping, and Aggregates. </p> <p>     It is a powerful piece of the Kendo UI Framework, dramatically simplifying data binding and data operations. </p> <h3>Getting Started</h3><div class="code-sample"><h4 class="code-title">Creating a DataSource bound to local data</h4><pre class="code prettyprint"><code>var movies = [ {      title: "Star Wars: A New Hope",      year: 1977   }, {     title: "Star Wars: The Empire Strikes Back",     year: 1980   }, {     title: "Star Wars: Return of the Jedi",     year: 1983   }];var localDataSource = new kendo.data.DataSource({data: movies});</code></pre></div><div class="code-sample"><h4 class="code-title">Creating a DataSource bound to a remote data service (Twitter)</h4><pre class="code prettyprint"><code>var dataSource = new kendo.data.DataSource({    transport: {        read: {            // the remote service url            url: "http://search.twitter.com/search.json",            // JSONP is required for cross-domain AJAX            dataType: "jsonp",            // additional parameters sent to the remote service            data: {                q: "html5"            }        }    },    // describe the result format    schema: {        // the data which the data source will be bound to is in the "results" field        data: "results"    }});</code></pre></div><h3>Binding UI widgets to DataSource</h3> <p>     Many Kendo UI widgets support data binding, and the Kendo UI DataSource is an ideal     binding source for both local and remote data. A DataSource can be created in-line     with other UI widget configuration settings, or a shared DataSource can be created     to enable multiple UI widgets to bind to the same, observable data collection. </p><div class="code-sample"><h4 class="code-title">Creating a local DataSource in-line with UI widget configuration</h4><pre class="code prettyprint"><code>$("#chart").kendoChart({    title: {        text: "Employee Sales"    },    dataSource: new kendo.data.DataSource({        data: [        {            employee: "Joe Smith",            sales: 2000        },        {            employee: "Jane Smith",            sales: 2250        },        {            employee: "Will Roberts",            sales: 1550        }]    }),    series: [{        type: "line",        field: "sales",        name: "Sales in Units"    }],    categoryAxis: {        field: "employee"    }});</code></pre></div><div class="code-sample"><h4 class="code-title">Creating and binding to a sharable remote DataSource</h4><pre class="code prettyprint"><code>var sharableDataSource = new kendo.data.DataSource({    transport: {        read: {            url: "data-service.json",            dataType: "json"        }    }});// Bind two UI widgets to same DataSource$("#chart").kendoChart({    title: {        text: "Employee Sales"    },    dataSource: sharableDataSource,    series: [{        field: "sales",        name: "Sales in Units"    }],    categoryAxis: {        field: "employee"    }});$("#grid").kendoGrid({    dataSource: sharableDataSource,        columns: [        {            field: "employee",            title: "Employee"        },        {            field: "sales",            title: "Sales",            template: '&lt;#= kendo.toString(sales, "N0") #&gt;'    }]});</code></pre></div>
+        </div><!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data -->
+            <div class="optionsContainer">
+                <!-- configuration -->
+                <div class="detailHandle"><div class="detailCollapsed"></div><a name="aggregates"><code class="symbol">aggregates</code></a>: <span class="type">Array|Object</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets fields on which initial aggregates should be calculated</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>// calculates total sum of unitPrice field's values.[{ field: "unitPrice", aggregate: "sum" }]</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="data"><code class="symbol">data</code></a>: <span class="type">Array</span></div><div class="detailBody"><div class="desc">The data in the DataSource.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="filter"><code class="symbol">filter</code></a>: <span class="type">Array|Object</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets initial filter</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>// returns only data where orderId is equal to 10248filter: { field: "orderId", operation: "eq", value: 10248 }// returns only data where orderId is equal to 10248 and customerName starts with Paulfilter: [ { field: "orderId", operation: "eq", value: 10248 },          { field: "customerName", operation: "startswith", value: "Paul" } ]</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="group"><code class="symbol">group</code></a>: <span class="type">Array|Object</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets initial grouping</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>// groups data by orderId fieldgroup: { field: "orderId" }// groups data by orderId and customerName fieldsgroup: [ { field: "orderId", dir: "desc" }, { field: "customerName", dir: "asc" } ]</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="page"><code class="symbol">page</code></a>: <span class="type">Number</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets the index of the displayed page of data.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="pageSize"><code class="symbol">pageSize</code></a>: <span class="type">Number</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets the number of records which contains a given page of data.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="schema"><code class="symbol">schema</code></a>: <span class="type">Object</span></div><div class="detailBody"><div class="desc">Set the object responsible for describing the raw data format</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>var dataSource = new kendo.data.DataSource({     transport: {       read: "Catalog/Titles",     },     schema: {         data: function(data) {             return data.result;         },         total: function(data) {             return data.totalCount;         },         parse: function(data) {             return data;         }     } });</code></pre></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="data"><code class="symbol">data</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Should return the deserialized data.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="group"><code class="symbol">group</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Used instead of data function if remote grouping operation is executed. Returns the deserialized data.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="parse"><code class="symbol">parse</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Executed before deserialized data is read. Appropriate for preprocessing of the raw data.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="total"><code class="symbol">total</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Should return the total number of records.</div></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="serverAggregates"><code class="symbol">serverAggregates</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Determines if aggregates should be calculated on the server.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="serverFiltering"><code class="symbol">serverFiltering</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Determines if filtering of the data should be handled on the server.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="serverGrouping"><code class="symbol">serverGrouping</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Determines if grouping of the data should be handled on the server.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="serverPaging"><code class="symbol">serverPaging</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Determines if paging of the data should be handled on the server.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="serverSorting"><code class="symbol">serverSorting</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Determines if sorting of the data should be handled on the server.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="sort"><code class="symbol">sort</code></a>: <span class="type">Array|Object</span><span class="defaultValue">(default: undefined)</span></div><div class="detailBody"><div class="desc"> Sets initial sort order</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>// sorts data ascending by orderId fieldsort: { field: "orderId", dir: "asc" }// sorts data ascending by orderId field and then descending by shipmentDatesort: [ { field: "orderId", dir: "asc" }, { field: "shipmentDate", dir: "desc" } ]</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="transport"><code class="symbol">transport</code></a>: <span class="type">Object</span></div><div class="detailBody"><div class="desc">Sets the object responsible for loading and saving of data. This can be a remote or local/in-memory data.</div><div class="detailHandle"><div class="detailCollapsed"></div><a name="dialect"><code class="symbol">dialect</code></a>: <span class="type">Function</span></div><div class="detailBody"><div class="desc">Convert the request parameters from dataSource format to remote service specific format.</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>var dataSource = new kendo.data.DataSource({     transport: {       read: "Catalog/Titles",       dialect: function(options) {          return {             pageIndex: options.page,             size: options.pageSize,             orderBy: convertSort(options.sort)          }       }     } });</code></pre></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="read"><code class="symbol">read</code></a>: <span class="type">Object|String</span></div><div class="detailBody"><div class="desc">Options for remote read data operation or the URL of the remote service</div><div class="code-sample"><h4 class="code-title">Example</h4><pre class="code prettyprint lang-js"><code>// settings various options for remote data transportvar dataSource = new kendo.data.DataSource({    transport: {        read: {            // the remote service URL            url: "http://search.twitter.com/search.json",            // JSONP is required for cross-domain AJAX            dataType: "jsonp",            // additional parameters sent to the remote service            data: {                q: function() {                    return $("#searchFor").val();                }            }        }    }}); // consuming odata feed without setting additional options var dataSource = new kendo.data.DataSource({     type: "odata",     transport: {         read: "http://odata.netflix.com/Catalog/Titles"     } });</code></pre></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="data"><code class="symbol">data</code></a>: <span class="type">Object|Function</span></div><div class="detailBody"><div class="desc">Additional data to be send to the server</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="dataType"><code class="symbol">dataType</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The type of data that you're expecting back from the server</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="url"><code class="symbol">url</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The remote service URL</div></div></div></div>
+                <!-- configuration -->
+            </div>
+            <div class="methodsContainer">
+                <!-- methods -->
+                <ul class="methodDetail" id="MethodDetail">
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="aggregate"><code>aggregate</code></a> (val)
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current aggregate descriptors or applies aggregates to the data.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.aggregate({ field: "orderId", aggregate: "sum" });</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Object|Array</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> Aggregate(s) to be applied to the data.</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Current aggregate descriptors</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="aggregates"><code>aggregates</code></a> ()
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get result of aggregates calculation
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Aggregates result</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="data"><code>data</code></a> (value)
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get data return from the transport
+                                </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>value</code>
+                                        </dt>
+                                        <dd></dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Array of items</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="filter"><code>filter</code></a> (val)
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current filters or filter the data.<p><i>Supported filter operations/aliases are</i>:<ul><li><strong>Equal To</strong>: "eq", "==", "isequalto", "equals", "equalto", "equal"</li><li><strong>Not Equal To</strong>: "neq", "!=", "isnotequalto", "notequals", "notequalto", "notequal", "not", "ne"</li><li><strong>Less Then</strong>: "lt", "<", "islessthan", "lessthan", "less"</li><li><strong>Less Then or Equal To</strong>: "lte", "<=", "islessthanorequalto", "lessthanequal", "le"</li><li><strong>Greater Then</strong>: "gt", ">", "isgreaterthan", "greaterthan", "greater"</li><li><strong>Greater Then or Equal To</strong>: "gte", ">=", "isgreaterthanorequalto", "greaterthanequal", "ge"</li><li><strong>Starts With</strong>: "startswith"</li><li><strong>Ends With</strong>: "endswith"</li><li><strong>Contains</strong>: "contains", "substringof"</li></ul></p>
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.filter({ field: "orderId", operation: "eq", value: 10428 });dataSource.filter([     { field: "orderId", operation: "neq", value: 42 },     { field: "unitPrice", operation: "ge", value: 3.14 }]);</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Object|Array</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> Filter(s) to be applied to the data.</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Current filter descriptors</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="group"><code>group</code></a> (val)
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current group descriptors or group the data.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.group({ field: "orderId" });</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Object|Array</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> Group(s) to be applied to the data.</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Current grouping descriptors</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="page"><code>page</code></a> (val)
+                                : <span class="type">Number</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current page index or request a page with specified index.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.page(2);</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Number</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> The index of the page to be retrieved</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Number</span> Current page index</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="pageSize"><code>pageSize</code></a> (val)
+                                : <span class="type">Number</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current pageSize or request a page with specified number of records.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.pageSiza(25);</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Number</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> The of number of records to be retrieved.</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Number</span> Current page size</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="query"><code>query</code></a> (options)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Executes a query over the data. Available operations are paging, sorting, filtering, grouping.If data is not available or remote operations are enabled data is requested through the transport,otherwise operations are executed over the available data.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>// create a view containing at most 20 records, taken from the// 5th page and sorted ascending by orderId field.dataSource.query({ page: 5, pageSize: 20, sort: { field: "orderId", dir: "asc" } });// moves the view to the first page returning at most 20 records// but without particular ordering.dataSource.query({ page: 1, pageSize: 20 });</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>options</code><span class="light fixedFont">: Object</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd>Contains the settings for the operations. Note: If setting for previous operation is omitted, this operation is not applied to the resulting view</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="read"><code>read</code></a> (additionalData)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Read data from transport
+                                </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>additionalData</code>
+                                        </dt>
+                                        <dd></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="sort"><code>sort</code></a> (val)
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get current sort descriptors or sorts the data.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.sort({ field: "orderId", dir: "desc" });dataSource.sort([     { field: "orderId", dir: "desc" },     { field: "unitPrice", dir: "asc" }]);</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>val</code><span class="light fixedFont">: Object|Array</span>
+                                            (<i>optional</i>)
+                                        </dt>
+                                        <dd><undefined> Sort options to be applied to the data</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Current sort descriptors</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="total"><code>total</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get the total number of records
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="totalPages"><code>totalPages</code></a> ()
+                                : <span class="type">Number</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Get the number of available pages.
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Number</span> Number of available pages.</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="view"><code>view</code></a> ()
+                                : <span class="type">Array</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Returns a view of the data with operation such as in-memory sorting, paring, grouping and filtering are applied.To ensure that data is available this method should be use from within change event of the dataSource.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>dataSource.bind("change", function() {  renderView(dataSource.view());});</code></pre>
+                                        </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">Array</span> Array of items</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                </ul>
+                <!-- methods -->
+            </div>
+            <div class="eventsContainer">
+                <!-- events -->
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="change"><code>change</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when data is changed
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="error"><code>error</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when an error occurs during data retrieval.
+                        </div>
+                    </div>
+                <!-- events -->
+            </div><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>
+
+

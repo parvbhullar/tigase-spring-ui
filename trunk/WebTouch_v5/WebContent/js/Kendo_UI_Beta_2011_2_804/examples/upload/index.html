@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>Basic usage</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+            <div class="configuration">
+                <span class="infoHead">Information</span>
+                <p>
+                    The Upload can be used as a drop-in replacement
+                    for file input elements.
+                </p>
+                <p>
+                    This "synchronous" mode does not require
+                    special handling on the server.
+                </p>
+                <p>
+                    <strong>Note:</strong>
+                    Form submit action is not configured in this demo.
+                </p>
+            </div>
+            <form method="post" style="width:60%">
+                <div>
+                    <input name="files" id="files" type="file" />
+                    <p>
+                        <button type="button" class="t-button t-state-disabled"
+                            disabled="disabled">Submit</button>
+                    </p>
+                </div>
+            </form>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#files").kendoUpload();
+                });
+            </script>
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs -->
+                <li>Configuration (4)</li>
+                <li>Methods (3)</li>
+                <li>Events (7)</li><!-- help-tabs -->
+                        </ul><!-- description -->
+        <div class="description">
+        <p>The Upload widget uses progressive enhancement to deliver the best possibleuploading experience to users without requiring any extra developer effort.Upload is packed with features, including:</p><ul>   <li>Asynchronous and synchronous (on form submit) file upload</li>   <li>Multiple file selection</li>   <li>Removing uploaded files</li>   <li>Progress tracking *</li>   <li>File Drag-and-Drop *</li>   <li>Cancelling upload in progress *</li></ul><p>* These features are automatically enabled if supported by the browser.</p><p>Upload is a standards-based widget. No plug-ins required.</p><h3>Getting Started</h3><p>There are two primary ways to configure Upload:</p><ol>    <li>For synchronous upload using an HTML form and input</li>    <li>For asynchronous upload using a simple HTML input</li></ol><p>The async upload is implemented using the new HTML5 File API,but it will gracefully degrade and continue to functionin legacy browsers (using a hidden IFRAME). If placed inside a form,queued and partially uploaded files will be sent synchronously ifthe async upload is submitted with the form.</p><h3>Configuring for synchronous upload</h3><div class="code-sample"><h4 class="code-title">1. Create a simple HTML form and input element of type "file"</h4><pre class="code prettyprint"><code>&lt;!-- Kendo will automatically set the proper FORM enctype attribute --&gt;&lt;form method="post" action="handler.php"&gt;    &lt;div&gt;        &lt;input name="files" id="files" type="file" /&gt;    &lt;/div&gt;&lt;/form&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">2. Initialize Upload with a jQuery selector</h4><pre class="code prettyprint"><code>   $(document).ready(function() {       $("#files").kendoUpload();   });</code></pre></div><p>It’s important to note that some type of server-side handler is neededto process and save the uploaded files. There are different server-sidetechniques for handling file uploads depending on the technology you use.Please consult the documentation for your server technologyto understand how to implement a basic file handler.</p><h3>Configure for async upload</h3><div class="code-sample"><h4 class="code-title">1. Create a simple HTML input of type "file" (no HTML form is required*)</h4><pre class="code prettyprint"><code>&lt;input name="files" id="files" type="file" /&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">2. Initialize Upload and configure async upload end-points</h4><pre class="code prettyprint"><code>$("#files).kendoUpload({    async: {        saveUrl: "saveHandler.php",        removeUrl: "removeHandler.php",        autoUpload: true    }});</code></pre></div><p>Like synchronous uploads, the async upload requires a server-side handlerto process and save (or remove) the uploaded files. The handlers needs toaccept POST requests. The save action will POST the file upload to the handler(similar to synchronous uploads). The remove action will POST only the name ofthe file that should be removed on the server.</p><h3>Configuring Upload behavior</h3><p>Upload enables most behaviors by default, providing the richest experience possibledepending on browser capabilities. Behaviors can be easily configured, though,using simple configuration properties. Refer to the Upload demo Configurationtab for more information on available properties.</p><div class="code-sample"><h4 class="code-title">Disable Upload default behaviors</h4><pre class="code prettyprint"><code>$("#upload").kendoUpload({    multiple: false,    showFileList: false});</code></pre></div>
+        </div><!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data -->
+            <div class="optionsContainer">
+                <!-- configuration -->
+                <div class="detailHandle"><div class="detailCollapsed"></div><a name="async"><code class="symbol">async</code></a>: <span class="type">Object</span></div><div class="detailBody"><div class="desc">Configures the upload for asynchronous operation.<dl>    <dt>        saveUrl: (String)    </dt>    <dd>        The URL of the handler that will receive the submitted files.        The handler must accept POST requests containing one or more        files with the same name as the upload component.    </dd>    <dt>        removeUrl: (String)    </dt>    <dd>        The URL of the handler responsible for removing uploaded files (if any).        The handler must accept POST requests containing one or more        "fileNames" fields specifying the files to be deleted.    </dd>    <dt>        autoUpload: (Boolean)    </dt>    <dd>        The selected files will be uploaded immediately by default.        You can change this behavior by setting autoUpload to false.    </dd></dl><p>    <strong>Fallback to synchronous upload</strong></p>The Upload has a fallback mechanism when it is placed inside a formand is configured for asynchronous operation.Any files that were not fully uploaded will be sent as part of the formwhen the user submits it. This ensures that no files will be lost,even if you do not take any special measures to block the submit button during upload.<p><em>You have to handle the uploaded files both in the save handler and in the form submit action.</em></p></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="enabled"><code class="symbol">enabled</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc">Can be used to disable the upload. A disabled upload can be enabled by calling enable().</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="multiple"><code class="symbol">multiple</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc">Enables or disables multiple file selection.If set to false, users will be able to select only one file at a time.Note: This option does not limit the total number of uploaded filesin asynchronous configuration.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="showFileList"><code class="symbol">showFileList</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc">Controls whether to show the list of uploaded files.Hiding the list can be useful when you want to fully customize the UI.Use the client-side events to build your own UI.</div></div>
+                <!-- configuration -->
+            </div>
+            <div class="methodsContainer">
+                <!-- methods -->
+                <ul class="methodDetail" id="MethodDetail">
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="disable"><code>disable</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Disables the upload.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var upload = $("#upload").data("kendoUpload");// disables the uploadupload.enable();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="enable"><code>enable</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Enables the upload.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var upload = $("#upload").data("kendoUpload");// enables the uploadupload.enable();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="toggle"><code>toggle</code></a> (enable)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Toggles the upload enabled state.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var upload = $("#upload").data("kendoUpload");// toggles the upload enabled stateupload.toggle();</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>enable</code><span class="light fixedFont">: Boolean</span>
+                                        </dt>
+                                        <dd>(Optional) The new enabled state.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                </ul>
+                <!-- methods -->
+            </div>
+            <div class="eventsContainer">
+                <!-- events -->
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="cancel"><code>cancel</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the upload has been cancelled while in progress.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the files that were uploaded or removed . Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                </dl>
+                            </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="complete"><code>complete</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when all active uploads have completed either successfully or with errors.
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="error"><code>error</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when an upload / remove operation has failed.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the files that were uploaded or removed . Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                    <dt>
+                                        <code>operation</code>
+                                        <span class="type">: String</span>
+                                    </dt>
+                                    <dd>- "upload" or "remove".</dd>
+                                    <dt>
+                                        <code>XMLHttpRequest</code>
+                                        <span class="type">: Object</span>
+                                    </dt>
+                                    <dd>This is either the original XHR used for the operation or a stub containing:<ul>    <li>responseText</li>    <li>status</li>    <li>statusText</li></ul>Verify that this is an actual XHR before accessing any other fields.</dd>
+                                </dl>
+                            </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="remove"><code>remove</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when an uploaded file is about to be removed.Cancelling the event will prevent the remove.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the files that were uploaded or removed . Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                    <dt>
+                                        <code>data</code>
+                                        <span class="type">: Object</span>
+                                    </dt>
+                                    <dd>- undefined by default,but can be set to a custom object to pass information to the save handler.</dd>
+                                </dl>
+                            </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="select"><code>select</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when one or more files are selected.Cancelling the event will prevent the selection.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the selected files. Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                </dl>
+                            </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="success"><code>success</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when an upload / remove operation has been completed successfully.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the files that were uploaded or removed . Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                    <dt>
+                                        <code>operation</code>
+                                        <span class="type">: String</span>
+                                    </dt>
+                                    <dd>- "upload" or "remove".</dd>
+                                    <dt>
+                                        <code>response</code>
+                                        <span class="type">: String</span>
+                                    </dt>
+                                    <dd>- the response object returned by the server.</dd>
+                                    <dt>
+                                        <code>XMLHttpRequest</code>
+                                        <span class="type">: Object</span>
+                                    </dt>
+                                    <dd>This is either the original XHR used for the operation or a stub containing:<ul>    <li>responseText</li>    <li>status</li>    <li>statusText</li></ul>Verify that this is an actual XHR before accessing any other fields.</dd>
+                                </dl>
+                            </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="upload"><code>upload</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when one or more files are about to be uploaded.Cancelling the event will prevent the upload.
+                        </div>
+                            <div class="details-list">
+                                <h4 class="details-title">Event data</h4>
+                                <dl>
+                                    <dt>
+                                        <code>files</code>
+                                        <span class="type">: Array</span>
+                                    </dt>
+                                    <dd>List of the files that will be uploaded. Each file has:<ul>    <li>name</li>    <li>        extension - the file extension        inlcuding the leading dot - ".jpg", ".png", etc.     </li>    <li>size - the file size in bytes (null if not available)</li></ul></dd>
+                                    <dt>
+                                        <code>data</code>
+                                        <span class="type">: Object</span>
+                                    </dt>
+                                    <dd>- undefined by default,but can be set to a custom object to pass information to the save handler.</dd>
+                                </dl>
+                            </div>
+                    </div>
+                <!-- events -->
+            </div><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>
+

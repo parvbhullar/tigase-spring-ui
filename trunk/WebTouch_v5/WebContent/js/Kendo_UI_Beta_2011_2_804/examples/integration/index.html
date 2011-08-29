@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>Integration with KnockoutJS</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="./jquery.tmpl.js"></script>
+        <script src="./knockout-1.2.1.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+            <p> Choose a ticket class: <select id="ticket" style="vertical-align: middle" data-bind="options: tickets,
+                optionsCaption: 'Choose...',
+                optionsText: 'name',
+                optionsValue: 'price',
+                value: chosenTicket"></select>
+            </p>
+            <p data-bind="template: 'ticketTemplate'"></p>
+
+            <script id="ticketTemplate" type="text/x-jquery-tmpl">
+                {{if chosenTicket}}
+                You have chosen <b>${ chosenTicket().name }</b>
+                ($${ chosenTicket() })
+                <button data-bind="click: resetTicket">Clear</button>
+                {{/if}}
+            </script>
+            <script>
+                $(document).ready(function() {
+                    var viewModel = {
+                        tickets: [
+                        { name: "Economy", price: 199.95 },
+                        { name: "Business", price: 449.22 },
+                        { name: "First Class", price: 1199.99 }
+                        ],
+                        chosenTicket: ko.observable(),
+                        resetTicket: function() { this.chosenTicket(null) }
+                    };
+
+                    ko.applyBindings(viewModel);
+
+                    $("#ticket").kendoDropDownList();
+                });
+            </script>
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs --><!-- help-tabs -->
+                        </ul>
+        <!-- description -->
+        <div class="description">This example demonstrates the seamless integration of Kendo UI DropDownList
+            with <a href="http://knockoutjs.com/">KnockoutJS</a>.</div>
+        <!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data --><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>

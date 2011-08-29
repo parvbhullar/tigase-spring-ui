@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>Loading content with AJAX</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+            <div class="configuration">
+                <span class="infoHead">Information</span>
+                <p>
+                    This example shows how to load the content of the window using Ajax.
+                </p>
+            </div>
+
+
+            <!-- Window HTML -->
+            <div id="window"></div>
+
+            <!-- open button -->
+            <span id="undo" style="display:none" class="t-group">Click here to open the window.</span>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var window = $("#window"),
+                        undo = $("#undo")
+                                .bind("click", function() {
+                                    window.data("kendoWindow").open();
+                                    undo.hide();
+                                });
+
+                    var onClose = function() {
+                        undo.show();
+                    }
+
+                    if (!window.data("kendoWindow")) {
+                        window.kendoWindow({
+                            width: "500px",
+                            title: "Kendo Window",
+                            contentUrl: 'ajax/ajaxContent.html',
+                            close: onClose
+                        });
+                    }
+
+                });
+            </script>
+
+            <style scoped="scoped">
+                #undo {
+                    text-align: center;
+                    position: absolute;
+                    white-space: nowrap;
+                    border-width: 1px;
+                    border-style: solid;
+                    padding: 2em;
+                    cursor: pointer;
+                }
+            </style>
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs -->
+                <li>Configuration (10)</li>
+                <li>Methods (10)</li>
+                <li>Events (6)</li><!-- help-tabs -->
+                        </ul><!-- description -->
+        <div class="description">
+        <p>     The Window widget displays content in a modal or non-modal HTML window. By default, Windows can be moved,     resized, and closed by users. Window content can also be defined with either static HTML or loaded dynamically with Ajax. </p> <p>     A Window can be initialized from virtually any HTML element. During initialization, the targeted content will     automatically be wrapped in the Window’s HTML div element. </p> <h3>Getting Started</h3><div class="code-sample"><h4 class="code-title">Create a simple HTML element with the Window content</h4><pre class="code prettyprint"><code> &lt;p id="window"&gt;     Kendo window content &lt;/p&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">Initialize Window using a jQuery selector</h4><pre class="code prettyprint"><code>$("#window").kendoWindow();</code></pre></div><p>     When a Window is initialized, it will automatically be displayed open near the     location of the HTML element that was used to initialize the content. </p> <h3>Configuring Window behaviors</h3> <p>     Window provides many configuration options that can be easily set during initialization.     Among the properties that can be controlled: </p> <ul>     <li>Minimum height/width</li>     <li>Available user Window actions (close/refresh/maximize)</li>     <li>Window title</li>     <li>Draggable and Resizable behaviors</li> </ul><div class="code-sample"><h4 class="code-title">Create modal Window with all user actions enabled</h4><pre class="code prettyprint"><code> $("#window").kendoWindow({     draggable: false,     resizable: false,     width: "500px",     height: "300px",     title: "Modal Window",     modal: true,     actions: ["Refresh", "Maximize", "Close"] });</code></pre></div><p>     The order of the values in the actions array determines the order in which the action buttons     will be rendered in the Window title bar. The maximize action serves both as a button for expanding     the Window to fill the screen and as a button to restore the Window to the previous size. </p> <h3>Positioning and Opening the Window</h3> <p>     In some scenarios, it is preferable to center a Window rather than open it near the HTML element     used to define the content. It’s also common to open a Window as the result of an action rather     than on initial page load. The Window API provides methods for handling this and many more advanced     Window scenarios. Please see the Window demo Methods tab for more details. </p><div class="code-sample"><h4 class="code-title">Centering a Window and opening on button click</h4><pre class="code prettyprint"><code> &lt;!-- Create Window HTML and a button to open Window --&gt; &lt;p id="window"&gt;     Centered Kendo UI Window content &lt;/p&gt; &lt;button id="btnOpen"&gt;Open Window&lt;/button&gt;</code></pre></div><div class="code-sample"><h4 class="code-title"></h4><pre class="code prettyprint"><code> //Initialize Window, center, and configure button click action--&gt; $(document).ready(function(){     var window = $("#window").kendoWindow({     title: "Centered Window",     width: "200px",     height: "200px",     visible: false }).data("kendoWindow"); }); $("#btnOpen").click(function(){     var window = $("#window").data("kendoWindow");     window.center();     window.open(); });</code></pre></div><h3>Loading Window content with Ajax</h3> <p>     While any valid technique for loading Ajax content can be used, Window provides     built-in support for asynchronously loading content from a URL. This URL should     return a HTML fragment that can be loaded in a Window content area. </p><div class="code-sample"><h4 class="code-title">Load Window content asynchronously</h4><pre class="code prettyprint"><code> &lt;!-- Define a basic HTML element for the Window --&gt; &lt;div id="window"&gt;&lt;/div&gt;</code></pre></div><div class="code-sample"><h4 class="code-title"></h4><pre class="code prettyprint"><code> //Initialize and configure to load content async --&gt; $(document).ready(function(){     $("#window").kendoWindow({       title: "Async Window Content",       contentUrl: "html-content-snippet.html"     }); });</code></pre></div>
+        </div><!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data -->
+            <div class="optionsContainer">
+                <!-- configuration -->
+                <div class="detailHandle"><div class="detailCollapsed"></div><a name="actions"><code class="symbol">actions</code></a>: <span class="type">Array<String></span><span class="defaultValue">(default: "Close")</span></div><div class="detailBody"><div class="desc"> The buttons for interacting with the window. Predefined array values are "Close", "Refresh", "Minimize", "Maximize".</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="animation"><code class="symbol">animation</code></a>: <span class="type">Object</span></div><div class="detailBody"><div class="desc">A collection of {Animation} objects, used to change default animations. A value of false will disable all animations in the component.</div><div class="detailHandle"><div class="detailCollapsed"></div><a name="close"><code class="symbol">close</code></a>: <span class="type">Animation</span></div><div class="detailBody"><div class="desc">The animation that will be used when the window closes.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="open"><code class="symbol">open</code></a>: <span class="type">Animation</span></div><div class="detailBody"><div class="desc">The animation that will be used when the window opens.</div></div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="contentUrl"><code class="symbol">contentUrl</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">Specifies a URL that the window should load its content from. For remote URLs, a container iframe element is automatically created.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="draggable"><code class="symbol">draggable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc"> Specifies whether the users may move the window.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="minHeight"><code class="symbol">minHeight</code></a>: <span class="type">Integer</span><span class="defaultValue">(default: 50)</span></div><div class="detailBody"><div class="desc"> The minimum height that may be achieved by resizing the window.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="minWidth"><code class="symbol">minWidth</code></a>: <span class="type">Integer</span><span class="defaultValue">(default: 50)</span></div><div class="detailBody"><div class="desc"> The minimum width that may be achieved by resizing the window.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="modal"><code class="symbol">modal</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Specifies whether the window should block interaction with other page elements.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="resizable"><code class="symbol">resizable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc"> Specifies whether the users may to resize the window.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="title"><code class="symbol">title</code></a>: <span class="type">String</span></div><div class="detailBody"><div class="desc">The text in the window title bar.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="visible"><code class="symbol">visible</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc"> Specifies whether the window will be initially visible.</div></div>
+                <!-- configuration -->
+            </div>
+            <div class="methodsContainer">
+                <!-- methods -->
+                <ul class="methodDetail" id="MethodDetail">
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="center"><code>center</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Centers the window within the viewport.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var wnd = $("#window").data("kendoWindow");wnd.center();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="close"><code>close</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Closes the window
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var wnd = $("#window").data("kendoWindow");wnd.close();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="content"><code>content</code></a> (content)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Sets/gets the window content.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var wnd = $("#window").data("kendoWindow");// get the contentvar content = wnd.content();// set the contentwnd.content("<p>New content</p>");</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>content</code><span class="light fixedFont">: String</span>
+                                        </dt>
+                                        <dd>The new window content</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="destroy"><code>destroy</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Destroys the window and its modal overlay, if necessary. Useful for removing modal windows.
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="maximize"><code>maximize</code></a> (e)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Maximizes a window so that it fills the entire screen.
+                                </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>e</code>
+                                        </dt>
+                                        <dd></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="open"><code>open</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Opens the window
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var wnd = $("#window").data("kendoWindow");wnd.open();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="refresh"><code>refresh</code></a> (url)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Refreshes the window content from a remote url.
+                                </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>url</code><span class="light fixedFont">: String</span>
+                                        </dt>
+                                        <dd>The URL that the window should be refreshed from. If omitted, the window content is refreshed from the contentUrl that was supplied upon the window creation.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="restore"><code>restore</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Restores a maximized window to its previous size.
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="title"><code>title</code></a> (title)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Sets/gets the window title.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var wnd = $("#window").data("kendoWindow");// get the titlevar title = wnd.title();// set the titlewnd.title("New title");</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>title</code><span class="light fixedFont">: String</span>
+                                        </dt>
+                                        <dd>The new window title</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="toggleMaximization"><code>toggleMaximization</code></a> (e)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Toggles the window between a maximized and restored state.
+                                </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>e</code>
+                                        </dt>
+                                        <dd></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                </ul>
+                <!-- methods -->
+            </div>
+            <div class="eventsContainer">
+                <!-- events -->
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="activate"><code>activate</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the window has finished its opening animation
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="close"><code>close</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the window is being closed (by the user or through the close() method)
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="error"><code>error</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when an AJAX request for content fails.
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="open"><code>open</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the window is opened (i.e. the open() method is called).
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="refresh"><code>refresh</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the window contents have been refreshed through AJAX.
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="resize"><code>resize</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the window has been resized by the user.
+                        </div>
+                    </div>
+                <!-- events -->
+            </div><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>
