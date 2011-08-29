@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<title>Skins - CKEditor Sample</title>
+	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<link href="js/Kendo_UI_Beta_2011_2_804/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="js/Kendo_UI_Beta_2011_2_804/styles/kendo.kendo.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Then paste the following for Kendo scripts-->
+    <script src="js/Kendo_UI_Beta_2011_2_804/js/kendo.all.min.js" type="text/javascript"></script>
+	<script language="JavaScript">
+		$(document).ready( function() {
+			 var data = [
+                            "12 Angry Men",
+                            "Il buono, il brutto, il cattivo.",
+                            "Inception",
+                            "One Flew Over the Cuckoo's Nest",
+                            "Pulp Fiction",
+                            "Schindler's List",
+                            "The Dark Knight",
+                            "The Godfather",
+                            "The Godfather: Part II",
+                            "The Shawshank Redemption"
+                        ];
+
+                    //create AutoComplete UI component
+                    $("#myAutoComplete").kendoAutoComplete({
+                        dataSource: data,
+                        separator: ", "
+                    });
+		});
+	</script>
+</head>
+<body>
+	<h2>autoComplete</h2>
+
+	<hr></hr>
+	<input id="myAutoComplete" />
+
+
+</body>
+</html>
