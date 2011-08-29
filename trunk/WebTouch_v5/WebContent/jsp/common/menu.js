@@ -31,7 +31,7 @@ $(document).ready( function() {
 					  $("#tabs-1").html("");
 					  $("#tabs-1").html(data);
 				  }
-
+		   			/*
 		   			,
 				  complete:function(){
 
@@ -39,8 +39,8 @@ $(document).ready( function() {
 					                 { include: true, incfile:'../jsp/ad/jquery.airad.js'}
 					             ];
 					  jsInclude(modules);
+				  }*/
 
-				  }
 			});
 		   //alert("data="+data);
 		   // Do my action
