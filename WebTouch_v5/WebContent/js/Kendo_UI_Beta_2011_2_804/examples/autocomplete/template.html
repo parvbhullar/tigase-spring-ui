@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <!-- meta -->
+        <title>Customizing templates</title>
+        <link href="../styles/examples.css" rel="stylesheet"/>
+        <link href="../styles/kendo.common.css" rel="stylesheet"/>
+        <link href="../styles/kendo.kendo.css" rel="stylesheet"/>
+        <!-- css -->
+        <!-- css -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/kendo.core.js"></script>
+        <script src="../js/kendo.popup.js"></script>
+        <script src="../js/kendo.data.js"></script>
+        <script src="../js/kendo.list.js"></script>
+        <script src="../js/kendo.autocomplete.js"></script>
+        <!-- script -->
+        <script src="../js/kendo.fx.js"></script>
+        <script src="../js/kendo.draganddrop.js"></script>
+        <script src="../js/kendo.resizable.js"></script>
+        <script src="../js/kendo.menu.js"></script>
+        <script src="../js/kendo.panelbar.js"></script>
+        <script src="../js/kendo.model.js"></script>
+        <script src="../js/kendo.data.xml.js"></script>
+        <script src="../js/kendo.data.odata.js"></script>
+        <script src="../js/kendo.dropdownlist.js"></script>
+        <script src="../js/kendo.combobox.js"></script>
+        <script src="../js/kendo.tabstrip.js"></script>
+        <script src="../js/kendo.treeview.js"></script>
+        <script src="../js/kendo.slider.js"></script>
+        <script src="../js/kendo.splitter.js"></script>
+        <script src="../js/kendo.pageable.js"></script>
+        <script src="../js/kendo.sortable.js"></script>
+        <script src="../js/kendo.groupable.js"></script>
+        <script src="../js/kendo.selectable.js"></script>
+        <script src="../js/kendo.grid.js"></script>
+        <script src="../js/kendo.chart.js"></script>
+        <script src="../js/kendo.upload.js"></script>
+        <script src="../js/kendo.window.js"></script>
+        <script src="../js/prettify.js"></script>
+        <script src="../js/kendo.examples.js"></script>
+        <script src="../js/kendo.console.js"></script>
+        <script src="../js/people.js"></script>
+        <!-- script -->
+    </head>
+    <body>
+        <!-- nav -->
+        <div id="exceptFooterWrap">
+        <div id="exceptFooter">
+
+            <div id="header">
+            <div class="floatWrap centerWrap">
+                <h1><a id="logo" href="http://www.kendoui.com">Kendo</a></h1>
+                <a id="referenceUrl" href="../"></a>
+                <script type="text/javascript">
+                    var normalizedUrl = getNormalizedUrl();
+                </script>
+                <ul>
+                    <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                    <li><a class="demosLink" href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                    <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                    <li><a href="http://www.kendoui.com/download.aspx" id="download">Download Beta</a></li>
+                </ul>
+            </div>
+            </div> <!-- / header -->
+
+            <div id="topnavWrap">
+                <ul id="topnav" class="floatWrap centerWrap">
+                    <li><a id="overview" href="../index.html" class="selected">Overview</a></li>
+                    <li><a id="framework" href="../datasource/index.html">Framework</a></li>
+                    <li><a id="controls" href="../autocomplete/index.html">UI Widgets</a></li>
+                    <li><a id="integration" href="../integration/index.html">Integration</a></li>
+                </ul>
+            </div> <!-- / topnavWrap -->
+
+            <div id="navmainWrap" class="floatWrap centerWrap">
+
+                <div id="navWrap">
+                    <ul id="nav"></ul>
+                </div> <!-- / navWrap -->
+
+                <div id="main">
+                    <select id="skinSelector" class="skinSelector"></select>
+                    <h1 id="exampleTitle"></h1>
+                    <script type="text/javascript">
+                        initializeNavigation(normalizedUrl);
+                    </script>
+
+                    <div id="exampleWrap">
+                        <!-- nav -->
+        <div id="example" class="t-content">
+            <div class="configuration">
+                <span class="infoHead">Information</span>
+                <p>Start typing a movie title in the AutoComplete (minimum 3 characters) to open it. </p>
+            </div>
+
+            <label>Search Netflix (type at least 3 characters): <input id="titles" /></label>
+
+            <script>
+                $(document).ready(function() {
+                    $("#titles").kendoAutoComplete({
+                        minLength: 3,
+                        dataTextField: "Name",
+                        dataValueField: "Id",
+                        template: '<img src="${ data.BoxArt.SmallUrl }" alt="${ data.Name }" />' +
+                                  '<dl>' +
+                                      '<dt>Title:</dt><dd>${ data.Name }</dd>' +
+                                      '<dt>Year:</dt><dd>${ data.ReleaseYear }</dd>' +
+                                  '</dl>',
+                        dataSource: {
+                            type: "odata",
+                            severFiltering: true,
+                            serverPaging: true,
+                            pageSize: 20,
+                            transport: {
+                                read: "http://odata.netflix.com/Catalog/Titles"
+                            }
+                        }
+                    });
+
+                    // set width of the drop-down list
+                    $("#titles").data("kendoAutoComplete").ul.width(400);
+                });
+            </script>
+
+            <style scoped>
+                #titles-list .t-item {
+                    overflow: hidden; /* clear floated images */
+                }
+
+                #titles-list img {
+                    box-shadow: 0 0 4px rgba(255,255,255,.7);
+                    float: left;
+                    margin: 5px;
+                }
+
+                #titles-list dl {
+                    margin-left: 85px;
+                }
+
+                #titles-list dt,
+                #titles-list dd {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                #titles-list dt {
+                    font-weight: bold;
+                    padding-top: .5em;
+                }
+
+                #titles-list dd {
+                    padding-bottom: .3em;
+                }
+            </style>
+        </div>
+        <!-- tools -->
+                    </div> <!-- / exampleWrap -->
+
+                    <div id="codeStrip">
+                        <ul>
+                            <li class="t-state-active"><a id="viewDescription">Description</a></li>
+                            <li class="codeTab"><a id="viewCode">View Code</a></li><!-- help-tabs -->
+                <li>Configuration (8)</li>
+                <li>Methods (4)</li>
+                <li>Events (3)</li><!-- help-tabs -->
+                        </ul><!-- description -->
+        <div class="description">
+        The AutoComplete widget provides suggestions depending on the typed text. It also allows entry of multiple values with by predefined separator.The suggestions shown by the AutoComplete widget can come from a local Array or from a remote data service.<h3>Getting Started</h3><div class="code-sample"><h4 class="code-title">Create a simple HTML input element</h4><pre class="code prettyprint"><code>&lt;input id="autocomplete" /&gt;</code></pre></div><div class="code-sample"><h4 class="code-title">Initialize Kendo AutoComplete using a jQuery selector</h4><pre class="code prettyprint"><code>var autocomplete = $("#autocomplete").kendoAutoComplete(["Item1", "Item2"]);</code></pre></div><h3>AutoComplete Suggestions</h3>There are two primary ways to provide the AutoComplete suggestions:  <ol>      <li>From a local, statically defined JavaScript Array</li>      <li>From a remote data service</li>  </ol>Locally defined values are best for small, fixed sets of suggestions. Remote suggestions should be used for larger data sets. When used with the <a href="../datasource/index.html" title="Kendo DataSource">Kendo DataSource</a>,filtering large remote data services can be pushed to the server, too, maximizing client-side performance.<h3>Local Suggestions</h3>To configure and provide AutoComplete suggestions locally, you can either pass an Array directly to the AutoComplete constructor,or you can set the AutoComplete dataSource property to an Array defined elsewhere in your JavaScript code.<div class="code-sample"><h4 class="code-title">Directly initialize suggestions in constructor</h4><pre class="code prettyprint"><code>$("#autocomplete").kendoAutoComplete(["Item1", "Item2", "Item3"]);</code></pre></div><div class="code-sample"><h4 class="code-title">Using dataSource property to bind to local Array</h4><pre class="code prettyprint"><code>var data = ["Item1", "Item2", "Item3"];$("#autocomplete").kendoAutoComplete({   dataSource: data});</code></pre></div><h3>Remote Suggestions</h3>The easiest way to bind to remote AutoComplete suggestions is to use the <a href="../datasource/index.html" title="Kendo DataSource">Kendo DataSource</a> component. The Kendo DataSource is an abstraction for local andremote data, and it can be used to serve data from a variety of data services, such as XML, JSON, and JSONP.<div class="code-sample"><h4 class="code-title">Using Kendo DataSource to bind to remote suggestions with OData</h4><pre class="code prettyprint"><code>$("#autocomplete").kendoAutoComplete({   minLength: 3,   dataTextField: "Name", //JSON property name to use   dataSoruce: new kendo.data.DataSource({       type: "odata", //Specifies data protocol       pageSize: 10, //Limits result set       transport: {           read: "ht   tp://odata.netflix.com/Catalog/Titles"       }   })});</code></pre></div><div class="code-sample"><h4 class="code-title">Using Kendo DataSource to bind to JSONP suggestions</h4><pre class="code prettyprint"><code>$(document).ready(function(){   $("#txtAc").kendoAutoComplete({       minLength:6,       dataTextField:"title",       filter: "contains",       dataSource: new kendo.data.DataSource({           transport:{               read:{                   url: "http://api.geonames.org/wikipediaSearchJSON",                   data:{                       q:function(){                           var ac = $("#txtAc").data("kendoAutoComplete");                           return ac.value();                       },                       maxRows:10,                       username:"demo"                   }               }           },           schema:{               data:"geonames"           }       }),       change:function(){           this.dataSource.read();       }   });});</code></pre></div><h3>Accessing an Existing AutoComplete</h3>To access an existing Kendo UI AutoComplete widget instance, use the jQuery data API. Once a reference to the AutoComplete is established,you can use the Kendo UI API to control the widget.<div class="code-sample"><h4 class="code-title">Accessing Existing AutoComplete widget instance</h4><pre class="code prettyprint"><code>var autocomplete = $("#autocomplete").data("kendoAutoComplete");</code></pre></div>
+        </div><!-- description -->
+                        <div class="codeContainer"><pre id="code" class="prettyprint">No code</pre></div><!-- help-data -->
+            <div class="optionsContainer">
+                <!-- configuration -->
+                <div class="detailHandle"><div class="detailCollapsed"></div><a name="dataSource"><code class="symbol">dataSource</code></a>: <span class="type">kendo.data.DataSource | Object</span></div><div class="detailBody"><div class="desc">Instance of DataSource or the data that the AutoComplete will be bound to.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="dataTextField"><code class="symbol">dataTextField</code></a>: <span class="type">String</span><span class="defaultValue">(default: null)</span></div><div class="detailBody"><div class="desc"> Sets the field of the data item that provides the text content of the list items.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="delay"><code class="symbol">delay</code></a>: <span class="type">Number</span><span class="defaultValue">(default: 200)</span></div><div class="detailBody"><div class="desc"> Specifies the delay in ms after which the AutoComplete will start filtering dataSource.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="enable"><code class="symbol">enable</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: true)</span></div><div class="detailBody"><div class="desc"> Controls whether the AutoComplete should be initially enabled.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="filter"><code class="symbol">filter</code></a>: <span class="type">String</span><span class="defaultValue">(default: "startswith")</span></div><div class="detailBody"><div class="desc"> Defines the type of filtration.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="height"><code class="symbol">height</code></a>: <span class="type">Number</span><span class="defaultValue">(default: 200)</span></div><div class="detailBody"><div class="desc"> Define the height of the drop-down list in pixels.</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="minLength"><code class="symbol">minLength</code></a>: <span class="type">Number</span><span class="defaultValue">(default: 1)</span></div><div class="detailBody"><div class="desc"> Specifies the minimum characters that should be typed before the AutoComplete activates</div></div><div class="detailHandle"><div class="detailCollapsed"></div><a name="suggest"><code class="symbol">suggest</code></a>: <span class="type">Boolean</span><span class="defaultValue">(default: false)</span></div><div class="detailBody"><div class="desc"> Controls whether the AutoComplete should automatically auto-type the rest of text.</div></div>
+                <!-- configuration -->
+            </div>
+            <div class="methodsContainer">
+                <!-- methods -->
+                <ul class="methodDetail" id="MethodDetail">
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="close"><code>close</code></a> ()
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Closes the drop-down list.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>autocomplete.close();</code></pre>
+                                        </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="search"><code>search</code></a> (word)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Filters dataSource using the provided parameter and rebinds drop-down list.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var autocomplete = $("#autocomplete").data("kendoAutoComplete");// Searches for item which has "Inception" in the name.autocomplete.search("Inception");</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>word</code><span class="light fixedFont">: string</span>
+                                        </dt>
+                                        <dd>The filter value.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="select"><code>select</code></a> (li)
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Selects drop-down list item and sets the value and the text of the dropdownlist.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var autocomplete = $("#autocomplete").data("kendoAutoComplete");// selects by jQuery objectautocomplete.select(autocomplete.ul.children().eq(0));</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>li</code><span class="light fixedFont">: jQueryObject</span>
+                                        </dt>
+                                        <dd>The LI element.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="detailHandle">
+                                <div class="detailCollapsed"></div>
+                                <a name="value"><code>value</code></a> (value)
+                                : <span class="type">String</span>
+                            </div>
+                            <div class="detailBody">
+                                <div class="desc">
+                                    Gets/Sets the value of the autocomplete.
+                                </div>
+                                        <div class="code-sample">
+                                            <h4 class="code-title">Example</h4>
+                                            <pre class="code prettyprint lang-js"><code>var autocomplete = $("#autocomplete").data("kendoAutoComplete");// get the text of the autocomplete.var value = autocomplete.value();</code></pre>
+                                        </div>
+                                <div class="details-list">
+                                    <h4 class="details-title">Parameters</h4>
+                                    <dl>
+                                        <dt>
+                                            <code>value</code><span class="light fixedFont">: String</span>
+                                        </dt>
+                                        <dd>The value to set.</dd>
+                                    </dl>
+                                </div>
+                                    <dl class="detailList">
+                                            <dt class="heading">Returns</dt>
+                                                <dd><span class="light fixedFont">String</span> The value of the autocomplete.</dd>
+                                    </dl>
+                            </div>
+                        </li>
+                </ul>
+                <!-- methods -->
+            </div>
+            <div class="eventsContainer">
+                <!-- events -->
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="change"><code>change</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the value has been changed.
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="close"><code>close</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the drop-down list is closed
+                        </div>
+                    </div>
+                    <div class="detailHandle">
+                        <div class="detailCollapsed"></div>
+                        <a name="open"><code>open</code></a>
+                    </div>
+                    <div class="detailBody">
+                        <div class="desc">
+                            Fires when the drop-down list is opened
+                        </div>
+                    </div>
+                <!-- events -->
+            </div><!-- help-data -->
+                    </div>
+                    <script type="text/javascript">
+                        $("#codeStrip").kendoTabStrip();
+                    </script>
+                </div> <!-- / main -->
+
+            </div> <!-- / navmainWrap -->
+
+        </div> <!-- / exceptFooter -->
+        </div> <!-- / exceptFooterWrap -->
+
+        <div id="footer">
+        <div class="floatWrap centerWrap">
+            <ul>
+                <li><a href="http://www.kendoui.com">Home</a></li>
+                <li><a href="http://www.kendoui.com/kendo-ui.aspx">Kendo UI</a></li>
+                <li><a href="http://www.kendoui.com/demos.aspx">Demos</a></li>
+                <li><a href="http://www.kendoui.com/roadmap.aspx">Roadmap</a></li>
+                <li><a href="http://www.kendoui.com/blogs.aspx">Blogs</a></li>
+                <li><a href="http://www.kendoui.com/forums.aspx">Forums</a></li>
+                <li><a href="http://www.kendoui.com/documentation.aspx">Documentation</a></li>
+                <li><a href="http://www.kendoui.com/faq.aspx">FAQ</a></li>
+                <li><a href="http://www.kendoui.com/about.aspx">About</a></li>
+                <li><a href="http://twitter.com/#!/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+                <!--<li><a href="#" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>-->
+            </ul>
+            <p id="telerik"><a href="http://www.telerik.com/">Kendo UI is powered by Telerik</a></p>
+            <p id="copy">Copyright &copy; 2011 Telerik Inc. All rights reserved.</p>
+        </div>
+        </div> <!-- / footer -->
+
+        <!-- tools -->
+    </body>
+</html>
