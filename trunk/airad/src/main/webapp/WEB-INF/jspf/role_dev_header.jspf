@@ -1,0 +1,68 @@
+   <%@ page contentType="text/html; charset=UTF-8"%>
+                <div class="popNav" id="imenu" style="display: none">
+                    <div>
+                    <c:choose>
+                    <c:when test="${isCurrentDevRole}">
+                        <a href="#" id="_switchAdv">角色切换为广告主</a>
+                    </c:when>
+                    <c:otherwise>
+              			<a href="#" id="_switchDev">角色切换为开发者</a>
+                    </c:otherwise>
+                    </c:choose>
+                    </div>
+                </div>
+                <div class="memInfo">
+                    Hi, <strong>${loginEmail}</strong>
+                    <span>|</span>
+                    <a href="javascript:void(0);" id="_roleToggle"><img height="16" align="absmiddle" width="16" alt="切换角色" src="images/ico_mem.gif" title="切换角色">切换角色</a><span>|</span>
+                    <a href="member.do?action=logout">[退出]</a>
+                </div>
+                <div class="logo">
+                		   <c:choose>
+                    <c:when test="${isCurrentDevRole}">
+                     <a href="/personal.do?action=developlist"><img alt="airAD" src="/images/logo.gif"></a>
+                    </c:when>
+                    <c:otherwise>
+              		<a href="/personal.do?action=advlist"><img alt="airAD" src="/images/logo.gif"></a>
+                    </c:otherwise>
+                    </c:choose>
+                </div>
+                <div id="logonShowDiv" style="display: block">
+                    <div id="nav">
+                    <c:choose>
+                    <c:when test="${isCurrentDevRole}">
+                    <a class="${navClass}"  href="/personal.do?action=developlist">我是开发者</a>
+                     <a class="${navAccountClass}" href="/member.do?action=queryMember">账户管理</a>
+                    </c:when>
+                    <c:otherwise>
+              		   <a class="${navClass}"  href="/personal.do?action=advlist">我是广告主</a>
+                       <a class="${navAccountClass}"  href="/member.do?action=queryMember">账户管理</a>
+                    </c:otherwise>
+                    </c:choose>
+                    </div>
+                    <div id="navChl" class="navChl">
+                      <c:choose>
+                    <c:when test="${isMemberPage }">
+                      <a href="/member.do?action=queryMember">会员信息</a>
+            		   <a href="/member.do?action=updateLoginPassword">修改密码</a>     
+                    </c:when>
+                    <c:otherwise>
+                     <c:choose>
+                    <c:when test="${isCurrentDevRole}">
+                    <a href="/personal.do?action=developlist">个人中心</a>
+                        <a href="/app.do?action=listApp">应用程序管理</a>
+                        <a href="/report.do?action=listReport">报表统计</a>
+                        <a href="/withdraw.do?action=queryWithdrawListByMemberId">账务账本</a>
+                    </c:when>
+                    <c:otherwise>
+              		        <a class="now" href="/personal.do?action=advlist">个人中心</a>
+				            <a href="/adGroup.do?action=selectAllByMemberId">广告管理</a>
+				            <a href="/report.do?action=listReport">报表统计</a>
+				            <a href="/rechargeHis.do?action=list">账务账本</a>
+				       	<a href="/advertiser.do?action=authenticatePage">身份认证</a>
+                    </c:otherwise>
+                    </c:choose>
+                      </c:otherwise>
+                    </c:choose>
+                    </div>
+                </div>

@@ -1,0 +1,1 @@
+ {globleSetting:{formName:'adform',triggerOccasion:'blur',tipType:'tip'}, fields:[ { name:'adName' , pattern:[ {regExp:'required',onFailTip:'请填写广告名称。'} ] } ] } 

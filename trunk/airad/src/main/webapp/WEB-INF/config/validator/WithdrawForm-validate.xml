@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form className="com.mitian.airad.web.form.WithdrawForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="validate-schema.xsd">
+    <fields>
+    </fields>
+    <actions>
+    </actions>
+</form>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form className="com.mitian.airad.web.form.AdForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="validate-schema.xsd">
+    <fields>
+        <fieldRule name="adName">
+            <pattern validator="required">
+                <errorTipZH>请填广告名称</errorTipZH>
+            </pattern>
+            <range min="0" max="50" type="length">
+                <errorTipZH>广告名称不能超过50个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="bannerText">
+            <range min="0" max="800" type="length">
+                <errorTipZH>banner文字代码不能超过800个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="bannerFristText">
+            <range min="0" max="800" type="length">
+                <errorTipZH>banner文字代码不能超过800个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="bannerSecondText">
+            <range min="0" max="800" type="length">
+                <errorTipZH>banner文字代码不能超过800个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="wapTitle">
+            <range min="0" max="50" type="length">
+                <errorTipZH>Wap 站点名称不能超过50个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="wapContent">
+            <range min="0" max="200" type="length">
+                <errorTipZH>文字内容不能超过200个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="wapTelephone">
+            <pattern validator="instel">
+                <errorTipZH>请正确填写电话</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="wapFax">
+            <pattern validator="instel">
+                <errorTipZH>请正确填写传真号</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="wapEmail">
+            <pattern validator="email">
+                <errorTipZH>请正确填写EMAIL</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="wapQq">
+            <pattern validator="qq">
+                <errorTipZH>请正确填写QQ</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="wapMsn">
+            <pattern validator="email">
+                <errorTipZH>请正确填写MSN/Gmail</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="wapAddress">
+            <range min="0" max="100" type="length">
+                <errorTipZH>地址不能超过100个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="wapLinkText">
+            <range min="0" max="100" type="length">
+                <errorTipZH>连接文本不能超过100个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="wapLinkAddres">
+            <pattern validator="url">
+                <errorTipZH>请正确填写网址</errorTipZH>
+            </pattern>
+            <range min="0" max="100" type="length">
+                <errorTipZH>连接文本不能超过100个字符</errorTipZH>
+            </range>
+        </fieldRule>
+        <fieldRule name="adOffer">
+            <pattern validator="insmoney">
+                <errorTipZH>请正确填写出价</errorTipZH>
+            </pattern>
+        </fieldRule>
+    </fields>
+    <actions>
+        <xcase name="adSave">
+            <field name="adName" />
+            <field name="bannerText" />
+            <field name="bannerFristText" />
+            <field name="bannerSecondText" />
+            <field name="wapTitle" />
+            <field name="wapContent" />
+            <field name="wapTelephone" />
+            <field name="wapFax" />
+            <field name="wapEmail" />
+            <field name="wapQq" />
+            <field name="wapMsn" />
+            <field name="wapAddress" />
+            <field name="wapLinkText" />
+            <field name="wapLinkAddres" />
+        </xcase>
+    </actions>
+</form>

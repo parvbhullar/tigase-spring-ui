@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form className="com.mitian.airad.web.form.DemoForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="validate-schema.xsd">
+    <fields>
+        <fieldRule name="name">
+            <pattern validator="required">
+                <errorTipZH>请填写名称。</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="email">
+            <pattern validator="required">
+                <errorTipZH>请填写email地址。</errorTipZH>
+            </pattern>
+            <pattern validator="email">
+                <errorTipZH>请填写正确的email地址</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="user.name">
+            <pattern validator="required">
+                <errorTipZH>请填写下属名称。</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="user.email">
+            <pattern validator="required">
+                <errorTipZH>请填写下属email地址。</errorTipZH>
+            </pattern>
+            <pattern validator="email">
+                <errorTipZH>请填写下属正确的email地址</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="age">
+            <pattern validator="required">
+                <errorTipZH>请填写下属年龄。</errorTipZH>
+            </pattern>
+            <pattern validator="integer">
+                <errorTipZH>请填写有效的年龄</errorTipZH>
+            </pattern>            
+        </fieldRule>
+        <fieldRule name="birthDay">
+            <pattern validator="required">
+                <errorTipZH>请填写下属生日。</errorTipZH>
+            </pattern>
+            <pattern validator="insdate">
+                <errorTipZH>请填写下属正确的日期</errorTipZH>
+            </pattern>
+        </fieldRule>                
+    </fields>
+    <actions>
+        <xcase name="doAdd">
+            <field name="name" />
+            <field name="email" />
+            <field name="user.name" />
+            <field name="user.email" />
+            <field name="age" />
+            <field name="birthDay" />
+        </xcase>
+        <xcase name="doUpdate">
+            <field name="name" />
+            <field name="email" />
+            <field name="user.name" />
+            <field name="user.email" />
+            <field name="age" />
+            <field name="birthDay" />
+        </xcase>        
+    </actions>
+</form>

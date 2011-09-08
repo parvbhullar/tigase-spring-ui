@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>airad</short-name>
+    <uri>http://www.airad.com/tlds/airad-html-common</uri>
+    <display-name>Mitian Tech Html Common Tlds</display-name>
+    <description>The common html tag libraries</description>
+
+    <!--///////////////////////////-->
+    <!-- 分页标签 -->
+    <tag>
+        <name>pagination</name>
+        <tag-class>com.mitian.airad.web.tags.PageTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>pagination</description>
+        <attribute>
+            <name>href</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>firstPageUrl</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentPage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>totalRecord</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>sumInfo</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>cutString</name>
+        <tag-class>com.mitian.airad.web.tags.CutStringTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Used to cut a string with your parameter.</description>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the string what you want to cut.</description>
+        </attribute>
+        <attribute>
+            <name>size</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>mark</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Write something append to the string or you can use the default ''.</description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>sysConfig</name>
+        <tag-class>com.mitian.airad.web.tags.SysConfigTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Used to cut a string with your parameter.</description>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>key</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>flag</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>valDefault</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>class</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+    </tag>
+<!--    通知设置标签-->
+<tag>
+        <name>sysConfigForMailNoticeTag</name>
+        <tag-class>com.mitian.airad.web.tags.SysConfigForMailNoticeTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Used to cut a string with your parameter.</description>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>key</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>flag</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>valDefault</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+        <attribute>
+            <name>class</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Required to set the size or length and it compute as chinese.</description>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>dictString</name>
+        <tag-class>com.mitian.airad.web.tags.DictionaryStringTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Used to output String when you give a key in the Dictionary.</description>
+        <attribute>
+            <name>typeKey</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>dictType field in Dictionary</description>
+        </attribute>
+        <attribute>
+            <name>valueKey</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>dictTypeKey field in Dictonary.</description>
+        </attribute>
+    </tag>
+</taglib>
