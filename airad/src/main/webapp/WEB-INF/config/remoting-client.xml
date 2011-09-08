@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<bean id="validate"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${oss.url}/validate.service</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.mitian.boss.web.httpinvoker.ValidateServer</value>
+		</property>
+	</bean>
+
+
+</beans>

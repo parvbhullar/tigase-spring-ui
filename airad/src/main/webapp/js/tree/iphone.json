@@ -1,0 +1,70 @@
+[{
+	"id":1,
+	"text":"iphone OS/ISO(iPhone/iPod Touch/iPad)",
+	"iconCls":"icon-ok",
+	"state":"open",
+	"children":[{
+		"id":2,
+		"text":"Apple",
+		"checked":true,
+		"state":"open",
+		"children":[{
+			"id":3,
+			"text":"iPhone",
+      "state":"open",
+      "children":[{
+        "id":6,
+        "text":"原始iPhone(2G)",
+        "checked":true
+        },{
+        "id":7,
+        "text":"iPhone 3G",
+        "checked":true
+        },{
+        "id":8,
+        "text":"iPhone 3GS",
+        "checked":true
+        },{
+        "id":9,
+        "text":"iPhone 4",
+        "checked":true
+        }],
+			"checked":true,
+			"iconCls":"icon-reload"
+		},{
+      "id":4,
+      "text":"iPod Touch",
+      "state":"open",
+       "children":[{
+        "id":10,
+        "text":"第一代(2007)",
+        "checked":true
+        },{
+        "id":11,
+        "text":"第二代(2008)",
+        "checked":true
+        },{
+        "id":12,
+        "text":"第三代(2009)",
+        "checked":true
+        },{
+        "id":13,
+        "text":"Fourth generation(2010)",
+        "checked":true
+        }],
+      "checked":true,
+      "iconCls":"icon-reload"
+    },{
+      "id":5,
+      "text":"iPad",
+      "state":"open",
+       "children":[{
+        "id":14,
+        "text":"第一代(2010)",
+        "checked":true
+        }],
+      "checked":true,
+      "iconCls":"icon-reload"
+    }]
+	}]
+}]

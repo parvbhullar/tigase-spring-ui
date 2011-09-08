@@ -1,0 +1,30 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+                <div class="memInfo">
+                    Hi, <strong>${loginEmail}</strong>
+                    <span>|</span>
+                    <a href="member.do?action=logout">[退出]</a>
+                </div>
+                <div class="logo">
+                        <a href="/personal.do?action=advlist"><img alt="airAD" src="/images/logo.gif"></a>
+                </div>
+                <div id="logonShowDiv" style="display: block">
+                    <div id="nav">
+                        <a class="${navClass}"   href="/personal.do?action=advlist">我是广告主</a>
+                        <a class="${navAccountClass}"  href="/member.do?action=queryMember">账户管理</a>
+                    </div>
+                    <div id="navChl" class="navChl">
+                    <c:choose>
+                    <c:when test="${isMemberPage }">
+                      <a href="/member.do?action=queryMember">会员信息</a>
+            		   <a href="/member.do?action=updateLoginPassword">修改密码</a>     
+                    </c:when>
+                    <c:otherwise>
+                         <a href="/personal.do?action=advlist">个人中心</a>
+			            <a href="/adGroup.do?action=selectAllByMemberId">广告管理</a>
+			            <a href="/report.do?action=listReport">报表统计</a>
+			            <a href="/rechargeHis.do?action=list">账务账本</a>
+			            <a href="/accMailNotice.do?action=openNotice">通知设置</a>
+                    </c:otherwise>
+                    </c:choose>
+                    </div>
+                </div>

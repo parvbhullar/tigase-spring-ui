@@ -1,0 +1,26 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+                <div class="memInfo">
+                    Hi, <strong>${loginEmail}</strong>
+                    <span>|</span>
+                    <a href="member.do?action=logout">[退出]</a>
+                </div>
+                <div class="logo">
+                        <a href="/personal.do?action=index"><img alt="airAD" src="/images/logo.gif"></a>
+                </div>
+                <div id="logonShowDiv" style="display: block">
+                    <div id="nav">
+                        <a class="${navClass}"   href="/personal.do?action=index">我是商铺主</a>
+                        <a class="${navAccountClass}"  href="/member.do?action=queryMember">账户管理</a>
+                    </div>
+                    <div id="navChl" class="navChl">
+                    <c:choose>
+                    <c:when test="${isMemberPage }">
+                      <a href="/member.do?action=queryMember">会员信息</a>
+            		   <a href="/member.do?action=updateLoginPassword">修改密码</a>     
+                    </c:when>
+                    <c:otherwise>
+                         <a href="/personal.do?action=index">个人中心</a>
+                    </c:otherwise>
+                    </c:choose>
+                    </div>
+                </div>

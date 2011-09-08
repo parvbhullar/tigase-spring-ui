@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form className="com.mitian.airad.web.form.AccMailNoticeForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="validate-schema.xsd">
+    <fields>
+        <fieldRule name="accountBlance">
+            <pattern validator="required">
+                <errorTipZH>金额必须填写</errorTipZH>
+            </pattern>
+        </fieldRule>
+        <fieldRule name="mailAddr">
+            <pattern validator="required">
+                <errorTipZH>请填写邮箱</errorTipZH>
+            </pattern>
+            <range type="length" min="0" max="50">
+                <errorTipZH>邮箱最大长度为50个字符</errorTipZH>
+            </range>
+            <pattern validator="email">
+                <errorTipZH>邮箱格式输入错误</errorTipZH>
+            </pattern>
+        </fieldRule>
+    </fields>
+    <actions>
+        <xcase name="updateRemind">
+            <field name="accountBlance" />
+            <field name="mailAddr" />
+        </xcase>
+    </actions>
+</form>
