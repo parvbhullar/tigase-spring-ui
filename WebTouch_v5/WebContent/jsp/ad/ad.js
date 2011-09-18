@@ -10,9 +10,7 @@ $(document).ready( function() {
 	              message:  $("#jobLayerId"),
 	              css: { 
 	            	  top:  ($(window).height() - 400) /2 + 'px', 
-	                  left: ($(window).width() - 400) /2 + 'px',
-	                  width: "100%"
-	                  
+	                  left: ($(window).width() - 400) /2 + 'px'
 	              }
 	          }); 
 	      });
