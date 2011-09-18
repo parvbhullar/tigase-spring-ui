@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%@ page import="com.ivyinfo.session.bean.SessionUserBean" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%
 String ctxindex = request.getContextPath();
