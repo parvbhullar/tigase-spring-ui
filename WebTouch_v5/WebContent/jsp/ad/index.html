@@ -7,29 +7,289 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <head>
 	<title>Skins - CKEditor Sample</title>
 	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<script type="text/javascript" src="jsp/ad/ad.js"></script>
 	<script language="JavaScript">
-		$("#buttonTemplate").click(function(){
-				var blue = $.airad({
-	    		renderTo: '#airadTemplate'
-			});
-		})
+		
 	</script>
 </head>
 <body>
+	<a href="javascript:void(false)" class="button" id="area"><span class="buttun"></span>选择地区</a>
 	<h2>动态AD配置</h2>
-
 	<hr></hr>
-	<a href="#" class="button" id="buttonTemplate">选用模板</a>
-	<div>
-	<span style="float:left; width:380px;"><img class="thumblarge" alt="DSP Equalizer" src="http://www.cyanogenmod.com/images/features/dsp.png"></span>
-	<!--
-	<div style="position:absolute;top:600px;background-color:white;">
-	-->
-
-	<div id="banner3" style="position:absolute;top:600px;">
-		<h1 style="color:white;">ads</h1>
-	</div>
-	</div>
-	<div id="airadTemplate">11</div>
+	<div id="jobLayerId" style="width: 700px;">
+		<table cellspacing="0" cellpadding="0" border="0"
+			style="font-size: 12px;">
+			<tbody>
+				<tr class="title" style="cursor: move;">
+					<td colspan="10"><img
+						src="http://img01.51jobcdn.com/im/2009/search/title_layer_yd.gif"><span>&nbsp;请选择工作地点</span><span
+							class="ccType"><span cctype="buxian"
+								style="cursor: pointer;">[不限]</span>&nbsp;&nbsp;<span
+								cctype="close" style="cursor: pointer;">[关闭]</span><span></span>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="10" class="bigOrange gray">主要城市：</td>
+				</tr>
+				<tr>
+					<td colspan="10"><table style="width: 700px;">
+							<tbody>
+								<tr>
+									<td class="cityOrange">B</td>
+									<td
+										style="cursor: pointer; font-weight: bold; width: 75px; padding-left: 3px;">北京</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">包头</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">保定</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">C</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">长春</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">长沙</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">成都</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">重庆</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">常州</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">常德</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="cityOrange">D</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">大连</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">东莞</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">F</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">福州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">佛山</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="cityOrange">G</td>
+									<td
+										style="cursor: pointer; font-weight: bold; width: 75px; padding-left: 3px;">广州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">贵阳</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">H</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">哈尔滨</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">杭州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">合肥</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">海口</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">呼和浩特</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">惠州</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">衡阳</td>
+								</tr>
+								<tr>
+									<td class="cityOrange">J</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">济南</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">嘉兴</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">金华</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">吉林</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">江门</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">荆州</td>
+									<td></td>
+									<td class="cityOrange">K</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">昆明</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">昆山</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="cityOrange">L</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">兰州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">廊坊</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">临沂</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">洛阳</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">N</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">南京</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">宁波</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">南昌</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">南通</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">南宁</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="cityOrange">Q</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">青岛</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">泉州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">秦皇岛</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">S</td>
+									<td
+										style="cursor: pointer; font-weight: bold; width: 75px; padding-left: 3px;">上海</td>
+									<td
+										style="cursor: pointer; font-weight: bold; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">深圳</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">沈阳</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">石家庄</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">苏州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">三亚</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">汕头</td>
+								</tr>
+								<tr>
+									<td class="cityOrange">T</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">天津</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">太原</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">台州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">唐山</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">W</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">武汉</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">无锡</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">温州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">乌鲁木齐</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">芜湖</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">潍坊</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">威海</td>
+								</tr>
+								<tr>
+									<td class="cityOrange">X</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">西安</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">厦门</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">徐州</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">襄阳</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;"
+										class="zz_51Lower">湘潭</td>
+									<td></td>
+									<td></td>
+									<td class="cityOrange">Y</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">烟台</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">扬州</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">宜昌</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="cityOrange">Z</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">漳州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">郑州</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">中山</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;">珠海</td>
+									<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+										class="zz_51Lower">镇江</td>
+									<td
+										style="cursor: pointer; color: rgb(0, 117, 232); width: 75px; padding-left: 3px;">株洲</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="10" class="bigOrange gray">所有省份：</td>
+				</tr>
+				<tr>
+					<td rowspan="1" class="cityOrange">A-G</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">安徽省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">澳门</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">福建省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">甘肃省</td>
+					<td style="cursor: pointer; width: 105px; padding-left: 3px;"
+						class="zz_51Lower">广东省(除深圳)</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">广西</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">贵州省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">国外</td>
+					<td colspan="1"></td>
+				</tr>
+				<tr>
+					<td rowspan="1" class="cityOrange">H-J</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">海南省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">河北省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">河南省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">黑龙江省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">湖北省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">湖南省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">吉林省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">江苏省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">江西省</td>
+				</tr>
+				<tr>
+					<td rowspan="1" class="cityOrange">L-S</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">辽宁省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">内蒙古</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">宁夏</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">青海省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">山东省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">山西省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">陕西省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">四川省</td>
+					<td colspan="1"></td>
+				</tr>
+				<tr>
+					<td rowspan="1" class="cityOrange">T-Z</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">台湾</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;"
+						class="zz_51Lower">西藏</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">香港</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">新疆</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">云南省</td>
+					<td style="cursor: pointer; width: 75px; padding-left: 3px;">浙江省</td>
+					<td colspan="3"></td>
+				</tr>
+				<tr class="bottomLine">
+					<td colspan="10"></td>
+				</tr>
+			</tbody>
+		</table>
+</div>
 </body>
 </html>
