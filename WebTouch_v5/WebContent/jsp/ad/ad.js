@@ -14,4 +14,9 @@ $(document).ready( function() {
 	              }
 	          }); 
 	      });
+	      
+	      $('#cancel').click(function() { 
+	            $.unblockUI(); 
+	            return false; 
+	        });
 })
