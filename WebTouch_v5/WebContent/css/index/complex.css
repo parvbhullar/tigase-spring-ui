@@ -371,6 +371,13 @@ span.button-close-east:hover	{ background: url(../../images/go-rt-on.gif)  no-re
 	display: block !important;
 }
 
-
+.zz_51High {
+    background-color: #FFA22E;
+    color: #FFFFFF;
+}
+.zz_51Lower {
+    background-color: #EEEEEE;
+    color: #000000;
+}
 
 
