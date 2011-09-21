@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>用户中心</title>
+<meta name="keywords" content="站长,站长之家,站长论坛,站长社区">
+<meta name="description" content="中文站长最热论坛，为站长提供一个交流网站建设、提升网站流量、经营网站模式、交换网站链接以及利用网站赚钱与创业的网络平台。">
+
+<meta name="Author" content="maxlabs">
+<meta name="Copyright" content="bbsmax.com">
+<script type="text/javascript">
+var root = '';debugMode=false;
+//var cookieid = '';
+var staticExt = '?5.0.4.0408';
+var cookieDomain = '.chinaz.com';
+var isExecuteJobTime = false;
+var jobUrl = '/handler.aspx?max_handler=job';
+</script>
+
+<link rel="shortcut icon" type="image/x-ico" href="http://my.chinaz.com/max-templates/passport/favicon.ico">
+<script type="text/javascript" src="default_files/max-lib.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/passport/common.css">
+<link rel="Stylesheet" type="text/css" href="../css/passport/dialog.css">
+<link rel="stylesheet" type="text/css" href="../css/passport/my.css">
+</head>
+<body>
+<div class="container">
+<div class="toolbar">
+    <div class="clearfix toolbar-inner">
+        <div class="quicklink">
+            <script type="text/javascript">
+                var chinazTopBarMenu = {
+                    create: function (target, menucontents) {
+                        if (!document.getElementById(menucontents)) {
+                            return;
+                        }
+                        var contents_wrap = document.getElementById(menucontents);
+                        var contents = contents_wrap.innerHTML;
+                        target.className += " hover";
+                        var dropdownmenu_wrap = document.createElement("div");
+                        dropdownmenu_wrap.className = "dropdownmenu-wrap";
+                        var dropdownmenu = document.createElement("div");
+                        dropdownmenu.className = "dropdownmenu";
+                        dropdownmenu.style.width = "auto";
+                        var dropdownmenu_inner = document.createElement("div");
+                        dropdownmenu_inner.className = "dropdownmenu-inner";
+                        dropdownmenu_wrap.appendChild(dropdownmenu);
+                        dropdownmenu.appendChild(dropdownmenu_inner);
+                        dropdownmenu_inner.innerHTML = contents;
+                        if (target.getElementsByTagName("div").length == 0) {
+                            target.appendChild(dropdownmenu_wrap);
+                        }
+                    },
+                    clear: function (target) {
+                        target.className = target.className.replace("hover", "");
+                    }
+                }
+            </script>
+            <ul id="chinaz_website_links" class="accesslink">
+                <li><a href="http://www.chinaz.com/"><span>站长之家</span></a></li>
+                <li onmouseover="chinazTopBarMenu.create(this,'chinaz_website_menu_1');" onmouseout="chinazTopBarMenu.clear(this);">
+                    <a class="item-expand" href="http://bbs.chinaz.com/" target="_blank"><span>站长论坛</span></a>
+                </li>
+                <li class="       " onmouseover="chinazTopBarMenu.create(this,'chinaz_website_menu_2');" onmouseout="chinazTopBarMenu.clear(this);">
+                    <a class="item-expand" href="http://tool.chinaz.com/" target="_blank"><span>站长工具</span></a>
+                <div class="dropdownmenu-wrap"><div style="width: auto;" class="dropdownmenu"><div class="dropdownmenu-inner">
+                <a href="http://alexa.chinaz.com/" target="_blank">ALEXA排名查询</a>
+                <a href="http://seo.chinaz.com/" target="_blank">SEO概况查询</a>
+                <a href="http://link.chinaz.com/" target="_blank">友情链接查询</a>
+                <a href="http://pr.chinaz.com/" target="_blank">Google PR查询</a>
+                <a href="http://whois.chinaz.com/" target="_blank">Whois信息查询</a>
+            </div></div></div></li>
+                <li><a href="http://jy.chinaz.com/" target="_blank"><span>站长交易</span></a></li>
+                <li><a href="http://down.chinaz.com/" target="_blank"><span>源码下载</span></a></li>
+                <li><a href="http://sc.chinaz.com/" target="_blank"><span>站长素材</span></a></li>
+                <li><a href="http://www.cnzz.com/" target="_blank"><span>免费统计</span></a></li>
+                <li><a href="http://www.313.com/" target="_blank"><span>建站大师</span></a></li>
+                <li><a href="http://www.idc123.com/" target="_blank"><span>主机之家</span></a></li>
+                <li style="display:none"><a href="http://www.bbsmax.com/" target="_blank"><span>BBSMAX</span></a></li>
+		<li><a href="http://t.chinaz.com/" target="_blank"><span>微博</span></a></li>
+                <li><a href="http://9th.chinaz.com/" target="_blank"><span><font color="red">9周年聚会</font></span></a></li>
+            </ul>
+            <div id="chinaz_website_menu_1" class="topbar-hiddencontents">
+                <a href="http://bbs.chinaz.com/Club/list-1.html" target="_blank">站长俱乐部</a>
+                <a href="http://bbs.chinaz.com/Res/list-1.html" target="_blank">网站建设资源</a>
+                <a href="http://bbs.chinaz.com/Shuiba/list-1.html" target="_blank">站长水吧</a>
+            </div>
+            <div id="chinaz_website_menu_2" class="topbar-hiddencontents">
+                <a href="http://alexa.chinaz.com/" target="_blank">ALEXA排名查询</a>
+                <a href="http://seo.chinaz.com/" target="_blank">SEO概况查询</a>
+                <a href="http://link.chinaz.com/" target="_blank">友情链接查询</a>
+                <a href="http://pr.chinaz.com/" target="_blank">Google PR查询</a>
+                <a href="http://whois.chinaz.com/" target="_blank">Whois信息查询</a>
+            </div>
+        </div>
+        <div class="userbar">
+        
+            <a class="username item-expand" id="top_link_center" href="http://my.chinaz.com/my/default.html"><span>qinkun1234</span></a>
+            
+            <a href="http://my.chinaz.com/my/chat.html">消息</a>
+            
+            <a href="javascript:;" id="friend_dropdown" onclick="return openFriendList('/_part/toolbar_friend.html?default=true',this,'menu-friend',0,0)"><span>好友</span></a>
+            
+            <a href="http://my.chinaz.com/logout/756152.html">退出</a>
+        
+        </div>
+    </div>
+</div>
+
+
+<div class="dropdownmenu-wrap menu-setting" id="centerpopup" style="display: none; position: absolute; z-index: 50;">
+    <div class="dropdownmenu">
+        <div class="clearfix dropdownmenu-inner">
+            <div class="clearfix menu-setting-account">
+                <div class="accountavatar">
+                    <a class="avatar" href="http://my.chinaz.com/my/avatar.html"><img src="default_files/avatar_48.gif" alt=""></a>
+                </div>
+            </div>
+            <ul class="clearfix menu-setting-list">
+                <li><a href="http://my.chinaz.com/my/setting.html">修改资料</a></li>
+                <li><a href="http://my.chinaz.com/my/avatar.html">设置头像</a></li>
+                <li><a href="http://my.chinaz.com/my/changeemail.html">更改邮箱</a></li>
+                <li><a href="http://my.chinaz.com/my/changepassword.html">修改密码</a></li>
+                
+                <li><a href="http://my.chinaz.com/my/bindmobile.html">手机绑定</a></li>
+                
+                <li><a href="http://my.chinaz.com/my/notify-setting.html">通知接收设置</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var cpopup = new popup("centerpopup", "top_link_center", true, "hover");
+    cpopup.offsetLeft = -3;
+    cpopup.offsetTop = -2;
+</script>
+
+
+
+<div class="header">
+    <div class="clearfix header-inner">
+        <div class="brand">
+            <h1><a href="http://my.chinaz.com/" title="我的站长之家 - my.chinaz.com">站长之家 chinaz.com</a></h1>
+            <h2><a href="http://my.chinaz.com/my/default.html">用户中心</a></h2>
+        </div>
+        
+    </div>
+</div>
+
+<div class="clearfix siteportalnav">
+    <ul>
+        <li class="usercenter"><a class="current" href="http://my.chinaz.com/my/default.html"><span><strong>用户中心</strong></span></a></li>
+        <li><a href="http://jy.chinaz.com/?o=member"><span><strong>交易中心</strong></span></a></li>
+        <li><a href="http://www.chinaz.com/member"><span><strong>资讯中心</strong></span></a></li>
+        <li><a href="http://down.chinaz.com/member"><span><strong>下载中心</strong></span></a></li>
+        <li><a href="http://mytool.chinaz.com/"><span><strong>我的工具</strong></span></a></li>
+    </ul>
+</div>
+
+<div class="subnav">
+    <div class="clearfix subnav-inner">
+        <div class="crumbnav">
+             <a href="http://www.chinaz.com/"><span>站长之家</span></a> <span class="separator">»</span> <span class="current"><span><a href="http://my.chinaz.com/default.html" id="max_nav_root_1"><span>用户中心</span></a> </span></span>
+        </div>
+    </div>
+</div>
+
+
+    <div id="main" class="main section-default">
+        <div class="clearfix main-inner">
+            <div class="content">
+                <div class="clearfix content-inner">
+                    <div class="content-main">
+                        <div class="content-main-inner">
+                            
+                            
+                            
+                            
+                            <div class="pwrap accountinfo">
+                                <div class="phead"><div class="phead-inner"><div class="phead-inner">
+                                    <h3 class="ptitle"><span>帐号信息</span></h3>
+                                </div></div></div>
+                                <div class="pbody">
+                                    <div class="clearfix accountinfo-dock">
+                                        <div class="account-avatar">
+                                            <a href="http://my.chinaz.com/my/avatar.html" title="更改头像">
+                                                <img src="default_files/avatar_48.gif" alt="" height="48" width="48">
+                                                <span class="avatar-change">更改头像</span>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="account-quicktools">
+                                            <span class="account-sum" title="Z币余额:0"><strong>0</strong></span>
+                                            <a class="account-topup" href="http://my.chinaz.com/my/pay.html">Z币充值</a>
+                                        </div>
+                                        
+                                        <div class="account-uesrinfo">
+                                            <span class="account-name">qinkun1234</span>
+                                            <span class="account-id">ID: 756152</span>
+                                            
+                                            <span class="account-phoneauth-no"><a href="http://my.chinaz.com/my/bindmobile.html">立即绑定手机</a></span>
+                                            
+                                            <span class="bindweibolink"><a href="http://t.chinaz.com/index.php?m=account.bind" target="_blank">绑定站长微博</a></span>
+                                                
+                                        </div>
+                                        
+                                        <div class="account-baseinfo">
+                                            <span>Email地址: qinkun1234@163.com</span>
+                                            <span>注册时间: 2011-04-01</span>
+                                        </div>
+                                        <div class="account-track">
+                                            <span>上次访问时间: 24分钟前</span>
+                                            <span>上次访问IP: 114.222.116.217</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pfoot"><p><b>-</b></p></div>
+                            </div>
+                            
+                            <div class="pwrap mywebsitelist">
+                                <div class="phead"><div class="phead-inner"><div class="phead-inner">
+                                    <h3 class="ptitle"><span>我的网站</span></h3>
+                                    <div class="pextra addwebsite">
+                                        <a href="http://my.chinaz.com/max-dialogs/chinaz/website-edit.aspx" onclick="return openDialog(this.href,refresh)">添加网站</a>
+                                    </div>
+                                </div></div></div>
+                                <div class="pbody">
+                                
+                                    <div class="clearfix mywebsite-nodata">
+                                       <p class="mywebsite-nodata-text">添加网站后，您将可以非常便捷地使用我们提供的各种服务和工具。</p>
+                                       <a class="mywebsite-button" href="http://my.chinaz.com/max-dialogs/chinaz/website-edit.aspx" onclick="return openDialog(this.href,refresh)"><span>立即添加网站</span></a>
+                                    </div>
+                                
+                                
+                                </div>
+                                <div class="pfoot"><p><b>-</b></p></div>
+                            </div>
+                            
+                            <div class="pwrap pwrap-simple sitetools">
+                                <div class="phead"><div class="phead-inner"><div class="phead-inner">
+                                    <h3 class="ptitle"><span>站长查询工具</span></h3>
+                                </div></div></div>
+                                <div class="pbody">
+                                    <div class="sitetools-major">
+                                        <ul class="clearfix">
+                                            <li><a target="_blank" href="http://alexa.chinaz.com/"><img alt="" src="default_files/ico01.gif">Alexa查询</a></li>
+                                            <li><a target="_blank" href="http://whois.chinaz.com/"><img alt="" src="default_files/ico02.gif">WHOIS查询</a></li>
+                                            <li><a target="_blank" href="http://tool.chinaz.com/KeyWords/"><img alt="" src="default_files/ico03.gif">关键字排名</a></li>
+                                            <li><a target="_blank" href="http://link.chinaz.com/"><img alt="" src="default_files/ico04.gif">友情链接查询</a></li>
+                                            <li><a target="_blank" href="http://bm.chinaz.com/"><img alt="" src="default_files/ico05.gif">网站保姆</a></li>
+                                            <li><a target="_blank" href="http://pr.chinaz.com/"><img alt="" src="default_files/ico07.gif">PR查询</a></li>
+                                            <li><a target="_blank" href="http://www.idc123.com/"><img alt="" src="default_files/ico09.gif">主机评测</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pfoot"><p><b>-</b></p></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+    <div class="sidebar-inner">
+        
+        <div class="sidebarmenu">
+            <div class="sidebarmenu-inner">
+                <div class="sidebarmenu-list">
+                    <ul>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/house.gif&quot;);" class="current" href="http://my.chinaz.com/my/default.html">中心首页</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/website.gif&quot;);" href="http://my.chinaz.com/my/chinaz/sitemanager.html">我的网站</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/friend.gif&quot;);" href="http://my.chinaz.com/my/friends.html">我的好友</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/chat.gif&quot;);" href="http://my.chinaz.com/my/chat.html">站内消息 </a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/note.gif&quot;);" href="http://my.chinaz.com/my/notify.html">网站通知 </a><a class="extra" href="http://my.chinaz.com/my/notify-setting.html">设置</a></li>
+                        
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/coins.gif&quot;);" href="http://my.chinaz.com/my/pay.html">Z币充值</a><a class="extra" href="http://my.chinaz.com/my/paylog.html">明细</a></li>
+                        
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/vcard.gif&quot;);" href="http://my.chinaz.com/my/setting.html">修改资料</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/image.gif&quot;);" href="http://my.chinaz.com/my/avatar.html">设置头像</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/password.gif&quot;);" href="http://my.chinaz.com/my/changepassword.html">修改密码</a></li>
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/email.gif&quot;);" href="http://my.chinaz.com/my/changeemail.html">设置邮箱</a></li>
+                        
+                        <li><a style="background-image: url(&quot;/max-templates/passport/images/icons/phone.gif&quot;);" href="http://my.chinaz.com/my/bindmobile.html">手机绑定</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+        </div>
+    </div>
+<div class="footer">
+    <div class="clearfix footer-inner">
+        <p class="extralink">
+            <a href="http://www.chinaz.com/about/">关于站长之家</a> - 
+            <a href="http://www.chinaz.com/about/contact.asp">联系我们</a> - 
+            <a href="http://www.chinaz.com/about/a.asp">广告服务</a> - 
+            <a href="http://www.chinaz.com/about/link.asp">友情链接</a> - 
+            <a href="http://www.chinaz.com/about/sitemap.asp">网站地图</a> - 
+            <a href="http://www.chinaz.com/about/announce.asp">版权声明</a> - 
+            <a href="http://www.chinaz.com/about/job.asp">人才招聘</a> - 
+            <a href="http://www.chinaz.com/about/faq.asp">帮助</a>
+        </p>
+        <p class="copyright">
+            CopyRight © 2002-2011 <a href="http://www.chinaz.com/">站长之家</a> Chinaz.Com All Rights Reserved 站长热线:0592-2965133 2965139
+        </p>
+        <p class="extrainfo">
+            <a rel="nofollow" href="http://www.miibeian.gov.cn/">闽ICP备08105208号</a>
+            增值电信业务经营许可证闽B2-20070004号
+        </p>
+        <p>Processed in 0.0025839 seconds, 6 Queries.</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+page_end();
+</script>
+
+<div style="display:none"><script src="default_files/stat.htm" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=2151022" target="_blank" title="站长统计">站长统计</a><img src="default_files/stat.gif" border="0" height="0" width="0"><img src="default_files/stat_002.gif" border="0" height="0" width="0"></div>
+
+</div>
+<script type="text/javascript">
+    var list = new checkboxList("websiteids","select_all");
+    var sDoingForm=false;
+    var doingFormFocus=false;
+    function switchDoingForm()
+    {
+        setVisible(max.$("doingcontent"),sDoingForm); 
+        setVisible(max.$('mydoingform'),!sDoingForm); 
+        if(sDoingForm)
+            removeCssClass(max.$('center_doing'),'usertagline-active');
+        else{
+            addCssClass(max.$('center_doing'),'usertagline-active');    
+            doingFormFocus=true;
+            }    
+        sDoingForm= !sDoingForm;
+    }
+    
+    addHandler(document.body,"click", function(){if(sDoingForm && !doingFormFocus) switchDoingForm();});
+</script>
+
+
+
+
+
+</body></html>
+<!--
+False
+
+
+-->
