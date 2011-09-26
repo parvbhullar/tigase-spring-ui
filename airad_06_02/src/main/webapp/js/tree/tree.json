@@ -1,0 +1,42 @@
+[{
+	"id":1,
+	"text":"Folder1",
+	"iconCls":"icon-ok",
+	"state":"open",
+	"children":[{
+		"id":2,
+		"text":"File1",
+		"checked":true,
+		"state":"close",
+		"children":[{
+			"id":4,
+			"text":"File3",
+			"attributes":{
+				"p1":"value1",
+				"p2":"value2"
+			},
+			"checked":true,
+			"iconCls":"icon-reload"
+		},{
+			"id": 8,
+			"text":"Async Folder"
+		}]
+	},{
+		"id":3,
+		"text":"Folder2",
+		"state":"open",
+		"children":[{
+			"id":5,
+			"text":"File4",
+			"attributes":{
+				"p1":"value1",
+				"p2":"value2"
+			},
+			"checked":true,
+			"iconCls":"icon-reload"
+		},{
+			"id": 6,
+			"text":"File5"
+		}]
+	}]
+}]

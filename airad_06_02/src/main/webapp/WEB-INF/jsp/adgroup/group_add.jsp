@@ -1,0 +1,229 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/WEB-INF/jspf/taglibs.jspf"%>
+<%@page import="com.mitian.airad.model.CoreCampaign"%>
+<%@page import="org.apache.commons.lang.time.DateFormatUtils"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>广告组添加</title>
+<link href="/js/tree/tree.css" type="text/css" rel="stylesheet" />
+</head>
+<%
+    CoreCampaign coreCampaign = (CoreCampaign) request
+          .getAttribute("campaign");
+      String startTime = "";
+      if (null != coreCampaign) {
+        if (null != coreCampaign.getStartTime()) {
+          startTime = DateFormatUtils.format(coreCampaign
+              .getStartTime(), "yyyy-MM-dd HH:mm");
+        }
+      }
+%>
+<body>
+<%@ include file="/WEB-INF/jspf/header.jsp"%>
+<div id="main">
+<div class="mainCon">
+<!-- 开发嵌入start-->
+<div class="stepNew sp2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <col width="33%" />
+  <col width="33%" />
+  <col />
+  <tr>
+    <td>1. 广告活动信息</td>
+    <td class="now">2. 设置广告组投放目标</td>
+    <td>3. 设置广告并出价</td>
+  </tr>
+</table>
+</div>
+<div class="leftCon">
+<h1>添加广告组</h1>
+<form:form name="myfrm" action="adGroup.do?action=add"
+  commandName="command" method="post">
+  <form:hidden path="exact" />
+  <form:hidden path="adLoclInfo"/>
+  <form:hidden path="addFlag"/>
+  <form:hidden path="editFlagCheck"/>
+  <form:hidden path="adTagSp"/>
+  <table border="0" cellspacing="0" cellpadding="0" class="tabNF">
+    <col width="25%" />
+    <col width="75%" />
+    <tr>
+      <th><span class="must">*</span>广告组名称</th>
+      <td><form:input path="coreAdGroup.adGroupName" cssClass="long"
+        onkeyup="valueAlert(this,'adGroupNamesDiv')" /><input type="hidden"
+        name="coreAdGroup.campaignId" value="${command.campaignId }" /><input
+        type="hidden" name="campaignId" value="${command.campaignId }" />
+        ${el:errorTip(command.errors,"coreAdGroup.adGroupName") }
+<small style="display:block">请输入一个有助于您识别该广告组的名称，比如：长三角地区人群</small></td>
+    </tr>
+    <tr>
+      <th><span class="must">*</span>地理位置</th>
+      <td><form:radiobutton path="coreAdGroup.adLoclType" value="0"
+        onclick="showDetial();" checked="checked" />全国
+      <form:radiobutton path="coreAdGroup.adLoclType" value="2"
+        onclick="showDetial();" /> 精确到区 <form:radiobutton
+        path="coreAdGroup.adLoclType" value="1"
+        onclick="showAdLoclInfoSp(this,true)" />常用地区选择
+      <div id="adLoclInfoShowSp" style="display: none"><form:checkbox
+        path="coreAdGroup.adLoclInfo" value="0" title="长三角" label="长三角"
+        onclick="showAdLoclInfoSp(this,false)" /> <form:checkbox
+        path="coreAdGroup.adLoclInfo" value="1" title="珠三角" label="珠三角"
+        onclick="showAdLoclInfoSp(this,false)" /> <form:checkbox
+        path="coreAdGroup.adLoclInfo" value="2" title="环渤海" label="环渤海"
+        onclick="showAdLoclInfoSp(this,false)" /></div>
+      <div style="height: 150px;width:460px; overflow: auto; display: none"
+        class="selectBox" id="proId">
+        <c:forEach items="${form.proListBean}" var="DictionaryGlobalRegion" varStatus="statu">
+        <div>
+        <div><input type="hidden" value="${DictionaryGlobalRegion.regionId}" name="ck" /> 
+          <span style="cursor: pointer;" onclick="showData('${DictionaryGlobalRegion.regionId}')"><img src="images/ico_cl.gif" id="image${DictionaryGlobalRegion.regionId}"/>${DictionaryGlobalRegion.regionName}</span>
+        </div>
+        <div id="d${DictionaryGlobalRegion.regionId}" style="display: none">
+        <ul id="${DictionaryGlobalRegion.regionId}" class="simpleTree"></ul>
+        </div>
+        </div>
+      </c:forEach></div>
+      ${el:errorTip(command.errors,"coreAdGroup.adLoclType") }
+            <small style="display:block">请选择该广告组投放的地区。</small>
+      </td>
+    </tr>
+    <!-- 
+    <tr>
+      <th>人群性别</th>
+      <td><form:radiobutton path="coreAdGroup.adTagSex" value="1" />男性为主
+      <form:radiobutton path="coreAdGroup.adTagSex" value="2" />女性为主 <form:radiobutton
+        path="coreAdGroup.adTagSex" value="0" checked="checked" />不分性别</td>
+    </tr>
+    <tr>
+      <th>人群年龄段</th>
+      <td><form:select path="coreAdGroup.adTagAge">
+        <form:option value="0">全年龄</form:option>
+        <form:option value="1">18岁以下</form:option>
+        <form:option value="2">18-24</form:option>
+        <form:option value="3">25-34</form:option>
+        <form:option value="4">35-44</form:option>
+        <form:option value="5">45-54</form:option>
+        <form:option value="6">55-64</form:option>
+        <form:option value="7">65以上</form:option>
+      </form:select></td>
+    </tr>
+     -->
+    <tr>
+      <th><span class="must">*</span>所属行业</th>
+      <td>
+        <form:select path="coreAdGroup.adTagSoftType">
+            <c:forEach items="${form.industryInvolved}" var="dictionarySps">
+            <form:option value="${dictionarySps.dictKey}" label="${dictionarySps.dictVal}"/>
+            </c:forEach>
+       </form:select>
+      </td>
+    </tr>
+    <tr>
+      <th><span class="must">*</span>平台</th>
+      <td>
+       <div class="selectBox" id="tagSpDiv" onclick="showTagSp();">
+       <c:forEach items="${form.arr}" var="dictionary">
+         <form:checkbox path="coreAdGroup.adTagSp" value="${dictionary.dictKey}" label="${dictionary.dictVal}"/>
+       </c:forEach>
+       </div>
+       ${el:errorTip(command.errors,"coreAdGroup.adTagSp") }
+            <small style="display:block">请选择该广告组适用的平台及版本。为了达到最佳的广告投放效果，建议选择全部。</small>
+            </td>
+    </tr>
+    <!-- 
+  <tr>
+    <th>流量信息</th>
+    <td>
+    <div class="selectBox">
+    <form:radiobutton path="coreAdGroup.adFlowInfo" value="0" />针对所有流量&nbsp&nbsp
+    <form:radiobutton path="coreAdGroup.adFlowInfo" value="1" />仅针对 Wi-Fi 流量
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <th>运营商</th>
+    <td>
+    <div class="selectBox">
+    <form:radiobutton path="coreAdGroup.changceInfo" value="0" />联通&nbsp&nbsp
+    <form:radiobutton path="coreAdGroup.changceInfo" value="1" />移动&nbsp&nbsp
+    <form:radiobutton path="coreAdGroup.changceInfo" value="2" />电信&nbsp&nbsp 
+    <form:radiobutton path="coreAdGroup.changceInfo" value="3" />其他
+    </div>
+    </td>
+  </tr>
+   -->
+    <tr>
+      <th>&nbsp;</th>
+      <td>
+      <div class="btnBox">
+       <button class="btnBY fl" type="button" onclick="registerAdGroupPageSubmti();">提交</button>
+      <div class="moreBtn"><span class="gray">|</span> <a
+        href="javascript:returnPage();">取消</a></div>
+      </div>
+      </td>
+    </tr>
+  </table>
+</form:form></div>
+<div class="rightCon">
+<div class="infoCon">
+<h2><img src="images/ico_act.gif" alt="活动" width="16" height="16"
+  align="absmiddle" />活动摘要</h2>
+<ul>
+  <li><span class="fr"><airad:cutString size="10" value="${campaign.campaignName}" mark="..."/></span>名称</li>
+  <li><span class="fr sml"><%=startTime%></span>开始时间</li>
+  <c:if test="${!empty campaign.endTime}">
+  <li><span class="fr sml"><fmt:formatDate value="${campaign.endTime}"type="both" pattern="yyyy-MM-dd HH:mm" /></span>结束时间</li>
+  </c:if>
+  <li><span class="fr sml"><sup>&yen;</sup>${campaign.buggetDay}</span>每日预算</li>
+</ul>
+<h2><img src="images/ico_gup.gif" alt="活动" width="16" height="16"
+  align="absmiddle" />广告组摘要</h2>
+<ul>
+  <li>
+  <span id="adGroupNamesDiv" class="fr"></span>名称
+  </li>
+  <li>
+  <span id="geographyDiv" class="fr"></span>地理位置
+  </li>
+  <li>
+  <span id="tagSpShowDiv" class="fr">
+  </span>平台
+  </li>
+</ul>
+</div>
+</div>
+<!-- 开发嵌入end--></div>
+</div>
+<%@ include file="/WEB-INF/jspf/footer.jsp"%>
+<script type="text/javascript" src="/js/tree/js/jquery.simple.tree.self.js"></script>
+<script>
+  showAdGroupTree();
+
+  $(document).ready(function() {
+    showDetial();
+    var ids = document.getElementById("exact");
+    /*
+     var s= $("#proId").find(":checkbox[name=ck]:checked").each(function(){
+            loadData($(this));
+        });*/
+        if (ids.value != "") {
+              var idReplace = ids.value.replace(new RegExp(";", 'g'), ",");
+              idReplace=idReplace.substring(0, idReplace.length - 1);
+              var idarray=idReplace.split(",");
+                $("#proId").find(":input[name=ck]").each(function() {
+                  for ( var i = 0; i < idarray.length; i++) {
+                    var ckval = $(this).val();
+                      if (ckval == idarray[i]) {
+                          $("#image"+ckval).attr("src","images/ico_op.gif");
+                              loadData($(this));
+                              break;
+                      }
+                  }
+                });
+            }
+       addCss("listCampaign");
+  });
+</script>
+</body>
+</html>

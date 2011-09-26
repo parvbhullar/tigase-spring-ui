@@ -1,0 +1,146 @@
+[
+    {
+    	'name':'上图下文',
+        'id': 'v20110501',
+        'url':'/html/model/pages/v20110501.html',
+        'imgUrl':'/images/adPages/logo_airad_120.gif',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':120,
+				'uiHeight':120
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':247
+            }]
+        
+    },{
+    	'name':'左图右文',
+        'id': 'v20110502',
+        'url':'/html/model/pages/v20110502.html',
+        'imgUrl':'/images/adPages/logo_airad_120.gif',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':120,
+				'uiHeight':120
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':320
+            }]
+    },{
+    	'name':'右图左文',
+        'id': 'v20110503',
+        'url':'/html/model/pages/v20110503.html',
+        'imgUrl':'/images/adPages/logo_airad_120.gif',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':120,
+				'uiHeight':120
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':320
+            }]
+	},{
+    	'name':'上大图下文',
+        'id': 'v20110504',
+        'url':'/html/model/pages/v20110504.html',
+        'imgUrl':'/images/adPages/iphone.gif',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':240,
+				'uiHeight':318
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':40
+            }]
+	},{
+    	'name':'下大图上文',
+        'id': 'v20110505',
+        'url':'/html/model/pages/v20110505.html',
+        'imgUrl':'/images/adPages/iphone.gif',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':240,
+				'uiHeight':318
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':40
+            }]
+	},{
+    	'name':'纯文本',
+        'id': 'v20110506',
+        'url':'/html/model/pages/v20110506.html',
+        'ui':[{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':392
+            }]
+	},{
+    	'name':'标题加文字',
+        'id': 'v20110507',
+        'url':'/html/model/pages/v20110507.html',
+        'ui':[{
+                'uiName':'标题',
+                'uiType':'h1',
+                'uiWords':10
+            },{
+                'uiName':'文本容',
+                'uiType':'textarea',
+                'uiWords':310
+            }]
+	},{
+    	'name':'相册',
+        'id': 'v20110508',
+        'url':'/html/model/pages/v20110508.html',
+        'imgUrl':'/images/adPages/iphone.jpg',
+        'ui':[{
+                'uiName':'上传',
+                'uiType':'img',
+                'uiLength':260,
+				'uiHeight':390
+            }]
+	},{
+    	'name':'三行淘宝选项',
+        'id': 'v20110509',
+        'url':'/html/model/pages/v20110509.html',
+        'imgUrl':'/images/adPages/pro_01.jpg',
+        'ui':[{
+                'uiName':'淘宝商品',
+                'uiType':'list'
+            },{
+                'uiName':'数量',
+                'uiType':'number',
+                'uiNumber':3
+            }]
+	},{
+    	'name':'大图淘宝',
+        'id': 'v20110510',
+        'url':'/html/model/pages/v20110510.html',
+        'imgUrl':'/images/adPages/pic_big.gif',
+        'ui':[{
+                'uiName':'淘宝大图',
+                'uiType':'img'
+            },{
+                'uiName':'淘宝小图',
+                'uiType':'img',
+				'uiNumber':3
+            }]
+	},{
+    	'name':'拨打电话',
+        'id': 'v20110511',
+        'url':'/html/model/pages/v20110511.html',
+	},{
+    	'name':'地图',
+        'id': 'v20110512',
+        'url':'/html/model/pages/v20110512.html',
+	}
+]

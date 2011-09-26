@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="Calendar5.js"></script>
+  <script>
+    function clk(){
+       var va=document.getElementById("txt2").value;
+     alert(va);
+    }
+  </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+     <div>
+            普通调用:<input type="text" name="txt2" id="txt2" onfocus="showdate(obj);" />
+          
+           </div>
+       <input type=button value="***" onclick="clk()">
+   </form>
+</body>
+</html>

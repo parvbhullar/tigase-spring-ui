@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AIRAD_DEVMEMBER">
+	<typeAlias alias="airadDevmember" type="com.mitian.airad.model.AiradDevmember" />
+	<insert id="insertAiradDevmember" parameterClass="airadDevmember" >
+    insert into AIRAD_DEVMEMBER (NAME,COMPANY,POSITION,OS,APPNUMBER,CELLPHONE,EMAIL,QQ,PROVINCE,CITY,COUNTRY,PROVINCENAME,CITYNAME,ADD_TIME)
+    values (#name#, #company#,#position#,#os#,#appnumber#,#cellphone#,#email#,#qq#,#province#,#city#,#country#,#provinceName#,#cityName#,current_date)
+  </insert>
+</sqlMap>

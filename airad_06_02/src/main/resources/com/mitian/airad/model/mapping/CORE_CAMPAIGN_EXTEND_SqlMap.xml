@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- wendong.Gao -->
+<sqlMap namespace="CORE_CAMPAIGN_EXTEND">
+  <update id="campaignSuspend" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!--修改广告活动的暂停标志-->
+    update CORE_CAMPAIGN  set SUSPEND_TYPE=#suspendType:CHAR#,UPD_OPER = #updOper#,UPD_TIME=#updTime#  where MEMBER_ID=#memberId:LONG# and CAMPAIGN_ID=#campaignId:INTEGER#  and DEL_FLAG =#delFlag:CHAR#  
+  </update>
+   <update id="AdGroupSuspend" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!-- 修改广告组的暂停标志 -->
+    update CORE_AD_GROUP  set SUSPEND_TYPE=#suspendType:CHAR#,UPD_OPER = #updOper#,UPD_TIME=#updTime# where MEMBER_ID=#memberId:LONG# and CAMPAIGN_ID=#campaignId:INTEGER#  and DEL_FLAG =#delFlag:CHAR#  
+  </update>
+   <update id="adSuspend" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!-- 修改广告的暂停标志 -->
+    update CORE_AD   set SUSPEND_TYPE=#suspendType:CHAR#,UPD_OPER = #updOper#,UPD_TIME=#updTime# where MEMBER_ID=#memberId:LONG# and AD_GROUP_ID IN($inGroupId$) and DEL_FLAG =#delFlag:CHAR#  
+  </update>
+   <!-- 删除富媒体信息 -->
+  <delete id="delRichAd" parameterClass="com.mitian.airad.model.CoreCampaign">
+    delete from CORE_RICH_AD where AD_ID in ($inAdId$) AND MEMBER_ID=#memberId:LONG#
+  </delete>
+   <!--删除BENNER信息 -->
+  <delete id="delBanner" parameterClass="com.mitian.airad.model.CoreCampaign">
+    delete from CORE_BANNER where AD_ID in ($inAdId$) AND MEMBER_ID=#memberId:LONG#
+  </delete>
+   <!--删除贫媒体信息 -->
+  <delete id="delWapAd" parameterClass="com.mitian.airad.model.CoreCampaign">
+    delete from CORE_WAP_AD where AD_ID in ($inAdId$) AND MEMBER_ID=#memberId:LONG#
+  </delete>
+  
+  <update id="delCampaign" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!--修改广告活动的删除标志  -->
+    update CORE_CAMPAIGN set DEL_FLAG = #delFlag:CHAR# ,DEL_OPER = #delOper:VARCHAR#,DEL_TIME = #delTime:TIMESTAMP# where CAMPAIGN_ID=#campaignId:INTEGER# AND MEMBER_ID=#memberId:LONG#
+  </update>
+   <update id="delAdGroup" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!-- 修改广告组的删除标志 -->
+    update CORE_AD_GROUP set DEL_FLAG = #delFlag:CHAR#,DEL_OPER = #delOper:VARCHAR#,DEL_TIME = #delTime:TIMESTAMP#  where CAMPAIGN_ID=#campaignId:INTEGER#  AND MEMBER_ID=#memberId:LONG#
+  </update>
+   <update id="delAd" parameterClass="com.mitian.airad.model.CoreCampaign">
+    <!-- 修改广告的删除标志 -->
+    update CORE_AD  set DEL_FLAG = #delFlag:CHAR# ,DEL_OPER = #delOper:VARCHAR#,DEL_TIME = #delTime:TIMESTAMP# where AD_GROUP_ID IN($inGroupId$)  AND MEMBER_ID=#memberId:LONG#
+  </update>
+    <!-- 查找广告组ID -->
+    <select id="selectAdGroupId" parameterClass="com.mitian.airad.model.CoreCampaign" resultClass="com.mitian.airad.model.CoreAdGroup">
+    SELECT AD_GROUP_ID adGroupId FROM CORE_AD_GROUP
+    where CAMPAIGN_ID = #campaignId:INTEGER#
+    and MEMBER_ID=#memberId:LONG#
+    <isNotEmpty property="delFlag">
+    and DEL_FLAG =#delFlag:CHAR#
+    </isNotEmpty>
+    <isNotEmpty property="blocking">
+    and BLOCKING = #blocking:CHAR#
+    </isNotEmpty>
+  </select>
+  <!-- 查找广告组下有广告 -->
+   <select id="selectAdAll" parameterClass="com.mitian.airad.model.CoreCampaign" resultClass="com.mitian.airad.model.CoreAd">
+   select  WAP_ID wapId, AD_GROUP_ID adGroupId, RICH_ID richId, BANNER_ID bannerId, AD_NAME adName, AD_DETAIL_INFO adDetailInfo, SUSPEND_TYPE suspendType,
+      AD_OFFER adOffer, AD_TYPE adType, FLAG flag, BLOCKING blocking, ADD_OPER addOper, ADD_TIME addTime, UPD_OPER updOper, UPD_TIME updTime, DEL_OPER delOper, DEL_TIME delTime,
+      DEL_FLAG delFlag, MEMBER_ID memberId
+    from CORE_AD
+    where AD_GROUP_ID in($inGroupId$) AND MEMBER_ID=#memberId:LONG#
+  </select>
+</sqlMap>

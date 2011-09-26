@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="JOB_APP_AD_AGENT">
+        <!-- 统计代理商 -->
+    <select id="JOB_AGENT" parameterClass="com.mitian.airad.model.StatAgent" resultClass="com.mitian.airad.model.StatAgent">
+      SELECT  
+         IFNULL(T.AD_ID,-1) adId
+        ,IFNULL(AGENT.MEMBER_ID,-1)  agentId
+        ,IFNULL(AGENT.ADVERTISER_NUM,-1)  advertiserId
+        ,IFNULL(SUM(DJ),0) clickNum 
+        ,IFNULL(SUM(ZS),0) showNum
+        ,IFNULL(AGENT.ADD_TIME,null) createTime
+       ,IFNULL(E.EMAIL,'') advertiserName
+        ,IFNULL(OFFER,0) offer
+        ,T.AD_NAME adName
+        FROM CORE_AGENT_RELATION  AGENT
+        LEFT JOIN (
+            SELECT 
+                T.AD_ID ,DJ,ZS
+                ,A.MEMBER_ID , T.REQ_TIME 
+                ,SUM(D.OFFER) OFFER 
+                ,T.GUIDE_ID
+                ,A.AD_NAME
+                FROM (
+                    SELECT 
+                    T.AD_ID ,DJ,ZS
+                    , B.REQ_TIME ,B.GUIDE_ID
+                    FROM (
+                        SELECT 
+                        T.AD_ID ,SUM(DJ) DJ,SUM(ZS) ZS 
+                        FROM (
+                            SELECT 
+                              T.AD_ID
+                              ,CASE WHEN TEMP='D' THEN C END AS DJ
+                              ,CASE WHEN TEMP = 'Z' THEN C  END AS ZS
+                            FROM(
+                                SELECT COUNT(B.AD_ID) C,B.AD_ID AD_ID, 'D' AS TEMP FROM REQ_WAP_RICH B   
+                                WHERE  B.REQ_TIME <![CDATA[>= #reqTime# AND B.REQ_TIME <#reqTimeEnd#]]> GROUP BY B.AD_ID
+                               UNION 
+                                SELECT COUNT(A.AD_ID) C,A.AD_ID  AD_ID ,'Z' AS TEMP  FROM REQ_BANNER A  
+                                WHERE  A.REQ_TIME <![CDATA[>= #reqTime# AND A.REQ_TIME <#reqTimeEnd#]]>  GROUP BY A.AD_ID
+                            )T 
+                        )T GROUP BY T.AD_ID
+                  )T  
+                  LEFT JOIN REQ_WAP_RICH B ON T.AD_ID = B.AD_ID AND  B.REQ_TIME <![CDATA[>= #reqTime# AND B.REQ_TIME <#reqTimeEnd#]]> GROUP BY T.AD_ID
+            )T
+          LEFT JOIN ACC_INCOME D ON T.GUIDE_ID = D.GUIDE_ID 
+                AND (INCOME_TYPE='2' or INCOME_TYPE='4')
+          LEFT JOIN CORE_AD A ON T.AD_ID = A.AD_ID 
+          GROUP BY T.AD_ID 
+      ) T 
+       
+      ON AGENT.ADVERTISER_NUM = T.MEMBER_ID
+      LEFT JOIN CORE_MEMBER_INFO  E ON  AGENT.ADVERTISER_NUM=E.MEMBER_ID 
+       WHERE  AGENT.ADD_TIME 
+        <![CDATA[ <= #reqTime#]]>
+      <isNotNull property="inAdvertiserId" prepend="AND">
+         AGENT.ADVERTISER_NUM IN ($inAdvertiserId$)
+      </isNotNull>
+      GROUP BY AGENT.ADVERTISER_NUM
+       <isNull property="inAdvertiserId">
+        LIMIT $startPag$,$endPag$
+      </isNull>
+    </select>
+    <!-- 统计广告 -->
+   <select id="JOB_AD" parameterClass="com.mitian.airad.model.StatAd" resultClass="com.mitian.airad.model.StatAd">
+    SELECT 
+      IFNULL(A.AD_ID,-1) adId
+      ,IFNULL(A.AD_NAME,'') adName
+      ,IFNULL(B.AD_GROUP_ID,-1) adGroupId
+      ,IFNULL(B.AD_GROUP_NAME,'') adGroupName
+      ,IFNULL(C.CAMPAIGN_ID,-1) campaignId
+      ,IFNULL(C.CAMPAIGN_NAME,'') campaignName
+      ,IFNULL(A.MEMBER_ID,-1) advertiserId
+      ,IFNULL(T.ZS,0) showNum
+      ,IFNULL(T.DJ,0) clickNum
+      ,IFNULL(T.ZSOFFER,0) showMoney
+      ,IFNULL(T.DJOFFER,0)clickMoney
+      ,IFNULL(A.AD_TYPE,'')showType
+      FROM CORE_AD A
+      LEFT JOIN CORE_AD_GROUP B ON B.AD_GROUP_ID = A.AD_GROUP_ID
+      LEFT JOIN CORE_CAMPAIGN C ON B.CAMPAIGN_ID = C.CAMPAIGN_ID
+      LEFT JOIN
+      (
+          SELECT AD_ID,DJ,ZS
+          ,SUM(ZSOFFER) ZSOFFER
+          ,SUM(DJOFFER)DJOFFER  
+          FROM (
+            SELECT 
+            T.AD_ID ,DJ,ZS
+            ,B.OFFER
+            ,CASE WHEN  B.REQ_TYPE='Z' THEN   B.OFFER  END ZSOFFER
+            ,CASE WHEN B.REQ_TYPE !='Z' THEN B.OFFER  END DJOFFER 
+            FROM (
+                SELECT 
+                T.AD_ID ,SUM(DJ) DJ
+                ,SUM(ZS) ZS 
+                FROM (
+                    SELECT 
+                      T.AD_ID 
+                      ,CASE WHEN TEMP='D' THEN C END AS DJ
+                      ,CASE WHEN TEMP = 'Z' THEN C  END AS ZS
+                    FROM(
+                        SELECT COUNT(B.AD_ID) C,B.AD_ID AD_ID, 'D' AS TEMP FROM REQ_WAP_RICH B    
+                        WHERE B.REQ_TIME <![CDATA[>= #reqTime# AND B.REQ_TIME <#reqTimeEnd#]]> GROUP BY B.AD_ID
+                       UNION 
+                        SELECT COUNT(A.AD_ID) C,A.AD_ID  AD_ID,'Z' AS TEMP  FROM REQ_BANNER A      
+                        WHERE A.REQ_TIME <![CDATA[>= #reqTime# AND A.REQ_TIME <#reqTimeEnd#]]>  GROUP BY A.AD_ID
+                    )T  
+                )T GROUP BY T.AD_ID
+          )T  
+          LEFT JOIN REQ_WAP_RICH B ON T.AD_ID = B.AD_ID and  B.REQ_TIME <![CDATA[>= #reqTime# AND B.REQ_TIME <#reqTimeEnd#]]>
+      )T
+      GROUP BY T.AD_ID
+      )T ON A.AD_ID = T.AD_ID 
+       WHERE  A.ADD_TIME <![CDATA[ <= #reqTime#]]> AND A.ADD_TIME IS NOT NULL
+      <isNotNull property="inAdId" prepend="AND">
+        A.AD_ID IN($inAdId$)
+      </isNotNull>
+       <isNull property="inAdId">
+        LIMIT $startPag$,$endPag$
+      </isNull>
+   </select>
+   <!-- 查看广告展示是否千次展示wendong.Gao -->
+   <select  id="adCountStat" parameterClass="com.mitian.airad.model.StatAd" resultClass="int">
+   select count(*)count from CORE_AD  WHERE ADD_TIME <![CDATA[ <= #reqTime#]]>
+  </select>
+  <select  id="appCountStat" parameterClass="com.mitian.airad.model.StatApp" resultClass="int">
+   select count(*)count from CORE_APP WHERE ADD_TIME <![CDATA[ <= #reqTime#]]> 
+   
+</select>
+  <select  id="agentCountStat" parameterClass="com.mitian.airad.model.StatAgent" resultClass="int">
+   select count(*)count from CORE_AGENT_RELATION  WHERE ADD_TIME <![CDATA[ <= #reqTime#]]>
+  </select>
+<select id="before_appcode_count" parameterClass="com.mitian.airad.model.StatApp" resultClass="com.mitian.airad.model.StatApp">
+   SELECT 
+      A.APP_CODE appCode
+      ,IFNULL(A.APP_ID,-1) appId 
+      ,A.APP_NAME appName
+      ,IFNULL(T.MAX_NUM,0) maxNum    
+    FROM  CORE_APP A 
+  LEFT JOIN(
+        SELECT COUNT(REQ_RES_ID) MAX_NUM,APP_CODE,REQ_TIME  FROM REQ_RES_RECORD WHERE REQ_TIME LIKE '%$reqTime$%' GROUP BY APP_CODE
+    )T ON A.APP_CODE = T.APP_CODE
+  </select>
+
+</sqlMap>
