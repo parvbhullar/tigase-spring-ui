@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+      http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+      http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
+      
+      <context:property-placeholder location="environment.properties"  />
+        <context:component-scan base-package="com.mitian.airad.common" />
+        <context:component-scan base-package="com.mitian.airad.component.mail" />
+      <context:component-scan base-package="com.mitian.airad.component.*"/>
+       <context:component-scan base-package="com.mitian.airad.refreshable"/>
+        <context:component-scan base-package="com.mitian.airad.service"/>
+         <context:component-scan base-package="com.mitian.airad.dao"/>
+      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="${jdbc.driverClassName}"/>
+      <property name="url" value="${jdbc.url}"/>
+      <property name="username" value="${jdbc.username}"/>
+      <property name="password" value="${jdbc.password}"/>
+       <property name="validationQuery" value="select 1 from dual"></property>
+       <property name="testOnReturn"  value="true"></property>
+       <property name="testOnBorrow"  value="true"></property>
+       <property name="testWhileIdle"  value="true"></property>
+       <property name="timeBetweenEvictionRunsMillis" value="3600000"></property>
+       <property name="minEvictableIdleTimeMillis" value="7200000"></property>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"/>
+    </bean>   
+    
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+      <property name="configLocation" value="/sqlmap-config.xml"/>
+      <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+     
+     
+      <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+          <tx:method name="tx*" propagation="REQUIRED" rollback-for="Exception" />
+        </tx:attributes>
+      </tx:advice>
+
+      <!-- auto proxy -->
+      <aop:config proxy-target-class="true">
+        <aop:advisor pointcut="execution(* com.mitian.airad.service.*Service.*(..))" advice-ref="txAdvice" />
+      </aop:config>
+
+
+		
+		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" autowire="byName">
+		     <property name="host" value="mail.airad.com" />
+		     <property name="username" value="contact@airad.com" />
+		     <property name="password" value="contact-2011" />
+		     <property name="javaMailProperties">
+		         <props>
+		             <prop key="mail.smtp.auth">true</prop>
+                 <prop key="mail.smtp.timeout">25000</prop>
+                 <prop key="mail.mime.charset">UTF-8</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+		         </props>
+		     </property>
+		</bean>
+		<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+			<property name="velocityProperties">
+				<props>
+				<prop key="resource.loader">file</prop>
+				<prop key="file.resource.loader.class">
+				org.apache.velocity.runtime.resource.loader.FileResourceLoader
+				</prop>
+				<prop key="file.resource.loader.path">/template</prop>
+				<prop key="file.resource.loader.cache">false</prop>
+				</props>
+			</property>
+		</bean>
+                  <!--②异步线程执行器-->
+<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+  <property name="corePoolSize" value="10"/>
+  <property name="maxPoolSize" value="30"/>
+  <property name="keepAliveSeconds" value="200"/>
+</bean>    
+    
+</beans>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+  <settings
+        cacheModelsEnabled="true"
+            enhancementEnabled="true"
+            lazyLoadingEnabled="true"
+            maxRequests="128"
+            maxSessions="20"
+            maxTransactions="10"
+            useStatementNamespaces="true"
+            />
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_CAMPAIGN_EXTEND_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_APP_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_CAMPAIGN_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_AD_GROUP_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_AD_GROUPEXTEND_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_AD_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_WAP_AD_SqlMap.xml"/> 
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_BANNER_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/REQ_BANNER_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/REQ_WAP_RICH_SqlMap.xml"/> 
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_RICH_AD_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_MEMBER_INFO_SqlMap.xml" />
+            <sqlMap resource="com/mitian/airad/model/mapping/ACCOUNT_INFO_VIEW_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/ADINFO_VIEW_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/ACC_INCOME_PAY_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/ACC_INCOME_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/SYS_CONFIG_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/BSS_PERSONAL_SHARE_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_ADEXTEND_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/DICTIONARY_GLOBAL_REGION_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/CORE_WITHDRAW_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/ACC_MAIL_NOTICE_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/LIB_TAOBAO_SqlMap.xml"/>
+            <sqlMap resource="com/mitian/airad/model/mapping/LIB_MARKET_SqlMap.xml"/>
+              <sqlMap resource="com/mitian/airad/model/mapping/LOGON_INFO_SqlMap.xml"/>
+                <sqlMap resource="com/mitian/airad/model/mapping/CORE_USER_HIS_SqlMap.xml" />
+</sqlMapConfig>
+ 

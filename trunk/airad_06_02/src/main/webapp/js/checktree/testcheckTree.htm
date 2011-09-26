@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>checktree</title>
+<link rel="stylesheet" type="text/css" href="tree.css">
+
+<script language="JavaScript" type="text/javascript" src="yahoo-min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="event-min.js"></script>
+<script language="JavaScript" type="text/javascript" src="treeview.js" ></script>
+<script language="JavaScript" type="text/javascript" src="TaskNode.js" ></script>
+<script language="JavaScript" type="text/javascript" src="myCheckTree.js" ></script>
+</head>
+<body>
+<script>
+var testData = '[{"levelId":"1","domDomainId":"root","domainId":0,"coldId":"086","name":"中国"}]';
+var domainList = eval(testData);
+buildTree("treeDiv1", domainList, false);
+</script>
+   <div id="treeDiv1">    
+   </div>
+</body>
+</html>

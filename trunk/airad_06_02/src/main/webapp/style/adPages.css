@@ -1,0 +1,48 @@
+/*reset*/
+body{background:#fff}
+body,p{margin:0;padding:0;font:12px/1.6 arial;color:#333}
+h2{font-size:16px;margin:10px 0 5px 0}
+ul,ol{padding-left:15px;margin:5px 0}
+li{list-style:none;line-height:1.8; margin-left:-14px}
+p{text-indent:2em}
+h1{text-align:center}
+img{border:0}
+a:link,a:visited{text-decoration:none}
+/*common*/
+#main{width:320px;height:480px;overflow:hidden;position:relative;background:#000}
+#con{width:80%;height:360px;margin:0 auto;zoom:1;overflow:hidden;background:#fff;padding:15px}
+#footer{position:absolute;bottom:0;right:0;padding:0 5px 0 0;font-size:10px;color:#b3afad;background:url(../images/adPages/bg_footer.png) bottom left no-repeat;width:81px;text-align:right}
+.back{height:20px;width:20px;position:absolute;top:10px;left:10px;background:url(../images/adPages/ico_back.png) no-repeat left top}
+.close{height:20px;width:20px;position:absolute;top:10px;right:10px;background:url(../images/adPages/ico_close.png) no-repeat left top}
+.c{text-align:center}
+.fl{float:left}
+.fr{float:right}
+/*different*/
+.now img{ border:3px solid #00F}
+.popBg{position:absolute;left:0;top:30px;filter:Alpha(Opacity=95);-moz-opacity:0.95;opacity:0.95;width:100%}
+.pic{margin-bottom:10px}
+.pic img{display:block;margin:auto; border:1px solid #ccc}
+.lPic{margin-right:10px}
+.rPic{margin-left:10px}
+.upPic{width:242px;height:320px;margin:auto;padding-bottom:10px}
+.downPic{width:242px;height:320px;margin:auto;padding:10px 0}
+.picBox{width:260px;height:390px;margin:30px auto;border:1px solid #ccc}
+.right{position:absolute;top:50%;margin-top:-60px;right:10px}
+.left{position:absolute;top:50%;margin-top:-60px;left:10px}
+.phonePic{width:166px;height:166px;margin:auto;padding:30px 0}
+.phoneBtn{background:url(../images/adPages/btn_phone.gif) no-repeat;height:44px;width:179px;text-align:center;margin:20px auto;cursor:pointer}
+.phoneBtn span{font-size:24px;font-weight:bold;color:#fff;line-height:44px}
+.phoneBg{width:80%;height:360px;margin:0 auto;zoom:1;overflow:hidden;padding:15px;background:url(../images/adPages/bg_phone.gif) bottom center no-repeat}
+/*taobao*/
+.single{zoom:1;overflow:hidden;padding:10px 0 0}
+.picTBBox{border:1px solid #ccc}
+.detail{margin:0 0 0 10px;width:55%}
+.btnY{height:24px;background:url(../images/adPages/bg_btn_ye.gif) no-repeat left top}
+.btnY:hover{text-decoration:none}
+.btnY span{float:left;height:24px;background:url(../images/adPages/bg_btn_ye.gif) no-repeat right bottom;font-size:12px;color:#492a06;padding:0 10px;line-height:24px}
+.btnYBox{padding:10px 0 0 0;zoom:1;overflow:hidden}
+.taobaoPic{overflow:hidden; padding:2px 0}
+.bigPic{margin:10px auto 15px auto} 
+.littlePic{padding:5px 5px 0 6px}
+.clean{clear:both}
+.lPic img,.rPic img,.upPic img,.downPic img,.bigPic img,.littlePic img{border:1px solid #ccc}

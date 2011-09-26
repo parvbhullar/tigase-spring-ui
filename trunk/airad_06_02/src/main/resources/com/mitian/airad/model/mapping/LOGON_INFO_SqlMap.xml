@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="LOGON_INFO">
+    <resultMap id="baseMap" class="com.mitian.airad.model.LogonInfo">
+        <result column="REC_ID" property="recId" jdbcType="LONG" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+        <result column="LOGON_EMAIL" property="logonEmail" jdbcType="VARCHAR" />
+        <result column="MEMBER_ID" property="memberId" jdbcType="LONG" />
+        <result column="LOGON_IP" property="logonIp" jdbcType="VARCHAR" />
+        <result column="LOGON_TIME" property="logonTime" jdbcType="TIMESTAMP" />
+        <result column="COOKIE_ID" property="cookieId" jdbcType="VARCHAR" />
+        <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+    </resultMap>
+    <insert id="add"  parameterClass="com.mitian.airad.model.LogonInfo">
+     insert into LOGON_INFO (STATUS, LOGON_EMAIL, MEMBER_ID, LOGON_IP, LOGON_TIME,COOKIE_ID,SESSION_ID)
+    values (#status:INTEGER#, #logonEmail:VARCHAR#, #memberId:LONG#, #logonIp:VARCHAR#,
+      #logonTime:TIMESTAMP#,#cookieId:VARCHAR#,#sessionId:VARCHAR#)
+    </insert>
+    
+    <select id="getByCookieIdAndCookieId" parameterClass="com.mitian.airad.model.LogonInfo"  resultMap="baseMap">
+    select REC_ID ,STATUS, LOGON_EMAIL, MEMBER_ID, LOGON_IP, LOGON_TIME,COOKIE_ID,SESSION_ID
+    from LOGON_INFO where COOKIE_ID=#cookieId:VARCHAR# AND SESSION_ID=#sessionId:VARCHAR# AND
+    STATUS !=0  order by LOGON_TIME DESC
+    </select>
+    
+    <update id="update4Logout"  parameterClass="com.mitian.airad.model.LogonInfo" >
+    update LOGON_INFO set STATUS=0 where  COOKIE_ID=#cookieId:VARCHAR# AND SESSION_ID=#sessionId:VARCHAR#
+    </update>
+    
+</sqlMap>

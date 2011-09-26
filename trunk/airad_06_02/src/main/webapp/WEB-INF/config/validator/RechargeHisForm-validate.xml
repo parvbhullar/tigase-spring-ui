@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form className="com.mitian.airad.web.form.RechargeHisForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="validate-schema.xsd">
+    <fields>
+        <fieldRule name="coreRechargeHis.money">
+        </fieldRule>
+    </fields>
+    <actions>
+        <xcase name="doRecharge">
+            <field name="coreRechargeHis.money" />
+        </xcase>
+    </actions>
+</form>
