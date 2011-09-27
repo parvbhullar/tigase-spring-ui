@@ -402,3 +402,24 @@ function adGroupTimeSlotSubmit(){
   $("#timeSlotFlag").val("true");
   document.sform.submit();
 }
+
+$(document).ready(function() {
+	$("#areaId").click(function(){
+		$("#pslayer").show();
+		$.blockUI({
+            message: $('#pslayer'),
+            title:"Please",
+            css: {
+                top:  ($(window).height() - 400) /2 + 'px',
+                left: ($(window).width() - 400) /2 + 'px',
+                width: '400px'
+            }
+        });
+	})
+
+	$("#imgClose").click(function(){
+		$.unblockUI({
+            onUnblock: function(){$("#pslayer").hide();}
+        });
+	})
+})

@@ -20,15 +20,16 @@ function showNumAsce(currentPage, sortCol) {
 }
 
 $(document).ready(function() {
+
     $(".checkboxadid").click(function() {
         switchcheckbox();
     });
-    
+
     //全选
     $("#checkboxswitch").change(function() {
         var isc = $(this).attr('checked');
         var b = false;
-        if (isc) 
+        if (isc)
             b = true;
         $(".checkboxadid").each(function() {
             //	$(this).click();
@@ -36,8 +37,8 @@ $(document).ready(function() {
         });
         switchcheckbox();
     });
-    
-    
+
+
     //修改投放地区
     $("#btnModLoclType").click(function() {
         if ($("tbody").find("td input[type=checkbox]:checked").length == 0) {
@@ -48,7 +49,7 @@ $(document).ready(function() {
             $("#popLoclTypeDiv").fadeIn();
         }
     })
-    
+
     //修改所属地区提交
     $("#btnModLoclTypeSubmit").click(function() {
         if (confirm('您确定要修改所属地区?')) {
@@ -91,7 +92,7 @@ $(document).ready(function() {
             var url = "";
             var arrAdGroupId = "";
             $("#list tbody").find("input[type=checkbox]:checked").each(function() {
-                if ($(this).attr("alt") != "全选") 
+                if ($(this).attr("alt") != "全选")
                     arrAdGroupId = arrAdGroupId + $(this).attr("alt") + ",";
             })
             arrAdGroupId = arrAdGroupId.substring(0, (arrAdGroupId.length - 1))
@@ -111,7 +112,7 @@ $(document).ready(function() {
             return false;
         }
     })
-    
+
     //修改所属行业
     $("#btnModIndustry").click(function() {
         if ($("tbody").find("td input[type=checkbox]:checked").length == 0) {
@@ -122,7 +123,7 @@ $(document).ready(function() {
             $("#popIndustryDiv").fadeIn();
         }
     })
-    
+
     //修改所属行业提交
     $("#btnModIndustrySubmit").click(function() {
         var boxArray = $('input:radio[@name="coreAdGroup.adTagSoftType"]:checked').val();
@@ -134,7 +135,7 @@ $(document).ready(function() {
             var url = "";
             var arrAdGroupId = "";
             $("#list tbody").find("input[type=checkbox]:checked").each(function() {
-                if ($(this).attr("alt") != "全选") 
+                if ($(this).attr("alt") != "全选")
                     arrAdGroupId = arrAdGroupId + $(this).attr("alt") + ",";
             })
             arrAdGroupId = arrAdGroupId.substring(0, (arrAdGroupId.length - 1))
@@ -154,13 +155,13 @@ $(document).ready(function() {
             return false;
         }
     })
-    
+
     //所属行业关闭事件
     $("#closeIndustryPop").click(function() {
         $(".popBg").hide();
         $("#popIndustryDiv").hide();
     })
-    
+
     $("#btnModOs").click(function() {
         if ($("tbody").find("td input[type=checkbox]:checked").length == 0) {
             alert("对不起,请先选择广告!");
@@ -170,7 +171,7 @@ $(document).ready(function() {
             $("#popDiv").fadeIn();
         }
     })
-    
+
     //修改平台提交
     $("#btnModOsSubmit").click(function() {
         var boxArray = document.myfrm.CheckboxGroup1_1;
@@ -189,7 +190,7 @@ $(document).ready(function() {
             var url = "";
             var arrAdGroupId = "";
             $("#list tbody").find("input[type=checkbox]:checked").each(function() {
-                if ($(this).attr("alt") != "全选") 
+                if ($(this).attr("alt") != "全选")
                     arrAdGroupId = arrAdGroupId + $(this).attr("alt") + ",";
             })
             arrAdGroupId = arrAdGroupId.substring(0, (arrAdGroupId.length - 1))
@@ -207,22 +208,22 @@ $(document).ready(function() {
         }
         else {
             return false;
-            
+
         }
     })
-    
+
     $("#btnRun").click(function() {
         batchStopandsendAdGroup(1);
     })
     $("#btnStop").click(function() {
         batchStopandsendAdGroup(0);
     })
-    
+
     //批量删除广告组
     $("#btnDel").click(function() {
         batchDeleteAdGroup(1);
     })
-    
+
 });
 
 //批量停用或者启动广告组函数定义
@@ -234,7 +235,7 @@ function batchStopandsendAdGroup(type) {
         var url = "";
         var arrAdGroupId = "";
         $("#list tbody").find("td input[type=checkbox]:checked").each(function() {
-            if ($(this).attr("alt") != "全选") 
+            if ($(this).attr("alt") != "全选")
                 arrAdGroupId = arrAdGroupId + $(this).attr("alt") + ",";
         })
         arrAdGroupId = arrAdGroupId.substring(0, (arrAdGroupId.length - 1))
@@ -264,7 +265,7 @@ function batchDeleteAdGroup(type) {
         var url = "";
         var arrAdGroupId = "";
         $("#list tbody").find("td input[type=checkbox]:checked").each(function() {
-            if ($(this).attr("alt") != "全选") 
+            if ($(this).attr("alt") != "全选")
                 arrAdGroupId = arrAdGroupId + $(this).attr("alt") + ",";
         })
         arrAdGroupId = arrAdGroupId.substring(0, (arrAdGroupId.length - 1))
@@ -278,11 +279,11 @@ function batchDeleteAdGroup(type) {
 
 function switchcheckbox() {
     var flag = false;
-    
+
     if ($("input:checkbox[name=checkbox1]:checked").length > 0) {
         flag = true;
     }
-    
+
     if (flag) {
         $(".more").addClass("less");
         $(".more").removeClass("more");
@@ -293,7 +294,7 @@ function switchcheckbox() {
         $(".less").removeClass("less");
         $("#btns").hide();
     }
-    
+
     if ($("input:checkbox[name=checkbox1]").length ==
     $("input:checkbox[name=checkbox1]:checked").length) {
         document.getElementById("checkboxswitch").checked = true;
@@ -301,6 +302,6 @@ function switchcheckbox() {
     else {
         document.getElementById("checkboxswitch").checked = false;
     }
-    
+
 }
 
