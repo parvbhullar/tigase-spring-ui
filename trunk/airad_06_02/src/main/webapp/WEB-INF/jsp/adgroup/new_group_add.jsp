@@ -216,31 +216,25 @@
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems1">
 	<li name="30000" id="jQuery0" style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox" value="30000@北京市" id="pcbx30000">北京市</a></li>
+		type="checkbox" value="30000@北京市" id="pcbx30000"/>北京市</a></li>
 	<li
 		name="31000" id="jQuery1" style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="31000@上海市" id="pcbx31000">上海市</a></li>
+		type="checkbox" value="31000@上海市" id="pcbx31000"/>上海市</a></li>
 	<li
 		name="32000" id="jQuery2" style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="32000@天津市" id="pcbx32000">天津市</a></li>
+		type="checkbox" value="32000@天津市" id="pcbx32000"/>天津市</a></li>
 	<li
 		name="33000" id="jQuery3" style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="33000@重庆市" id="pcbx33000">重庆市</a></li>
+		type="checkbox" value="33000@重庆市" id="pcbx33000"/>重庆市</a></li>
 	<li
 		name="16000" id="jQuery4" style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="16000@广东省" id="pcbx16000">广东省</a></li>
+		type="checkbox" value="16000@广东省" id="pcbx16000"/>广东省</a></li>
 	<li
 		name="7000" id="jQuery5"  style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="7000@江苏省" id="pcbx7000" style="list-style-type:none">江苏省</a></li>
+		type="checkbox" value="7000@江苏省" id="pcbx7000" style="list-style-type:none"/>江苏省</a></li>
 	<li
 		name="8000" id="jQuery6"  style="list-style-type:none"><a href="javascript:void(0);"><input
-		type="checkbox"
-		value="8000@浙江省" id="pcbx8000">浙江省</a></li>
+		type="checkbox" value="8000@浙江省" id="pcbx8000"/>浙江省</a></li>
 
 </ol>
 </div>
