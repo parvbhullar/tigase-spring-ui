@@ -422,4 +422,20 @@ $(document).ready(function() {
             onUnblock: function(){$("#pslayer").hide();}
         });
 	})
+
+	$("#jQuery2").click(function(e){
+		      var elem = document.elementFromPoint ( e.pageX , e.pageY );
+		      $("#pslayer2").css("top",e.pageY).css("left",e.pageX).css("zIndex",1012)
+		      $("#pslayer2").show();
+//				$.blockUI({
+//		            message: $('#pslayer2'),
+//		            title:"Please",
+//		            css: {
+//		                top:  (e.pageY)  + 'px',
+//		                left: (e.pageX)  + 'px'
+//		            },
+//		            opacity: 0.0
+//		        });
+	})
+
 })
