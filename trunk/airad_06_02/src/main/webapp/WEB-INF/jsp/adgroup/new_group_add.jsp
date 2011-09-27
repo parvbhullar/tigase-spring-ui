@@ -6,7 +6,11 @@
 <head>
 <title>广告组添加</title>
 <link href="/js/tree/tree.css" type="text/css" rel="stylesheet" />
+<link href="style/lay.css" type="text/css" rel="stylesheet" />
+<link href="js/area/css3buttons/stylesheets/css3buttons.css" type="text/css" rel="stylesheet" />
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
+<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+
 </head>
 
 <body>
@@ -35,6 +39,7 @@
 			${el:errorTip(command.errors,"coreAdGroup.adGroupName") } <small
 				style="display: block">请输入一个有助于您识别该广告组的名称，比如：长三角地区人群</small></td>
 		</tr>
+		<tr><th></th><td><div id="areaId">地区选择</div></td></tr>
 		<tr>
 			<th><span class="must">*</span>投放地区</th>
 			<td><form:radiobutton path="coreAdGroup.adLoclType" value="0"
@@ -164,8 +169,90 @@
 </div>
 </div>
 <!-- 开发嵌入end--></div>
+<div class="alert_lay sech_lay lm lay_wls" id="pslayer" style="display: none;">
+            <!--背景圆角上-->
+            <div class="alert_t">
+            </div>
+            <div class="box">
+                <h1>
+                    <span id="psHeader">请选择地区</span><a id="imgClose" class="butn3" href="javascript:void(0);">
+                    </a>
+                </h1>
+                <div class="blk">
+                    <div class="sech_layt" id="divSelecting" style="display: none;">
+                        <h3>
+                            <span id="selectingHeader">您选择的地区是</span><b class="btn_fst">
+                            	<input type="button" value="确定" class="fst" name="" id="lnkOK">
+                                <input type="button" class="butdef_n" value="清空" disabled="" name="" id="lnkEmpty">
+                                </b>
+                        </h3>
+                        <ul id="selecting"></ul>
+                    </div>
+                    <div class="sech_layt btn_fst" id="noSelectedCat" style="display: none;">
+                        <h3>
+                            <span>提示：</span><b>
+                                <input type="button" value="确定" class="fst" name="" id="btnOk">
+                                <input type="button" class="butdef_n" value="清空" disabled="" name=""></b>
+                        </h3>
+                        <p>
+                            当您直接选择职位类别时，您将会获得更多的搜索结果<br>
+                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体职位时，将会获得更为准确的搜索结果<br>
+                            您最多可以选择5个职位类别
+                        </p>
+                    </div>
+                    <div class="sech_layt btn_fst" id="noSelectedLoc" style="display: block;">
+                        <h3>
+                            <span>提示：</span><b>
+                                <a href="#" class="button" id="btnOkLoc">确定</a>
+                                <a href="#" class="button" id="btnOkLoc">清空</a>
+                                </b>
+                        </h3>
+                        <p>
+                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体城市时，将会获得更为准确的搜索结果<br>
+                            您最多可以选择5个工作地点
+                        </p>
+                    </div>
+                    <div class="sech_layb">
+                        <h2 id="subHeader1"><span>所有省市：</span></h2>
+<ol id="allItems1">
+	<li name="30000" id="jQuery0" style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox" value="30000@北京市" id="pcbx30000">北京市</a></li>
+	<li
+		name="31000" id="jQuery1" style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="31000@上海市" id="pcbx31000">上海市</a></li>
+	<li
+		name="32000" id="jQuery2" style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="32000@天津市" id="pcbx32000">天津市</a></li>
+	<li
+		name="33000" id="jQuery3" style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="33000@重庆市" id="pcbx33000">重庆市</a></li>
+	<li
+		name="16000" id="jQuery4" style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="16000@广东省" id="pcbx16000">广东省</a></li>
+	<li
+		name="7000" id="jQuery5"  style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="7000@江苏省" id="pcbx7000" style="list-style-type:none">江苏省</a></li>
+	<li
+		name="8000" id="jQuery6"  style="list-style-type:none"><a href="javascript:void(0);"><input
+		type="checkbox"
+		value="8000@浙江省" id="pcbx8000">浙江省</a></li>
+
+</ol>
+</div>
+                </div>
+            </div>
+            <!--背景圆角下-->
+            <div class="alert_b">
+                <img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/laybj_br.gif"></div>
+        </div>
 </div>
 <%@ include file="/WEB-INF/jspf/footer.jsp"%>
+
 <script type="text/javascript"
 	src="/js/tree/js/jquery.simple.tree.self.js"></script>
 <script>
