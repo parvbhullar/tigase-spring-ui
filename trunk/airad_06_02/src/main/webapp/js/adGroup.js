@@ -424,24 +424,27 @@ $(document).ready(function() {
 	})
 
 	$("#allItems1 li").mouseover(function(e){
-
 		$("#subItems").hide();
-
-		//$("#subItems").css("top",e.pageY).css("left",e.pageX).css("zIndex",1012)
 		var position = $(this).position();
-		$("#subItems").css("top",(-8+position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
+		$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
 		$.ajax({
-		  url: 'adGroup.do?action=cityTree&proId='+$(this).children("a").find("input").val(),
+		  url: 'adGroup.do?action=cityTree&proId='+$(this).attr("name"),
 		  dataType: 'json',
           contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
 			var arrlocal=data[0].children[0].children;
 			$("#subBox ol").empty();
 			for(var i=0;i<arrlocal.length;i++){
-				$("#subBox ol").append("<li name='32000' id='jQuery2' class='nonelay' style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='' value='' id='pcbx32000'>"+arrlocal[i].text+"</a></li>");
+				$("#subBox ol").append("<li style='list-style-type: none;'  name="+arrlocal[i].id+">"+arrlocal[i].text+"</li>");
 			}
 		  }
 		});
 	      $("#subItems").show();
+	})
+
+	$("#allItems1 li").click(function(e){
+		$(this).css("background","#BACBDD");
+		$(this).css("border","1px");
+		$(this).css("border-color","#336699");
 	})
 })
