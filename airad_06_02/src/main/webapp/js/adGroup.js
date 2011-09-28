@@ -412,7 +412,7 @@ $(document).ready(function() {
             css: {
                 top:  ($(window).height() - 400) /2 + 'px',
                 left: ($(window).width() - 400) /2 + 'px',
-                width: '400px'
+                width: '450px'
             }
         });
 	})
@@ -423,19 +423,26 @@ $(document).ready(function() {
         });
 	})
 
-	$("#jQuery2").click(function(e){
-		      var elem = document.elementFromPoint ( e.pageX , e.pageY );
-		      $("#pslayer2").css("top",e.pageY).css("left",e.pageX).css("zIndex",1012)
-		      $("#pslayer2").show();
-//				$.blockUI({
-//		            message: $('#pslayer2'),
-//		            title:"Please",
-//		            css: {
-//		                top:  (e.pageY)  + 'px',
-//		                left: (e.pageX)  + 'px'
-//		            },
-//		            opacity: 0.0
-//		        });
-	})
+	$("#allItems1 li").mouseover(function(e){
 
+		$("#subItems").hide();
+
+		//$("#subItems").css("top",e.pageY).css("left",e.pageX).css("zIndex",1012)
+		var position = $(this).position();
+		$("#subItems").css("top",(-8+position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
+		$.ajax({
+		  url: 'adGroup.do?action=cityTree&proId=2',
+		  dataType: 'json',
+          contentType:'application/json;charset=UTF-8',
+		  success: function(data) {
+			var arrlocal=data[0].children[0].children;
+			$("#subBox ol").empty();
+			for(var i=0;i<arrlocal.length;i++){
+				$("#subBox ol").append("<li name='32000' id='jQuery2' class='nonelay' style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='' value='' id='pcbx32000'>"+arrlocal[i].text+"</a></li>");
+			}
+
+		  }
+		});
+	      $("#subItems").show();
+	})
 })
