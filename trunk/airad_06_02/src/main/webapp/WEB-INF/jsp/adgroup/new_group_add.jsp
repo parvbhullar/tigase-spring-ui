@@ -217,6 +217,7 @@
                     <div class="sech_layb">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems1">
+	<!--
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
@@ -242,6 +243,32 @@
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
+	-->
+	<li style="list-style-type: none;"  name="2" >北京市</li>
+	<li style="list-style-type: none;"  name="25"> 上海市</li>
+	<li style="list-style-type: none;"  name="27" >天津市</li>
+	<li style="list-style-type: none;"  name="32" >重庆市</li>
+	<li style="list-style-type: none;"  name="6" >广东省</li>
+	<li style="list-style-type: none;"  name="16" >江苏省</li>
+	<li style="list-style-type: none;"  name="31" >浙江省</li>
+	<li style="list-style-type: none;"  name="3" >安徽省</li>
+
+	<li style="list-style-type: none;"  name="2" >北京市</li>
+	<li style="list-style-type: none;"  name="25" >上海市</li>
+	<li style="list-style-type: none;"  name="27" >天津市</li>
+	<li style="list-style-type: none;"  name="32" >重庆市</li>
+	<li style="list-style-type: none;"  name="6" >广东省</li>
+	<li style="list-style-type: none;"  name="16" >江苏省</li>
+	<li style="list-style-type: none;"  name="31" >浙江省</li>
+	<li style="list-style-type: none;"  name="3" >安徽省</li>
+	<li style="list-style-type: none;"  name="2" >北京市</li>
+	<li style="list-style-type: none;"  name="25" >上海市</li>
+	<li style="list-style-type: none;"  name="27" >天津市</li>
+	<li style="list-style-type: none;"  name="32" >重庆市</li>
+	<li style="list-style-type: none;"  name="6" >广东省</li>
+	<li style="list-style-type: none;"  name="16" >江苏省</li>
+	<li style="list-style-type: none;"  name="31" >浙江省</li>
+	<li style="list-style-type: none;"  name="3" >安徽省</li>
 </ol>
 </div>
                 </div>
