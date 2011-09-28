@@ -431,7 +431,7 @@ $(document).ready(function() {
 		var position = $(this).position();
 		$("#subItems").css("top",(-8+position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
 		$.ajax({
-		  url: 'adGroup.do?action=cityTree&proId=2',
+		  url: 'adGroup.do?action=cityTree&proId='+$(this).children("a").find("input").val(),
 		  dataType: 'json',
           contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
@@ -440,7 +440,6 @@ $(document).ready(function() {
 			for(var i=0;i<arrlocal.length;i++){
 				$("#subBox ol").append("<li name='32000' id='jQuery2' class='nonelay' style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='' value='' id='pcbx32000'>"+arrlocal[i].text+"</a></li>");
 			}
-
 		  }
 		});
 	      $("#subItems").show();
