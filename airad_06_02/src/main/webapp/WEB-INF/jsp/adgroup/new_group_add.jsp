@@ -217,27 +217,38 @@
                     <div class="sech_layb">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems1">
-	<li
-	name="32000" id="jQuery2" style="list-style-type: none;">
-	<a href="javascript:void(0);"><input type="checkbox"
-	onclick="" value="32000@天津市" id="pcbx32000">天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li><li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="" >天津市</a></li>
+
 </ol>
 </div>
                 </div>
             </div>
             <!--背景圆角下-->
-            <!--
-            <div class="alert_b">
-                <img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/laybj_br.gif"></div>
-                -->
+
         </div>
 
-        <div class="alert_lay sech_lay2 lay_ws lm" id="pslayer2" style="display: none;">
-            <div class="box">
-			<ol id="allItems1">
-				<li
-				name="32000" id="jQuery2" class="nonelay" style="list-style-type: none;">
-				<a href="javascript:void(0);"><input type="checkbox" onclick="" value="32000@天津市" id="pcbx32000">和平区</a></li>
+        <div class="alert_lay sech_lay2 lay_ws lm" id="subItems" style="display: none;">
+            <div id="subBox" class="box">
+			<ol>
 			</ol>
             </div>
         </div>
