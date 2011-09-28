@@ -17,7 +17,8 @@ a.butn3{width:15px;height:15px;margin:5px 9px 0 0;background:url(../images/lay_i
 .alert_t,.alert_b{clear:both;height:1px;display:block;overflow:hidden;font-size:1px;background:#c0ce99;margin:0 1px 0 1px}
 .alert_b img{display:none;}
 .alert_lay{position:absolute;z-index:160;background:url(../images/laybj.gif) repeat-x left top;}
-.alert_lay .box{zoom:1;padding:0;border-left:1px solid #c0ce99;border-right:1px solid #c0ce99;}
+//.alert_lay .box{zoom:1;padding:0;border-left:1px solid #c0ce99;border-right:1px solid #c0ce99;}
+.alert_lay .box{zoom:1;padding:0;border:1px solid #c0ce99;}
 .alert_lay .box:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .alert_lay h1{height:26px;font-size:12px;line-height:26px;color:#5f6c26;font-weight:normal;padding:2px 0 0 15px;clear:both}
 .alert_lay h1 span{float:left}
