@@ -193,9 +193,3 @@ div.lm ol li a:hover{_background:#f2eff6 url(../images/lay_ico.gif) no-repeat 99
 .sech_lay, .sech_lay2 {
     line-height: 18px;
 }
-
-.alert_lay {
-    background: url("http://st.mychinahr.com/a/images/laybj.gif") repeat-x scroll left top transparent;
-    position: absolute;
-    z-index: 160;
-}
