@@ -203,7 +203,7 @@
                     </div>
                     <div class="sech_layb">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
-<ol id="allItems1">
+<ol id="allItems">
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
