@@ -545,9 +545,9 @@ public class AdGroupController extends AbstractController {
      * @throws InvalidInfoException
      * @throws OperationNotSupportException
      */
-    @RequestMapping(params = "action=add") 
-
-    public ModelAndView addAdGroup(AdGroupForm form, HttpServletResponse response, HttpServletRequest request) throws InvalidInfoException, OperationNotSupportException {
+    @RequestMapping(params = "action=add")
+    public ModelAndView addAdGroup(AdGroupForm form, HttpServletResponse response, HttpServletRequest request)
+            throws InvalidInfoException, OperationNotSupportException {
 
         ModelAndView mv = new ModelAndView("adgroup/new_group_add", Constants.DEFAULT_COMMAND, form);
 
@@ -563,11 +563,11 @@ public class AdGroupController extends AbstractController {
             else {
                 // 选择不是未分组，如果还是草稿，则改为待审核
                 if (form.getFlag().equals("0") && !form.getCoreAdGroup().getAdGroupId().toString().equals("0")
-                        && request.getParameter("submitStatus").equals("1")){
+                        && request.getParameter("submitStatus").equals("1")) {
                     form.setFlag("1");
                 }
             }
-            
+
             if (!role.isSaveAdDirect()) {
                 form.setFlag("0");
             }
@@ -640,11 +640,11 @@ public class AdGroupController extends AbstractController {
                 new ModelAndView("redirect:adGroup.do?action=list&currentPage=" + form.getCurrentPage(),
                         Constants.DEFAULT_COMMAND, form);
 
-        
-        if (!role.isSaveAdDirect()  && form.getAdId()!=null && request.getParameter("showAuth")==null)  {
-              CookieUtils.setAuthFlagCookie(response, form.getAdId(), Constants.NEED_AUTH);
-              String url = "/adGroup.do?action=adGroupSet&adId="+form.getAdId()+"&flag=0&adGroupId="+form.getAdGroupId();
-              return new ModelAndView("redirect:" + url);
+        if (!role.isSaveAdDirect() && form.getAdId() != null && request.getParameter("showAuth") == null) {
+            CookieUtils.setAuthFlagCookie(response, form.getAdId(), Constants.NEED_AUTH);
+            String url =
+                    "/adGroup.do?action=adGroupSet&adId=" + form.getAdId() + "&flag=0&adGroupId=" + form.getAdGroupId();
+            return new ModelAndView("redirect:" + url);
 
         }
 
@@ -976,7 +976,9 @@ public class AdGroupController extends AbstractController {
         if (StringUtils.isNotEmpty(form.getProId())) {
             dictionaryGlobalRegion.setRegionId(Short.valueOf(form.getProId()));
             List<DictionaryGlobalRegion> cityList = adGroupService.queryCityList(dictionaryGlobalRegion);
-            json = adGroupService.getJson(cityList, form.getProId()).toString();
+            // json = adGroupService.getJson(cityList, form.getProId()).toString();
+            json = adGroupService.getSubArea(cityList, form.getProId()).toString();
+
         }
         response.setHeader("Cache-Control", "no-cache");
         response.setContentType("application/json");

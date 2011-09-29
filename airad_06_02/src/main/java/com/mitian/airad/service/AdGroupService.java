@@ -436,6 +436,58 @@ public class AdGroupService {
     }
 
     /**
+     * 取得下级区域 省取市、市取区
+     * 
+     * @param cityList
+     * @param proId
+     * @return
+     * @throws JSONException
+     */
+    public String getSubArea(List<DictionaryGlobalRegion> cityList, String proId) throws JSONException {
+
+        // StringBuffer sb = new StringBuffer();
+        // sb.append("[{\"text\":\"全省\",\"id\":\"0000\",\"children\":");
+        // StringBuffer jsonobj = new StringBuffer();
+        // jsonobj.append("[");
+
+        JSONArray jsonarry = new JSONArray();
+        DictionaryGlobalRegion d = new DictionaryGlobalRegion();
+        d.setRegionType("3");
+        List<DictionaryGlobalRegion> areaList = dictionaryGlobalRegionDAO.findAreaList(d);
+        for (DictionaryGlobalRegion dictionaryGlobalRegion : cityList) {
+            JSONObject jsonobj = new JSONObject();
+            JSONArray child = new JSONArray();
+            for (DictionaryGlobalRegion area : areaList) {
+                JSONObject childObject = new JSONObject();
+                if (area.getParentId().equals(dictionaryGlobalRegion.getRegionId())) {
+                    String name = area.getRegionName();
+                    String id = area.getRegionId().toString();
+                    childObject.put("id", id);
+                    childObject.put("text", name);
+                    childObject.put("area", proId + "," + dictionaryGlobalRegion.getRegionId().toString() + "," + id);
+                    child.put(childObject);
+                }
+
+            }
+            String name = dictionaryGlobalRegion.getRegionName();
+            String id = dictionaryGlobalRegion.getRegionId().toString();
+            // jsonobj.append("{text:'").append(name).append("',id:'").append(id).append("',children:").append(
+            // child.toString()).append("},");
+            jsonobj.put("id", id);
+            jsonobj.put("text", name);
+            jsonobj.put("children", child);
+            jsonarry.put(jsonobj);
+        }
+        // JSONObject json = new JSONObject();
+        // json.put("text", "全省");
+        // json.put("id", proId);
+        // json.put("children", jsonarry);
+        // JSONArray jsonstr = new JSONArray();
+        // jsonstr.put(json);
+        return jsonarry.toString();
+    }
+
+    /**
      * 装换数据格式
      * 
      * @param dictionaryGlobalRegion
