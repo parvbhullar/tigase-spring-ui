@@ -425,18 +425,46 @@ $(document).ready(function() {
 
 	$("#allItems1 li").mouseover(function(e){
 		$("#subItems").hide();
+		$("#thirdItems").hide();
 		var position = $(this).position();
 		$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
+		var proId=$(this).children("a").find("input").val();
 		$.ajax({
-		  url: 'adGroup.do?action=cityTree&proId='+$(this).attr("name"),
+		  url: 'adGroup.do?action=cityTree&proId='+proId,
 		  dataType: 'json',
           contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
 			var arrlocal=data[0].children[0].children;
 			$("#subBox ol").empty();
-			for(var i=0;i<arrlocal.length;i++){
-				$("#subBox ol").append("<li style='list-style-type: none;'  name="+arrlocal[i].id+">"+arrlocal[i].text+"</li>");
+			//直辖市区
+			if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+				$("#subItems").removeClass("lm");
+			}else{
+				$("#subItems").addClass("lm");
 			}
+			for(var i=0;i<arrlocal.length;i++){
+				$("#subBox ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='javascript:void(0)' value='"+arrlocal[i].id+"' />"+arrlocal[i].text+"</a></li>");
+			}
+			$("#subItems li").mouseover(function(e){
+				//$("#subItems").hide();
+				var position2 = $(this).position();
+				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013)
+				$.ajax({
+				  url: 'adGroup.do?action=cityTree&proId='+$(this).attr("name"),
+				  dataType: 'json',
+		          contentType:'application/json;charset=UTF-8',
+				  success: function(data) {
+					var arrlocal=data[0].children[0].children;
+					$("#thirdItems ol").empty();
+
+					for(var i=0;i<arrlocal.length;i++){
+						$("#thirdItems ol").append("<li style='list-style-type: none;'  name="+arrlocal[i].id+">"+arrlocal[i].text+"</li>");
+					}
+				  }
+				});
+			      $("#thirdItems").show();
+			})
+
 		  }
 		});
 	      $("#subItems").show();

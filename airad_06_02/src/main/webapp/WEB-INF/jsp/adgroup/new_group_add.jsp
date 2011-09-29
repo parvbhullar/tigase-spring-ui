@@ -190,18 +190,6 @@
                         </h3>
                         <ul id="selecting"></ul>
                     </div>
-                    <div class="sech_layt btn_fst" id="noSelectedCat" style="display: none;">
-                        <h3>
-                            <span>提示：</span><b>
-                                <input type="button" value="确定" class="fst" name="" id="btnOk">
-                                <input type="button" class="butdef_n" value="清空" disabled="" name=""></b>
-                        </h3>
-                        <p>
-                            当您直接选择职位类别时，您将会获得更多的搜索结果<br>
-                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体职位时，将会获得更为准确的搜索结果<br>
-                            您最多可以选择5个职位类别
-                        </p>
-                    </div>
                     <div class="sech_layt btn_fst" id="noSelectedLoc" style="display: block;">
                         <h3>
                             <span>提示：</span><b>
@@ -210,14 +198,12 @@
                                 </b>
                         </h3>
                         <p>
-                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体城市时，将会获得更为准确的搜索结果<br>
-                            您最多可以选择5个工作地点
+                            	您最多可以选择5个地点
                         </p>
                     </div>
                     <div class="sech_layb">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems1">
-	<!--
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
@@ -243,7 +229,7 @@
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
-	-->
+	<!--
 	<li style="list-style-type: none;"  name="2" >北京市</li>
 	<li style="list-style-type: none;"  name="25"> 上海市</li>
 	<li style="list-style-type: none;"  name="27" >天津市</li>
@@ -269,6 +255,7 @@
 	<li style="list-style-type: none;"  name="16" >江苏省</li>
 	<li style="list-style-type: none;"  name="31" >浙江省</li>
 	<li style="list-style-type: none;"  name="3" >安徽省</li>
+	-->
 </ol>
 </div>
                 </div>
@@ -277,7 +264,14 @@
 
         </div>
 
-        <div class="alert_lay sech_lay2 lay_ws lm" id="subItems" style="display: none;">
+        <div class="alert_lay sech_lay2 lay_ws" id="subItems" style="display: none;">
+            <div id="subBox" class="box">
+			<ol>
+			</ol>
+            </div>
+        </div>
+
+        <div class="alert_lay sech_lay2 lay_ws" id="thirdItems" style="display: none;">
             <div id="subBox" class="box">
 			<ol>
 			</ol>
