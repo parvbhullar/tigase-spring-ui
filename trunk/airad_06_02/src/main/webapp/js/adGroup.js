@@ -403,6 +403,46 @@ function adGroupTimeSlotSubmit(){
   document.sform.submit();
 }
 
+function changeBgColor(t,level){
+	var isChecked=$(t).attr("checked");
+	var proId=$(t).val().split("@")[0];
+	var text=$(t).val().split("@")[1];
+	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+	if(isChecked!=undefined){
+
+		$(t).parent().css("background","#BACBDD");
+		$(t).parent().css("border","1px");
+		$(t).parent().css("border-color","#336699");
+	}else{
+		$(t).parent().css("background","");
+		$(t).parent().css("border","");
+		$(t).parent().css("border-color","");
+		console.info($("#selecting #li"+proId).html())
+		if($("#selecting #li"+proId)==null){
+			$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+		}
+		$("#selecting #li"+proId).remove();
+		$("#selecting #"+proId).parent();
+	}
+	$("#noSelectedLoc").hide();
+	$("#divSelecting").show();
+	if(3==level){
+
+	}else{
+
+	}
+}
+
+var g_arrChked=[];
+function initChecked(){
+	g_arrChked=[]
+	$("#selecting li").each(function (index){
+		var len=$(this).attr("id").length;
+		g_arrChked[index]=$(this).attr("id").substring(2,len);
+	})
+}
+
 $(document).ready(function() {
 	$("#areaId").click(function(){
 		$("#pslayer").show();
@@ -423,7 +463,7 @@ $(document).ready(function() {
         });
 	})
 
-	$("#allItems1 li").mouseover(function(e){
+	$("#allItems li").mouseover(function(e){
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		var position = $(this).position();
@@ -434,31 +474,43 @@ $(document).ready(function() {
 		  dataType: 'json',
           contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
-			var arrlocal=data[0].children[0].children;
+			//var arrlocal=data[0].children[0].children;
+			var arrlocal=data;
 			$("#subBox ol").empty();
 			//直辖市区
 			if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
 				$("#subItems").removeClass("lm");
+				arrlocal=data[0].children
 			}else{
 				$("#subItems").addClass("lm");
 			}
 			for(var i=0;i<arrlocal.length;i++){
-				$("#subBox ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='javascript:void(0)' value='"+arrlocal[i].id+"' />"+arrlocal[i].text+"</a></li>");
+				$("#subBox ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 			}
 			$("#subItems li").mouseover(function(e){
 				//$("#subItems").hide();
+				initChecked();
 				var position2 = $(this).position();
-				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013)
+				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
+				var proId=$(this).children("a").find("input").val().split("@")[0];
 				$.ajax({
-				  url: 'adGroup.do?action=cityTree&proId='+$(this).attr("name"),
+				  url: 'adGroup.do?action=cityTree&proId='+proId,
 				  dataType: 'json',
 		          contentType:'application/json;charset=UTF-8',
 				  success: function(data) {
-					var arrlocal=data[0].children[0].children;
-					$("#thirdItems ol").empty();
+					var arrlocal=data;
 
+					$("#thirdItems ol").empty();
 					for(var i=0;i<arrlocal.length;i++){
-						$("#thirdItems ol").append("<li style='list-style-type: none;'  name="+arrlocal[i].id+">"+arrlocal[i].text+"</li>");
+						$("#thirdItems ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+						if(g_arrChked.length!=0){
+							for(var j=0;j<g_arrChked.length;j++){
+								if(g_arrChked[j]==(arrlocal[i].id)){
+									//如果是选中的则把新加入的(最后一个)input选中
+									$("#thirdItems ol li:last input").attr("checked","true");
+								}
+							}
+						}
 					}
 				  }
 				});
@@ -470,9 +522,7 @@ $(document).ready(function() {
 	      $("#subItems").show();
 	})
 
-	$("#allItems1 li").click(function(e){
-		$(this).css("background","#BACBDD");
-		$(this).css("border","1px");
-		$(this).css("border-color","#336699");
-	})
+	//选中变灰处理开始
+
+	//选中变灰处理结束
 })
