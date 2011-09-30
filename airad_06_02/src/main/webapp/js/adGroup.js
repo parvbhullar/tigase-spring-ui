@@ -404,6 +404,7 @@ function adGroupTimeSlotSubmit(){
 }
 
 var g_arrChked=[];
+var g_upLevelAreaArr=[];
 function get_g_arrChked(){
 	g_arrChked=[];
 	$("#selecting li").each(function (index){
@@ -412,13 +413,26 @@ function get_g_arrChked(){
 	})
 }
 
+function get_g_upLevelAreaArr(t,level){
+
+	if(level==1){
+		g_upLevelAreaArr=[];
+		console.info("val="+$(t).children("a").find("input").val());
+		g_upLevelAreaArr[0]=$(t).children("a").find("input").val();
+		console.info("g_upLevelAreaArr[0]="+g_upLevelAreaArr[0]);
+	}else{
+		console.info("val="+$(t).children("a").find("input").val());
+		g_upLevelAreaArr[1]=$(t).children("a").find("input").val();
+		console.info("g_upLevelAreaArr[1]="+g_upLevelAreaArr[1]);
+	}
+	console.info("g_upLevelAreaArr.length="+g_upLevelAreaArr.length);
+}
+
 //checkbox选中事件处理
 function changeBgColor(t,level){
 	var isChecked=$(t).attr("checked");
 	var proId=$(t).val().split("@")[0];
 	var text=$(t).val().split("@")[1];
-
-
 	var new_add=true;
 	get_g_arrChked();
 	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
@@ -428,16 +442,14 @@ function changeBgColor(t,level){
 		}
 	}
 	if(new_add){
-		removeAddSelecting(t,true,level,proId,text);
+		addOrRemoveSelecting(t,true,level,proId,text);
 	}else{
 		if(isChecked!=undefined){
 			console.info("变色--取消");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
-			removeAddSelecting(t,false,level,proId,text);
-
 		}else{
-			console.info("变色--已选");
-			$(t).removeClass("layon").addClass("nonelay");
+			console.info("变色--已选取消去色");
+			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 			if($("#selecting #li"+proId)==null){
 				console.info("变色--已选 为空");
 				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
@@ -445,35 +457,29 @@ function changeBgColor(t,level){
 			$("#selecting #li"+proId).remove();
 			$("#selecting #"+proId).parent();
 		}
+		addOrRemoveSelecting(t,false,level,proId,text);
 	}
 
 	$("#noSelectedLoc").hide();
 	$("#divSelecting").show();
-	if(3==level){//区
-
-	}else{
-		if(2==level){//市
-			$("#thirdItems #subBox ol li").each(function(){
-				$(this).css("background","#BACBDD");
-				$(this).find("input[type=checkbox]").attr("checked","true");
-				$(this).find("input[type=checkbox]").prop('disabled', true);
-			})
-		}else{
-
-		}
-
-	}
 }
 
-//删除添加 选择中
-function removeAddSelecting(t,b,level,proId,text){
-	console.info("删除添加选中中");
+
+
+//添加或删除 选择中
+function addOrRemoveSelecting(t,b,level,proId,text){
 	if(b){
 		console.info("添加");
+		$(t).parent().parent().removeClass("nonelay").addClass("layon");
+		var selectingValue=""
 		if(level==1){
-
+			checkOrUncheckAllSubArea(true,2,proId);
+			selectingValue=text;
 		}else{
 			if(level==2){
+				checkOrUncheckAllSubArea(true,3,proId);
+				selectingValue=g_upLevelAreaArr[0].split("@")[1]+"-"+text;
+
 				console.info("如果是添加市则去掉已选的区");
 				for(var i=0;i<g_arrChked.length;i++){
 					console.info("g_arrChked[i]="+g_arrChked[i]+";proId="+proId);
@@ -483,18 +489,67 @@ function removeAddSelecting(t,b,level,proId,text){
 					}
 				}
 			}else{//区
-				console.info("layicon nonelay");
-				$(t).parent().parent().removeClass("nonelay").addClass("layon");
-
+				selectingValue=g_upLevelAreaArr[0].split("@")[1]+"-"+g_upLevelAreaArr[1].split("@")[1]+"-"+text;
 			}
 		}
-		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+selectingValue+"</a></li>");
 	}else{
 		console.info("删除");
 		$("#selecting #li"+proId).remove();
+		if(level==1){
+			checkOrUncheckAllSubArea(false,2,proId);
+		}else{
+			if(level==2){
+				checkOrUncheckAllSubArea(false,3,proId);
+			}
+		}
+
+	}
+}
+
+//全选或反选下级区域
+function checkOrUncheckAllSubArea(b,level,proId){
+	if(b){
+		if(2==level){
+			$("#subItems li").each(function(){
+				if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+					$(this).addClass("layon");
+				}else{
+					$(this).addClass("layicon");
+				}
+				$(this).find("input[type=checkbox]").attr("checked",true);
+				$(this).find("input[type=checkbox]").prop('disabled', true);
+			});
+		}else{//level 3
+			$("#thirdItems li").each(function(){
+				$(this).addClass("layon");
+				$(this).find("input[type=checkbox]").attr("checked",true);
+				$(this).find("input[type=checkbox]").prop('disabled', true);
+			});
+		}
+	}else{//反选开始
+		if(2==level){
+			$("#subItems li").each(function(){
+				if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+					$(this).removeClass("layon");
+				}else{
+					$(this).removeClass("layicon");
+				}
+				$(this).find("input[type=checkbox]").attr("checked",false);
+				$(this).find("input[type=checkbox]").prop('disabled', false);
+			});
+		}else{//level 3
+			$("#thirdItems li").each(function(){
+				$(this).removeClass("layon");
+				$(this).find("input[type=checkbox]").attr("checked",false);
+				$(this).find("input[type=checkbox]").prop('disabled', false);
+			});
+		}
 	}
 
 }
+
+
 $(document).ready(function() {
 	$("#areaId").click(function(){
 		$("#pslayer").show();
@@ -519,9 +574,10 @@ $(document).ready(function() {
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		var position = $(this).position();
-
+		get_g_upLevelAreaArr(this,1);
+		var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
 		$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
-		var proId=$(this).children("a").find("input").val();
+		var proId=$(this).children("a").find("input").val().split("@")[0];
 		$.ajax({
 		  url: 'adGroup.do?action=cityTree&proId='+proId,
 		  dataType: 'json',
@@ -540,10 +596,8 @@ $(document).ready(function() {
 			for(var i=0;i<arrlocal.length;i++){
 				$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 				if(g_arrChked.length!=0){
-					if(false){
-						$("#subItems ol li:last input").css("background","#BACBDD");
-						$("#subItems ol li:last input").attr("checked","true");
-						$("#subItems ol li:last input").prop('disabled', true);
+					if(curLiChecked){//如果省选中则将 全省所有的市选中
+						checkOrUncheckAllSubArea(true,2,proId);
 					}else{
 						for(var j=0;j<g_arrChked.length;j++){
 							if(g_arrChked[j]==(arrlocal[i].id)){
@@ -559,7 +613,8 @@ $(document).ready(function() {
 			$("#subItems li").mouseover(function(e){
 				//$("#subItems").hide();
 				var position2 = $(this).position();
-				var checked=$(this).find("input[type=checkbox]").attr("checked");
+				get_g_upLevelAreaArr(this,2);
+				var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
 				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
 				var proId=$(this).children("a").find("input").val().split("@")[0];
 				$.ajax({
@@ -573,10 +628,8 @@ $(document).ready(function() {
 					for(var i=0;i<arrlocal.length;i++){
 						$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 						if(g_arrChked.length!=0){
-							if(checked){//如果已选中市则将全部区选中
-								$("#thirdItems ol li:last").parent().removeClass("nonelay").addClass("layon");
-								$("#thirdItems ol li:last input").attr("checked","true");
-								$("#thirdItems ol li:last input").prop('disabled', true);
+							if(curLiChecked){//如果已选中市则将全部区选中
+								checkOrUncheckAllSubArea(true,3,proId);
 							}else{
 								for(var j=0;j<g_arrChked.length;j++){
 									if(g_arrChked[j]==(arrlocal[i].id)){
