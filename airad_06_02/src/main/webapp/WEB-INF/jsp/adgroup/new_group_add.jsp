@@ -209,10 +209,11 @@
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="32" />重庆市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="6" />广东省</a></li>
+	<!--
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
-
+	<!--
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
@@ -229,6 +230,7 @@
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
 	<li style="list-style-type: none;"><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
+	-->
 	<!--
 	<li style="list-style-type: none;"  name="2" >北京市</li>
 	<li style="list-style-type: none;"  name="25"> 上海市</li>
