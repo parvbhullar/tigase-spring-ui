@@ -403,29 +403,50 @@ function adGroupTimeSlotSubmit(){
   document.sform.submit();
 }
 
+var g_arrChked=[];
+function get_g_arrChked(){
+	g_arrChked=[];
+	$("#selecting li").each(function (index){
+		var len=$(this).attr("id").length;
+		g_arrChked[index]=$(this).attr("id").substring(2,len);
+	})
+}
 
+//checkbox选中事件处理
 function changeBgColor(t,level){
 	var isChecked=$(t).attr("checked");
 	var proId=$(t).val().split("@")[0];
 	var text=$(t).val().split("@")[1];
-	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
-	$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
-	if(isChecked!=undefined){
 
-		$(t).parent().css("background","#BACBDD");
-		$(t).parent().css("border","1px");
-		$(t).parent().css("border-color","#336699");
-	}else{
-		$(t).parent().css("background","");
-		$(t).parent().css("border","");
-		$(t).parent().css("border-color","");
-		console.info($("#selecting #li"+proId).html())
-		if($("#selecting #li"+proId)==null){
-			$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+
+	var new_add=true;
+	get_g_arrChked();
+	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	for(var i=0;i<g_arrChked.length;i++){
+		if(g_arrChked[i]==proId){
+			new_add=false;
 		}
-		$("#selecting #li"+proId).remove();
-		$("#selecting #"+proId).parent();
 	}
+	if(new_add){
+		removeAddSelecting(t,true,level,proId,text);
+	}else{
+		if(isChecked!=undefined){
+			console.info("变色--取消");
+			$(t).parent().parent().removeClass("layon").addClass("nonelay");
+			removeAddSelecting(t,false,level,proId,text);
+
+		}else{
+			console.info("变色--已选");
+			$(t).removeClass("layon").addClass("nonelay");
+			if($("#selecting #li"+proId)==null){
+				console.info("变色--已选 为空");
+				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+			}
+			$("#selecting #li"+proId).remove();
+			$("#selecting #"+proId).parent();
+		}
+	}
+
 	$("#noSelectedLoc").hide();
 	$("#divSelecting").show();
 	if(3==level){//区
@@ -444,15 +465,36 @@ function changeBgColor(t,level){
 	}
 }
 
-var g_arrChked=[];
-function initChecked(){
-	g_arrChked=[]
-	$("#selecting li").each(function (index){
-		var len=$(this).attr("id").length;
-		g_arrChked[index]=$(this).attr("id").substring(2,len);
-	})
-}
+//删除添加 选择中
+function removeAddSelecting(t,b,level,proId,text){
+	console.info("删除添加选中中");
+	if(b){
+		console.info("添加");
+		if(level==1){
 
+		}else{
+			if(level==2){
+				console.info("如果是添加市则去掉已选的区");
+				for(var i=0;i<g_arrChked.length;i++){
+					console.info("g_arrChked[i]="+g_arrChked[i]+";proId="+proId);
+					if(g_arrChked[i]==proId){
+						$("#selecting #li"+proId).remove();
+						g_arrChked.splice(i,1);
+					}
+				}
+			}else{//区
+				console.info("layicon nonelay");
+				$(t).parent().parent().removeClass("nonelay").addClass("layon");
+
+			}
+		}
+		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+	}else{
+		console.info("删除");
+		$("#selecting #li"+proId).remove();
+	}
+
+}
 $(document).ready(function() {
 	$("#areaId").click(function(){
 		$("#pslayer").show();
@@ -477,6 +519,7 @@ $(document).ready(function() {
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		var position = $(this).position();
+
 		$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
 		var proId=$(this).children("a").find("input").val();
 		$.ajax({
@@ -485,7 +528,7 @@ $(document).ready(function() {
           contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
 			var arrlocal=data;
-			initChecked();
+			get_g_arrChked();
 			$("#subItems ol").empty();
 			//直辖市区
 			if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
@@ -495,7 +538,7 @@ $(document).ready(function() {
 				$("#subItems").addClass("lm");
 			}
 			for(var i=0;i<arrlocal.length;i++){
-				$("#subItems ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+				$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 				if(g_arrChked.length!=0){
 					if(false){
 						$("#subItems ol li:last input").css("background","#BACBDD");
@@ -504,8 +547,10 @@ $(document).ready(function() {
 					}else{
 						for(var j=0;j<g_arrChked.length;j++){
 							if(g_arrChked[j]==(arrlocal[i].id)){
-								//如果是选中的则把新加入的(最后一个)input选中
+								//如果是选中的则把新加入的(最后一个)input 上色选中
+								$("#subItems ol li:last input").parent().css("background","#BACBDD");
 								$("#subItems ol li:last input").attr("checked","true");
+
 							}
 						}
 					}
@@ -523,19 +568,20 @@ $(document).ready(function() {
 		          contentType:'application/json;charset=UTF-8',
 				  success: function(data) {
 					var arrlocal=data;
-					initChecked();
+					get_g_arrChked();
 					$("#thirdItems ol").empty();
 					for(var i=0;i<arrlocal.length;i++){
-						$("#thirdItems ol").append("<li style='list-style-type: none;'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+						$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 						if(g_arrChked.length!=0){
-							if(checked){
-								$("#thirdItems ol li:last input").parent().css("background","#BACBDD");
+							if(checked){//如果已选中市则将全部区选中
+								$("#thirdItems ol li:last").parent().removeClass("nonelay").addClass("layon");
 								$("#thirdItems ol li:last input").attr("checked","true");
 								$("#thirdItems ol li:last input").prop('disabled', true);
 							}else{
 								for(var j=0;j<g_arrChked.length;j++){
 									if(g_arrChked[j]==(arrlocal[i].id)){
 										//如果是选中的则把新加入的(最后一个)input选中
+										$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
 										$("#thirdItems ol li:last input").attr("checked","true");
 									}
 								}
