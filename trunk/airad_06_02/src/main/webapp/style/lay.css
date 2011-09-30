@@ -28,6 +28,7 @@ a.butn3{width:15px;height:15px;margin:5px 9px 0 0;background:url(../images/lay_i
 .alert_lay ol{list-style-type:none}
 .alert_lay li input{float:left;}
 .alert_lay li span{display:block;float:left;}
+.alert_lay li{list-style-type:none}
 .slay{width:300px;}
 .slay .blk{padding:10px;line-height:150%}
 .com_lay_ifrm{position:absolute;z-index:999}
