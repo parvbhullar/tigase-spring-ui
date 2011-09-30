@@ -481,18 +481,10 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 			if(level==2){
 				checkOrUncheckAllSubArea(true,3,proId);
 				selectingValue=g_upLevelAreaArr[0].split("@")[1]+"-"+text;
-
-				console.info("如果是添加市则去掉已选的区");
-				for(var i=0;i<g_arrChked.length;i++){
-					console.info("g_arrChked[i]="+g_arrChked[i]+";proId="+proId);
-					if(g_arrChked[i]==proId){
-						$("#selecting #li"+proId).remove();
-						g_arrChked.splice(i,1);
-					}
-				}
 			}else{//区
 				selectingValue=g_upLevelAreaArr[0].split("@")[1]+"-"+g_upLevelAreaArr[1].split("@")[1]+"-"+text;
 			}
+			removeSelectedSubArea(text);
 		}
 		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+selectingValue+"</a></li>");
 	}else{
@@ -555,14 +547,15 @@ function removeSelectedSubArea(text){
 	get_g_arrChked();
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		if(index==0){
+		console.info("index="+index);
+		if(index>=0){
 			$("#li"+g_arrChked[i]).remove();
 		}
 	}
-
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		if(index==0){
+		console.info("index="+index);
+		if(index>=0){
 			g_arrChked.splice(i,1);
 			g_arrChkedText.splice(i,1);
 		}
