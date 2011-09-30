@@ -404,12 +404,15 @@ function adGroupTimeSlotSubmit(){
 }
 
 var g_arrChked=[];
+var g_arrChkedText=[];
 var g_upLevelAreaArr=[];
 function get_g_arrChked(){
 	g_arrChked=[];
+	g_arrChkedText=[];
 	$("#selecting li").each(function (index){
 		var len=$(this).attr("id").length;
 		g_arrChked[index]=$(this).attr("id").substring(2,len);
+		g_arrChkedText[index]=$(this).find("a").text();
 	})
 }
 
@@ -464,8 +467,6 @@ function changeBgColor(t,level){
 	$("#divSelecting").show();
 }
 
-
-
 //添加或删除 选择中
 function addOrRemoveSelecting(t,b,level,proId,text){
 	if(b){
@@ -475,6 +476,7 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 		if(level==1){
 			checkOrUncheckAllSubArea(true,2,proId);
 			selectingValue=text;
+			removeSelectedSubArea(text);
 		}else{
 			if(level==2){
 				checkOrUncheckAllSubArea(true,3,proId);
@@ -546,7 +548,25 @@ function checkOrUncheckAllSubArea(b,level,proId){
 			});
 		}
 	}
+}
 
+//删除已选择的子区域
+function removeSelectedSubArea(text){
+	get_g_arrChked();
+	for(var i=0;i<g_arrChkedText.length;i++){
+		var index=g_arrChkedText[i].indexOf(text);
+		if(index==0){
+			$("#li"+g_arrChked[i]).remove();
+		}
+	}
+
+	for(var i=0;i<g_arrChkedText.length;i++){
+		var index=g_arrChkedText[i].indexOf(text);
+		if(index==0){
+			g_arrChked.splice(i,1);
+			g_arrChkedText.splice(i,1);
+		}
+	}
 }
 
 
@@ -610,42 +630,43 @@ $(document).ready(function() {
 					}
 				}
 			}
-			$("#subItems li").mouseover(function(e){
-				//$("#subItems").hide();
-				var position2 = $(this).position();
-				get_g_upLevelAreaArr(this,2);
-				var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
-				var proId=$(this).children("a").find("input").val().split("@")[0];
-				$.ajax({
-				  url: 'adGroup.do?action=cityTree&proId='+proId,
-				  dataType: 'json',
-		          contentType:'application/json;charset=UTF-8',
-				  success: function(data) {
-					var arrlocal=data;
-					get_g_arrChked();
-					$("#thirdItems ol").empty();
-					for(var i=0;i<arrlocal.length;i++){
-						$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
-						if(g_arrChked.length!=0){
-							if(curLiChecked){//如果已选中市则将全部区选中
-								checkOrUncheckAllSubArea(true,3,proId);
-							}else{
-								for(var j=0;j<g_arrChked.length;j++){
-									if(g_arrChked[j]==(arrlocal[i].id)){
-										//如果是选中的则把新加入的(最后一个)input选中
-										$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
-										$("#thirdItems ol li:last input").attr("checked","true");
+			if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
+				$("#subItems li").mouseover(function(e){
+					//$("#subItems").hide();
+					var position2 = $(this).position();
+					get_g_upLevelAreaArr(this,2);
+					var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+					$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
+					var proId=$(this).children("a").find("input").val().split("@")[0];
+					$.ajax({
+					  url: 'adGroup.do?action=cityTree&proId='+proId,
+					  dataType: 'json',
+			          contentType:'application/json;charset=UTF-8',
+					  success: function(data) {
+						var arrlocal=data;
+						get_g_arrChked();
+						$("#thirdItems ol").empty();
+						for(var i=0;i<arrlocal.length;i++){
+							$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+							if(g_arrChked.length!=0){
+								if(curLiChecked){//如果已选中市则将全部区选中
+									checkOrUncheckAllSubArea(true,3,proId);
+								}else{
+									for(var j=0;j<g_arrChked.length;j++){
+										if(g_arrChked[j]==(arrlocal[i].id)){
+											//如果是选中的则把新加入的(最后一个)input选中
+											$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
+											$("#thirdItems ol li:last input").attr("checked","true");
+										}
 									}
 								}
 							}
 						}
-					}
-				  }
+					  }
+					});
+				      $("#thirdItems").show();
 				});
-			      $("#thirdItems").show();
-			})
-
+			}
 		  }
 		});
 	      $("#subItems").show();
