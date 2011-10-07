@@ -7,13 +7,19 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <head>
 	<title>Skins - CKEditor Sample</title>
 	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="jsp/ad/ad.js"></script>
+	
+	
+	<script type="text/javascript" src="jsp/ad/popupselector_cpd.js"></script>
+	<link type="text/css" rel="stylesheet" href="jsp/ad/lay.css" />
 	<script language="JavaScript">
 		
 	</script>
 </head>
 <body>
 	<a href="javascript:void(false)" class="button" id="area"><span class="buttun"></span>选择地区</a>
+	<a href="javascript:void(false)" class="button" id="parea"><span class="buttun"></span>选择地区</a>
 	<h2>动态AD配置</h2>
 	<hr></hr>
 	<div id="jobLayerId">
@@ -293,5 +299,60 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			</tbody>
 		</table>
 </div>
+
+
+<div class="alert_lay sech_lay lm lay_wls" id="pslayer" style="display:none">
+            <!--背景圆角上-->
+            <div class="alert_t">
+            </div>
+            <div class="box">
+                <h1>
+                    <span id="psHeader">请选择地区</span><a id="imgClose" class="butn3" href="javascript:void(0);">
+                    </a>
+                </h1>
+                <div class="blk">
+                    <div class="sech_layt" id="divSelecting" style="display: none;">
+                        <h3>
+                            <span id="selectingHeader">您选择的地区是</span><b class="btn_fst">
+                                <input type="button" class="btn_fst" value="确定" name="" id="lnkOK">
+                                <input type="button" class="butdef" value="清空" name="" id="lnkEmpty"></b>
+                        </h3>
+                        <ul id="selecting"></ul>
+                    </div>
+                    <div class="sech_layt btn_fst" id="noSelectedCat" style="display: none;">
+                        <h3>
+                            <span>提示：</span><b>
+                                <input type="button" value="确定" class="fst" name="" id="btnOk">
+                                <input type="button" class="butdef_n" value="清空" disabled="" name=""></b>
+                        </h3>
+                        <p>
+                            当您直接选择职位类别时，您将会获得更多的搜索结果<br>
+                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体职位时，将会获得更为准确的搜索结果<br>
+                            您最多可以选择5个职位类别
+                        </p>
+                    </div>
+                    <div class="sech_layt btn_fst" id="noSelectedLoc" style="display: block;">
+                        <h3>
+                            <span>提示：</span><b>
+                                <input type="button" value="确定" class="fst" name="" id="btnOkLoc">
+                                <input type="button" class="butdef_n" value="清空" disabled="" name=""></b>
+                        </h3>
+                        <p>
+                            当您选择＂<img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/ico1.gif">＂下的具体城市时，将会获得更为准确的搜索结果<br>
+                            您最多可以选择5个工作地点
+                        </p>
+                    </div>
+                    <div class="sech_layb">
+                        <h2 id="subHeader1"><span>所有省市：</span></h2>
+                        <ol id="allItems1"><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(0,30000, this, true)" name="30000" id="jQuery0"><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(0,this, null,30000)" value="30000@北京市" id="pcbx30000">北京市</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(1,31000, this, true)" name="31000" id="jQuery1" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(1,this, null,31000)" value="31000@上海市" id="pcbx31000">上海市</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(2,32000, this, true)" name="32000" id="jQuery2" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(2,this, null,32000)" value="32000@天津市" id="pcbx32000">天津市</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(3,33000, this, true)" name="33000" id="jQuery3" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(3,this, null,33000)" value="33000@重庆市" id="pcbx33000">重庆市</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(4,16000, this, true)" name="16000" id="jQuery4" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(4,this, null,16000)" value="16000@广东省" id="pcbx16000">广东省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(5,7000, this, true)" name="7000" id="jQuery5" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(5,this, null,7000)" value="7000@江苏省" id="pcbx7000">江苏省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(6,8000, this, true)" name="8000" id="jQuery6" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(6,this, null,8000)" value="8000@浙江省" id="pcbx8000">浙江省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(7,9000, this, true)" name="9000" id="jQuery7" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(7,this, null,9000)" value="9000@安徽省" id="pcbx9000">安徽省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(8,10000, this, true)" name="10000" id="jQuery8" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(8,this, null,10000)" value="10000@福建省" id="pcbx10000">福建省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(9,24000, this, true)" name="24000" id="jQuery9" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(9,this, null,24000)" value="24000@甘肃省" id="pcbx24000">甘肃省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(10,17000, this, true)" name="17000" id="jQuery10" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(10,this, null,17000)" value="17000@广西" id="pcbx17000">广西</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(11,20000, this, true)" name="20000" id="jQuery11" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(11,this, null,20000)" value="20000@贵州省" id="pcbx20000">贵州省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(12,18000, this, true)" name="18000" id="jQuery12" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(12,this, null,18000)" value="18000@海南省" id="pcbx18000">海南省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(13,1000, this, true)" name="1000" id="jQuery13" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(13,this, null,1000)" value="1000@河北省" id="pcbx1000">河北省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(14,13000, this, true)" name="13000" id="jQuery14" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(14,this, null,13000)" value="13000@河南省" id="pcbx13000">河南省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(15,6000, this, true)" name="6000" id="jQuery15" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(15,this, null,6000)" value="6000@黑龙江省" id="pcbx6000">黑龙江省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(16,14000, this, true)" name="14000" id="jQuery16" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(16,this, null,14000)" value="14000@湖北省" id="pcbx14000">湖北省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(17,15000, this, true)" name="15000" id="jQuery17" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(17,this, null,15000)" value="15000@湖南省" id="pcbx15000">湖南省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(18,5000, this, true)" name="5000" id="jQuery18" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(18,this, null,5000)" value="5000@吉林省" id="pcbx5000">吉林省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(19,11000, this, true)" name="11000" id="jQuery19" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(19,this, null,11000)" value="11000@江西省" id="pcbx11000">江西省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(20,4000, this, true)" name="4000" id="jQuery20" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(20,this, null,4000)" value="4000@辽宁省" id="pcbx4000">辽宁省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(21,3000, this, true)" name="3000" id="jQuery21" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(21,this, null,3000)" value="3000@内蒙古" id="pcbx3000">内蒙古</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(22,26000, this, true)" name="26000" id="jQuery22" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(22,this, null,26000)" value="26000@宁夏" id="pcbx26000">宁夏</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(23,25000, this, true)" name="25000" id="jQuery23" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(23,this, null,25000)" value="25000@青海省" id="pcbx25000">青海省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(24,12000, this, true)" name="12000" id="jQuery24" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(24,this, null,12000)" value="12000@山东省" id="pcbx12000">山东省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(25,2000, this, true)" name="2000" id="jQuery25" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(25,this, null,2000)" value="2000@山西省" id="pcbx2000">山西省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(26,23000, this, true)" name="23000" id="jQuery26" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(26,this, null,23000)" value="23000@陕西省" id="pcbx23000">陕西省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(27,19000, this, true)" name="19000" id="jQuery27" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(27,this, null,19000)" value="19000@四川省" id="pcbx19000">四川省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(28,22000, this, true)" name="22000" id="jQuery28" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(28,this, null,22000)" value="22000@西藏" id="pcbx22000">西藏</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(29,27000, this, true)" name="27000" id="jQuery29" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(29,this, null,27000)" value="27000@新疆" id="pcbx27000">新疆</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(30,21000, this, true)" name="21000" id="jQuery30" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(30,this, null,21000)" value="21000@云南省" id="pcbx21000">云南省</a></li><li onmouseout="PopupSelector.hideSubItems(this)" onmouseover="PopupSelector.showSubItems(31,34000, this, true)" name="34000" id="jQuery31" class=""><a href="javascript:void(0);"><input type="checkbox" onclick="PopupSelector.click(31,this, null,34000)" value="34000@香港" id="pcbx34000">香港</a></li><li class="nonelay" name="35000" id="jQuery32"><a href="javascript:void(0);"><label for="pcbx35000"><input type="checkbox" onclick="PopupSelector.click(32,this, null,35000)" value="35000@澳门" id="pcbx35000">澳门</label></a></li><li class="nonelay" name="36000" id="jQuery33"><a href="javascript:void(0);"><label for="pcbx36000"><input type="checkbox" onclick="PopupSelector.click(33,this, null,36000)" value="36000@台湾" id="pcbx36000">台湾</label></a></li></ol>
+                        <h2 style="" id="subHeader2"><span>其它国家和地区：</span></h2>
+                        <ol style="" id="allItems2"><li class="nonelay" name="37000" id="jQuery34"><a href="javascript:void(0);"><label for="pcbx37000"><input type="checkbox" onclick="PopupSelector.click(34,this, null,37000)" value="37000@其他亚洲国家和地区" id="pcbx37000">其他亚洲国家和地区</label></a></li><li class="nonelay" name="38000" id="jQuery35"><a href="javascript:void(0);"><label for="pcbx38000"><input type="checkbox" onclick="PopupSelector.click(35,this, null,38000)" value="38000@北美洲" id="pcbx38000">北美洲</label></a></li><li class="nonelay" name="41000" id="jQuery36"><a href="javascript:void(0);"><label for="pcbx41000"><input type="checkbox" onclick="PopupSelector.click(36,this, null,41000)" value="41000@南美洲" id="pcbx41000">南美洲</label></a></li><li class="nonelay" name="39000" id="jQuery37"><a href="javascript:void(0);"><label for="pcbx39000"><input type="checkbox" onclick="PopupSelector.click(37,this, null,39000)" value="39000@大洋洲" id="pcbx39000">大洋洲</label></a></li><li class="nonelay" name="40000" id="jQuery38"><a href="javascript:void(0);"><label for="pcbx40000"><input type="checkbox" onclick="PopupSelector.click(38,this, null,40000)" value="40000@欧洲" id="pcbx40000">欧洲</label></a></li><li class="nonelay" name="42000" id="jQuery39"><a href="javascript:void(0);"><label for="pcbx42000"><input type="checkbox" onclick="PopupSelector.click(39,this, null,42000)" value="42000@非洲" id="pcbx42000">非洲</label></a></li></ol>
+                    </div>
+                </div>
+            </div>
+            <!--背景圆角下-->
+            <div class="alert_b">
+                <img alt="" src="http://st.mychinahr.com/a/sjob6.0/style/image/laybj_br.gif"></div>
+        </div>
 </body>
 </html>

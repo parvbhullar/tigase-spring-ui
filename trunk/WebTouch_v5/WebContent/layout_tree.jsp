@@ -12,7 +12,10 @@ String username="qk";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/index/complex.css" />
+	
+	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-1.6.2.js"></script>
+	
 	<script type="text/javascript" src="<%=ctxindex%>/js/jqueryui/jquery.layout.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jquery-ui-1.8.14/js/jquery-ui-1.8.14.custom.min.js"></script>
 	<script type="text/javascript" src="<%=ctxindex%>/js/jstree/jquery.jstree.js"></script>
