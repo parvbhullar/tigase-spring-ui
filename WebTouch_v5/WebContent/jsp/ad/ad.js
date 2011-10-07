@@ -31,6 +31,24 @@ $(document).ready( function() {
 	          
 	      });
 	      
+	      $('#parea').click(function() {
+	    	  $("#pslayer").show();
+	    	  $.blockUI({ 
+	              title:    '选择地区', 
+	              message:  $("#pslayer"),
+	              css: { 
+	            	  top:  ($(window).height() - 400) /2 + 'px', 
+	                  left: ($(window).width() - 400) /2 + 'px'
+	              }
+	          });
+	      })
+	      
+	      $('#imgClose').click(function() {
+	    	  $("#pslayer").hide();
+	    	  $.unblockUI();
+	    	  return false;;
+	      })
+	      
 	      
 	      
 	      $('#cancel').click(function() { 
