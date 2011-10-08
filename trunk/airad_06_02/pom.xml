@@ -47,7 +47,7 @@
              	<version>2.6</version>
              <configuration>
                         <configLocation>mitian_checkstyle.xml</configLocation>
-                </configuration> 
+                </configuration>
              </plugin>
              <plugin>
              	<groupId>org.codehaus.mojo</groupId>
@@ -63,6 +63,27 @@
     </resources>
         </build>
          <profiles>
+         <profile>
+            <id>local</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://127.0.0.1:3306/airad_dev?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>root</jdbc.password>
+                 <log4j.name>log4j_dev.properties</log4j.name>
+                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                 <currentDeploymentType>airad</currentDeploymentType>
+                 <hermesApplicationAdRequestUrl>http://192.168.1.252:8730/contentExhibit.do?action=preview</hermesApplicationAdRequestUrl>
+                 <hermesApplicationAdBannerRequestUrl>http://192.168.1.252:8730/exhibit.do?action=preview</hermesApplicationAdBannerRequestUrl>
+                 <oss.url>http://192.168.1.252:8710</oss.url>
+                 <taobao.appKey>12353714</taobao.appKey>
+                 <taobao.appSecret>393db5022bdc7e1e242d4aa2016933ba</taobao.appSecret>
+                 <taobao.apiUrl>http://gw.api.taobao.com/router/rest</taobao.apiUrl>
+                 <taobao.callbackUrl>http://localhost:8080/member.do?action=taobaoCb</taobao.callbackUrl>
+                 <taobao.oauth.authUrl>https://oauth.taobao.com/authorize</taobao.oauth.authUrl>
+                 <taobao.oauth.accessTokenUrl>https://oauth.taobao.com/token</taobao.oauth.accessTokenUrl>
+            </properties>
+        </profile>
+
         <profile>
             <id>dev</id>
             <properties>

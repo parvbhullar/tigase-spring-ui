@@ -562,6 +562,150 @@ function removeSelectedSubArea(text){
 	}
 }
 
+(function ($, plugin) {
+    var data = {}, id = 1, etid = plugin + 'ETID';
+
+    // 延时构造器
+    $.fn[plugin] = function (speed, group) {
+        id ++;
+        group = group || this.data(etid) || id;
+        speed = speed || 150;
+
+        // 缓存分组名称到元素
+        if (group === id) this.data(etid, group);
+
+        // 暂存官方的hover方法
+        this._hover = this.hover;
+
+        // 伪装一个hover函数，并截获两个回调函数交给真正的hover函数处理
+        this.hover = function (over, out) {
+            over = over || $.noop;
+            out = out || $.noop;
+            this._hover(function (event) {
+                var elem = this;
+                clearTimeout(data[group]);
+                data[group] = setTimeout(function () {
+                    over.call(elem, event);
+                }, speed);
+            }, function (event) {
+                var elem = this;
+                clearTimeout(data[group]);
+                data[group] = setTimeout(function () {
+                    out.call(elem, event);
+                }, speed);
+            });
+
+            return this;
+        };
+
+        return this;
+    };
+
+    // 冻结选定元素的延时器
+    $.fn[plugin + 'Pause'] = function () {
+        clearTimeout(this.data(etid));
+        return this;
+    };
+
+    // 静态方法
+    $[plugin] = {
+        // 获取一个唯一分组名称
+        get: function () {
+            return id ++;
+        },
+        // 冻结指定分组的延时器
+        pause: function (group) {
+            clearTimeout(data[group]);
+        }
+    };
+
+})(jQuery, 'mouseDelay');
+
+function showSubBox(e){
+	$("#subItems").hide();
+	$("#thirdItems").hide();
+	var position = $(this).position();
+	get_g_upLevelAreaArr(this,1);
+	var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+	$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
+	var proId=$(this).children("a").find("input").val().split("@")[0];
+	$.ajax({
+	  url: 'adGroup.do?action=cityTree&proId='+proId,
+	  dataType: 'json',
+      contentType:'application/json;charset=UTF-8',
+	  success: function(data) {
+		var arrlocal=data;
+		get_g_arrChked();
+		$("#subItems ol").empty();
+		//直辖市区
+		if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+			$("#subItems").removeClass("lm");
+			arrlocal=data[0].children
+		}else{
+			$("#subItems").addClass("lm");
+		}
+		for(var i=0;i<arrlocal.length;i++){
+			$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+			if(g_arrChked.length!=0){
+				if(curLiChecked){//如果省选中则将 全省所有的市选中
+					checkOrUncheckAllSubArea(true,2,proId);
+				}else{
+					for(var j=0;j<g_arrChked.length;j++){
+						if(g_arrChked[j]==(arrlocal[i].id)){
+							//如果是选中的则把新加入的(最后一个)input 上色选中
+							$("#subItems ol li:last input").parent().css("background","#BACBDD");
+							$("#subItems ol li:last input").attr("checked","true");
+
+						}
+					}
+				}
+			}
+		}
+		if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
+			$("#subItems li").mouseover(function(e){
+				//$("#subItems").hide();
+				var position2 = $(this).position();
+				get_g_upLevelAreaArr(this,2);
+				var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
+				var proId=$(this).children("a").find("input").val().split("@")[0];
+				$.ajax({
+				  url: 'adGroup.do?action=cityTree&proId='+proId,
+				  dataType: 'json',
+		          contentType:'application/json;charset=UTF-8',
+				  success: function(data) {
+					var arrlocal=data;
+					get_g_arrChked();
+					$("#thirdItems ol").empty();
+					for(var i=0;i<arrlocal.length;i++){
+						$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+						if(g_arrChked.length!=0){
+							if(curLiChecked){//如果已选中市则将全部区选中
+								checkOrUncheckAllSubArea(true,3,proId);
+							}else{
+								for(var j=0;j<g_arrChked.length;j++){
+									if(g_arrChked[j]==(arrlocal[i].id)){
+										//如果是选中的则把新加入的(最后一个)input选中
+										$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
+										$("#thirdItems ol li:last input").attr("checked","true");
+									}
+								}
+							}
+						}
+					}
+				  }
+				});
+			      $("#thirdItems").show();
+			});
+		}
+	  }
+	});
+      $("#subItems").show();
+}
+
+function hideSubBox(){
+	alert(" 隐藏第subBox");
+}
 
 $(document).ready(function() {
 	$("#areaId").click(function(){
@@ -583,7 +727,9 @@ $(document).ready(function() {
         });
 	})
 
-	$("#allItems li").mouseover(function(e){
+	var group=$.mouseDelay.get();
+
+	$("#allItems li").mouseDelay(false,group).hover(function(e){
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		var position = $(this).position();
@@ -594,7 +740,7 @@ $(document).ready(function() {
 		$.ajax({
 		  url: 'adGroup.do?action=cityTree&proId='+proId,
 		  dataType: 'json',
-          contentType:'application/json;charset=UTF-8',
+	      contentType:'application/json;charset=UTF-8',
 		  success: function(data) {
 			var arrlocal=data;
 			get_g_arrChked();
@@ -663,7 +809,127 @@ $(document).ready(function() {
 		  }
 		});
 	      $("#subItems").show();
-	})
+	}
+	);
+
+	var globalStatus=false;
+	$("#sech_layb_id").mouseDelay(false,(group)).hover(function(){
+		globalStatus=false;
+	},function(){
+		globalStatus=true;
+		$("#subItems").hide();
+		$("#thirdItems").hide();
+
+	});
+
+
+	$("#subItems").mouseDelay(false,(group)).hover(function(){
+		globalStatus=false;
+	},function(){
+		globalStatus=true;
+		$("#subItems").hide();
+		$("#thirdItems").hide();
+	});
+	$("#thirdItems").mouseDelay(false,(group)).hover(function(){
+		globalStatus=false;
+	},function(){
+		globalStatus=true;
+		$("#subItems").hide();
+		$("#thirdItems").hide();
+	});
+
+
+
+
+//	$("#allItems li").mouseover(function(e){
+//		$("#subItems").hide();
+//		$("#thirdItems").hide();
+//		var position = $(this).position();
+//		get_g_upLevelAreaArr(this,1);
+//		var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+//		$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
+//		var proId=$(this).children("a").find("input").val().split("@")[0];
+//		$.ajax({
+//		  url: 'adGroup.do?action=cityTree&proId='+proId,
+//		  dataType: 'json',
+//          contentType:'application/json;charset=UTF-8',
+//		  success: function(data) {
+//			var arrlocal=data;
+//			get_g_arrChked();
+//			$("#subItems ol").empty();
+//			//直辖市区
+//			if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+//				$("#subItems").removeClass("lm");
+//				arrlocal=data[0].children
+//			}else{
+//				$("#subItems").addClass("lm");
+//			}
+//			for(var i=0;i<arrlocal.length;i++){
+//				$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+//				if(g_arrChked.length!=0){
+//					if(curLiChecked){//如果省选中则将 全省所有的市选中
+//						checkOrUncheckAllSubArea(true,2,proId);
+//					}else{
+//						for(var j=0;j<g_arrChked.length;j++){
+//							if(g_arrChked[j]==(arrlocal[i].id)){
+//								//如果是选中的则把新加入的(最后一个)input 上色选中
+//								$("#subItems ol li:last input").parent().css("background","#BACBDD");
+//								$("#subItems ol li:last input").attr("checked","true");
+//
+//							}
+//						}
+//					}
+//				}
+//			}
+//			if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
+//				$("#subItems li").mouseover(function(e){
+//					//$("#subItems").hide();
+//					var position2 = $(this).position();
+//					get_g_upLevelAreaArr(this,2);
+//					var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+//					$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
+//					var proId=$(this).children("a").find("input").val().split("@")[0];
+//					$.ajax({
+//					  url: 'adGroup.do?action=cityTree&proId='+proId,
+//					  dataType: 'json',
+//			          contentType:'application/json;charset=UTF-8',
+//					  success: function(data) {
+//						var arrlocal=data;
+//						get_g_arrChked();
+//						$("#thirdItems ol").empty();
+//						for(var i=0;i<arrlocal.length;i++){
+//							$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+//							if(g_arrChked.length!=0){
+//								if(curLiChecked){//如果已选中市则将全部区选中
+//									checkOrUncheckAllSubArea(true,3,proId);
+//								}else{
+//									for(var j=0;j<g_arrChked.length;j++){
+//										if(g_arrChked[j]==(arrlocal[i].id)){
+//											//如果是选中的则把新加入的(最后一个)input选中
+//											$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
+//											$("#thirdItems ol li:last input").attr("checked","true");
+//										}
+//									}
+//								}
+//							}
+//						}
+//					  }
+//					});
+//				      $("#thirdItems").show();
+//				});
+//			}
+//		  }
+//		});
+//	      $("#subItems").show();
+//	})
+
+//	$("#subItems li").mouseout(function(e){
+//		$("#thirdItems").hide();
+//	});
+
+	$("#thirdItems").mouseout(function(e){
+		$("#thirdItems").hide();
+	});
 
 	//选中变灰处理开始
 

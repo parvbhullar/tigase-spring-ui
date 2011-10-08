@@ -908,7 +908,7 @@ memberInfo=context.getMemberInfo();
       out.write("                            \t您最多可以选择5个地点\n");
       out.write("                        </p>\n");
       out.write("                    </div>\n");
-      out.write("                    <div class=\"sech_layb\">\n");
+      out.write("                    <div class=\"sech_layb\" id=\"sech_layb_id\">\n");
       out.write("                        <h2 id=\"subHeader1\"><span>所有省市：</span></h2>\n");
       out.write("<ol id=\"allItems\">\n");
       out.write("\t<li ><a href=\"javascript:void(0);\"><input type=\"checkbox\" onclick=\"changeBgColor(this,1)\" value=\"2@北京市\" />北京市</a></li>\n");
