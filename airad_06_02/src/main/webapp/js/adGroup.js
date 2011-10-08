@@ -420,15 +420,15 @@ function get_g_upLevelAreaArr(t,level){
 
 	if(level==1){
 		g_upLevelAreaArr=[];
-		console.info("val="+$(t).children("a").find("input").val());
+//		console.info("val="+$(t).children("a").find("input").val());
 		g_upLevelAreaArr[0]=$(t).children("a").find("input").val();
-		console.info("g_upLevelAreaArr[0]="+g_upLevelAreaArr[0]);
+//		console.info("g_upLevelAreaArr[0]="+g_upLevelAreaArr[0]);
 	}else{
-		console.info("val="+$(t).children("a").find("input").val());
+//		console.info("val="+$(t).children("a").find("input").val());
 		g_upLevelAreaArr[1]=$(t).children("a").find("input").val();
-		console.info("g_upLevelAreaArr[1]="+g_upLevelAreaArr[1]);
+//		console.info("g_upLevelAreaArr[1]="+g_upLevelAreaArr[1]);
 	}
-	console.info("g_upLevelAreaArr.length="+g_upLevelAreaArr.length);
+//	console.info("g_upLevelAreaArr.length="+g_upLevelAreaArr.length);
 }
 
 //checkbox选中事件处理
@@ -569,7 +569,7 @@ function removeSelectedSubArea(text){
     $.fn[plugin] = function (speed, group) {
         id ++;
         group = group || this.data(etid) || id;
-        speed = speed || 150;
+        speed = speed || 250;
 
         // 缓存分组名称到元素
         if (group === id) this.data(etid, group);
@@ -621,88 +621,6 @@ function removeSelectedSubArea(text){
 
 })(jQuery, 'mouseDelay');
 
-function showSubBox(e){
-	$("#subItems").hide();
-	$("#thirdItems").hide();
-	var position = $(this).position();
-	get_g_upLevelAreaArr(this,1);
-	var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-	$("#subItems").css("top",(position.top+($(window).height() - 400) /2)).css("left",(130+position.left+($(window).width() - 400) /2)).css("zIndex",1012)
-	var proId=$(this).children("a").find("input").val().split("@")[0];
-	$.ajax({
-	  url: 'adGroup.do?action=cityTree&proId='+proId,
-	  dataType: 'json',
-      contentType:'application/json;charset=UTF-8',
-	  success: function(data) {
-		var arrlocal=data;
-		get_g_arrChked();
-		$("#subItems ol").empty();
-		//直辖市区
-		if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
-			$("#subItems").removeClass("lm");
-			arrlocal=data[0].children
-		}else{
-			$("#subItems").addClass("lm");
-		}
-		for(var i=0;i<arrlocal.length;i++){
-			$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
-			if(g_arrChked.length!=0){
-				if(curLiChecked){//如果省选中则将 全省所有的市选中
-					checkOrUncheckAllSubArea(true,2,proId);
-				}else{
-					for(var j=0;j<g_arrChked.length;j++){
-						if(g_arrChked[j]==(arrlocal[i].id)){
-							//如果是选中的则把新加入的(最后一个)input 上色选中
-							$("#subItems ol li:last input").parent().css("background","#BACBDD");
-							$("#subItems ol li:last input").attr("checked","true");
-
-						}
-					}
-				}
-			}
-		}
-		if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
-			$("#subItems li").mouseover(function(e){
-				//$("#subItems").hide();
-				var position2 = $(this).position();
-				get_g_upLevelAreaArr(this,2);
-				var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-				$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
-				var proId=$(this).children("a").find("input").val().split("@")[0];
-				$.ajax({
-				  url: 'adGroup.do?action=cityTree&proId='+proId,
-				  dataType: 'json',
-		          contentType:'application/json;charset=UTF-8',
-				  success: function(data) {
-					var arrlocal=data;
-					get_g_arrChked();
-					$("#thirdItems ol").empty();
-					for(var i=0;i<arrlocal.length;i++){
-						$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
-						if(g_arrChked.length!=0){
-							if(curLiChecked){//如果已选中市则将全部区选中
-								checkOrUncheckAllSubArea(true,3,proId);
-							}else{
-								for(var j=0;j<g_arrChked.length;j++){
-									if(g_arrChked[j]==(arrlocal[i].id)){
-										//如果是选中的则把新加入的(最后一个)input选中
-										$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
-										$("#thirdItems ol li:last input").attr("checked","true");
-									}
-								}
-							}
-						}
-					}
-				  }
-				});
-			      $("#thirdItems").show();
-			});
-		}
-	  }
-	});
-      $("#subItems").show();
-}
-
 function hideSubBox(){
 	alert(" 隐藏第subBox");
 }
@@ -728,10 +646,10 @@ $(document).ready(function() {
 	})
 
 	var group=$.mouseDelay.get();
-
+	var globalStatus=false;
 	$("#allItems li").mouseDelay(false,group).hover(function(e){
-		$("#subItems").hide();
-		$("#thirdItems").hide();
+		//$("#subItems").hide();
+		//$("#thirdItems").hide();
 		var position = $(this).position();
 		get_g_upLevelAreaArr(this,1);
 		var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
@@ -770,41 +688,46 @@ $(document).ready(function() {
 				}
 			}
 			if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
-				$("#subItems li").mouseover(function(e){
-					//$("#subItems").hide();
-					var position2 = $(this).position();
-					get_g_upLevelAreaArr(this,2);
-					var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-					$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
-					var proId=$(this).children("a").find("input").val().split("@")[0];
-					$.ajax({
-					  url: 'adGroup.do?action=cityTree&proId='+proId,
-					  dataType: 'json',
-			          contentType:'application/json;charset=UTF-8',
-					  success: function(data) {
-						var arrlocal=data;
-						get_g_arrChked();
-						$("#thirdItems ol").empty();
-						for(var i=0;i<arrlocal.length;i++){
-							$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
-							if(g_arrChked.length!=0){
-								if(curLiChecked){//如果已选中市则将全部区选中
-									checkOrUncheckAllSubArea(true,3,proId);
-								}else{
-									for(var j=0;j<g_arrChked.length;j++){
-										if(g_arrChked[j]==(arrlocal[i].id)){
-											//如果是选中的则把新加入的(最后一个)input选中
-											$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
-											$("#thirdItems ol li:last input").attr("checked","true");
+
+				$("#subItems li").mouseDelay(false,group).hover(function(e){
+					console.info(" #subItems li globalStatus="+globalStatus);
+					if(!globalStatus){
+						//$("#subItems").hide();
+						var position2 = $(this).position();
+						get_g_upLevelAreaArr(this,2);
+						var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+						$("#thirdItems").css("top",(190+position2.top+($(window).height() - 400) /2)).css("left",(280+position2.left+($(window).width() - 400) /2)).css("zIndex",1013);
+						var proId=$(this).children("a").find("input").val().split("@")[0];
+						$.ajax({
+						  url: 'adGroup.do?action=cityTree&proId='+proId,
+						  dataType: 'json',
+				          contentType:'application/json;charset=UTF-8',
+						  success: function(data) {
+							var arrlocal=data;
+							get_g_arrChked();
+							$("#thirdItems ol").empty();
+							for(var i=0;i<arrlocal.length;i++){
+								$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+								if(g_arrChked.length!=0){
+									if(curLiChecked){//如果已选中市则将全部区选中
+										checkOrUncheckAllSubArea(true,3,proId);
+									}else{
+										for(var j=0;j<g_arrChked.length;j++){
+											if(g_arrChked[j]==(arrlocal[i].id)){
+												//如果是选中的则把新加入的(最后一个)input选中
+												$("#thirdItems ol li:last").removeClass("nonelay").addClass("layon");
+												$("#thirdItems ol li:last input").attr("checked","true");
+											}
 										}
 									}
 								}
 							}
-						}
-					  }
-					});
-				      $("#thirdItems").show();
-				});
+						  }
+						});
+					      $("#thirdItems").show();
+					}
+
+				},null);
 			}
 		  }
 		});
@@ -812,14 +735,13 @@ $(document).ready(function() {
 	}
 	);
 
-	var globalStatus=false;
 	$("#sech_layb_id").mouseDelay(false,(group)).hover(function(){
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
 		$("#subItems").hide();
 		$("#thirdItems").hide();
-
+		globalStatus=false;
 	});
 
 
@@ -827,15 +749,19 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
+		console.info("subItems ="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
+		globalStatus=false;
 	});
 	$("#thirdItems").mouseDelay(false,(group)).hover(function(){
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
+		console.info("thirdItems ="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
+		globalStatus=false;
 	});
 
 
@@ -926,10 +852,6 @@ $(document).ready(function() {
 //	$("#subItems li").mouseout(function(e){
 //		$("#thirdItems").hide();
 //	});
-
-	$("#thirdItems").mouseout(function(e){
-		$("#thirdItems").hide();
-	});
 
 	//选中变灰处理开始
 
