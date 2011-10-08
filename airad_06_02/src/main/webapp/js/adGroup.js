@@ -688,9 +688,8 @@ $(document).ready(function() {
 				}
 			}
 			if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
-
 				$("#subItems li").mouseDelay(false,group).hover(function(e){
-					console.info(" #subItems li globalStatus="+globalStatus);
+//					console.info(" #subItems li globalStatus="+globalStatus);
 					if(!globalStatus){
 						//$("#subItems").hide();
 						var position2 = $(this).position();
@@ -726,12 +725,12 @@ $(document).ready(function() {
 						});
 					      $("#thirdItems").show();
 					}
-
 				},null);
 			}
 		  }
 		});
 	      $("#subItems").show();
+	      $("#thirdItems").hide();
 	}
 	);
 
