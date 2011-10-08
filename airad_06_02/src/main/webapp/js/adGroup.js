@@ -569,7 +569,7 @@ function removeSelectedSubArea(text){
     $.fn[plugin] = function (speed, group) {
         id ++;
         group = group || this.data(etid) || id;
-        speed = speed || 250;
+        speed = speed || 150;
 
         // 缓存分组名称到元素
         if (group === id) this.data(etid, group);
@@ -648,16 +648,16 @@ $(document).ready(function() {
 
 	var group=$.mouseDelay.get();
 	var globalStatus=false;
-	console.info("651");
 	var top,left;
 		$("#allItems li").mouseDelay(false,group).hover(function(e){
 			//$("#subItems").hide();
 			//$("#thirdItems").hide();
 			console.info("allItems li over");
-			var position = $(this).position();
+//			var position = $(this).position();
+			var offset=	$(this).offset();
 			get_g_upLevelAreaArr(this,1);
 			var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-			$("#subItems").css("top",(position.top+(window.screen.availHeight - 400) /2)).css("left",(130+position.left+(document.documentElement.clientWidth - 400) /2)).css("zIndex",(1099));
+			$("#subItems").css("top",(offset.top)).css("left",(offset.left+140-20)).css("zIndex",(1099));
 
 //			top=(position.top+(window.screen.availHeight - 400) /2);
 //			left=(130+position.left+(document.documentElement.clientWidth - 400) /2);
@@ -703,10 +703,13 @@ $(document).ready(function() {
 	//					console.info(" #subItems li globalStatus="+globalStatus);
 						if(!globalStatus){
 							//$("#subItems").hide();
-							var position2 = $(this).position();
+							var offset2=	$(this).offset();
 							get_g_upLevelAreaArr(this,2);
 							var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-							$("#thirdItems").css("top",(190+position2.top+(window.screen.availHeight - 400) /2)).css("left",(280+position2.left+(document.documentElement.clientWidth - 400) /2)).css("zIndex",1299);
+
+							var p2_top=	offset2.top;
+							var p2_left=offset2.left+140-20;
+							$("#thirdItems").css("top",(p2_top)).css("left",(p2_left)).css("zIndex",1299);
 							var proId=$(this).children("a").find("input").val().split("@")[0];
 							$.ajax({
 							  url: 'adGroup.do?action=cityTree&proId='+proId,
@@ -736,7 +739,7 @@ $(document).ready(function() {
 							});
 						      $("#thirdItems").show();
 						}
-					},null);
+					});
 				}
 			  }
 			});
@@ -760,7 +763,7 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
-		console.info("subItems ="+group);
+		console.info("subItems mouseDelay="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		globalStatus=false;
