@@ -201,7 +201,7 @@
                             	您最多可以选择5个地点
                         </p>
                     </div>
-                    <div class="sech_layb">
+                    <div class="sech_layb" id="sech_layb_id">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems">
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="2@北京市" />北京市</a></li>
