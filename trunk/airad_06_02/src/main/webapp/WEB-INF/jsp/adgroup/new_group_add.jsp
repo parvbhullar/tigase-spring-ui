@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jspf/taglibs.jspf"%>
 <%@page import="com.mitian.airad.model.CoreCampaign"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" debug="true">
 <head>
 <title>广告组添加</title>
 <link href="/js/tree/tree.css" type="text/css" rel="stylesheet" />
@@ -10,6 +10,7 @@
 <link href="js/area/css3buttons/stylesheets/css3buttons.css" type="text/css" rel="stylesheet" />
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
 <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/firebug-lite/build/firebug-lite.js"></script>
 <!--
 <script type="text/javascript" src="/js/area/popupselector_cpd.js"></script>
 -->
@@ -171,7 +172,8 @@
 </div>
 </div>
 <!-- 开发嵌入end--></div>
-<div class="alert_lay sech_lay lm lay_wls" id="pslayer" style="display: none;">
+</div>
+<div class="alert_lay sech_lay lm lay_wls" id="pslayer" style="display: none;position: absolute;">
             <!--背景圆角上-->
             <div class="alert_t">
             </div>
@@ -184,6 +186,7 @@
                     <div class="sech_layt" id="divSelecting" style="display: none;">
                         <h3>
                             <span id="selectingHeader">您选择的地区是</span><b class="btn_fst">
+
                             	<input type="button" value="确定" class="fst" name="" id="lnkOK">
                                 <input type="button" class="butdef_n" value="清空" disabled="" name="" id="lnkEmpty">
                                 </b>
@@ -209,77 +212,38 @@
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="27@天津市" />天津市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="32@重庆市" />重庆市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
-	<!--
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
-	<!--
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="32" />重庆市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="6" />广东省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="2" />北京市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="25" />上海市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="27" />天津市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="32" />重庆市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="6" />广东省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3" />安徽省</a></li>
-	-->
-	<!--
-	<li   name="2" >北京市</li>
-	<li   name="25"> 上海市</li>
-	<li   name="27" >天津市</li>
-	<li   name="32" >重庆市</li>
-	<li   name="6" >广东省</li>
-	<li   name="16" >江苏省</li>
-	<li   name="31" >浙江省</li>
-	<li   name="3" >安徽省</li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
 
-	<li   name="2" >北京市</li>
-	<li   name="25" >上海市</li>
-	<li   name="27" >天津市</li>
-	<li   name="32" >重庆市</li>
-	<li   name="6" >广东省</li>
-	<li   name="16" >江苏省</li>
-	<li   name="31" >浙江省</li>
-	<li   name="3" >安徽省</li>
-	<li   name="2" >北京市</li>
-	<li   name="25" >上海市</li>
-	<li   name="27" >天津市</li>
-	<li   name="32" >重庆市</li>
-	<li   name="6" >广东省</li>
-	<li   name="16" >江苏省</li>
-	<li   name="31" >浙江省</li>
-	<li   name="3" >安徽省</li>
-	-->
 </ol>
 </div>
                 </div>
             </div>
             <!--背景圆角下-->
-
         </div>
 
-        <div class="alert_lay sech_lay2 lay_ws" id="subItems" style="display: none;">
+<div class="alert_lay sech_lay2 lay_ws" id="subItems" style="display: none;position: absolute;">
             <div id="subBox" class="box">
 			<ol>
 			</ol>
             </div>
         </div>
 
-        <div class="alert_lay sech_lay2 lay_ws" id="thirdItems" style="display: none;">
+<div class="alert_lay sech_lay2 lay_ws" id="thirdItems" style="display: none;">
             <div id="subBox" class="box">
 			<ol>
 			</ol>
             </div>
         </div>
-</div>
 <%@ include file="/WEB-INF/jspf/footer.jsp"%>
 
 <script type="text/javascript"
