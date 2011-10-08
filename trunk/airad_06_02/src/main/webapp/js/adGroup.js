@@ -420,15 +420,15 @@ function get_g_upLevelAreaArr(t,level){
 
 	if(level==1){
 		g_upLevelAreaArr=[];
-//		console.info("val="+$(t).children("a").find("input").val());
+//		//console.info("val="+$(t).children("a").find("input").val());
 		g_upLevelAreaArr[0]=$(t).children("a").find("input").val();
-//		console.info("g_upLevelAreaArr[0]="+g_upLevelAreaArr[0]);
+//		//console.info("g_upLevelAreaArr[0]="+g_upLevelAreaArr[0]);
 	}else{
-//		console.info("val="+$(t).children("a").find("input").val());
+//		//console.info("val="+$(t).children("a").find("input").val());
 		g_upLevelAreaArr[1]=$(t).children("a").find("input").val();
-//		console.info("g_upLevelAreaArr[1]="+g_upLevelAreaArr[1]);
+//		//console.info("g_upLevelAreaArr[1]="+g_upLevelAreaArr[1]);
 	}
-//	console.info("g_upLevelAreaArr.length="+g_upLevelAreaArr.length);
+//	//console.info("g_upLevelAreaArr.length="+g_upLevelAreaArr.length);
 }
 
 //checkbox选中事件处理
@@ -438,7 +438,7 @@ function changeBgColor(t,level){
 	var text=$(t).val().split("@")[1];
 	var new_add=true;
 	get_g_arrChked();
-	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	//console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
 	for(var i=0;i<g_arrChked.length;i++){
 		if(g_arrChked[i]==proId){
 			new_add=false;
@@ -448,13 +448,13 @@ function changeBgColor(t,level){
 		addOrRemoveSelecting(t,true,level,proId,text);
 	}else{
 		if(isChecked!=undefined){
-			console.info("变色--取消");
+			//console.info("变色--取消");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 		}else{
-			console.info("变色--已选取消去色");
+			//console.info("变色--已选取消去色");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 			if($("#selecting #li"+proId)==null){
-				console.info("变色--已选 为空");
+				//console.info("变色--已选 为空");
 				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
 			}
 			$("#selecting #li"+proId).remove();
@@ -470,7 +470,7 @@ function changeBgColor(t,level){
 //添加或删除 选择中
 function addOrRemoveSelecting(t,b,level,proId,text){
 	if(b){
-		console.info("添加");
+		//console.info("添加");
 		$(t).parent().parent().removeClass("nonelay").addClass("layon");
 		var selectingValue=""
 		if(level==1){
@@ -488,7 +488,7 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 		}
 		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+selectingValue+"</a></li>");
 	}else{
-		console.info("删除");
+		//console.info("删除");
 		$("#selecting #li"+proId).remove();
 		if(level==1){
 			checkOrUncheckAllSubArea(false,2,proId);
@@ -547,14 +547,14 @@ function removeSelectedSubArea(text){
 	get_g_arrChked();
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		console.info("index="+index);
+		//console.info("index="+index);
 		if(index>=0){
 			$("#li"+g_arrChked[i]).remove();
 		}
 	}
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		console.info("index="+index);
+		//console.info("index="+index);
 		if(index>=0){
 			g_arrChked.splice(i,1);
 			g_arrChkedText.splice(i,1);
@@ -621,12 +621,8 @@ function removeSelectedSubArea(text){
 
 })(jQuery, 'mouseDelay');
 
-function hideSubBox(){
-	alert(" 隐藏第subBox");
-}
-
 $(document).ready(function() {
-	console.info("629");
+	//console.info("629");
 	$("#areaId").click(function(){
 		$("#pslayer").show();
 		$.blockUI({
@@ -650,21 +646,11 @@ $(document).ready(function() {
 	var globalStatus=false;
 	var top,left;
 		$("#allItems li").mouseDelay(false,group).hover(function(e){
-			//$("#subItems").hide();
-			//$("#thirdItems").hide();
-			console.info("allItems li over");
-//			var position = $(this).position();
+			//console.info("allItems li over");
 			var offset=	$(this).offset();
 			get_g_upLevelAreaArr(this,1);
 			var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
 			$("#subItems").css("top",(offset.top)).css("left",(offset.left+140-20)).css("zIndex",(1099));
-
-//			top=(position.top+(window.screen.availHeight - 400) /2);
-//			left=(130+position.left+(document.documentElement.clientWidth - 400) /2);
-//			$("#top").val(position.top+";"+window.screen.availHeight);
-//			$("#left").val("top="+top);
-//			$("#subItems").css("position","absolute");
-
 			var proId=$(this).children("a").find("input").val().split("@")[0];
 			$.ajax({
 			  url: 'adGroup.do?action=cityTree&proId='+proId,
@@ -700,13 +686,10 @@ $(document).ready(function() {
 				}
 				if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
 					$("#subItems li").mouseDelay(false,group).hover(function(e){
-	//					console.info(" #subItems li globalStatus="+globalStatus);
 						if(!globalStatus){
-							//$("#subItems").hide();
 							var offset2=	$(this).offset();
 							get_g_upLevelAreaArr(this,2);
 							var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
-
 							var p2_top=	offset2.top;
 							var p2_left=offset2.left+140-20;
 							$("#thirdItems").css("top",(p2_top)).css("left",(p2_left)).css("zIndex",1299);
@@ -747,7 +730,7 @@ $(document).ready(function() {
 		      $("#thirdItems").hide();
 		}
 	);
-	console.info("top="+top+";left="+left);
+	//console.info("top="+top+";left="+left);
 
 	$("#sech_layb_id").mouseDelay(false,(group)).hover(function(){
 		globalStatus=false;
@@ -763,7 +746,7 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
-		console.info("subItems mouseDelay="+group);
+		//console.info("subItems mouseDelay="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		globalStatus=false;
@@ -772,7 +755,7 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
-		console.info("thirdItems ="+group);
+		//console.info("thirdItems ="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		globalStatus=false;
