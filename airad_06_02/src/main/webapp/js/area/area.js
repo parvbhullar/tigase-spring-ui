@@ -15,7 +15,6 @@ function loadFiile(modules)
        		} else {
        			console.info("IncludeJavaScript");
        			IncludeJavaScript(filename);
-
        			modules[i].canloaded=false;
        		}
         }
@@ -31,6 +30,20 @@ function IncludeJavaScript(jsFile)
         oScript.src = jsFile;
         oHead.appendChild(oScript);
 };
+
+function loadCss(){
+    var cssTag = document.getElementById('loadCss');
+    var head = document.getElementsByTagName('head').item(0);
+    if(cssTag) head.removeChild(cssTag);
+    css = document.createElement('link');
+//    css.href = "../css/mi_"+file+".css";
+    css.href = "js/area/css3buttons/stylesheets/css3buttons.css";
+    css.rel = 'stylesheet';
+    css.type = 'text/css';
+    css.id = 'loadCss';
+    head.appendChild(css);
+}
+
 
 var g_arrChked=[];
 var g_arrChkedText=[];
@@ -245,6 +258,7 @@ function removeSelectedSubArea(text){
 })(jQuery, 'mouseDelay');
 
 $(document).ready(function() {
+	loadCss();
 	loadFiile(modules);
 	$("#areaId").click(function(){
 		$("#pslayer").show();
