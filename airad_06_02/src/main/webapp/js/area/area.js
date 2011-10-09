@@ -1,3 +1,37 @@
+var modules = 	[
+				       { include: true, incfile:'jquery.blockUI.js',canloaded:true}
+				];
+
+function loadFiile(modules)
+{
+	var pathtojsfiles = "js/area/"; // need to be ajusted
+	for(var i=0;i<modules.length; i++)
+    {
+		console.info("modules.length="+modules.length+";"+(modules[i].include == true&&modules[i].canloaded));
+        if(modules[i].include == true&&modules[i].canloaded) {
+        	filename = pathtojsfiles+modules[i].incfile;
+       		if(jQuery.browser.safari) {
+       			jQuery.ajax({url:filename,dataType:'script', async:false, cache: true});
+       		} else {
+       			console.info("IncludeJavaScript");
+       			IncludeJavaScript(filename);
+
+       			modules[i].canloaded=false;
+       		}
+        }
+    }
+}
+
+function IncludeJavaScript(jsFile)
+{
+        var oHead = document.getElementsByTagName('head')[0];
+        var oScript = document.createElement('script');
+        oScript.type = 'text/javascript';
+        oScript.charset = 'utf-8';
+        oScript.src = jsFile;
+        oHead.appendChild(oScript);
+};
+
 var g_arrChked=[];
 var g_arrChkedText=[];
 var g_upLevelAreaArr=[];
@@ -211,6 +245,7 @@ function removeSelectedSubArea(text){
 })(jQuery, 'mouseDelay');
 
 $(document).ready(function() {
+	loadFiile(modules);
 	$("#areaId").click(function(){
 		$("#pslayer").show();
 		$.blockUI({
