@@ -594,10 +594,8 @@ function removeSelectedSubArea(text){
                     out.call(elem, event);
                 }, speed);
             });
-
             return this;
         };
-
         return this;
     };
 
@@ -816,7 +814,6 @@ $(document).ready(function() {
 //		      $("#thirdItems").hide();
 //		}
 //	);
-	//console.info("top="+top+";left="+left);
 
 	$("#sech_layb_id").mouseDelay(false,(group)).hover(function(){
 		globalStatus=false;
@@ -832,7 +829,6 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
-		//console.info("subItems mouseDelay="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		globalStatus=false;
@@ -841,7 +837,6 @@ $(document).ready(function() {
 		globalStatus=false;
 	},function(){
 		globalStatus=true;
-		//console.info("thirdItems ="+group);
 		$("#subItems").hide();
 		$("#thirdItems").hide();
 		globalStatus=false;
