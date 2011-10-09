@@ -44,6 +44,23 @@ function loadCss(){
     head.appendChild(css);
 }
 
+$.fn.extend({
+    area:function(){
+        $(this).click(function(){
+    		$("#pslayer").show();
+    		$.blockUI({
+                message: $('#pslayer'),
+                title:"Please",
+                css: {
+                    top:  (window.screen.availHeight - 400) /2 + 'px',
+                    left: (document.documentElement.clientWidth - 400) /2 + 'px',
+                    width: '450px'
+                }
+            });
+         });
+     }
+});
+
 
 var g_arrChked=[];
 var g_arrChkedText=[];
@@ -260,19 +277,7 @@ function removeSelectedSubArea(text){
 $(document).ready(function() {
 	loadCss();
 	loadFiile(modules);
-	$("#areaId").click(function(){
-		$("#pslayer").show();
-		$.blockUI({
-            message: $('#pslayer'),
-            title:"Please",
-            css: {
-                top:  (window.screen.availHeight - 400) /2 + 'px',
-                left: (document.documentElement.clientWidth - 400) /2 + 'px',
-                width: '450px'
-            }
-        });
-	})
-
+	$("#areaId").area();
 	$("#imgClose").click(function(){
 		$.unblockUI({
             onUnblock: function(){$("#pslayer").hide();}
