@@ -10,7 +10,7 @@
 <link href="js/area/css3buttons/stylesheets/css3buttons.css" type="text/css" rel="stylesheet" />
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
 <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
-<script type="text/javascript" src="/js/firebug-lite/build/firebug-lite.js"></script>
+<script type="text/javascript" src="/js/area/area.js"></script>
 <!--
 <script type="text/javascript" src="/js/area/popupselector_cpd.js"></script>
 -->
@@ -211,19 +211,44 @@
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="25@上海市" />上海市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="27@天津市" />天津市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="32@重庆市" />重庆市</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="16@江苏省" />江苏省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="31@浙江省" />浙江省</a></li>
-	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="javascript:void(0)" value="3@安徽省" />安徽省</a></li>
 
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="16@江苏省" />江苏省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="31@浙江省" />浙江省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="3@安徽省" />安徽省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="4@福建省" />福建省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="5@甘肃省" />甘肃省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="7@广西" />广西</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="8@贵州省" />贵州省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="9@海南省" />海南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="10@河北省" />河北省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="11@河南省" />河南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="12@黑龙江省" />黑龙江省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="13@湖北省" />湖北省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="14@湖南省" />湖南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="15@吉林省" />吉林省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="17@江西省" />江西省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="18@辽宁省" />辽宁省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="19@内蒙古" />内蒙古</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="20@宁夏" />宁夏</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="21@青海省" />青海省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="22@山东省" />山东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="23@山西省" />山西省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="24@陕西省" />陕西省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="26@四川省" />四川省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="28@西藏" />西藏</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="29@新疆" />新疆</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="30@云南省" />云南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="33@香港" />香港</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="34@澳门" />澳门</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" onclick="changeBgColor(this,1)" value="35@台湾" />台湾</a></li>
 </ol>
 </div>
                 </div>
