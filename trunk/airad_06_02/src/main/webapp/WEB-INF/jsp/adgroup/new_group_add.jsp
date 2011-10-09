@@ -7,9 +7,7 @@
 <title>广告组添加</title>
 <link href="/js/tree/tree.css" type="text/css" rel="stylesheet" />
 <link href="style/lay.css" type="text/css" rel="stylesheet" />
-<link href="js/area/css3buttons/stylesheets/css3buttons.css" type="text/css" rel="stylesheet" />
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
-<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="/js/area/area.js"></script>
 <!--
 <script type="text/javascript" src="/js/area/popupselector_cpd.js"></script>
