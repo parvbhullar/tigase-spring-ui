@@ -78,7 +78,6 @@ function selectedCount(b){
 	}else{
 		g_selected_count--;
 	}
-	console.info("g_selected_count="+g_selected_count);
 }
 
 /**
@@ -108,7 +107,6 @@ function get_g_arrChked(){
 }
 
 function get_g_upLevelAreaArr(t,level){
-
 	if(level==1){
 		g_upLevelAreaArr=[];
 		g_upLevelAreaArr[0]=$(t).children("a").find("input").val();
@@ -130,6 +128,7 @@ function changeBgColor(t,level){
 			new_add=false;
 		}
 	}
+	console.info("new_add="+new_add);
 	if(new_add){
 		addOrRemoveSelecting(t,true,level,proId,text);
 	}else{
@@ -155,16 +154,17 @@ function changeBgColor(t,level){
 //选中或反选
 function addOrRemoveSelecting(t,b,level,proId,text){
 	selectedCount(b);
+	console.info("b="+b);
 	console.info("g_selected_count="+g_selected_count);
 	if(g_selected_count>6){
 		alert("最多只能选择6个地区");
 		$(t).attr("checked",false);
 		g_selected_count--;
+		console.info("g_selected_count="+g_selected_count);
 		return false;
 	}
 	if(b){
 		console.info("选中");
-
 		$(t).parent().parent().removeClass("nonelay").addClass("layon");
 		var selectingValue=""
 		if(level==1){
@@ -193,6 +193,14 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 		}
 
 	}
+}
+
+/**
+ * 更新上级选中状态
+ * @return
+ */
+function checkOrUncheckUpLevlArea(level){
+
 }
 
 //全选或反选下级区域
@@ -365,7 +373,7 @@ $(document).ready(function() {
 						}
 					}
 				}
-				if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){
+				if(!((2==proId)||(25==proId)||(27==proId)||(32==proId))){//直辖市外
 					$("#subItems li").mouseDelay(false,group).hover(function(e){
 						if(!globalStatus){
 							var offset2=	$(this).offset();
@@ -374,9 +382,9 @@ $(document).ready(function() {
 							var p2_top=	offset2.top;
 							var p2_left=offset2.left+140-20;
 							$("#thirdItems").css("top",(p2_top)).css("left",(p2_left)).css("zIndex",1299);
-							var proId=$(this).children("a").find("input").val().split("@")[0];
+							var proId2=$(this).children("a").find("input").val().split("@")[0];
 							$.ajax({
-							  url: 'adGroup.do?action=cityTree&proId='+proId,
+							  url: 'adGroup.do?action=cityTree&proId='+proId2,
 							  dataType: 'json',
 					          contentType:'application/json;charset=UTF-8',
 							  success: function(data) {
@@ -387,7 +395,7 @@ $(document).ready(function() {
 									$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 									if(g_arrChked.length!=0){
 										if(curLiChecked){//如果已选中市则将全部区选中
-											checkOrUncheckAllSubArea(true,3,proId);
+											checkOrUncheckAllSubArea(true,3,proId2);
 										}else{
 											for(var j=0;j<g_arrChked.length;j++){
 												if(g_arrChked[j]==(arrlocal[i].id)){
