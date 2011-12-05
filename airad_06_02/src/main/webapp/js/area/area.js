@@ -2,6 +2,7 @@ var modules = 	[
 				       { include: true, incfile:'jquery.blockUI.js',canloaded:true}
 				];
 
+//加载模块
 function loadFiile(modules)
 {
 	var pathtojsfiles = "js/area/"; // need to be ajusted
@@ -65,6 +66,37 @@ $.fn.extend({
 var g_arrChked=[];
 var g_arrChkedText=[];
 var g_upLevelAreaArr=[];
+var g_selected_count=0;
+
+/**
+ * 记录已选择地区的总数
+ * @return
+ */
+function selectedCount(b){
+	if(b){
+		g_selected_count++;
+	}else{
+		g_selected_count--;
+	}
+	console.info("g_selected_count="+g_selected_count);
+}
+
+/**
+ * 删除已选中区域的li标签
+ * @return
+ */
+function removeselectingli(t,proId,level){
+	$(t).parent().remove();
+	var j=$("#pcbx"+proId).attr("checked",false);
+	if(level==1){
+		console.info("level="+level);
+		$("#pcbx"+proId).parent().parent().removeClass("layicon");
+		$("#pcbx"+proId).parent().parent().removeClass("layon");
+	}
+	console.info("proId="+proId);
+}
+
+//获取全部选中的数组
 function get_g_arrChked(){
 	g_arrChked=[];
 	g_arrChkedText=[];
@@ -92,7 +124,7 @@ function changeBgColor(t,level){
 	var text=$(t).val().split("@")[1];
 	var new_add=true;
 	get_g_arrChked();
-	//console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
 	for(var i=0;i<g_arrChked.length;i++){
 		if(g_arrChked[i]==proId){
 			new_add=false;
@@ -102,29 +134,37 @@ function changeBgColor(t,level){
 		addOrRemoveSelecting(t,true,level,proId,text);
 	}else{
 		if(isChecked!=undefined){
-			//console.info("变色--取消");
+			console.info("变色--取消");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 		}else{
-			//console.info("变色--已选取消去色");
+			console.info("变色--已选取消去色");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 			if($("#selecting #li"+proId)==null){
-				//console.info("变色--已选 为空");
-				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+text+"</a></li>");
+				console.info("变色--已选 为空");
+				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+text+"</a></li>");
 			}
 			$("#selecting #li"+proId).remove();
 			$("#selecting #"+proId).parent();
 		}
 		addOrRemoveSelecting(t,false,level,proId,text);
 	}
-
 	$("#noSelectedLoc").hide();
 	$("#divSelecting").show();
 }
 
-//添加或删除 选择中
+//选中或反选
 function addOrRemoveSelecting(t,b,level,proId,text){
+	selectedCount(b);
+	console.info("g_selected_count="+g_selected_count);
+	if(g_selected_count>6){
+		alert("最多只能选择6个地区");
+		$(t).attr("checked",false);
+		g_selected_count--;
+		return false;
+	}
 	if(b){
-		//console.info("添加");
+		console.info("选中");
+
 		$(t).parent().parent().removeClass("nonelay").addClass("layon");
 		var selectingValue=""
 		if(level==1){
@@ -140,9 +180,9 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 			}
 			removeSelectedSubArea(text);
 		}
-		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:$(this).parent().remove()'>"+selectingValue+"</a></li>");
+		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+selectingValue+"</a></li>");
 	}else{
-		//console.info("删除");
+		console.info("反选");
 		$("#selecting #li"+proId).remove();
 		if(level==1){
 			checkOrUncheckAllSubArea(false,2,proId);
@@ -201,14 +241,14 @@ function removeSelectedSubArea(text){
 	get_g_arrChked();
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		//console.info("index="+index);
+		console.info("index="+index);
 		if(index>=0){
 			$("#li"+g_arrChked[i]).remove();
 		}
 	}
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		//console.info("index="+index);
+		console.info("index="+index);
 		if(index>=0){
 			g_arrChked.splice(i,1);
 			g_arrChkedText.splice(i,1);
@@ -310,7 +350,7 @@ $(document).ready(function() {
 					$("#subItems").addClass("lm");
 				}
 				for(var i=0;i<arrlocal.length;i++){
-					$("#subItems ol").append("<li ><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+					$("#subItems ol").append("<li ><a href='javascript:void(0);'><input id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 					if(g_arrChked.length!=0){
 						if(curLiChecked){//如果省选中则将 全省所有的市选中
 							checkOrUncheckAllSubArea(true,2,proId);
@@ -344,7 +384,7 @@ $(document).ready(function() {
 								get_g_arrChked();
 								$("#thirdItems ol").empty();
 								for(var i=0;i<arrlocal.length;i++){
-									$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+									$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 									if(g_arrChked.length!=0){
 										if(curLiChecked){//如果已选中市则将全部区选中
 											checkOrUncheckAllSubArea(true,3,proId);
