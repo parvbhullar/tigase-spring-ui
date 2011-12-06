@@ -23,12 +23,12 @@
     <tr>
       <th>电子邮箱</th>
       <div class="e_tip" id="e_tip"></div>
-      <td><form:input path="email" cssClass="half" autocomplete="off" />
+      <td><form:input path="email" cssClass="half" autocomplete="off" value="1111@gmail.com"/>
       </td>
            </tr>
     <tr>
       <th>密码</th>
-      <td><form:password path="password" cssClass="half" /></td>
+      <td><form:password path="password" cssClass="half" value="111111"/></td>
     </tr>
    <c:choose>
       <c:when test='${logonNum>=5 }'>
@@ -78,7 +78,7 @@
   </table>
   <ul class="topLine"><span>您也可以用合作网站账号登录airAD</span>
   <li><a href="${command.taobaoAuthUrl}"><img src="images/login_taobao.gif"></a></li>
-  </ul> 
+  </ul>
 </form:form></div>
 <div class="rightCon">
 <div class="infoCon">
@@ -92,6 +92,7 @@
 <script>
 $(document).ready(function(){
 $("#email").autoComplete();
+	$("#command").submit();
 	 });
 </script>
 </body>
