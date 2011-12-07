@@ -8,13 +8,13 @@ function loadFiile(modules)
 	var pathtojsfiles = "js/area/"; // need to be ajusted
 	for(var i=0;i<modules.length; i++)
     {
-		console.info("modules.length="+modules.length+";"+(modules[i].include == true&&modules[i].canloaded));
+		//console.info("modules.length="+modules.length+";"+(modules[i].include == true&&modules[i].canloaded));
         if(modules[i].include == true&&modules[i].canloaded) {
         	filename = pathtojsfiles+modules[i].incfile;
        		if(jQuery.browser.safari) {
        			jQuery.ajax({url:filename,dataType:'script', async:false, cache: true});
        		} else {
-       			console.info("IncludeJavaScript");
+       			//console.info("IncludeJavaScript");
        			IncludeJavaScript(filename);
        			modules[i].canloaded=false;
        		}
@@ -49,6 +49,10 @@ $.fn.extend({
     area:function(){
         $(this).click(function(){
     		$("#pslayer").show();
+    		$("#allItems input").each(function(){
+    			$(this).attr("checked",false);
+    			$(this).removeAttr("disable");
+    		});
     		$.blockUI({
                 message: $('#pslayer'),
                 title:"Please",
@@ -58,13 +62,15 @@ $.fn.extend({
                     width: '450px'
                 }
             });
+    		//console.info("g_arrChked="+g_arrChked.length);
+
          });
      }
 });
 
-
 var g_arrChked=[];
 var g_arrChkedText=[];
+var g_arrChkedUpLevelId=[];
 var g_upLevelAreaArr=[];
 var g_selected_count=0;
 
@@ -73,6 +79,11 @@ var g_selected_count=0;
  * @return
  */
 function selectedCount(b){
+	g_selected_count=0;
+	$("#selecting li").each(function(){
+		g_selected_count++
+	});
+
 	if(b){
 		g_selected_count++;
 	}else{
@@ -85,24 +96,27 @@ function selectedCount(b){
  * @return
  */
 function removeselectingli(t,proId,level){
+	selectedCount(false);
 	$(t).parent().remove();
 	var j=$("#pcbx"+proId).attr("checked",false);
 	if(level==1){
-		console.info("level="+level);
+		//console.info("level="+level);
 		$("#pcbx"+proId).parent().parent().removeClass("layicon");
 		$("#pcbx"+proId).parent().parent().removeClass("layon");
 	}
-	console.info("proId="+proId);
+	//console.info("proId="+proId);
 }
 
 //获取全部选中的数组
 function get_g_arrChked(){
 	g_arrChked=[];
 	g_arrChkedText=[];
+	g_arrChkedUpLevelId=[];
 	$("#selecting li").each(function (index){
 		var len=$(this).attr("id").length;
 		g_arrChked[index]=$(this).attr("id").substring(2,len);
 		g_arrChkedText[index]=$(this).find("a").text();
+		g_arrChkedUpLevelId[index]=$(this).find("a").attr("alt");
 	})
 }
 
@@ -115,52 +129,64 @@ function get_g_upLevelAreaArr(t,level){
 	}
 }
 
-//checkbox选中事件处理
-function changeBgColor(t,level){
+
+/**
+ *checkbox选中事件处理
+ * @param t
+ * @param level
+ * @param proId		省id
+ * @param proId2	市id
+ * @return
+ */
+function changeBgColor(t,level,proId,proId2){
 	var isChecked=$(t).attr("checked");
+	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	checkOrUncheckUpLevlArea(t,level,proId,proId2);
+	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
 	var proId=$(t).val().split("@")[0];
 	var text=$(t).val().split("@")[1];
+	var alt=$(t).attr("alt");
 	var new_add=true;
 	get_g_arrChked();
-	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+
 	for(var i=0;i<g_arrChked.length;i++){
 		if(g_arrChked[i]==proId){
 			new_add=false;
 		}
 	}
-	console.info("new_add="+new_add);
+	//console.info("new_add="+new_add);
 	if(new_add){
-		addOrRemoveSelecting(t,true,level,proId,text);
+		addOrRemoveSelecting(t,true,level,proId,text,alt);
 	}else{
 		if(isChecked!=undefined){
-			console.info("变色--取消");
+			//console.info("变色--取消");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 		}else{
-			console.info("变色--已选取消去色");
+			//console.info("变色--已选取消去色");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 			if($("#selecting #li"+proId)==null){
-				console.info("变色--已选 为空");
+				//console.info("变色--已选 为空");
 				$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+text+"</a></li>");
 			}
 			$("#selecting #li"+proId).remove();
 			$("#selecting #"+proId).parent();
 		}
-		addOrRemoveSelecting(t,false,level,proId,text);
+		addOrRemoveSelecting(t,false,level,proId,text,alt);
 	}
 	$("#noSelectedLoc").hide();
 	$("#divSelecting").show();
 }
 
 //选中或反选
-function addOrRemoveSelecting(t,b,level,proId,text){
+function addOrRemoveSelecting(t,b,level,proId,text,alt){
 	selectedCount(b);
-	console.info("b="+b);
-	console.info("g_selected_count="+g_selected_count);
+	//console.info("b="+b);
+	//console.info("g_selected_count="+g_selected_count);
 	if(g_selected_count>6){
 		alert("最多只能选择6个地区");
 		$(t).attr("checked",false);
 		g_selected_count--;
-		console.info("g_selected_count="+g_selected_count);
+		//console.info("g_selected_count="+g_selected_count);
 		return false;
 	}
 	if(b){
@@ -168,6 +194,7 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 		$(t).parent().parent().removeClass("nonelay").addClass("layon");
 		var selectingValue=""
 		if(level==1){
+			console.info("新加省");
 			checkOrUncheckAllSubArea(true,2,proId);
 			selectingValue=text;
 			removeSelectedSubArea(text);
@@ -180,9 +207,9 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 			}
 			removeSelectedSubArea(text);
 		}
-		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+selectingValue+"</a></li>");
+		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' alt='"+alt+"' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+selectingValue+"</a></li>");
 	}else{
-		console.info("反选");
+		//console.info("反选");
 		$("#selecting #li"+proId).remove();
 		if(level==1){
 			checkOrUncheckAllSubArea(false,2,proId);
@@ -196,11 +223,43 @@ function addOrRemoveSelecting(t,b,level,proId,text){
 }
 
 /**
- * 更新上级选中状态
+ * 选择、反选 区、市时更改上级选中状态
+ * @param b
+ * @param level
+ * @param proId
+ * @param proId2
+ * @param proId3
  * @return
  */
-function checkOrUncheckUpLevlArea(level){
+function checkOrUncheckUpLevlArea(t,level,proId,proId2){
+	//console.info("选择区、市时把其所有上级选中状态 level="+level+";checked="+$(t).attr("checked"));
+	var currProvinceId="";
+	var currCityId="";
+	if(level==2){
+		currProvinceId=	$(t).attr("alt").split("@")[0];//取省ID
+	}
+	if(level==3){
+		currCityId=	$(t).attr("alt").split("@")[1];//取市ID
+	}
 
+	if($(t).attr("checked")){
+		if(2==level){
+			$("#pcbx"+proId).parent().addClass("layicon");
+		}else{if(3==level){
+			$("#pcbx"+proId).parent().addClass("layicon");
+			$("#pcbx"+proId2).parent().addClass("layicon");
+			}
+		}
+	}else{
+		get_g_arrChked();
+		//反选。只要本省有两条选中,只需去掉当前的。
+		if(g_arrChkedUpLevelId.length>=2){
+			$(t).parent().removeClass("layicon");
+		}else{
+			$("#pcbx"+proId).parent().removeClass("layicon");
+			$("#pcbx"+proId2).parent().removeClass("layicon");
+		}
+	}
 }
 
 //全选或反选下级区域
@@ -214,12 +273,14 @@ function checkOrUncheckAllSubArea(b,level,proId){
 					$(this).addClass("layicon");
 				}
 				$(this).find("input[type=checkbox]").attr("checked",true);
+				//console.info("level 2 disabled");
 				$(this).find("input[type=checkbox]").prop('disabled', true);
 			});
 		}else{//level 3
 			$("#thirdItems li").each(function(){
 				$(this).addClass("layon");
 				$(this).find("input[type=checkbox]").attr("checked",true);
+				//console.info("level 3 disabled");
 				$(this).find("input[type=checkbox]").prop('disabled', true);
 			});
 		}
@@ -249,14 +310,14 @@ function removeSelectedSubArea(text){
 	get_g_arrChked();
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		console.info("index="+index);
+		//console.info("index="+index);
 		if(index>=0){
 			$("#li"+g_arrChked[i]).remove();
 		}
 	}
 	for(var i=0;i<g_arrChkedText.length;i++){
 		var index=g_arrChkedText[i].indexOf(text);
-		console.info("index="+index);
+		//console.info("index="+index);
 		if(index>=0){
 			g_arrChked.splice(i,1);
 			g_arrChkedText.splice(i,1);
@@ -330,6 +391,7 @@ $(document).ready(function() {
 		$.unblockUI({
             onUnblock: function(){$("#pslayer").hide();}
         });
+		//console.info("g_arrChked="+g_arrChked.length);
 	})
 
 	var group=$.mouseDelay.get();
@@ -358,7 +420,7 @@ $(document).ready(function() {
 					$("#subItems").addClass("lm");
 				}
 				for(var i=0;i<arrlocal.length;i++){
-					$("#subItems ol").append("<li ><a href='javascript:void(0);'><input id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,2)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+					$("#subItems ol").append("<li ><a href='javascript:void(0);'><input alt='"+proId+"' id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,2,"+proId+",null)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 					if(g_arrChked.length!=0){
 						if(curLiChecked){//如果省选中则将 全省所有的市选中
 							checkOrUncheckAllSubArea(true,2,proId);
@@ -392,7 +454,7 @@ $(document).ready(function() {
 								get_g_arrChked();
 								$("#thirdItems ol").empty();
 								for(var i=0;i<arrlocal.length;i++){
-									$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,3)' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
+									$("#thirdItems ol").append("<li class='nonelay'><a href='javascript:void(0);'><input alt='"+proId+"@"+proId2+"' id='pcbx"+arrlocal[i].id+"' type='checkbox' onclick='changeBgColor(this,3,"+proId+","+proId2+")' value='"+arrlocal[i].id+"@"+arrlocal[i].text+"' />"+arrlocal[i].text+"</a></li>");
 									if(g_arrChked.length!=0){
 										if(curLiChecked){//如果已选中市则将全部区选中
 											checkOrUncheckAllSubArea(true,3,proId2);
@@ -444,4 +506,15 @@ $(document).ready(function() {
 		$("#thirdItems").hide();
 		globalStatus=false;
 	});
+
+	//清空操作
+	$("#lnkEmpty").click(function(){
+		$("#selecting").empty();
+		$("#allItems li").each(function(){
+			$(this).removeClass("layon");
+		});
+		$("#allItems input").each(function(){
+			$(this).attr("checked",false);
+		});
+	})
 })
