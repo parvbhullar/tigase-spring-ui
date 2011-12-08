@@ -307,8 +307,8 @@ function checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2){
 			$("#pcbx"+proId2).parent().removeClass("layicon");
 		}
 
-		if(tempCityCount<2){
-			console.info("市下面的所有区选完:proId2="+proId2+";则将市反选");
+		if(tempCityCount<2&&!isChecked){
+			console.info("反选,市:proId2="+proId2+"下面的所有区选完,则将市反选");
 			$("#pcbx"+proId2).parent().removeClass("layicon");
 		}
 	}
