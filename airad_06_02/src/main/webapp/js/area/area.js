@@ -103,6 +103,8 @@ function removeselectingli(t,proId,level){
 		//console.info("level="+level);
 		$("#pcbx"+proId).parent().parent().removeClass("layicon");
 		$("#pcbx"+proId).parent().parent().removeClass("layon");
+	}else{
+
 	}
 	//console.info("proId="+proId);
 }
@@ -112,11 +114,20 @@ function get_g_arrChked(){
 	g_arrChked=[];
 	g_arrChkedText=[];
 	g_arrChkedUpLevelId=[];
+	g_arrChkedProvinceId=[];
+	g_arrChkedCityId=[];
 	$("#selecting li").each(function (index){
 		var len=$(this).attr("id").length;
 		g_arrChked[index]=$(this).attr("id").substring(2,len);
 		g_arrChkedText[index]=$(this).find("a").text();
 		g_arrChkedUpLevelId[index]=$(this).find("a").attr("alt");
+		g_arrChkedProvinceId[index]=g_arrChkedUpLevelId[index].split("@")[0];
+		if(g_arrChkedUpLevelId[index].split("@").length==2)
+		{
+			g_arrChkedCityId[index]=g_arrChkedUpLevelId[index].split("@")[1];
+		}else{
+			g_arrChkedCityId[index]=null;
+		}
 	})
 }
 
@@ -139,10 +150,27 @@ function get_g_upLevelAreaArr(t,level){
  * @return
  */
 function changeBgColor(t,level,proId,proId2){
-	var isChecked=$(t).attr("checked");
-	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
-	checkOrUncheckUpLevlArea(t,level,proId,proId2);
-	console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	var isChecked="";
+//	if($(t).attr("checked")==undefined){
+//		isChecked=false;
+//	}else{
+//		isChecked=!($(t).attr("checked")=="checked");
+//	}
+	console.info("根据css判断点击后的状态");
+	var css=$(t).parent().parent().attr("class");
+	if(typeof(css)=='undefined'){
+		isChecked=true;
+	}else{
+		if("nonelay"==css){
+			isChecked=true;
+		}else{
+			isChecked=false;
+		}
+	}
+	console.info("css="+$(t).parent().parent().attr("class")+";isChecked="+isChecked+";$(t).attr('checked')="+$(t).attr("checked"));
+	//console.info("level="+level+";checked="+$(t).attr("checked")+";isChecked="+isChecked);
+	checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2);
+	//console.info("level="+level+";isChecked="+isChecked);
 	var proId=$(t).val().split("@")[0];
 	var text=$(t).val().split("@")[1];
 	var alt=$(t).attr("alt");
@@ -158,7 +186,7 @@ function changeBgColor(t,level,proId,proId2){
 	if(new_add){
 		addOrRemoveSelecting(t,true,level,proId,text,alt);
 	}else{
-		if(isChecked!=undefined){
+		if(isChecked){
 			//console.info("变色--取消");
 			$(t).parent().parent().removeClass("layon").addClass("nonelay");
 		}else{
@@ -190,11 +218,11 @@ function addOrRemoveSelecting(t,b,level,proId,text,alt){
 		return false;
 	}
 	if(b){
-		console.info("选中");
+		//console.info("选中");
 		$(t).parent().parent().removeClass("nonelay").addClass("layon");
 		var selectingValue=""
 		if(level==1){
-			console.info("新加省");
+			//console.info("新加省");
 			checkOrUncheckAllSubArea(true,2,proId);
 			selectingValue=text;
 			removeSelectedSubArea(text);
@@ -231,7 +259,7 @@ function addOrRemoveSelecting(t,b,level,proId,text,alt){
  * @param proId3
  * @return
  */
-function checkOrUncheckUpLevlArea(t,level,proId,proId2){
+function checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2){
 	//console.info("选择区、市时把其所有上级选中状态 level="+level+";checked="+$(t).attr("checked"));
 	var currProvinceId="";
 	var currCityId="";
@@ -239,10 +267,11 @@ function checkOrUncheckUpLevlArea(t,level,proId,proId2){
 		currProvinceId=	$(t).attr("alt").split("@")[0];//取省ID
 	}
 	if(level==3){
+		currProvinceId=	$(t).attr("alt").split("@")[0];//取省ID
 		currCityId=	$(t).attr("alt").split("@")[1];//取市ID
 	}
-
-	if($(t).attr("checked")){
+	//console.info("对上级进行操作--isChecked:"+isChecked);
+	if(isChecked){
 		if(2==level){
 			$("#pcbx"+proId).parent().addClass("layicon");
 		}else{if(3==level){
@@ -253,7 +282,17 @@ function checkOrUncheckUpLevlArea(t,level,proId,proId2){
 	}else{
 		get_g_arrChked();
 		//反选。只要本省有两条选中,只需去掉当前的。
-		if(g_arrChkedUpLevelId.length>=2){
+		var tempCount=0;
+		console.info("反选,对上级进行操作--isChecked:"+isChecked+";"+g_arrChkedProvinceId.length);
+		for(var i=0;i<g_arrChkedProvinceId.length;i++){
+				if(g_arrChkedProvinceId[i]==currProvinceId){
+					console.info("li的省ID:"+g_arrChkedProvinceId[i]+"与当前省ID:"+currProvinceId+"相同");
+					tempCount++;
+				}
+		}
+		console.info("tempCount="+tempCount);
+		//console.info("tempCount="+tempCount);
+		if(tempCount>=2){
 			$(t).parent().removeClass("layicon");
 		}else{
 			$("#pcbx"+proId).parent().removeClass("layicon");
@@ -402,6 +441,7 @@ $(document).ready(function() {
 			var offset=	$(this).offset();
 			get_g_upLevelAreaArr(this,1);
 			var curLiChecked=$(this).find("input[type=checkbox]").attr("checked");
+			console.info("curLiChecked="+curLiChecked);
 			$("#subItems").css("top",(offset.top)).css("left",(offset.left+140-20)).css("zIndex",(1099));
 			var proId=$(this).children("a").find("input").val().split("@")[0];
 			$.ajax({
