@@ -283,6 +283,7 @@ function checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2){
 		get_g_arrChked();
 		//反选。只要本省有两条选中,只需去掉当前的。
 		var tempCount=0;
+		var tempCityCount=0;
 		console.info("反选,对上级进行操作--isChecked:"+isChecked+";"+g_arrChkedProvinceId.length);
 		for(var i=0;i<g_arrChkedProvinceId.length;i++){
 				if(g_arrChkedProvinceId[i]==currProvinceId){
@@ -290,12 +291,24 @@ function checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2){
 					tempCount++;
 				}
 		}
+		for(var i=0;i<g_arrChkedCityId.length;i++){
+			if(g_arrChkedCityId[i]==currCityId){
+				console.info("li的省ID:"+g_arrChkedProvinceId[i]+"与当前省ID:"+currProvinceId+"相同");
+				tempCityCount++;
+			}
+		}
+
 		console.info("tempCount="+tempCount);
 		//console.info("tempCount="+tempCount);
 		if(tempCount>=2){
 			$(t).parent().removeClass("layicon");
 		}else{
 			$("#pcbx"+proId).parent().removeClass("layicon");
+			$("#pcbx"+proId2).parent().removeClass("layicon");
+		}
+
+		if(tempCityCount<2){
+			console.info("市下面的所有区选完:proId2="+proId2+";则将市反选");
 			$("#pcbx"+proId2).parent().removeClass("layicon");
 		}
 	}
