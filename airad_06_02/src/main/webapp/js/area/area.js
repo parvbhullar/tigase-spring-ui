@@ -255,6 +255,24 @@ function addOrRemoveSelecting(t,b,level,proId,text,alt){
 		$("#selecting").append("<li id='li"+proId+"'><a href='javascript:void(0);' alt='"+alt+"' onclick='javascript:removeselectingli(this,"+proId+","+level+")'>"+selectingValue+"</a></li>");
 	}else{
 		//console.info("反选");
+		//console.info("当前反选对象class处理开始");
+		if(level==3)
+			$(t).parent().parent().removeClass("layon").addClass("nonelay");
+		else{
+			if(level==1){
+				$(t).parent().parent().removeClass("layicon").removeClass("nonelay");
+				console.debug("反选,当前省"+$(t).parent().parent().attr("class"));
+			}else{
+
+				if((2==alt)||(25==alt)||(27==alt)||(32==alt)){//直辖市
+					console.debug("直辖市     去layon 加class");
+					$(t).parent().parent().removeClass("layon");
+				}else{
+					$(t).parent().parent().removeClass("layicon").removeClass("nonelay");
+				}
+			}
+		}
+		//console.info("当前反选对象class处理结束");
 		$("#selecting #li"+proId).remove();
 		if(level==1){
 			checkOrUncheckAllSubArea(false,2,proId);
