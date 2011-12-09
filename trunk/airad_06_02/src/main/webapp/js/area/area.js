@@ -219,8 +219,24 @@ function addOrRemoveSelecting(t,b,level,proId,text,alt){
 		return false;
 	}
 	if(b){
-		//console.info("选中");
-		$(t).parent().parent().removeClass("nonelay").addClass("layon");
+		//console.info("当前选中对象class处理开始");
+		if(level==3)
+			$(t).parent().parent().removeClass("nonelay").addClass("layon");
+		else{
+			if(level==1){
+				$(t).parent().parent().removeClass("nonelay").addClass("layicon");
+			}else{
+
+				if((2==alt)||(25==alt)||(27==alt)||(32==alt)){//直辖市
+					console.debug("直辖市   加 class layon");
+					$(t).parent().parent().removeClass("nonelay").addClass("layon");
+				}else{
+					$(t).parent().parent().removeClass("nonelay").addClass("layicon");
+				}
+			}
+		}
+		//console.info("当前选中对象class处理结束");
+
 		var selectingValue=""
 		if(level==1){
 			//console.info("新加省");
