@@ -72,6 +72,7 @@ var g_arrChked=[];
 var g_arrChkedText=[];
 var g_arrChkedUpLevelId=[];
 var g_upLevelAreaArr=[];
+var g_arrChkedCityId=[];
 var g_selected_count=0;
 
 /**
@@ -481,8 +482,14 @@ $(document).ready(function() {
 							for(var j=0;j<g_arrChked.length;j++){
 								if(g_arrChked[j]==(arrlocal[i].id)){
 									//如果是选中的则把新加入的(最后一个)input 上色选中
-									$("#subItems ol li:last input").parent().css("background","#BACBDD");
+									$("#subItems ol li:last input").parent().addClass("layicon");
 									$("#subItems ol li:last input").attr("checked","true");
+								}
+								if(g_arrChkedCityId[j]!=null){
+									if(g_arrChkedCityId[j]==arrlocal[i].id){
+										console.debug("g_arrChkedCityId["+i+"]="+g_arrChkedCityId[i]+";如果下面有区选中");
+										$("#subItems ol li:last input").parent().addClass("layicon");
+									}
 								}
 							}
 						}
