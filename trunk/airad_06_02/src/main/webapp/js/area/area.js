@@ -212,8 +212,8 @@ function changeBgColor(t,level,proId,proId2){
 		}
 		addOrRemoveSelecting(t,false,level,proId,text,alt);
 	}
-	$("#noSelectedLoc").hide();
-	$("#divSelecting").show();
+	//$("#noSelectedLoc").hide();
+	//$("#divSelecting").show();
 }
 
 //选中或反选
@@ -622,7 +622,7 @@ $(document).ready(function() {
 	$("#lnkEmpty").click(function(){
 		$("#selecting").empty();
 		$("#allItems li").each(function(){
-			$(this).removeClass("layon");
+			$(this).removeClass("layicon");
 		});
 		$("#allItems input").each(function(){
 			$(this).attr("checked",false);
