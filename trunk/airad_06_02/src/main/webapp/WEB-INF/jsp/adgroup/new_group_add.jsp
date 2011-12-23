@@ -205,7 +205,7 @@
                     <div class="sech_layb" id="sech_layb_id">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems">
-	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx1" onclick="changeBgColor(this,1)" value="2@北京市" />北京市</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx2" onclick="changeBgColor(this,1)" value="2@北京市" />北京市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx25" onclick="changeBgColor(this,1)" value="25@上海市" />上海市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx27" onclick="changeBgColor(this,1)" value="27@天津市" />天津市</a></li>
 	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx32" onclick="changeBgColor(this,1)" value="32@重庆市" />重庆市</a></li>
