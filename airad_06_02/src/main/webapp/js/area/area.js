@@ -105,7 +105,19 @@ function removeselectingli(t,proId,level){
 		$("#pcbx"+proId).parent().parent().removeClass("layicon");
 		$("#pcbx"+proId).parent().parent().removeClass("layon");
 	}else{
-
+		var provinceName=t.innerHTML.split("-")[0];
+		var provinceId=$(t).attr("alt").split("@")[0];
+		get_g_arrChked();
+		var b=true;
+		for(var i=0;i<g_arrCheckedName.length;i++){
+			if(g_arrCheckedName[i].split("-")[0]==provinceName){
+				b=false;
+			}
+		}
+		if(b){//已选择的本省地区
+			$("#pcbx"+provinceId).parent().parent().removeClass("layicon");
+		}
+		//console.info("cityName="+provinceName)
 	}
 	//console.info("proId="+proId);
 }
@@ -117,12 +129,14 @@ function get_g_arrChked(){
 	g_arrChkedUpLevelId=[];
 	g_arrChkedProvinceId=[];
 	g_arrChkedCityId=[];
+	g_arrCheckedName=[];
 	$("#selecting li").each(function (index){
 		var len=$(this).attr("id").length;
 		g_arrChked[index]=$(this).attr("id").substring(2,len);
 		g_arrChkedText[index]=$(this).find("a").text();
 		g_arrChkedUpLevelId[index]=$(this).find("a").attr("alt");
 		g_arrChkedProvinceId[index]=g_arrChkedUpLevelId[index].split("@")[0];
+		g_arrCheckedName[index]=$(this).innerHTML;
 		if(g_arrChkedUpLevelId[index].split("@").length==2)
 		{
 			g_arrChkedCityId[index]=g_arrChkedUpLevelId[index].split("@")[1];
@@ -304,6 +318,7 @@ function checkOrUncheckUpLevlArea(t,isChecked,level,proId,proId2){
 	//console.info("对上级进行操作--isChecked:"+isChecked);
 	if(isChecked){
 		if(2==level){
+			console.info("加上layicon");
 			$("#pcbx"+proId).parent().parent().addClass("layicon");
 		}else{if(3==level){
 			$("#pcbx"+proId).parent().parent().addClass("layicon");
@@ -512,7 +527,13 @@ $(document).ready(function() {
 							for(var j=0;j<g_arrChked.length;j++){
 								if(g_arrChked[j]==(arrlocal[i].id)){
 									//如果是选中的则把新加入的(最后一个)input 上色选中
-									$("#subItems ol li:last input").parent().addClass("layicon");
+									//console.info("如果是选中的则把新加入的(最后一个)input 上色选中");
+									//todo这里有点问题
+									if((2==proId)||(25==proId)||(27==proId)||(32==proId)){
+										$("#subItems ol li:last input").parent().parent().addClass("layon");
+									}else{
+										$("#subItems ol li:last input").parent().addClass("layicon");
+									}
 									$("#subItems ol li:last input").attr("checked","true");
 								}
 								if(g_arrChkedCityId[j]!=null){
