@@ -181,16 +181,17 @@
                     </a>
                 </h1>
                 <div class="blk">
-                    <div class="sech_layt" id="divSelecting" style="display: none;">
+                    <div class="sech_layt btn_fst" id="divSelecting" >
                         <h3>
                             <span id="selectingHeader">您选择的地区是</span><b class="btn_fst">
 
-                            	<input type="button" value="确定" class="fst" name="" id="lnkOK">
-                                <input type="button" class="butdef_n" value="清空" disabled="" name="" id="lnkEmpty">
+                            	<a href="#" class="button" id="btnOkLoc">确定</a>
+                                <a href="#" class="button" id="lnkEmpty">清空</a>
                                 </b>
                         </h3>
                         <ul id="selecting"></ul>
                     </div>
+                    <!--
                     <div class="sech_layt btn_fst" id="noSelectedLoc" style="display: block;">
                         <h3>
                             <span>提示：</span><b>
@@ -202,6 +203,7 @@
                             	您最多可以选择5个地点
                         </p>
                     </div>
+                    -->
                     <div class="sech_layb" id="sech_layb_id">
                         <h2 id="subHeader1"><span>所有省市：</span></h2>
 <ol id="allItems">
