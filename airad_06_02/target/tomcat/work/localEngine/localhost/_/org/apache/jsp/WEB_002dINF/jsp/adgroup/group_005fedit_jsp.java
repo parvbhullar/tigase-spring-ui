@@ -3,7 +3,9 @@ package org.apache.jsp.WEB_002dINF.jsp.adgroup;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import com.mitian.airad.web.form.AdGroupForm;
 import com.mitian.airad.model.CoreCampaign;
+import org.apache.commons.lang.time.DateFormatUtils;
 import com.mitian.airad.web.auth.roles.*;
 import com.mitian.airad.*;
 import com.mitian.airad.common.auth.*;
@@ -13,7 +15,7 @@ import com.mitian.airad.web.form.*;
 import com.mitian.airad.model.SysConfig;
 import com.mitian.airad.model.CoreMemberInfo;
 
-public final class new_005fgroup_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class group_005fedit_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
 static private org.apache.jasper.runtime.ProtectedFunctionMapper _jspx_fnmap_0;
@@ -52,18 +54,18 @@ static {
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fotherwise;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fchecked_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvarStatus_005fvar_005fitems;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fchecked_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue_005flabel_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005fpath_005flabel_005fnobody;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fif_0026_005ftest;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody;
 
   private javax.el.ExpressionFactory _el_expressionfactory;
   private org.apache.AnnotationProcessor _jsp_annotationprocessor;
@@ -79,18 +81,18 @@ static {
     _005fjspx_005ftagPool_005fc_005fotherwise = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fchecked_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvarStatus_005fvar_005fitems = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fchecked_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue_005flabel_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005fpath_005flabel_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fc_005fif_0026_005ftest = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
     _jsp_annotationprocessor = (org.apache.AnnotationProcessor) getServletConfig().getServletContext().getAttribute(org.apache.AnnotationProcessor.class.getName());
   }
@@ -102,18 +104,18 @@ static {
     _005fjspx_005ftagPool_005fc_005fotherwise.release();
     _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.release();
     _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.release();
+    _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody.release();
-    _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fchecked_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody.release();
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvarStatus_005fvar_005fitems.release();
+    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.release();
     _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.release();
-    _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fchecked_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath.release();
     _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.release();
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.release();
     _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue_005flabel_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005fpath_005flabel_005fnobody.release();
+    _005fjspx_005ftagPool_005fc_005fif_0026_005ftest.release();
+    _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -141,11 +143,20 @@ static {
       _jspx_out = out;
 
       out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");
-      out.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" debug=\"true\">\n");
+      out.write("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n");
       out.write("<head>\n");
-      out.write("<title>广告组添加</title>\n");
+      out.write("<title>广告组修改</title>\n");
       out.write("<link href=\"/js/tree/tree.css\" type=\"text/css\" rel=\"stylesheet\" />\n");
-      out.write("<link href=\"style/lay.css\" type=\"text/css\" rel=\"stylesheet\" />\n");
+      out.write("</head>\n");
+
+CoreCampaign coreCampaign=(CoreCampaign)request.getAttribute("campaign");
+String startTime="";
+if(null!=coreCampaign){
+if(null!=coreCampaign.getStartTime()){
+    startTime =DateFormatUtils.format(coreCampaign.getStartTime(),"yyyy-MM-dd HH:mm");
+}}
+
+      out.write("<body>\n");
       if (_jspx_meth_c_005fset_005f0(_jspx_page_context))
         return;
 
@@ -197,29 +208,20 @@ memberInfo=context.getMemberInfo();
       out.write("}\n");
       out.write("addTitleCss();\n");
       out.write("</script>");
-      out.write("<script type=\"text/javascript\" src=\"/js/area/area.js\"></script>\n");
-      out.write("<!--\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/area/popupselector_cpd.js\"></script>\n");
-      out.write("-->\n");
-      out.write("</head>\n");
-      out.write("\n");
-      out.write("<body>\n");
       out.write("<div id=\"main\">\n");
-      out.write("<div class=\"mainCon\"><!-- 开发嵌入start-->\n");
-      out.write("\n");
-      out.write("<div class=\"leftCon\">\n");
-      out.write("<h1>添加广告组</h1>\n");
+      out.write("<div class=\"mainCon\">\n");
+      out.write("<!-- 开发嵌入start-->\n");
       //  form:form
       org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_005fform_005f0 = (org.springframework.web.servlet.tags.form.FormTag) _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.get(org.springframework.web.servlet.tags.form.FormTag.class);
       _jspx_th_form_005fform_005f0.setPageContext(_jspx_page_context);
       _jspx_th_form_005fform_005f0.setParent(null);
-      // /WEB-INF/jsp/adgroup/new_group_add.jsp(23,0) name = name type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+      // /WEB-INF/jsp/adgroup/group_edit.jsp(25,0) name = name type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
       _jspx_th_form_005fform_005f0.setName("myfrm");
-      // /WEB-INF/jsp/adgroup/new_group_add.jsp(23,0) name = action type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-      _jspx_th_form_005fform_005f0.setAction("adGroup.do?action=add");
-      // /WEB-INF/jsp/adgroup/new_group_add.jsp(23,0) name = commandName type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+      // /WEB-INF/jsp/adgroup/group_edit.jsp(25,0) name = action type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+      _jspx_th_form_005fform_005f0.setAction("adGroup.do?action=edit");
+      // /WEB-INF/jsp/adgroup/group_edit.jsp(25,0) name = commandName type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
       _jspx_th_form_005fform_005f0.setCommandName("command");
-      // /WEB-INF/jsp/adgroup/new_group_add.jsp(23,0) name = method type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+      // /WEB-INF/jsp/adgroup/group_edit.jsp(25,0) name = method type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
       _jspx_th_form_005fform_005f0.setMethod("post");
       int[] _jspx_push_body_count_form_005fform_005f0 = new int[] { 0 };
       try {
@@ -238,47 +240,53 @@ memberInfo=context.getMemberInfo();
               return;
             if (_jspx_meth_form_005fhidden_005f5(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            if (_jspx_meth_form_005fhidden_005f6(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+            out.write("<h1> <img src=\"images/ico_gup.gif\" alt=\"广告组\" width=\"16\" height=\"16\" align=\"absmiddle\" />");
+            if (_jspx_meth_airad_005fcutString_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            if (_jspx_meth_form_005fhidden_005f7(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-              return;
+            out.write("</h1>\n");
+            out.write("<div class=\"leftCon\">\n");
+            out.write("<h1>编辑广告组</h1>\n");
             out.write("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"tabNF\">\n");
-            out.write("\t\t<col width=\"25%\" />\n");
-            out.write("\t\t<col width=\"75%\" />\n");
-            out.write("\t\t<tr>\n");
-            out.write("\t\t\t<th><span class=\"must\">*</span>广告组名称</th>\n");
-            out.write("\t\t\t<td>");
+            out.write("  <col width=\"25%\" />\n");
+            out.write("  <col width=\"75%\" />\n");
+            out.write("  <tr>\n");
+            out.write("    <th><span class=\"must\">*</span>广告组名称</th>\n");
+            out.write("    <td>");
             if (_jspx_meth_form_005finput_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            out.write("<input type=\"hidden\"\n");
-            out.write("\t\t\t\tname=\"coreAdGroup.campaignId\" value=\"");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.campaignId }", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-            out.write("\" /><input\n");
-            out.write("\t\t\t\ttype=\"hidden\" name=\"campaignId\" value=\"");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.campaignId }", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-            out.write("\" />\n");
-            out.write("\t\t\t");
+            if (_jspx_meth_form_005fhidden_005f6(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("<!--      ");
+            if (_jspx_meth_form_005fhidden_005f7(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("-->\n");
+            out.write("\t<!--\n");
+            out.write("    <input type=\"hidden\" name=\"campaignId\" value=\"");
+            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.coreAdGroup.campaignId }", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+            out.write("\" />-->\n");
+            out.write("    <small style=\"display:block\">请输入一个有助于您识别该广告组的名称，比如：长三角地区人群</small>\n");
+            out.write("    ");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${el:errorTip(command.errors,\"coreAdGroup.adGroupName\") }", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0, false));
-            out.write("<small\n");
-            out.write("\t\t\t\tstyle=\"display: block\">请输入一个有助于您识别该广告组的名称，比如：长三角地区人群</small></td>\n");
-            out.write("\t\t</tr>\n");
-            out.write("\t\t<tr><th></th><td><div id=\"areaId\">地区选择</div></td></tr>\n");
-            out.write("\t\t<tr>\n");
-            out.write("\t\t\t<th><span class=\"must\">*</span>投放地区</th>\n");
-            out.write("\t\t\t<td>");
+            out.write("</td>\n");
+            out.write("  </tr>\n");
+            out.write("    <tr>\n");
+            out.write("    <th><span class=\"must\">*</span>地理位置</th>\n");
+            out.write("    <td>");
             if (_jspx_meth_form_005fradiobutton_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            out.write('全');
-            out.write('国');
-            out.write(' ');
+            out.write("全国\n");
+            out.write("    ");
             if (_jspx_meth_form_005fradiobutton_005f1(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            out.write("\n");
-            out.write("\t\t\t精确到区 ");
+            out.write(" 精确到区\n");
+            out.write("\t<div id=\"areaId\" style=\"display: block\">地区选择</div>\n");
+            out.write("    ");
             if (_jspx_meth_form_005fradiobutton_005f2(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            out.write("常用地区选择\n");
-            out.write("\t\t\t<div id=\"adLoclInfoShowSp\" style=\"display: none\">");
+            out.write("快捷方式选择\n");
+            out.write("    <div id=\"adLoclInfoShowSp\" style=\"display: none\">\n");
+            out.write("   <label>地区：</label>\n");
+            out.write("   ");
             if (_jspx_meth_form_005fcheckbox_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             if (_jspx_meth_form_005fcheckbox_005f1(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
@@ -286,40 +294,41 @@ memberInfo=context.getMemberInfo();
             if (_jspx_meth_form_005fcheckbox_005f2(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             out.write("</div>\n");
-            out.write("\t\t\t<div\n");
-            out.write("\t\t\t\tstyle=\"height: 150px; width: 460px; overflow: auto; display: none\"\n");
-            out.write("\t\t\t\tclass=\"selectBox\" id=\"proId\">");
+            out.write("   <div style=\"height: 150px;width:460px; overflow: auto;display: none\" class=\"selectBox\"\n");
+            out.write("        id=\"proId\">");
             if (_jspx_meth_c_005fforEach_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             out.write("</div>\n");
-            out.write("\t\t\t");
+            out.write("      ");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${el:errorTip(command.errors,\"coreAdGroup.adLoclType\") }", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0, false));
-            out.write("<small\n");
-            out.write("\t\t\t\tstyle=\"display: block\">请选择该广告组投放的地区。</small></td>\n");
-            out.write("\t\t</tr>\n");
-            out.write("\t\t<!--\n");
-            out.write("    <tr>\n");
-            out.write("      <th>人群性别</th>\n");
-            out.write("      <td>");
+            out.write("<small style=\"display:block\">请选择该广告组投放的地区。</small>\n");
+            out.write("    </td>\n");
+            out.write("  </tr>\n");
+            out.write("  <!--\n");
+            out.write("  <tr>\n");
+            out.write("    <th>人群性别</th>\n");
+            out.write("    <td>");
             if (_jspx_meth_form_005fradiobutton_005f3(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             out.write("男性为主\n");
-            out.write("      ");
+            out.write("        ");
             if (_jspx_meth_form_005fradiobutton_005f4(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
-            out.write("女性为主 ");
+            out.write("女性为主\n");
+            out.write("        ");
             if (_jspx_meth_form_005fradiobutton_005f5(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             out.write("不分性别</td>\n");
-            out.write("    </tr>\n");
-            out.write("    <tr>\n");
-            out.write("      <th>人群年龄段</th>\n");
-            out.write("      <td>");
+            out.write("  </tr>\n");
+            out.write("  <tr>\n");
+            out.write("    <th>人群年龄段</th>\n");
+            out.write("    <td>\n");
+            out.write("    ");
             //  form:select
             org.springframework.web.servlet.tags.form.SelectTag _jspx_th_form_005fselect_005f0 = (org.springframework.web.servlet.tags.form.SelectTag) _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath.get(org.springframework.web.servlet.tags.form.SelectTag.class);
             _jspx_th_form_005fselect_005f0.setPageContext(_jspx_page_context);
             _jspx_th_form_005fselect_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-            // /WEB-INF/jsp/adgroup/new_group_add.jsp(90,10) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+            // /WEB-INF/jsp/adgroup/group_edit.jsp(87,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
             _jspx_th_form_005fselect_005f0.setPath("coreAdGroup.adTagAge");
             int[] _jspx_push_body_count_form_005fselect_005f0 = new int[] { 0 };
             try {
@@ -330,7 +339,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f0 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f0.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(91,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(88,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f0.setValue(new String("0"));
                   int[] _jspx_push_body_count_form_005foption_005f0 = new int[] { 0 };
                   try {
@@ -376,7 +385,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f1 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f1.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(92,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(89,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f1.setValue(new String("1"));
                   int[] _jspx_push_body_count_form_005foption_005f1 = new int[] { 0 };
                   try {
@@ -420,7 +429,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f2 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f2.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(93,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(90,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f2.setValue(new String("2"));
                   int[] _jspx_push_body_count_form_005foption_005f2 = new int[] { 0 };
                   try {
@@ -464,7 +473,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f3 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f3.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(94,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(91,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f3.setValue(new String("3"));
                   int[] _jspx_push_body_count_form_005foption_005f3 = new int[] { 0 };
                   try {
@@ -508,7 +517,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f4 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f4.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(95,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(92,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f4.setValue(new String("4"));
                   int[] _jspx_push_body_count_form_005foption_005f4 = new int[] { 0 };
                   try {
@@ -552,7 +561,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f5 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f5.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(96,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(93,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f5.setValue(new String("5"));
                   int[] _jspx_push_body_count_form_005foption_005f5 = new int[] { 0 };
                   try {
@@ -596,7 +605,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f6 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f6.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(97,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(94,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f6.setValue(new String("6"));
                   int[] _jspx_push_body_count_form_005foption_005f6 = new int[] { 0 };
                   try {
@@ -640,7 +649,7 @@ memberInfo=context.getMemberInfo();
                   org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f7 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                   _jspx_th_form_005foption_005f7.setPageContext(_jspx_page_context);
                   _jspx_th_form_005foption_005f7.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f0);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(98,8) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(95,6) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_form_005foption_005f7.setValue(new String("7"));
                   int[] _jspx_push_body_count_form_005foption_005f7 = new int[] { 0 };
                   try {
@@ -697,16 +706,17 @@ memberInfo=context.getMemberInfo();
               _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath.reuse(_jspx_th_form_005fselect_005f0);
             }
             out.write("</td>\n");
-            out.write("    </tr>\n");
-            out.write("     -->\n");
-            out.write("\t\t<tr>\n");
-            out.write("\t\t\t<th><span class=\"must\">*</span>所属行业</th>\n");
-            out.write("\t\t\t<td>");
+            out.write("  </tr>\n");
+            out.write("  -->\n");
+            out.write("  <tr>\n");
+            out.write("    <th><span class=\"must\">*</span>所属行业</th>\n");
+            out.write("    <td>\n");
+            out.write("       ");
             //  form:select
             org.springframework.web.servlet.tags.form.SelectTag _jspx_th_form_005fselect_005f1 = (org.springframework.web.servlet.tags.form.SelectTag) _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath.get(org.springframework.web.servlet.tags.form.SelectTag.class);
             _jspx_th_form_005fselect_005f1.setPageContext(_jspx_page_context);
             _jspx_th_form_005fselect_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-            // /WEB-INF/jsp/adgroup/new_group_add.jsp(104,7) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+            // /WEB-INF/jsp/adgroup/group_edit.jsp(103,7) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
             _jspx_th_form_005fselect_005f1.setPath("coreAdGroup.adTagSoftType");
             int[] _jspx_push_body_count_form_005fselect_005f1 = new int[] { 0 };
             try {
@@ -717,9 +727,9 @@ memberInfo=context.getMemberInfo();
                   org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
                   _jspx_th_c_005fforEach_005f1.setPageContext(_jspx_page_context);
                   _jspx_th_c_005fforEach_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fselect_005f1);
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(105,4) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(104,12) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_c_005fforEach_005f1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${form.industryInvolved}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-                  // /WEB-INF/jsp/adgroup/new_group_add.jsp(105,4) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                  // /WEB-INF/jsp/adgroup/group_edit.jsp(104,12) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                   _jspx_th_c_005fforEach_005f1.setVar("dictionarySps");
                   int[] _jspx_push_body_count_c_005fforEach_005f1 = new int[] { 0 };
                   try {
@@ -730,9 +740,9 @@ memberInfo=context.getMemberInfo();
                         org.springframework.web.servlet.tags.form.OptionTag _jspx_th_form_005foption_005f8 = (org.springframework.web.servlet.tags.form.OptionTag) _005fjspx_005ftagPool_005fform_005foption_0026_005fvalue_005flabel_005fnobody.get(org.springframework.web.servlet.tags.form.OptionTag.class);
                         _jspx_th_form_005foption_005f8.setPageContext(_jspx_page_context);
                         _jspx_th_form_005foption_005f8.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fforEach_005f1);
-                        // /WEB-INF/jsp/adgroup/new_group_add.jsp(106,5) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                        // /WEB-INF/jsp/adgroup/group_edit.jsp(105,12) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                         _jspx_th_form_005foption_005f8.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${dictionarySps.dictKey}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-                        // /WEB-INF/jsp/adgroup/new_group_add.jsp(106,5) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+                        // /WEB-INF/jsp/adgroup/group_edit.jsp(105,12) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
                         _jspx_th_form_005foption_005f8.setLabel((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${dictionarySps.dictVal}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
                         int[] _jspx_push_body_count_form_005foption_005f8 = new int[] { 0 };
                         try {
@@ -781,23 +791,21 @@ memberInfo=context.getMemberInfo();
               _005fjspx_005ftagPool_005fform_005fselect_0026_005fpath.reuse(_jspx_th_form_005fselect_005f1);
             }
             out.write("</td>\n");
-            out.write("\t\t</tr>\n");
-            out.write("\t\t<tr>\n");
-            out.write("\t\t\t<th><span class=\"must\">*</span>平台</th>\n");
-            out.write("\t\t\t<td>\n");
-            out.write("\t\t\t<div class=\"selectBox\" id=\"tagSpDiv\" onclick=\n");
-            out.write("\tshowTagSp();;\n");
-            out.write(">");
+            out.write("  </tr>\n");
+            out.write("  <tr>\n");
+            out.write("    <th><span class=\"must\">*</span>平台</th>\n");
+            out.write("    <td>\n");
+            out.write("     <div class=\"selectBox\" id=\"tagSpDiv\" onclick=\"showTagSp();\">\n");
+            out.write("       ");
             if (_jspx_meth_c_005fforEach_005f2(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
               return;
             out.write("</div>\n");
-            out.write("\t\t\t");
+            out.write("     ");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${el:errorTip(command.errors,\"coreAdGroup.adTagSp\") }", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0, false));
-            out.write("<small\n");
-            out.write("\t\t\t\tstyle=\"display: block\">请选择该广告组适用的平台及版本。为了达到最佳的广告投放效果，建议选择全部。</small>\n");
-            out.write("\t\t\t</td>\n");
-            out.write("\t\t</tr>\n");
-            out.write("\t\t<!--\n");
+            out.write("<small style=\"display:block\">请选择该广告组适用的平台及版本。为了达到最佳的广告投放效果，建议选择全部。</small>\n");
+            out.write("    </td>\n");
+            out.write("  </tr>\n");
+            out.write("  <!--\n");
             out.write("  <tr>\n");
             out.write("    <th>流量信息</th>\n");
             out.write("    <td>\n");
@@ -837,20 +845,63 @@ memberInfo=context.getMemberInfo();
             out.write("    </td>\n");
             out.write("  </tr>\n");
             out.write("   -->\n");
-            out.write("\t\t<tr>\n");
-            out.write("\t\t\t<th>&nbsp;</th>\n");
-            out.write("\t\t\t<td>\n");
-            out.write("\t\t\t<div class=\"btnBox\">\n");
-            out.write("\t\t\t<button class=\"btnBY fl\" type=\"button\"\n");
-            out.write("\t\t\t\tonclick=\n");
-            out.write("\tregisterAdGroupPageSubmti();;\n");
-            out.write(">提交</button>\n");
-            out.write("\t\t\t<div class=\"moreBtn\"><span class=\"gray\">|</span> <a\n");
-            out.write("\t\t\t\thref=\"adGroup.do?action=list\">取消</a></div>\n");
-            out.write("\t\t\t</div>\n");
-            out.write("\t\t\t</td>\n");
-            out.write("\t\t</tr>\n");
-            out.write("\t</table>\n");
+            out.write("  <tr>\n");
+            out.write("      <th>&nbsp;</th>\n");
+            out.write("      <td>\n");
+            out.write("      <div class=\"btnBox\">\n");
+            out.write("      <button class=\"btnBY fl\" onclick=\"registerAdGroupPageSubmti();\">提交</button>\n");
+            out.write("        <div class=\"moreBtn\"><span class=\"gray\">|</span> <a\n");
+            out.write("        href=\"ad.do?action=adList&adGroupId=");
+            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${form.adGroupId }", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+            out.write("\">取消</a></div>\n");
+            out.write("      </div>\n");
+            out.write("      </td>\n");
+            out.write("    </tr>\n");
+            out.write("</table>\n");
+            out.write("</div>\n");
+            out.write("<div class=\"rightCon\">\n");
+            out.write("<div class=\"infoCon\">\n");
+            out.write("<!--\n");
+            out.write("<h2><img src=\"images/ico_act.gif\" alt=\"活动\" width=\"16\" height=\"16\"\n");
+            out.write("  align=\"absmiddle\" />活动摘要</h2>\n");
+            out.write("<ul>\n");
+            out.write("  <li><span class=\"fr\">");
+            if (_jspx_meth_airad_005fcutString_005f1(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("</span>名称</li>\n");
+            out.write("  <li><span class=\"fr sml\">");
+            out.print(startTime);
+            out.write("</span>开始时间</li>\n");
+            out.write("  ");
+            if (_jspx_meth_c_005fif_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("<li><span class=\"fr sml\"><sup>&yen;</sup>");
+            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${campaign.buggetDay}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+            out.write("</span>每日预算</li>\n");
+            out.write("  <li><span class=\"fr sml\">");
+            if (_jspx_meth_c_005fchoose_005f15(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("</span>投放方式</li>\n");
+            out.write("</ul>\n");
+            out.write("-->\n");
+            out.write("<h2><img src=\"images/ico_gup.gif\" alt=\"活动\" width=\"16\" height=\"16\"\n");
+            out.write("  align=\"absmiddle\" />广告组摘要</h2>\n");
+            out.write("<ul>\n");
+            out.write("  <li><span id=\"adGroupNamesDiv\"  class=\"fr\">");
+            if (_jspx_meth_airad_005fcutString_005f2(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+              return;
+            out.write("</span>名称\n");
+            out.write("  </li>\n");
+            out.write("  <li>\n");
+            out.write("  <span id=\"geographyDiv\"  class=\"fr\"></span>地理位置\n");
+            out.write("  </li>\n");
+            out.write("  <li>\n");
+            out.write("  <span id=\"tagSpShowDiv\"  class=\"fr\">\n");
+            out.write("  </span>平台\n");
+            out.write("  </li>\n");
+            out.write("</ul>\n");
+            out.write("</div>\n");
+            out.write("</div>\n");
             int evalDoAfterBody = _jspx_th_form_005fform_005f0.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;
@@ -868,20 +919,67 @@ memberInfo=context.getMemberInfo();
         _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.reuse(_jspx_th_form_005fform_005f0);
       }
       out.write("</div>\n");
-      out.write("<div class=\"rightCon\">\n");
-      out.write("<div class=\"infoCon\">\n");
-      out.write("\n");
-      out.write("<h2><img src=\"images/ico_gup.gif\" alt=\"活动\" width=\"16\" height=\"16\"\n");
-      out.write("\talign=\"absmiddle\" />广告组摘要</h2>\n");
-      out.write("<ul>\n");
-      out.write("\t<li><span id=\"adGroupNamesDiv\" class=\"fr\"></span>名称</li>\n");
-      out.write("\t<li><span id=\"geographyDiv\" class=\"fr\"></span>投放地区</li>\n");
-      out.write("\t<li><span id=\"tagSpShowDiv\" class=\"fr\"> </span>平台</li>\n");
-      out.write("</ul>\n");
-      out.write("</div>\n");
-      out.write("</div>\n");
       out.write("<!-- 开发嵌入end--></div>\n");
-      out.write("</div>\n");
+      out.write("<div id=\"footer\">\r\n");
+      out.write("<div><a href=\"/\">首页</a> | <a href=\"/about-us.html\">关于我们</a> | <a href=\"/policy.html\">隐私协议</a> | <a href=\"/terms.html\">服务条款</a> | <a href=\"/join-us.html\">加入我们</a> | <a href=\"mailto:contact@airad.com\">联系我们</a> | <a href=\"help.html\">帮助中心</a> | <a href=\"/send_req.html\">参加开发者收益保障活动</a>\r\n");
+      out.write("</div>\r\n");
+      out.write("&copy;2011 米田科技有限公司 版权所有\r\n");
+      out.write("<div style=\"display:none\"><script language=\"javascript\" type=\"text/javascript\" src=\"/js/5291024.js\"></script></div></div>\r\n");
+      out.write("<div id=\"chat\">\r\n");
+      out.write("<img src=\"/images/btn_chat.gif\" width=\"174px\" height=\"23px\" style=\"cursor:pointer\" onclick=\"javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800008968&eid=2188z8p8p8p8p8z808x8z&o=www.airAD.com&q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');\" border=\"0\" alt=\"在线客服 800008968\" />\r\n");
+      out.write("</div>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/member.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/campaign.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/app.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/ad.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/adGroup.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/recharge.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/account.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/cookie.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/common.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/withdraw.js\"></script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/airad.jquery.js\"></script>\r\n");
+      out.write("    <script type=\"text/javascript\">\r\n");
+      out.write("        $.rightBottom(\"#chat\",174,23);\r\n");
+      out.write("        $(window).scroll(function(){\r\n");
+      out.write("            $.rightBottom(\"#chat\",174,23);\r\n");
+      out.write("        }); \r\n");
+      out.write("        $(window).resize(function() {\r\n");
+      out.write("           $.rightBottom(\"#chat\",174,23);\r\n");
+      out.write("        });\r\n");
+      out.write("    </script>\r\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/tree/js/jquery.simple.tree.self.js\"></script>\n");
+      out.write("<script type=\"text/javascript\" src=\"/js/area/area.js\"></script>\n");
+      out.write("<link href=\"style/lay.css\" type=\"text/css\" rel=\"stylesheet\" />\n");
+      out.write("<script>\n");
+      out.write("\n");
+      out.write("    $(document).ready(function() {\n");
+      out.write("      showDetial();\n");
+      out.write("      var ids = document.getElementById(\"exact\");\n");
+      out.write("      /*\n");
+      out.write("       var s= $(\"#proId\").find(\":checkbox[name=ck]:checked\").each(function(){\n");
+      out.write("              loadData($(this));\n");
+      out.write("          });*/\n");
+      out.write("          if (ids.value != \"\") {\n");
+      out.write("              var idReplace = ids.value.replace(new RegExp(\";\", 'g'), \",\");\n");
+      out.write("              var idarray=idReplace.split(\",\");\n");
+      out.write("                $(\"#proId\").find(\":input[name=ck]\").each(function() {\n");
+      out.write("                  for ( var i = 0; i < idarray.length; i++) {\n");
+      out.write("                    var ckval = $(this).val();\n");
+      out.write("                      if (ckval == idarray[i]) {\n");
+      out.write("                    \t  $(\"#image\"+ckval).attr(\"src\",\"images/ico_op.gif\");\n");
+      out.write("                              loadData($(this));\n");
+      out.write("                              break;\n");
+      out.write("                      }\n");
+      out.write("                  }\n");
+      out.write("                });\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("      showAdGroupTree();\n");
+      out.write("      addCss(\"adGroup.do?action=list\");\n");
+      out.write("    });\n");
+      out.write("</script>\n");
+      out.write("\n");
       out.write("<div class=\"alert_lay sech_lay lm lay_wls\" id=\"pslayer\" style=\"display: none;position: absolute;\">\n");
       out.write("            <!--背景圆角上-->\n");
       out.write("            <div class=\"alert_t\">\n");
@@ -966,82 +1064,6 @@ memberInfo=context.getMemberInfo();
       out.write("            </div>\n");
       out.write("            <!--背景圆角下-->\n");
       out.write("        </div>\n");
-      out.write("\n");
-      out.write("<div class=\"alert_lay sech_lay2 lay_ws\" id=\"subItems\" style=\"display: none;position: absolute;\">\n");
-      out.write("            <div id=\"subBox\" class=\"box\">\n");
-      out.write("\t\t\t<ol>\n");
-      out.write("\t\t\t</ol>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("\n");
-      out.write("<div class=\"alert_lay sech_lay2 lay_ws\" id=\"thirdItems\" style=\"display: none;\">\n");
-      out.write("            <div id=\"subBox\" class=\"box\">\n");
-      out.write("\t\t\t<ol>\n");
-      out.write("\t\t\t</ol>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("<div id=\"footer\">\r\n");
-      out.write("<div><a href=\"/\">首页</a> | <a href=\"/about-us.html\">关于我们</a> | <a href=\"/policy.html\">隐私协议</a> | <a href=\"/terms.html\">服务条款</a> | <a href=\"/join-us.html\">加入我们</a> | <a href=\"mailto:contact@airad.com\">联系我们</a> | <a href=\"help.html\">帮助中心</a> | <a href=\"/send_req.html\">参加开发者收益保障活动</a>\r\n");
-      out.write("</div>\r\n");
-      out.write("&copy;2011 米田科技有限公司 版权所有\r\n");
-      out.write("<div style=\"display:none\"><script language=\"javascript\" type=\"text/javascript\" src=\"/js/5291024.js\"></script></div></div>\r\n");
-      out.write("<div id=\"chat\">\r\n");
-      out.write("<img src=\"/images/btn_chat.gif\" width=\"174px\" height=\"23px\" style=\"cursor:pointer\" onclick=\"javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800008968&eid=2188z8p8p8p8p8z808x8z&o=www.airAD.com&q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');\" border=\"0\" alt=\"在线客服 800008968\" />\r\n");
-      out.write("</div>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/member.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/campaign.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/app.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/ad.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/adGroup.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/recharge.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/account.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/cookie.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/common.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/withdraw.js\"></script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/airad.jquery.js\"></script>\r\n");
-      out.write("    <script type=\"text/javascript\">\r\n");
-      out.write("        $.rightBottom(\"#chat\",174,23);\r\n");
-      out.write("        $(window).scroll(function(){\r\n");
-      out.write("            $.rightBottom(\"#chat\",174,23);\r\n");
-      out.write("        }); \r\n");
-      out.write("        $(window).resize(function() {\r\n");
-      out.write("           $.rightBottom(\"#chat\",174,23);\r\n");
-      out.write("        });\r\n");
-      out.write("    </script>\r\n");
-      out.write("<script type=\"text/javascript\"\n");
-      out.write("\tsrc=\"/js/tree/js/jquery.simple.tree.self.js\"></script>\n");
-      out.write("<script>\n");
-      out.write("\tshowAdGroupTree();\n");
-      out.write("\n");
-      out.write("\t$(document).ready(function() {\n");
-      out.write("\t\t$(function() {\n");
-      out.write("\t\t\taddCss(\"adGroup.do?action=list\");\n");
-      out.write("\t\t});\n");
-      out.write("\n");
-      out.write("\t\tshowDetial();\n");
-      out.write("\t\tvar ids = document.getElementById(\"exact\");\n");
-      out.write("\t\t/*\n");
-      out.write("\t\t var s= $(\"#proId\").find(\":checkbox[name=ck]:checked\").each(function(){\n");
-      out.write("\t\t        loadData($(this));\n");
-      out.write("\t\t    });*/\n");
-      out.write("\t\tif (ids.value != \"\") {\n");
-      out.write("\t\t\tvar idReplace = ids.value.replace(new RegExp(\";\", 'g'), \",\");\n");
-      out.write("\t\t\tidReplace = idReplace.substring(0, idReplace.length - 1);\n");
-      out.write("\t\t\tvar idarray = idReplace.split(\",\");\n");
-      out.write("\t\t\t$(\"#proId\").find(\":input[name=ck]\").each(function() {\n");
-      out.write("\t\t\t\tfor ( var i = 0; i < idarray.length; i++) {\n");
-      out.write("\t\t\t\t\tvar ckval = $(this).val();\n");
-      out.write("\t\t\t\t\tif (ckval == idarray[i]) {\n");
-      out.write("\t\t\t\t\t\t$(\"#image\" + ckval).attr(\"src\", \"images/ico_op.gif\");\n");
-      out.write("\t\t\t\t\t\tloadData($(this));\n");
-      out.write("\t\t\t\t\t\tbreak;\n");
-      out.write("\t\t\t\t\t}\n");
-      out.write("\t\t\t\t}\n");
-      out.write("\t\t\t});\n");
-      out.write("\t\t}\n");
-      out.write("\t\taddCss(\"listCampaign\");\n");
-      out.write("\t});\n");
-      out.write("</script>\n");
       out.write("</body>\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -2727,8 +2749,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f0 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f0.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(25,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f0.setPath("areaJsType");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(26,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f0.setPath("exact");
     int[] _jspx_push_body_count_form_005fhidden_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f0 = _jspx_th_form_005fhidden_005f0.doStartTag();
@@ -2754,8 +2776,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f1 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f1.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(26,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f1.setPath("exact");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(27,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f1.setPath("adGroupId");
     int[] _jspx_push_body_count_form_005fhidden_005f1 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f1 = _jspx_th_form_005fhidden_005f1.doStartTag();
@@ -2781,8 +2803,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f2 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f2.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(27,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f2.setPath("shortGeographicalPosition");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(28,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f2.setPath("editErrorFlag");
     int[] _jspx_push_body_count_form_005fhidden_005f2 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f2 = _jspx_th_form_005fhidden_005f2.doStartTag();
@@ -2808,7 +2830,7 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f3 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f3.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(28,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(29,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fhidden_005f3.setPath("adLoclInfo");
     int[] _jspx_push_body_count_form_005fhidden_005f3 = new int[] { 0 };
     try {
@@ -2835,8 +2857,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f4 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f4.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(29,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f4.setPath("addFlag");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(30,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f4.setPath("editFlagCheck");
     int[] _jspx_push_body_count_form_005fhidden_005f4 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f4 = _jspx_th_form_005fhidden_005f4.doStartTag();
@@ -2862,8 +2884,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f5 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f5.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(30,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f5.setPath("editFlagCheck");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(31,0) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f5.setPath("adTagSp");
     int[] _jspx_push_body_count_form_005fhidden_005f5 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f5 = _jspx_th_form_005fhidden_005f5.doStartTag();
@@ -2881,6 +2903,60 @@ memberInfo=context.getMemberInfo();
     return false;
   }
 
+  private boolean _jspx_meth_airad_005fcutString_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  airad:cutString
+    com.mitian.airad.web.tags.CutStringTag _jspx_th_airad_005fcutString_005f0 = (com.mitian.airad.web.tags.CutStringTag) _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.get(com.mitian.airad.web.tags.CutStringTag.class);
+    _jspx_th_airad_005fcutString_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_airad_005fcutString_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(32,88) name = size type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f0.setSize(new Integer(10));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(32,88) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f0.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.coreAdGroup.adGroupName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(32,88) name = mark type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f0.setMark("...");
+    int _jspx_eval_airad_005fcutString_005f0 = _jspx_th_airad_005fcutString_005f0.doStartTag();
+    if (_jspx_th_airad_005fcutString_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f0);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_form_005finput_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  form:input
+    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_005finput_005f0 = (org.springframework.web.servlet.tags.form.InputTag) _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
+    _jspx_th_form_005finput_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_form_005finput_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(40,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005finput_005f0.setPath("coreAdGroup.adGroupName");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(40,8) name = cssClass type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005finput_005f0.setCssClass("long");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(40,8) name = onkeyup type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005finput_005f0.setOnkeyup("valueAlert(this,'adGroupNamesDiv')");
+    int[] _jspx_push_body_count_form_005finput_005f0 = new int[] { 0 };
+    try {
+      int _jspx_eval_form_005finput_005f0 = _jspx_th_form_005finput_005f0.doStartTag();
+      if (_jspx_th_form_005finput_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_form_005finput_005f0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_form_005finput_005f0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_form_005finput_005f0.doFinally();
+      _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody.reuse(_jspx_th_form_005finput_005f0);
+    }
+    return false;
+  }
+
   private boolean _jspx_meth_form_005fhidden_005f6(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -2889,8 +2965,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f6 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f6.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(31,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f6.setPath("adTagSp");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(41,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f6.setPath("coreAdGroup.adGroupId");
     int[] _jspx_push_body_count_form_005fhidden_005f6 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f6 = _jspx_th_form_005fhidden_005f6.doStartTag();
@@ -2916,8 +2992,8 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f7 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
     _jspx_th_form_005fhidden_005f7.setPageContext(_jspx_page_context);
     _jspx_th_form_005fhidden_005f7.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(32,1) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fhidden_005f7.setPath("coreAdGroup.adGroupId");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(42,10) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f7.setPath("coreAdGroup.campaignId");
     int[] _jspx_push_body_count_form_005fhidden_005f7 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fhidden_005f7 = _jspx_th_form_005fhidden_005f7.doStartTag();
@@ -2935,53 +3011,20 @@ memberInfo=context.getMemberInfo();
     return false;
   }
 
-  private boolean _jspx_meth_form_005finput_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  form:input
-    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_005finput_005f0 = (org.springframework.web.servlet.tags.form.InputTag) _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
-    _jspx_th_form_005finput_005f0.setPageContext(_jspx_page_context);
-    _jspx_th_form_005finput_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(38,7) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setPath("coreAdGroup.adGroupName");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(38,7) name = cssClass type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setCssClass("long");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(38,7) name = onkeyup type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setOnkeyup("valueAlert(this,'adGroupNamesDiv')");
-    int[] _jspx_push_body_count_form_005finput_005f0 = new int[] { 0 };
-    try {
-      int _jspx_eval_form_005finput_005f0 = _jspx_th_form_005finput_005f0.doStartTag();
-      if (_jspx_th_form_005finput_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_form_005finput_005f0[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_form_005finput_005f0.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_form_005finput_005f0.doFinally();
-      _005fjspx_005ftagPool_005fform_005finput_0026_005fpath_005fonkeyup_005fcssClass_005fnobody.reuse(_jspx_th_form_005finput_005f0);
-    }
-    return false;
-  }
-
   private boolean _jspx_meth_form_005fradiobutton_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:radiobutton
-    org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f0 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fchecked_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
+    org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f0 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f0.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(48,7) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(51,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f0.setPath("coreAdGroup.adLoclType");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(48,7) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(51,8) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f0.setValue(new String("0"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(48,7) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(51,8) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f0.setOnclick("showDetial();");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(48,7) null
-    _jspx_th_form_005fradiobutton_005f0.setDynamicAttribute(null, "checked", new String("checked"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fradiobutton_005f0 = _jspx_th_form_005fradiobutton_005f0.doStartTag();
@@ -2994,7 +3037,7 @@ memberInfo=context.getMemberInfo();
       _jspx_th_form_005fradiobutton_005f0.doCatch(_jspx_exception);
     } finally {
       _jspx_th_form_005fradiobutton_005f0.doFinally();
-      _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fchecked_005fnobody.reuse(_jspx_th_form_005fradiobutton_005f0);
+      _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody.reuse(_jspx_th_form_005fradiobutton_005f0);
     }
     return false;
   }
@@ -3007,11 +3050,11 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f1 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f1.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(49,51) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(52,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f1.setPath("coreAdGroup.adLoclType");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(49,51) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(52,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f1.setValue(new String("2"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(49,51) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(52,4) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f1.setOnclick("showDetial();");
     int[] _jspx_push_body_count_form_005fradiobutton_005f1 = new int[] { 0 };
     try {
@@ -3038,11 +3081,11 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f2 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fonclick_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f2.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(51,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(54,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f2.setPath("coreAdGroup.adLoclType");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(51,8) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(54,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f2.setValue(new String("1"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(51,8) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(54,4) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f2.setOnclick("showAdLoclInfoSp(this,true)");
     int[] _jspx_push_body_count_form_005fradiobutton_005f2 = new int[] { 0 };
     try {
@@ -3069,15 +3112,15 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.CheckboxTag _jspx_th_form_005fcheckbox_005f0 = (org.springframework.web.servlet.tags.form.CheckboxTag) _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody.get(org.springframework.web.servlet.tags.form.CheckboxTag.class);
     _jspx_th_form_005fcheckbox_005f0.setPageContext(_jspx_page_context);
     _jspx_th_form_005fcheckbox_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(53,52) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(57,3) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f0.setPath("coreAdGroup.adLoclInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(53,52) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(57,3) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f0.setValue(new String("0"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(53,52) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(57,3) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f0.setTitle("长三角");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(53,52) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(57,3) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f0.setLabel(new String("长三角"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(53,52) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(57,3) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f0.setOnclick("showAdLoclInfoSp(this,false)");
     int[] _jspx_push_body_count_form_005fcheckbox_005f0 = new int[] { 0 };
     try {
@@ -3104,15 +3147,15 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.CheckboxTag _jspx_th_form_005fcheckbox_005f1 = (org.springframework.web.servlet.tags.form.CheckboxTag) _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody.get(org.springframework.web.servlet.tags.form.CheckboxTag.class);
     _jspx_th_form_005fcheckbox_005f1.setPageContext(_jspx_page_context);
     _jspx_th_form_005fcheckbox_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(55,46) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(58,3) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f1.setPath("coreAdGroup.adLoclInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(55,46) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(58,3) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f1.setValue(new String("1"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(55,46) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(58,3) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f1.setTitle("珠三角");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(55,46) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(58,3) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f1.setLabel(new String("珠三角"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(55,46) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(58,3) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f1.setOnclick("showAdLoclInfoSp(this,false)");
     int[] _jspx_push_body_count_form_005fcheckbox_005f1 = new int[] { 0 };
     try {
@@ -3139,15 +3182,15 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.CheckboxTag _jspx_th_form_005fcheckbox_005f2 = (org.springframework.web.servlet.tags.form.CheckboxTag) _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005ftitle_005fpath_005fonclick_005flabel_005fnobody.get(org.springframework.web.servlet.tags.form.CheckboxTag.class);
     _jspx_th_form_005fcheckbox_005f2.setPageContext(_jspx_page_context);
     _jspx_th_form_005fcheckbox_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(57,46) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(59,3) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f2.setPath("coreAdGroup.adLoclInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(57,46) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(59,3) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f2.setValue(new String("2"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(57,46) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(59,3) name = title type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f2.setTitle("环渤海");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(57,46) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(59,3) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f2.setLabel(new String("环渤海"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(57,46) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(59,3) name = onclick type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f2.setOnclick("showAdLoclInfoSp(this,false)");
     int[] _jspx_push_body_count_form_005fcheckbox_005f2 = new int[] { 0 };
     try {
@@ -3171,45 +3214,41 @@ memberInfo=context.getMemberInfo();
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvarStatus_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f0.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(62,33) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(62,19) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${form.proListBean}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(62,33) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(62,19) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f0.setVar("DictionaryGlobalRegion");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(62,33) name = varStatus type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f0.setVarStatus("statu");
     int[] _jspx_push_body_count_c_005fforEach_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f0 = _jspx_th_c_005fforEach_005f0.doStartTag();
       if (_jspx_eval_c_005fforEach_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("<div>\n");
-          out.write("\t\t\t\t<div><input type=\"hidden\"\n");
-          out.write("\t\t\t\t\tvalue=\"");
+          out.write("        <div><input type=\"hidden\" value=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionId}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-          out.write("\" name=\"ck\" /> <span\n");
-          out.write("\t\t\t\t\tstyle=\"cursor: pointer;\"\n");
-          out.write("\t\t\t\t\tonclick=\"showData('");
+          out.write("\" name=\"ck\" />\n");
+          out.write("         <span style=\"cursor: pointer;\" onclick=\"showData('");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionId}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-          out.write("')\"><img\n");
-          out.write("\t\t\t\t\tsrc=\"images/ico_cl.gif\"\n");
-          out.write("\t\t\t\t\tid=\"image");
+          out.write("')\"><img src=\"images/ico_cl.gif\" id=\"image");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionId}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-          out.write("\" />");
+          out.write('"');
+          out.write('/');
+          out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("</span>\n");
-          out.write("\t\t\t\t</div>\n");
-          out.write("\t\t\t\t<div id=\"d");
+          out.write("        </div>\n");
+          out.write("        <div id=\"d");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionId}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("\" style=\"display: none\">\n");
-          out.write("\t\t\t\t<ul id=\"");
+          out.write("        <ul id=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${DictionaryGlobalRegion.regionId}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("\" class=\"simpleTree\"></ul>\n");
-          out.write("\t\t\t\t</div>\n");
-          out.write("\t\t\t\t</div>\n");
-          out.write("\t\t\t");
+          out.write("        </div>\n");
+          out.write("        </div>\n");
+          out.write("      ");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -3224,7 +3263,7 @@ memberInfo=context.getMemberInfo();
       _jspx_th_c_005fforEach_005f0.doCatch(_jspx_exception);
     } finally {
       _jspx_th_c_005fforEach_005f0.doFinally();
-      _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvarStatus_005fvar_005fitems.reuse(_jspx_th_c_005fforEach_005f0);
+      _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.reuse(_jspx_th_c_005fforEach_005f0);
     }
     return false;
   }
@@ -3237,9 +3276,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f3 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f3.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(84,10) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(80,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f3.setPath("coreAdGroup.adTagSex");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(84,10) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(80,8) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f3.setValue(new String("1"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f3 = new int[] { 0 };
     try {
@@ -3266,9 +3305,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f4 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f4.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(85,6) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(81,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f4.setPath("coreAdGroup.adTagSex");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(85,6) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(81,8) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f4.setValue(new String("2"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f4 = new int[] { 0 };
     try {
@@ -3292,15 +3331,13 @@ memberInfo=context.getMemberInfo();
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:radiobutton
-    org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f5 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fchecked_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
+    org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f5 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f5.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(85,69) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(82,8) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f5.setPath("coreAdGroup.adTagSex");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(85,69) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(82,8) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f5.setValue(new String("0"));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(85,69) null
-    _jspx_th_form_005fradiobutton_005f5.setDynamicAttribute(null, "checked", new String("checked"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f5 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fradiobutton_005f5 = _jspx_th_form_005fradiobutton_005f5.doStartTag();
@@ -3313,7 +3350,7 @@ memberInfo=context.getMemberInfo();
       _jspx_th_form_005fradiobutton_005f5.doCatch(_jspx_exception);
     } finally {
       _jspx_th_form_005fradiobutton_005f5.doFinally();
-      _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fchecked_005fnobody.reuse(_jspx_th_form_005fradiobutton_005f5);
+      _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.reuse(_jspx_th_form_005fradiobutton_005f5);
     }
     return false;
   }
@@ -3326,9 +3363,9 @@ memberInfo=context.getMemberInfo();
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f2.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(116,1) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(114,7) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${form.arr}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(116,1) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(114,7) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f2.setVar("dictionary");
     int[] _jspx_push_body_count_c_005fforEach_005f2 = new int[] { 0 };
     try {
@@ -3364,11 +3401,11 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.CheckboxTag _jspx_th_form_005fcheckbox_005f3 = (org.springframework.web.servlet.tags.form.CheckboxTag) _005fjspx_005ftagPool_005fform_005fcheckbox_0026_005fvalue_005fpath_005flabel_005fnobody.get(org.springframework.web.servlet.tags.form.CheckboxTag.class);
     _jspx_th_form_005fcheckbox_005f3.setPageContext(_jspx_page_context);
     _jspx_th_form_005fcheckbox_005f3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fforEach_005f2);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(118,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(115,9) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f3.setPath("coreAdGroup.adTagSp");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(118,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(115,9) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f3.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${dictionary.dictKey}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(118,4) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(115,9) name = label type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fcheckbox_005f3.setLabel((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${dictionary.dictVal}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
     int[] _jspx_push_body_count_form_005fcheckbox_005f3 = new int[] { 0 };
     try {
@@ -3395,9 +3432,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f6 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f6.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(130,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(127,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f6.setPath("coreAdGroup.adFlowInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(130,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(127,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f6.setValue(new String("0"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f6 = new int[] { 0 };
     try {
@@ -3424,9 +3461,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f7 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f7.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f7.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(131,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(128,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f7.setPath("coreAdGroup.adFlowInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(131,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(128,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f7.setValue(new String("1"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f7 = new int[] { 0 };
     try {
@@ -3453,9 +3490,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f8 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f8.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f8.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(139,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(136,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f8.setPath("coreAdGroup.changceInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(139,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(136,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f8.setValue(new String("0"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f8 = new int[] { 0 };
     try {
@@ -3482,9 +3519,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f9 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f9.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f9.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(140,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(137,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f9.setPath("coreAdGroup.changceInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(140,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(137,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f9.setValue(new String("1"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f9 = new int[] { 0 };
     try {
@@ -3511,9 +3548,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f10 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f10.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f10.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(141,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(138,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f10.setPath("coreAdGroup.changceInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(141,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(138,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f10.setValue(new String("2"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f10 = new int[] { 0 };
     try {
@@ -3540,9 +3577,9 @@ memberInfo=context.getMemberInfo();
     org.springframework.web.servlet.tags.form.RadioButtonTag _jspx_th_form_005fradiobutton_005f11 = (org.springframework.web.servlet.tags.form.RadioButtonTag) _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.RadioButtonTag.class);
     _jspx_th_form_005fradiobutton_005f11.setPageContext(_jspx_page_context);
     _jspx_th_form_005fradiobutton_005f11.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(142,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(139,4) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f11.setPath("coreAdGroup.changceInfo");
-    // /WEB-INF/jsp/adgroup/new_group_add.jsp(142,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(139,4) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fradiobutton_005f11.setValue(new String("3"));
     int[] _jspx_push_body_count_form_005fradiobutton_005f11 = new int[] { 0 };
     try {
@@ -3558,6 +3595,188 @@ memberInfo=context.getMemberInfo();
       _jspx_th_form_005fradiobutton_005f11.doFinally();
       _005fjspx_005ftagPool_005fform_005fradiobutton_0026_005fvalue_005fpath_005fnobody.reuse(_jspx_th_form_005fradiobutton_005f11);
     }
+    return false;
+  }
+
+  private boolean _jspx_meth_airad_005fcutString_005f1(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  airad:cutString
+    com.mitian.airad.web.tags.CutStringTag _jspx_th_airad_005fcutString_005f1 = (com.mitian.airad.web.tags.CutStringTag) _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.get(com.mitian.airad.web.tags.CutStringTag.class);
+    _jspx_th_airad_005fcutString_005f1.setPageContext(_jspx_page_context);
+    _jspx_th_airad_005fcutString_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(162,23) name = size type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f1.setSize(new Integer(8));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(162,23) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f1.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${campaign.campaignName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(162,23) name = mark type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f1.setMark("...");
+    int _jspx_eval_airad_005fcutString_005f1 = _jspx_th_airad_005fcutString_005f1.doStartTag();
+    if (_jspx_th_airad_005fcutString_005f1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f1);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_005fif_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_005fif_005f0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _005fjspx_005ftagPool_005fc_005fif_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_005fif_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_c_005fif_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(164,2) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_c_005fif_005f0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${!empty campaign.endTime}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
+    int _jspx_eval_c_005fif_005f0 = _jspx_th_c_005fif_005f0.doStartTag();
+    if (_jspx_eval_c_005fif_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("<li><span class=\"fr sml\">");
+        if (_jspx_meth_fmt_005fformatDate_005f0(_jspx_th_c_005fif_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+          return true;
+        out.write("</span>结束时间</li>\n");
+        out.write("  ");
+        int evalDoAfterBody = _jspx_th_c_005fif_005f0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_005fif_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fc_005fif_0026_005ftest.reuse(_jspx_th_c_005fif_005f0);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fc_005fif_0026_005ftest.reuse(_jspx_th_c_005fif_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_fmt_005fformatDate_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fif_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  fmt:formatDate
+    org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag _jspx_th_fmt_005fformatDate_005f0 = (org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag) _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody.get(org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag.class);
+    _jspx_th_fmt_005fformatDate_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_fmt_005fformatDate_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fif_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(165,27) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_fmt_005fformatDate_005f0.setValue((java.util.Date) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${campaign.endTime}", java.util.Date.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(165,27) name = type type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_fmt_005fformatDate_005f0.setType("both");
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(165,27) name = pattern type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_fmt_005fformatDate_005f0.setPattern("yyyy-MM-dd HH:mm");
+    int _jspx_eval_fmt_005fformatDate_005f0 = _jspx_th_fmt_005fformatDate_005f0.doStartTag();
+    if (_jspx_th_fmt_005fformatDate_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody.reuse(_jspx_th_fmt_005fformatDate_005f0);
+      return true;
+    }
+    _005fjspx_005ftagPool_005ffmt_005fformatDate_0026_005fvalue_005ftype_005fpattern_005fnobody.reuse(_jspx_th_fmt_005fformatDate_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_005fchoose_005f15(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:choose
+    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_005fchoose_005f15 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _005fjspx_005ftagPool_005fc_005fchoose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
+    _jspx_th_c_005fchoose_005f15.setPageContext(_jspx_page_context);
+    _jspx_th_c_005fchoose_005f15.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    int _jspx_eval_c_005fchoose_005f15 = _jspx_th_c_005fchoose_005f15.doStartTag();
+    if (_jspx_eval_c_005fchoose_005f15 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        if (_jspx_meth_c_005fwhen_005f21(_jspx_th_c_005fchoose_005f15, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+          return true;
+        if (_jspx_meth_c_005fotherwise_005f15(_jspx_th_c_005fchoose_005f15, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+          return true;
+        int evalDoAfterBody = _jspx_th_c_005fchoose_005f15.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_005fchoose_005f15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f15);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f15);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_005fwhen_005f21(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fchoose_005f15, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f21 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_005fwhen_005f21.setPageContext(_jspx_page_context);
+    _jspx_th_c_005fwhen_005f21.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f15);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(168,37) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_c_005fwhen_005f21.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${campaign.pubKind}=='2'", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
+    int _jspx_eval_c_005fwhen_005f21 = _jspx_th_c_005fwhen_005f21.doStartTag();
+    if (_jspx_eval_c_005fwhen_005f21 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write('加');
+        out.write('速');
+        int evalDoAfterBody = _jspx_th_c_005fwhen_005f21.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_005fwhen_005f21.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f21);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f21);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_005fotherwise_005f15(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fchoose_005f15, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:otherwise
+    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_005fotherwise_005f15 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _005fjspx_005ftagPool_005fc_005fotherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+    _jspx_th_c_005fotherwise_005f15.setPageContext(_jspx_page_context);
+    _jspx_th_c_005fotherwise_005f15.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f15);
+    int _jspx_eval_c_005fotherwise_005f15 = _jspx_th_c_005fotherwise_005f15.doStartTag();
+    if (_jspx_eval_c_005fotherwise_005f15 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write('正');
+        out.write('常');
+        int evalDoAfterBody = _jspx_th_c_005fotherwise_005f15.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_005fotherwise_005f15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fc_005fotherwise.reuse(_jspx_th_c_005fotherwise_005f15);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fc_005fotherwise.reuse(_jspx_th_c_005fotherwise_005f15);
+    return false;
+  }
+
+  private boolean _jspx_meth_airad_005fcutString_005f2(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  airad:cutString
+    com.mitian.airad.web.tags.CutStringTag _jspx_th_airad_005fcutString_005f2 = (com.mitian.airad.web.tags.CutStringTag) _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.get(com.mitian.airad.web.tags.CutStringTag.class);
+    _jspx_th_airad_005fcutString_005f2.setPageContext(_jspx_page_context);
+    _jspx_th_airad_005fcutString_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(174,45) name = size type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f2.setSize(new Integer(8));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(174,45) name = value type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f2.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${form.coreAdGroup.adGroupName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/jsp/adgroup/group_edit.jsp(174,45) name = mark type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fcutString_005f2.setMark("...");
+    int _jspx_eval_airad_005fcutString_005f2 = _jspx_th_airad_005fcutString_005f2.doStartTag();
+    if (_jspx_th_airad_005fcutString_005f2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f2);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fairad_005fcutString_0026_005fvalue_005fsize_005fmark_005fnobody.reuse(_jspx_th_airad_005fcutString_005f2);
     return false;
   }
 }

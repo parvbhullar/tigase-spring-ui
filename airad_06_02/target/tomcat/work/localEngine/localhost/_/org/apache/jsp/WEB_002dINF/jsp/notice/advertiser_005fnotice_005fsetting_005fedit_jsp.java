@@ -1,9 +1,8 @@
-package org.apache.jsp.WEB_002dINF.jsp.member;
+package org.apache.jsp.WEB_002dINF.jsp.notice;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import com.mitian.airad.web.form.MemberForm;
 import com.mitian.airad.web.auth.roles.*;
 import com.mitian.airad.*;
 import com.mitian.airad.common.auth.*;
@@ -13,8 +12,14 @@ import com.mitian.airad.web.form.*;
 import com.mitian.airad.model.SysConfig;
 import com.mitian.airad.model.CoreMemberInfo;
 
-public final class logon_005fpage_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class advertiser_005fnotice_005fsetting_005fedit_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
+
+static private org.apache.jasper.runtime.ProtectedFunctionMapper _jspx_fnmap_0;
+
+static {
+  _jspx_fnmap_0= org.apache.jasper.runtime.ProtectedFunctionMapper.getMapForFunction("el:errorTip", com.mitian.airad.utils.ELFunctionUtils.class, "errorTip", new Class[] {java.util.Map.class, java.lang.String.class});
+}
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
@@ -44,11 +49,10 @@ public final class logon_005fpage_jsp extends org.apache.jasper.runtime.HttpJspB
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fchoose;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fotherwise;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005finput_0026_005fvalue_005fpath_005fcssClass_005fautocomplete_005fnobody;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fpassword_0026_005fvalue_005fpath_005fcssClass_005fnobody;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fid_005fcommandName_005faction;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody;
-  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems;
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody;
 
   private javax.el.ExpressionFactory _el_expressionfactory;
   private org.apache.AnnotationProcessor _jsp_annotationprocessor;
@@ -62,11 +66,10 @@ public final class logon_005fpage_jsp extends org.apache.jasper.runtime.HttpJspB
     _005fjspx_005ftagPool_005fc_005fchoose = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fc_005fotherwise = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fform_005finput_0026_005fvalue_005fpath_005fcssClass_005fautocomplete_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fform_005fpassword_0026_005fvalue_005fpath_005fcssClass_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fid_005fcommandName_005faction = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
     _jsp_annotationprocessor = (org.apache.AnnotationProcessor) getServletConfig().getServletContext().getAttribute(org.apache.AnnotationProcessor.class.getName());
   }
@@ -76,11 +79,10 @@ public final class logon_005fpage_jsp extends org.apache.jasper.runtime.HttpJspB
     _005fjspx_005ftagPool_005fc_005fchoose.release();
     _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.release();
     _005fjspx_005ftagPool_005fc_005fotherwise.release();
-    _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.release();
-    _005fjspx_005ftagPool_005fform_005finput_0026_005fvalue_005fpath_005fcssClass_005fautocomplete_005fnobody.release();
-    _005fjspx_005ftagPool_005fform_005fpassword_0026_005fvalue_005fpath_005fcssClass_005fnobody.release();
+    _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fid_005fcommandName_005faction.release();
+    _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody.release();
     _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody.release();
-    _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.release();
+    _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -107,13 +109,13 @@ public final class logon_005fpage_jsp extends org.apache.jasper.runtime.HttpJspB
       out = pageContext.getOut();
       _jspx_out = out;
 
-      out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");
-      out.write("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n");
-      out.write("<head>\n");
-      out.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n");
-      out.write("<title>会员登录</title>\n");
-      out.write("</head>\n");
-      out.write("<body>\n");
+      out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n");
+      out.write("<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n");
+      out.write("<head>\r\n");
+      out.write("  <title>通知设置</title>\r\n");
+      out.write("</head>\r\n");
+      out.write("<body>\r\n");
+      out.write("<div class=\"okBox\"><div class=\"ok\" style=\"display:none\" id=\"okTip\">修改成功</div></div>\r\n");
       if (_jspx_meth_c_005fset_005f0(_jspx_page_context))
         return;
 
@@ -165,21 +167,24 @@ memberInfo=context.getMemberInfo();
       out.write("}\n");
       out.write("addTitleCss();\n");
       out.write("</script>");
-      out.write("<div id=\"main\">\n");
-      out.write("<div class=\"mainCon\">\n");
-      out.write("<div class=\"leftCon\">\n");
-      out.write("<h1 class=\"tit\">会员登录</h1>\n");
-      out.write("\n");
+      out.write("<div id=\"main\">\r\n");
+      out.write("    <div class=\"mainCon\">\r\n");
+      out.write("    <h1 class=\"tit\">通知设置</h1>\r\n");
+      out.write("    <div class=\"leftCon\">\r\n");
+      out.write("      ");
       if (_jspx_meth_form_005fform_005f0(_jspx_page_context))
         return;
-      out.write("</div>\n");
-      out.write("<div class=\"rightCon\">\n");
-      out.write("<div class=\"infoCon\">\n");
-      out.write("<h2 style=\"margin-bottom: 0pt;\"><a href=\"member.do?action=register\">没有帐号？一步免费注册 »</a></h2>\n");
-      out.write("</div>\n");
-      out.write("</div>\n");
-      out.write("<!-- 开发嵌入end--></div>\n");
-      out.write("</div>\n");
+      out.write("</div>\r\n");
+      out.write("    <div class=\"rightCon\">\r\n");
+      out.write("    <div class=\"infoCon\">\r\n");
+      out.write("    <h2>提示</h2>\r\n");
+      out.write("    <ul>\r\n");
+      out.write("    <li>您可以点击修改，设置邮件通知最低额度。在邮件提醒功能打开的情况下，如果余额低于您设置的值，您将会收到邮件通知。</li>\r\n");
+      out.write("    </ul>\r\n");
+      out.write("    </div>\r\n");
+      out.write("    </div>\r\n");
+      out.write("      </div>\r\n");
+      out.write("  </div>\r\n");
       out.write("<div id=\"footer\">\r\n");
       out.write("<div><a href=\"/\">首页</a> | <a href=\"/about-us.html\">关于我们</a> | <a href=\"/policy.html\">隐私协议</a> | <a href=\"/terms.html\">服务条款</a> | <a href=\"/join-us.html\">加入我们</a> | <a href=\"mailto:contact@airad.com\">联系我们</a> | <a href=\"help.html\">帮助中心</a> | <a href=\"/send_req.html\">参加开发者收益保障活动</a>\r\n");
       out.write("</div>\r\n");
@@ -208,15 +213,9 @@ memberInfo=context.getMemberInfo();
       out.write("           $.rightBottom(\"#chat\",174,23);\r\n");
       out.write("        });\r\n");
       out.write("    </script>\r\n");
-      out.write("<script type=\"text/javascript\" src=\"/js/mail_completer.js\"></script>\n");
-      out.write("<script>\n");
-      out.write("$(document).ready(function(){\n");
-      out.write("$(\"#email\").autoComplete();\n");
-      out.write("\t$(\"#command\").submit();\n");
-      out.write("\t });\n");
-      out.write("</script>\n");
-      out.write("</body>\n");
-      out.write("</html>");
+      out.write("<script type=\"text/javascript\" src=\"/js/notice_edit.js\"></script>\r\n");
+      out.write("</body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -1897,85 +1896,66 @@ memberInfo=context.getMemberInfo();
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:form
-    org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_005fform_005f0 = (org.springframework.web.servlet.tags.form.FormTag) _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.get(org.springframework.web.servlet.tags.form.FormTag.class);
+    org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_005fform_005f0 = (org.springframework.web.servlet.tags.form.FormTag) _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fid_005fcommandName_005faction.get(org.springframework.web.servlet.tags.form.FormTag.class);
     _jspx_th_form_005fform_005f0.setPageContext(_jspx_page_context);
     _jspx_th_form_005fform_005f0.setParent(null);
-    // /WEB-INF/jsp/member/logon_page.jsp(17,0) name = name type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fform_005f0.setName("myFrm");
-    // /WEB-INF/jsp/member/logon_page.jsp(17,0) name = commandName type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(15,6) name = id type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fform_005f0.setId("updateRemind");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(15,6) name = name type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fform_005f0.setName("updateRemind");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(15,6) name = action type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fform_005f0.setAction("accMailNotice.do?action=updateRemind");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(15,6) name = commandName type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fform_005f0.setCommandName("command");
-    // /WEB-INF/jsp/member/logon_page.jsp(17,0) name = action type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fform_005f0.setAction("member.do?action=doLogon");
-    // /WEB-INF/jsp/member/logon_page.jsp(17,0) name = method type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(15,6) name = method type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fform_005f0.setMethod("post");
     int[] _jspx_push_body_count_form_005fform_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_form_005fform_005f0 = _jspx_th_form_005fform_005f0.doStartTag();
       if (_jspx_eval_form_005fform_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("<input type=\"hidden\" name=\"loginType\" value=\"0\"></input>\n");
-          out.write("  <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"tabNF reg\">\n");
-          out.write("    <col width=\"30%\" />\n");
-          out.write("    <col width=\"70%\" />\n");
-          out.write("    <tr>\n");
-          out.write("      <th>电子邮箱</th>\n");
-          out.write("      <div class=\"e_tip\" id=\"e_tip\"></div>\n");
-          out.write("      <td>");
+          out.write("<table class=\"tabNF wa\" >\r\n");
+          out.write("        <col width=\"50%\" /><col width=\"5%\" /><col />\r\n");
+          out.write("        <tr>\r\n");
+          out.write("        <th><b>您的数据邮件提醒功能目前状态为</b></th>\r\n");
+          out.write("        <td >\r\n");
+          out.write("            <span class=\"\" id=\"curStatus\"></span>\r\n");
+          out.write("        </td>\r\n");
+          out.write("        <td>\r\n");
+          out.write("              &nbsp;\r\n");
+          out.write("        </td>\r\n");
+          out.write("        </tr>\r\n");
+          out.write("      </table>\r\n");
+          out.write("      <table class=\"tabX\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\r\n");
+          out.write("        <col width=\"30%\" /><col width=\"70%\" />\r\n");
+          out.write("        <tr>\r\n");
+          out.write("        <th>当账户余额小于此金额时通知</th>\r\n");
+          out.write("        <td> \r\n");
+          out.write("          ");
+          if (_jspx_meth_airad_005fsysConfigForMailNoticeTag_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+            return true;
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${el:errorTip(command.errors,\"accountBlance\") }", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0, false));
+          out.write("</td>\r\n");
+          out.write("        </tr>\r\n");
+          out.write("        <tr>\r\n");
+          out.write("        <th>您的邮箱地址</th>\r\n");
+          out.write("        <td>\r\n");
+          out.write("           ");
           if (_jspx_meth_form_005finput_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
             return true;
-          out.write("</td>\n");
-          out.write("           </tr>\n");
-          out.write("    <tr>\n");
-          out.write("      <th>密码</th>\n");
-          out.write("      <td>");
-          if (_jspx_meth_form_005fpassword_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${el:errorTip(command.errors,\"mailAddr\") }", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0, false));
+          out.write("</td>\r\n");
+          out.write("        </tr>\r\n");
+          out.write("      </table>\r\n");
+          out.write("      <div class=\"btnBox\" style=\"padding-top:0px;\" id=\"operate\">\r\n");
+          out.write("      <div id=\"btnsave\" >\r\n");
+          out.write("      <input class=\"btnBY\" value=\"保存\" type=\"button\" style=\"margin-left:205px;\" onclick=\"document.getElementById('updateRemind').submit();\"  id=\"saveNotice\"/>\r\n");
+          out.write("      <span class=\"gray\"> |</span> <a href=\"/accMailNotice.do?action=openNotice\">取消</a> \r\n");
+          out.write("      </div>\r\n");
+          out.write("      </div>\r\n");
+          out.write("      ");
+          if (_jspx_meth_form_005fhidden_005f0(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
             return true;
-          out.write("</td>\n");
-          out.write("    </tr>\n");
-          out.write("   ");
-          if (_jspx_meth_c_005fchoose_005f15(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-            return true;
-          out.write("<th>验证码</th>\n");
-          out.write("      <td>\n");
-          out.write("      <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\"\n");
-          out.write("        style=\"width: 260px\" class=\"tabIn\">\n");
-          out.write("        <col />\n");
-          out.write("        <col width=\"120px\" />\n");
-          out.write("        <col width=\"90px\" />\n");
-          out.write("        <tr>\n");
-          out.write("          <td>");
-          if (_jspx_meth_form_005finput_005f1(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-            return true;
-          out.write("</td>\n");
-          out.write("          <td class=\"c\"><img src=\"/canpanta.png\" alt=\"canpanta\" id=\"validataImg\" /></td>\n");
-          out.write("          <td><a href=\"javascript:void(0)\" onclick=\"getValidataImg()\" >看不清，换一张</a></td>\n");
-          out.write("         </tr>\n");
-          out.write("      </table>\n");
-          out.write("      </td>\n");
-          out.write("    </tr>\n");
-          out.write("    <tr>\n");
-          out.write("      <th>&nbsp;</th>\n");
-          out.write("      <td>\n");
-          out.write("      <div class=\"wrBox\" id=\"logonErrDiv\" style=\"display: none\">\n");
-          out.write("          <div class=\"wr\">\n");
-          out.write("         ");
-          if (_jspx_meth_c_005fchoose_005f16(_jspx_th_form_005fform_005f0, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-            return true;
-          out.write("</div>\n");
-          out.write("          </div>\n");
-          out.write("      <div class=\"btnBox\">\n");
-          out.write("      <button type=\"submit\" class=\"btnBY fl\">登录</button>\n");
-          out.write("     <div class=\"moreBtn\"><span class=\"gray\">|</span>\n");
-          out.write("       <a href=\"member.do?action=sendResettingPasswordEmailPage\">找回密码</a></div>\n");
-          out.write("       </div></td>\n");
-          out.write("    </tr>\n");
-          out.write("\n");
-          out.write("  </table>\n");
-          out.write("  <ul class=\"topLine\"><span>您也可以用合作网站账号登录airAD</span>\n");
-          out.write("  <li><a href=\"");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.taobaoAuthUrl}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-          out.write("\"><img src=\"images/login_taobao.gif\"></a></li>\n");
-          out.write("  </ul>\n");
           int evalDoAfterBody = _jspx_th_form_005fform_005f0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -1990,8 +1970,33 @@ memberInfo=context.getMemberInfo();
       _jspx_th_form_005fform_005f0.doCatch(_jspx_exception);
     } finally {
       _jspx_th_form_005fform_005f0.doFinally();
-      _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fcommandName_005faction.reuse(_jspx_th_form_005fform_005f0);
+      _005fjspx_005ftagPool_005fform_005fform_0026_005fname_005fmethod_005fid_005fcommandName_005faction.reuse(_jspx_th_form_005fform_005f0);
     }
+    return false;
+  }
+
+  private boolean _jspx_meth_airad_005fsysConfigForMailNoticeTag_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  airad:sysConfigForMailNoticeTag
+    com.mitian.airad.web.tags.SysConfigForMailNoticeTag _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0 = (com.mitian.airad.web.tags.SysConfigForMailNoticeTag) _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody.get(com.mitian.airad.web.tags.SysConfigForMailNoticeTag.class);
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(33,10) name = type type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setType("MAIL_NOTICE_TYPE_VALUE");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(33,10) name = valDefault type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setValDefault((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.accountBlanceKey}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(33,10) name = id type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setId("accountBlance");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(33,10) name = name type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.setName("accountBlance");
+    int _jspx_eval_airad_005fsysConfigForMailNoticeTag_005f0 = _jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.doStartTag();
+    if (_jspx_th_airad_005fsysConfigForMailNoticeTag_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody.reuse(_jspx_th_airad_005fsysConfigForMailNoticeTag_005f0);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fairad_005fsysConfigForMailNoticeTag_0026_005fvalDefault_005ftype_005fname_005fid_005fnobody.reuse(_jspx_th_airad_005fsysConfigForMailNoticeTag_005f0);
     return false;
   }
 
@@ -2000,17 +2005,13 @@ memberInfo=context.getMemberInfo();
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:input
-    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_005finput_005f0 = (org.springframework.web.servlet.tags.form.InputTag) _005fjspx_005ftagPool_005fform_005finput_0026_005fvalue_005fpath_005fcssClass_005fautocomplete_005fnobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
+    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_005finput_005f0 = (org.springframework.web.servlet.tags.form.InputTag) _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
     _jspx_th_form_005finput_005f0.setPageContext(_jspx_page_context);
     _jspx_th_form_005finput_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/member/logon_page.jsp(26,10) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setPath("email");
-    // /WEB-INF/jsp/member/logon_page.jsp(26,10) name = cssClass type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setCssClass("half");
-    // /WEB-INF/jsp/member/logon_page.jsp(26,10) name = autocomplete type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f0.setAutocomplete("off");
-    // /WEB-INF/jsp/member/logon_page.jsp(26,10) null
-    _jspx_th_form_005finput_005f0.setDynamicAttribute(null, "value", new String("1111@gmail.com"));
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(40,11) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005finput_005f0.setPath("mailAddr");
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(40,11) name = size type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005finput_005f0.setSize("50");
     int[] _jspx_push_body_count_form_005finput_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_form_005finput_005f0 = _jspx_th_form_005finput_005f0.doStartTag();
@@ -2023,242 +2024,34 @@ memberInfo=context.getMemberInfo();
       _jspx_th_form_005finput_005f0.doCatch(_jspx_exception);
     } finally {
       _jspx_th_form_005finput_005f0.doFinally();
-      _005fjspx_005ftagPool_005fform_005finput_0026_005fvalue_005fpath_005fcssClass_005fautocomplete_005fnobody.reuse(_jspx_th_form_005finput_005f0);
+      _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody.reuse(_jspx_th_form_005finput_005f0);
     }
     return false;
   }
 
-  private boolean _jspx_meth_form_005fpassword_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
+  private boolean _jspx_meth_form_005fhidden_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
-    //  form:password
-    org.springframework.web.servlet.tags.form.PasswordInputTag _jspx_th_form_005fpassword_005f0 = (org.springframework.web.servlet.tags.form.PasswordInputTag) _005fjspx_005ftagPool_005fform_005fpassword_0026_005fvalue_005fpath_005fcssClass_005fnobody.get(org.springframework.web.servlet.tags.form.PasswordInputTag.class);
-    _jspx_th_form_005fpassword_005f0.setPageContext(_jspx_page_context);
-    _jspx_th_form_005fpassword_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/member/logon_page.jsp(31,10) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fpassword_005f0.setPath("password");
-    // /WEB-INF/jsp/member/logon_page.jsp(31,10) name = cssClass type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fpassword_005f0.setCssClass("half");
-    // /WEB-INF/jsp/member/logon_page.jsp(31,10) null
-    _jspx_th_form_005fpassword_005f0.setDynamicAttribute(null, "value", new String("111111"));
-    int[] _jspx_push_body_count_form_005fpassword_005f0 = new int[] { 0 };
+    //  form:hidden
+    org.springframework.web.servlet.tags.form.HiddenInputTag _jspx_th_form_005fhidden_005f0 = (org.springframework.web.servlet.tags.form.HiddenInputTag) _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.HiddenInputTag.class);
+    _jspx_th_form_005fhidden_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_form_005fhidden_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
+    // /WEB-INF/jsp/notice/advertiser_notice_setting_edit.jsp(51,6) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    _jspx_th_form_005fhidden_005f0.setPath("remindFlag");
+    int[] _jspx_push_body_count_form_005fhidden_005f0 = new int[] { 0 };
     try {
-      int _jspx_eval_form_005fpassword_005f0 = _jspx_th_form_005fpassword_005f0.doStartTag();
-      if (_jspx_th_form_005fpassword_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      int _jspx_eval_form_005fhidden_005f0 = _jspx_th_form_005fhidden_005f0.doStartTag();
+      if (_jspx_th_form_005fhidden_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
         return true;
       }
     } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_form_005fpassword_005f0[0]-- > 0)
+      while (_jspx_push_body_count_form_005fhidden_005f0[0]-- > 0)
         out = _jspx_page_context.popBody();
-      _jspx_th_form_005fpassword_005f0.doCatch(_jspx_exception);
+      _jspx_th_form_005fhidden_005f0.doCatch(_jspx_exception);
     } finally {
-      _jspx_th_form_005fpassword_005f0.doFinally();
-      _005fjspx_005ftagPool_005fform_005fpassword_0026_005fvalue_005fpath_005fcssClass_005fnobody.reuse(_jspx_th_form_005fpassword_005f0);
-    }
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fchoose_005f15(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:choose
-    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_005fchoose_005f15 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _005fjspx_005ftagPool_005fc_005fchoose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
-    _jspx_th_c_005fchoose_005f15.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fchoose_005f15.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    int _jspx_eval_c_005fchoose_005f15 = _jspx_th_c_005fchoose_005f15.doStartTag();
-    if (_jspx_eval_c_005fchoose_005f15 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        if (_jspx_meth_c_005fwhen_005f21(_jspx_th_c_005fchoose_005f15, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-          return true;
-        if (_jspx_meth_c_005fotherwise_005f15(_jspx_th_c_005fchoose_005f15, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-          return true;
-        int evalDoAfterBody = _jspx_th_c_005fchoose_005f15.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_005fchoose_005f15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f15);
-      return true;
-    }
-    _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f15);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fwhen_005f21(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fchoose_005f15, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:when
-    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f21 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
-    _jspx_th_c_005fwhen_005f21.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fwhen_005f21.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f15);
-    // /WEB-INF/jsp/member/logon_page.jsp(34,6) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_c_005fwhen_005f21.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${logonNum>=5 }", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
-    int _jspx_eval_c_005fwhen_005f21 = _jspx_th_c_005fwhen_005f21.doStartTag();
-    if (_jspx_eval_c_005fwhen_005f21 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        out.write("<tr id=\"validateTr\">\n");
-        out.write("      ");
-        int evalDoAfterBody = _jspx_th_c_005fwhen_005f21.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_005fwhen_005f21.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f21);
-      return true;
-    }
-    _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f21);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fotherwise_005f15(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fchoose_005f15, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:otherwise
-    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_005fotherwise_005f15 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _005fjspx_005ftagPool_005fc_005fotherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
-    _jspx_th_c_005fotherwise_005f15.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fotherwise_005f15.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f15);
-    int _jspx_eval_c_005fotherwise_005f15 = _jspx_th_c_005fotherwise_005f15.doStartTag();
-    if (_jspx_eval_c_005fotherwise_005f15 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        out.write("<tr style=\"display: none\" id=\"validateTr\">\n");
-        out.write("      ");
-        int evalDoAfterBody = _jspx_th_c_005fotherwise_005f15.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_005fotherwise_005f15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _005fjspx_005ftagPool_005fc_005fotherwise.reuse(_jspx_th_c_005fotherwise_005f15);
-      return true;
-    }
-    _005fjspx_005ftagPool_005fc_005fotherwise.reuse(_jspx_th_c_005fotherwise_005f15);
-    return false;
-  }
-
-  private boolean _jspx_meth_form_005finput_005f1(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  form:input
-    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_005finput_005f1 = (org.springframework.web.servlet.tags.form.InputTag) _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
-    _jspx_th_form_005finput_005f1.setPageContext(_jspx_page_context);
-    _jspx_th_form_005finput_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    // /WEB-INF/jsp/member/logon_page.jsp(49,14) name = path type = null reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f1.setPath("verifyCode");
-    // /WEB-INF/jsp/member/logon_page.jsp(49,14) name = size type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005finput_005f1.setSize("4");
-    int[] _jspx_push_body_count_form_005finput_005f1 = new int[] { 0 };
-    try {
-      int _jspx_eval_form_005finput_005f1 = _jspx_th_form_005finput_005f1.doStartTag();
-      if (_jspx_th_form_005finput_005f1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_form_005finput_005f1[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_form_005finput_005f1.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_form_005finput_005f1.doFinally();
-      _005fjspx_005ftagPool_005fform_005finput_0026_005fsize_005fpath_005fnobody.reuse(_jspx_th_form_005finput_005f1);
-    }
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fchoose_005f16(javax.servlet.jsp.tagext.JspTag _jspx_th_form_005fform_005f0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:choose
-    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_005fchoose_005f16 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _005fjspx_005ftagPool_005fc_005fchoose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
-    _jspx_th_c_005fchoose_005f16.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fchoose_005f16.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_005fform_005f0);
-    int _jspx_eval_c_005fchoose_005f16 = _jspx_th_c_005fchoose_005f16.doStartTag();
-    if (_jspx_eval_c_005fchoose_005f16 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        if (_jspx_meth_c_005fwhen_005f22(_jspx_th_c_005fchoose_005f16, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-          return true;
-        int evalDoAfterBody = _jspx_th_c_005fchoose_005f16.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_005fchoose_005f16.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f16);
-      return true;
-    }
-    _005fjspx_005ftagPool_005fc_005fchoose.reuse(_jspx_th_c_005fchoose_005f16);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fwhen_005f22(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fchoose_005f16, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:when
-    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f22 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
-    _jspx_th_c_005fwhen_005f22.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fwhen_005f22.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f16);
-    // /WEB-INF/jsp/member/logon_page.jsp(62,2) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_c_005fwhen_005f22.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${not empty command.errors }", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
-    int _jspx_eval_c_005fwhen_005f22 = _jspx_th_c_005fwhen_005f22.doStartTag();
-    if (_jspx_eval_c_005fwhen_005f22 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        if (_jspx_meth_c_005fforEach_005f0(_jspx_th_c_005fwhen_005f22, _jspx_page_context, _jspx_push_body_count_form_005fform_005f0))
-          return true;
-        out.write("<script> document.getElementById(\"logonErrDiv\").style.display=\"block\"; </script>\n");
-        out.write("  ");
-        int evalDoAfterBody = _jspx_th_c_005fwhen_005f22.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_005fwhen_005f22.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f22);
-      return true;
-    }
-    _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.reuse(_jspx_th_c_005fwhen_005f22);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_005fforEach_005f0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_005fwhen_005f22, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_005fform_005f0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_005fforEach_005f0.setPageContext(_jspx_page_context);
-    _jspx_th_c_005fforEach_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fwhen_005f22);
-    // /WEB-INF/jsp/member/logon_page.jsp(63,14) name = items type = java.lang.Object reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${command.errors}", java.lang.Object.class, (PageContext)_jspx_page_context, null, false));
-    // /WEB-INF/jsp/member/logon_page.jsp(63,14) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f0.setVar("errorinfo");
-    int[] _jspx_push_body_count_c_005fforEach_005f0 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_005fforEach_005f0 = _jspx_th_c_005fforEach_005f0.doStartTag();
-      if (_jspx_eval_c_005fforEach_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${errorinfo.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-          int evalDoAfterBody = _jspx_th_c_005fforEach_005f0.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_005fforEach_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_005fforEach_005f0[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_005fforEach_005f0.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_005fforEach_005f0.doFinally();
-      _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.reuse(_jspx_th_c_005fforEach_005f0);
+      _jspx_th_form_005fhidden_005f0.doFinally();
+      _005fjspx_005ftagPool_005fform_005fhidden_0026_005fpath_005fnobody.reuse(_jspx_th_form_005fhidden_005f0);
     }
     return false;
   }
