@@ -628,4 +628,43 @@ $(document).ready(function() {
 			$(this).attr("checked",false);
 		});
 	})
+
+	$("#btnOkLoc").click(function(){
+
+		$("#shortGeographicalPosition").val("");
+		var arr=new Array();
+		$("#selecting li").each(function(i){
+			var alt=$(this).children().eq(0).attr("alt");
+			if(alt=="undefined")//省
+			{
+//				console.info("省"+$(this).attr("id").substring(2));
+				arr.push($(this).attr("id").substring(2));
+			}else
+			{
+				if(alt.split("@").length==2)//省.市.区
+				{
+//					console.info("省。市。区"+alt.split("@")[0]+","+alt.split("@")[1]+","+$(this).attr("id").substring(2));
+					arr.push(alt.split("@")[0]+","+alt.split("@")[1]+","+$(this).attr("id").substring(2));
+				}
+				else//省.市
+				{
+//					console.info("省.市"+alt.split("@")[0]+","+$(this).attr("id").substring(2));
+					arr.push(alt.split("@")[0]+","+$(this).attr("id").substring(2));
+				}
+			}
+		});
+		$("#shortGeographicalPosition").val(arr.join(";")+";")
+		$("#exact").val(arr.join(";")+";");
+		console.info(arr.join(";"));
+		$("#imgClose").click();
+
+//		$("#allItems li").each(function(){
+//			$(this).removeClass("layicon");
+//		});
+//		$("#allItems input").each(function(){
+//			$(this).attr("checked",false);
+//		});
+	})
+
+
 })

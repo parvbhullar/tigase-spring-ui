@@ -37,6 +37,9 @@ public class CoreAdGroupextend {
      * @return the value of CORE_AD_GROUPEXTEND.AD_GROUPEXTEND_ID
      * @ibatorgenerated Sat Feb 26 11:32:27 CST 2011
      */
+
+    private String shortGeographicalPosition;
+
     public Integer getAdGroupextendId() {
         return adGroupextendId;
     }
@@ -95,4 +98,13 @@ public class CoreAdGroupextend {
     public void setGeographicalPosition(String geographicalPosition) {
         this.geographicalPosition = geographicalPosition;
     }
+
+    public String getShortGeographicalPosition() {
+        return shortGeographicalPosition;
+    }
+
+    public void setShortGeographicalPosition(String shortGeographicalPosition) {
+        this.shortGeographicalPosition = shortGeographicalPosition;
+    }
+
 }

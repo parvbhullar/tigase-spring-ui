@@ -86,9 +86,14 @@ public class AdGroupForm extends AbstractForm {
 
     /** 会员id */
     private Long memberId;
-    
-    /**广告提交还是草稿**/
+
+    /** 广告提交还是草稿 **/
     private String submitStatus;
+
+    /**
+     *地区控件类型
+     */
+    private String areaJsType;
 
     /**
      * @return the submitStatus
@@ -137,6 +142,11 @@ public class AdGroupForm extends AbstractForm {
     private String editFlagCheck;
     /** 平台 */
     private List<Dictionary> arr = new ArrayList<Dictionary>();
+
+    /**
+     * 新地区控件用到的地区
+     */
+    private String shortGeographicalPosition;
 
     private String sortCol;
 
@@ -728,6 +738,22 @@ public class AdGroupForm extends AbstractForm {
 
     public void setAdId(String adId) {
         this.adId = adId;
+    }
+
+    public String getAreaJsType() {
+        return areaJsType;
+    }
+
+    public void setAreaJsType(String areaJsType) {
+        this.areaJsType = areaJsType;
+    }
+
+    public String getShortGeographicalPosition() {
+        return shortGeographicalPosition;
+    }
+
+    public void setShortGeographicalPosition(String shortGeographicalPosition) {
+        this.shortGeographicalPosition = shortGeographicalPosition;
     }
 
 }

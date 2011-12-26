@@ -3,29 +3,6 @@
  * @param {Object} str id编号
  * @param {Object} type 类型
  */
-/*
-function stopandsendAdGroup(adGroupId, type,adCount) {
-  if(adCount==0){
-    alert("对不起,暂无广告!");
-  }else{
-     var url = "";
-    if (type == "0") {
-         if (confirm('您确定要暂停此广告组下所有广告?')) {
-           url = "/adGroup.do?action=suspend&adGroupId=" + adGroupId;
-            document.sform.action=url;
-            document.sform.submit();
-         }
-    }
-    else if (type == "1") {
-       if (confirm('您确定要运行此广告组下所有广告?')) {
-         url = "/adGroup.do?action=issue&adGroupId=" + adGroupId;
-         document.sform.action=url;
-         document.sform.submit();
-       }
-    }
-  }
-}
-*/
 
 
 /**复制提交*/
@@ -203,24 +180,29 @@ function registerAdGroupPageSubmti() {
     });
     var checkType = $(":radio[name=coreAdGroup.adLoclType]:checked");
     if ($(checkType).val() == "2") {
-          var checkIds = "";
-          $('#proId').children('div').each(function(){
-          var province=  $(this).find("input[type=checkbox]:checked").filter(function(index){
-                //查找floer 如果div 里有这个样式就说明他是城市级
-                if($(this).parent().attr('class').indexOf('folder-close')>-1 || $(this).parent().attr('class').indexOf('folder-open')>-1){
-                //查找这个div里面ul html没有值 就说明他没有区，我们就把省市赋值进去
-                if($(this).next().next('ul').html()==''){
-                  checkIds+=$(this).parent().parent().parent().attr('id')+","+$(this).val()+";";
-                }
-                }
-                if(!$(this).parent('li .doc').size()==0||!$(this).parent('li .doc-last').size()==0){
-                  checkIds+=$(this).next("span").attr("name")+";";
-                }else{
-                  return;
-                }
-          });//省市 区节点
-         });
-        $("#exact").val(checkIds);
+    	if($("#areaJsType").val()==1){
+
+    	}else{
+    		var checkIds = "";
+            $('#proId').children('div').each(function(){
+            var province=  $(this).find("input[type=checkbox]:checked").filter(function(index){
+                  //查找floer 如果div 里有这个样式就说明他是城市级
+                  if($(this).parent().attr('class').indexOf('folder-close')>-1 || $(this).parent().attr('class').indexOf('folder-open')>-1){
+                  //查找这个div里面ul html没有值 就说明他没有区，我们就把省市赋值进去
+                  if($(this).next().next('ul').html()==''){
+                    checkIds+=$(this).parent().parent().parent().attr('id')+","+$(this).val()+";";
+                  }
+                  }
+                  if(!$(this).parent('li .doc').size()==0||!$(this).parent('li .doc-last').size()==0){
+                    checkIds+=$(this).next("span").attr("name")+";";
+                  }else{
+                    return;
+                  }
+            });//省市 区节点
+           });
+          $("#exact").val(checkIds);
+    	}
+
     }
    document.myfrm.submit();
 }
@@ -289,24 +271,29 @@ function showDetial() {
     var proId = document.getElementById("proId");
     var checkType = $(":radio[name=coreAdGroup.adLoclType]:checked");
     if ($(checkType).val() == "2") {
-        jQuery("#geographyDiv").html("精确到区");
-        proId.style.display = "";
-        document.getElementById("adLoclInfoShowSp").style.display = "none";
+    	if($("#areaJsType").val()==1){//新地区控件
+    		$("#areaId").click();
+    	}else{
+    		jQuery("#geographyDiv").html("精确到区");
+            proId.style.display = "";
+            document.getElementById("adLoclInfoShowSp").style.display = "none";
+    	}
+
     }
     if ($(checkType).val() == "1") {
-        jQuery("#geographyDiv").html("常用地区");
-        proId.style.display = "none";
-        document.getElementById("adLoclInfoShowSp").style.display = "";
-        var localInfo=$("#adLoclInfo").val();
-        var arrLocalInfo=localInfo.split(",");
-        $("#adLoclInfoShowSp").find("input[type=checkbox]").each(function(index, domEle){
-          for ( var i = 0; i < arrLocalInfo.length; i++) {
-                    var ckval = $(domEle).val();
-                      if (ckval == arrLocalInfo[i]) {
-                        $(domEle).attr("checked", "true");
-                      }
-        }
-        });
+    		jQuery("#geographyDiv").html("常用地区");
+            proId.style.display = "none";
+            document.getElementById("adLoclInfoShowSp").style.display = "";
+            var localInfo=$("#adLoclInfo").val();
+            var arrLocalInfo=localInfo.split(",");
+            $("#adLoclInfoShowSp").find("input[type=checkbox]").each(function(index, domEle){
+              for ( var i = 0; i < arrLocalInfo.length; i++) {
+                        var ckval = $(domEle).val();
+                          if (ckval == arrLocalInfo[i]) {
+                            $(domEle).attr("checked", "true");
+                          }
+            }
+            });
     }
     if ($(checkType).val() == "0") {
         jQuery("#geographyDiv").html("全国");
