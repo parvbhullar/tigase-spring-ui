@@ -451,6 +451,7 @@ public class AdGroupController extends AbstractController {
         }
         List<Dictionary> arr = adGroupService.queryDictionaryByType1();
         form.setArr(arr);
+        form.setAreaJsType("1");
         mv.addObject("form", form);
         return mv;
     }
@@ -544,10 +545,11 @@ public class AdGroupController extends AbstractController {
      * @return
      * @throws InvalidInfoException
      * @throws OperationNotSupportException
+     * @throws JSONException
      */
     @RequestMapping(params = "action=add")
     public ModelAndView addAdGroup(AdGroupForm form, HttpServletResponse response, HttpServletRequest request)
-            throws InvalidInfoException, OperationNotSupportException {
+            throws InvalidInfoException, OperationNotSupportException, JSONException {
 
         ModelAndView mv = new ModelAndView("adgroup/new_group_add", Constants.DEFAULT_COMMAND, form);
 
@@ -624,6 +626,59 @@ public class AdGroupController extends AbstractController {
                 adGroupextend.setAdGroupId(id);
                 String position = exact;
                 position = ";" + position;
+                /**
+                 * 新的控件组合后台数据开始.
+                 */
+                if ("1".equals(form.getAreaJsType())) {
+                    String[] arrPositon = form.getShortGeographicalPosition().split(";");
+                    ArrayList arrayList = new ArrayList();
+                    for (int i = 0; i < arrPositon.length; i++) {
+                        if (arrPositon[i].split(",").length == 3) {
+                            // 如果是区仅需处理当前数组
+                            arrayList.add(arrPositon[i]);
+                        }
+                        else {
+                            // 如果是市比如: 16,220 江苏,南京。将数据转换为江苏,南京，鼓楼 ;江苏，南京，浦口...三位数字形式
+                            if (arrPositon[i].split(",").length == 2) {
+                                DictionaryGlobalRegion dictionaryGlobalRegion = new DictionaryGlobalRegion();
+                                dictionaryGlobalRegion.setRegionId(new Short(arrPositon[i].split(",")[1]));
+                                List<DictionaryGlobalRegion> areaList =
+                                        adGroupService.queryCityList(dictionaryGlobalRegion);
+                                for (DictionaryGlobalRegion area : areaList) {
+                                    arrayList.add(arrPositon[i] + "," + area.getRegionId());
+                                }
+                            }
+                            else {
+                                // 如果是省比如: 16 江苏。将数据转换为江苏,南京，鼓楼 ;江苏，南京，浦口...江苏，苏州，平江 三位数字形式。
+                                // 就是把省下面所有的区选出来。
+                                System.out.println("arrPositon[i]" + arrPositon[i]);
+                                DictionaryGlobalRegion dictionaryGlobalRegion = new DictionaryGlobalRegion();
+                                dictionaryGlobalRegion.setRegionId(new Short(arrPositon[i]).shortValue());
+                                List<DictionaryGlobalRegion> areaList =
+                                        adGroupService.queryCityList(dictionaryGlobalRegion);
+                                for (DictionaryGlobalRegion area : areaList) {
+                                    dictionaryGlobalRegion.setRegionId(new Short(area.getRegionId()).shortValue());
+                                    List<DictionaryGlobalRegion> areaListDistrict =
+                                            adGroupService.queryCityList(dictionaryGlobalRegion);
+                                    for (DictionaryGlobalRegion areaDistrict : areaListDistrict) {
+                                        arrayList.add(arrPositon[i] + "," + areaDistrict.getParentId() + ","
+                                                + areaDistrict.getRegionId());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // 将最终组合的数组转换为position
+                    position = "";
+                    for (int index = 0; index < arrayList.size(); index++) {
+                        position += ((String) arrayList.get(index)).toString() + ";";
+                    }
+                }
+                System.out.println("position=" + position);
+                /**
+                 * 新的控件组合后台数据结束.
+                 */
+                adGroupextend.setShortGeographicalPosition(form.getShortGeographicalPosition());
                 adGroupextend.setGeographicalPosition(position);
                 adGroupExtendService.txAddAdGroupExtend(adGroupextend);
             }

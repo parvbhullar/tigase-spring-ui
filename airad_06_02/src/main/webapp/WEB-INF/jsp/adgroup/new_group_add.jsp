@@ -22,7 +22,9 @@
 <h1>添加广告组</h1>
 <form:form name="myfrm" action="adGroup.do?action=add"
 	commandName="command" method="post">
+	<form:hidden path="areaJsType" />
 	<form:hidden path="exact" />
+	<form:hidden path="shortGeographicalPosition" />
 	<form:hidden path="adLoclInfo" />
 	<form:hidden path="addFlag" />
 	<form:hidden path="editFlagCheck" />

@@ -50,6 +50,7 @@ if(null!=coreCampaign.getStartTime()){
     <th><span class="must">*</span>地理位置</th>
     <td><form:radiobutton path="coreAdGroup.adLoclType" value="0"  onclick="showDetial();"  />全国
     <form:radiobutton path="coreAdGroup.adLoclType" value="2" onclick="showDetial();"  /> 精确到区
+	<div id="areaId" style="display: block">地区选择</div>
     <form:radiobutton path="coreAdGroup.adLoclType" value="1" onclick="showAdLoclInfoSp(this,true)" />快捷方式选择
     <div id="adLoclInfoShowSp" style="display: none">
    <label>地区：</label>
@@ -187,6 +188,8 @@ if(null!=coreCampaign.getStartTime()){
 <!-- 开发嵌入end--></div>
 <%@ include file="/WEB-INF/jspf/footer.jsp"%>
 <script type="text/javascript" src="/js/tree/js/jquery.simple.tree.self.js"></script>
+<script type="text/javascript" src="/js/area/area.js"></script>
+<link href="style/lay.css" type="text/css" rel="stylesheet" />
 <script>
 
     $(document).ready(function() {
@@ -215,5 +218,90 @@ if(null!=coreCampaign.getStartTime()){
       addCss("adGroup.do?action=list");
     });
 </script>
+
+<div class="alert_lay sech_lay lm lay_wls" id="pslayer" style="display: none;position: absolute;">
+            <!--背景圆角上-->
+            <div class="alert_t">
+            </div>
+            <div class="box">
+                <h1>
+                    <span id="psHeader">请选择地区</span><a id="imgClose" class="butn3" href="javascript:void(0);">
+                    </a>
+                </h1>
+                <div class="blk">
+                    <div class="sech_layt btn_fst" id="divSelecting" >
+                        <h3>
+                            <span id="selectingHeader">您选择的地区是</span><b class="btn_fst">
+
+                            	<a href="#" class="button" id="btnOkLoc">确定</a>
+                                <a href="#" class="button" id="lnkEmpty">清空</a>
+                                </b>
+                        </h3>
+                        <ul id="selecting"></ul>
+                    </div>
+                    <!--
+                    <div class="sech_layt btn_fst" id="noSelectedLoc" style="display: block;">
+                        <h3>
+                            <span>提示：</span><b>
+                                <a href="#" class="button" id="btnOkLoc">确定</a>
+                                <a href="#" class="button" id="btnOkLoc">清空</a>
+                                </b>
+                        </h3>
+                        <p>
+                            	您最多可以选择5个地点
+                        </p>
+                    </div>
+                    -->
+                    <div class="sech_layb" id="sech_layb_id">
+                        <h2 id="subHeader1"><span>所有省市：</span></h2>
+<ol id="allItems">
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx2" onclick="changeBgColor(this,1)" value="2@北京市" />北京市</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx25" onclick="changeBgColor(this,1)" value="25@上海市" />上海市</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx27" onclick="changeBgColor(this,1)" value="27@天津市" />天津市</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx32" onclick="changeBgColor(this,1)" value="32@重庆市" />重庆市</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx6" onclick="changeBgColor(this,1)" value="6@广东省" />广东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx16" onclick="changeBgColor(this,1)" value="16@江苏省" />江苏省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx31" onclick="changeBgColor(this,1)" value="31@浙江省" />浙江省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx3" onclick="changeBgColor(this,1)" value="3@安徽省" />安徽省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx4" onclick="changeBgColor(this,1)" value="4@福建省" />福建省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx5" onclick="changeBgColor(this,1)" value="5@甘肃省" />甘肃省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx7" onclick="changeBgColor(this,1)" value="7@广西" />广西</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx8" onclick="changeBgColor(this,1)" value="8@贵州省" />贵州省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx9" onclick="changeBgColor(this,1)" value="9@海南省" />海南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx10" onclick="changeBgColor(this,1)" value="10@河北省" />河北省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx11" onclick="changeBgColor(this,1)" value="11@河南省" />河南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx12" onclick="changeBgColor(this,1)" value="12@黑龙江省" />黑龙江省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx13" onclick="changeBgColor(this,1)" value="13@湖北省" />湖北省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx14" onclick="changeBgColor(this,1)" value="14@湖南省" />湖南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx15" onclick="changeBgColor(this,1)" value="15@吉林省" />吉林省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx17" onclick="changeBgColor(this,1)" value="17@江西省" />江西省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx18" onclick="changeBgColor(this,1)" value="18@辽宁省" />辽宁省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx19" onclick="changeBgColor(this,1)" value="19@内蒙古" />内蒙古</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx20" onclick="changeBgColor(this,1)" value="20@宁夏" />宁夏</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx21" onclick="changeBgColor(this,1)" value="21@青海省" />青海省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx22" onclick="changeBgColor(this,1)" value="22@山东省" />山东省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx23" onclick="changeBgColor(this,1)" value="23@山西省" />山西省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx24" onclick="changeBgColor(this,1)" value="24@陕西省" />陕西省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx26" onclick="changeBgColor(this,1)" value="26@四川省" />四川省</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx28" onclick="changeBgColor(this,1)" value="28@西藏" />西藏</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx29" onclick="changeBgColor(this,1)" value="29@新疆" />新疆</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx30" onclick="changeBgColor(this,1)" value="30@云南省" />云南省</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx33" onclick="changeBgColor(this,1)" value="33@香港" />香港</a></li>
+
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx34" onclick="changeBgColor(this,1)" value="34@澳门" />澳门</a></li>
+	<li ><a href="javascript:void(0);"><input type="checkbox" id="pcbx35" onclick="changeBgColor(this,1)" value="35@台湾" />台湾</a></li>
+</ol>
+</div>
+                </div>
+            </div>
+            <!--背景圆角下-->
+        </div>
 </body>
 </html>
