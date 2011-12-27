@@ -78,27 +78,6 @@
 			${el:errorTip(command.errors,"coreAdGroup.adLoclType") } <small
 				style="display: block">请选择该广告组投放的地区。</small></td>
 		</tr>
-		<!--
-    <tr>
-      <th>人群性别</th>
-      <td><form:radiobutton path="coreAdGroup.adTagSex" value="1" />男性为主
-      <form:radiobutton path="coreAdGroup.adTagSex" value="2" />女性为主 <form:radiobutton
-        path="coreAdGroup.adTagSex" value="0" checked="checked" />不分性别</td>
-    </tr>
-    <tr>
-      <th>人群年龄段</th>
-      <td><form:select path="coreAdGroup.adTagAge">
-        <form:option value="0">全年龄</form:option>
-        <form:option value="1">18岁以下</form:option>
-        <form:option value="2">18-24</form:option>
-        <form:option value="3">25-34</form:option>
-        <form:option value="4">35-44</form:option>
-        <form:option value="5">45-54</form:option>
-        <form:option value="6">55-64</form:option>
-        <form:option value="7">65以上</form:option>
-      </form:select></td>
-    </tr>
-     -->
 		<tr>
 			<th><span class="must">*</span>所属行业</th>
 			<td><form:select path="coreAdGroup.adTagSoftType">
@@ -122,28 +101,6 @@
 				style="display: block">请选择该广告组适用的平台及版本。为了达到最佳的广告投放效果，建议选择全部。</small>
 			</td>
 		</tr>
-		<!--
-  <tr>
-    <th>流量信息</th>
-    <td>
-    <div class="selectBox">
-    <form:radiobutton path="coreAdGroup.adFlowInfo" value="0" />针对所有流量&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.adFlowInfo" value="1" />仅针对 Wi-Fi 流量
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <th>运营商</th>
-    <td>
-    <div class="selectBox">
-    <form:radiobutton path="coreAdGroup.changceInfo" value="0" />联通&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="1" />移动&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="2" />电信&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="3" />其他
-    </div>
-    </td>
-  </tr>
-   -->
 		<tr>
 			<th>&nbsp;</th>
 			<td>
