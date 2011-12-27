@@ -755,6 +755,8 @@ public class AdGroupController extends AbstractController {
             form.setIndustryInvolved(industryInvolved);
         }
         form.setEditFlagCheck("edit");
+        // 设置地域选择控件
+        form.setAreaJsType("1");
         List<Dictionary> arr = adGroupService.queryDictionaryByType1();
         form.setArr(arr);
         form.setAdTagSp(coreAdGroup.getAdTagSp());
