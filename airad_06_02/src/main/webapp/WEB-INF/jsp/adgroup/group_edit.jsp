@@ -8,6 +8,7 @@
 <head>
 <title>广告组修改</title>
 <link href="/js/tree/tree.css" type="text/css" rel="stylesheet" />
+<link href="style/lay.css" type="text/css" rel="stylesheet" />
 </head>
 <%
 CoreCampaign coreCampaign=(CoreCampaign)request.getAttribute("campaign");
@@ -19,11 +20,15 @@ if(null!=coreCampaign.getStartTime()){
 %>
 <body>
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
+<script type="text/javascript" src="/js/area/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/area/area.js"></script>
 <div id="main">
 <div class="mainCon">
 <!-- 开发嵌入start-->
 <form:form name="myfrm" action="adGroup.do?action=edit" commandName="command"  method="post">
+<form:hidden path="areaJsType" />
 <form:hidden path="exact" />
+<form:hidden path="shortGeographicalPosition" />
 <form:hidden path="adGroupId"/>
 <form:hidden path="editErrorFlag"/>
 <form:hidden path="adLoclInfo"/>
@@ -74,29 +79,6 @@ if(null!=coreCampaign.getStartTime()){
        <small style="display:block">请选择该广告组投放的地区。</small>
     </td>
   </tr>
-  <!--
-  <tr>
-    <th>人群性别</th>
-    <td><form:radiobutton path="coreAdGroup.adTagSex" value="1"/>男性为主
-        <form:radiobutton path="coreAdGroup.adTagSex" value="2"/>女性为主
-        <form:radiobutton path="coreAdGroup.adTagSex" value="0"/>不分性别</td>
-  </tr>
-  <tr>
-    <th>人群年龄段</th>
-    <td>
-    <form:select path="coreAdGroup.adTagAge">
-      <form:option value="0">全年龄</form:option>
-      <form:option value="1">18岁以下</form:option>
-      <form:option value="2">18-24</form:option>
-      <form:option value="3">25-34</form:option>
-      <form:option value="4">35-44</form:option>
-      <form:option value="5">45-54</form:option>
-      <form:option value="6">55-64</form:option>
-      <form:option value="7">65以上</form:option>
-    </form:select>
-    </td>
-  </tr>
-  -->
   <tr>
     <th><span class="must">*</span>所属行业</th>
     <td>
@@ -119,28 +101,6 @@ if(null!=coreCampaign.getStartTime()){
     <small style="display:block">请选择该广告组适用的平台及版本。为了达到最佳的广告投放效果，建议选择全部。</small>
     </td>
   </tr>
-  <!--
-  <tr>
-    <th>流量信息</th>
-    <td>
-    <div class="selectBox">
-    <form:radiobutton path="coreAdGroup.adFlowInfo" value="0" />针对所有流量&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.adFlowInfo" value="1" />仅针对 Wi-Fi 流量
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <th>运营商</th>
-    <td>
-    <div class="selectBox">
-    <form:radiobutton path="coreAdGroup.changceInfo" value="0" />联通&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="1" />移动&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="2" />电信&nbsp&nbsp
-    <form:radiobutton path="coreAdGroup.changceInfo" value="3" />其他
-    </div>
-    </td>
-  </tr>
-   -->
   <tr>
       <th>&nbsp;</th>
       <td>
@@ -155,19 +115,6 @@ if(null!=coreCampaign.getStartTime()){
 </div>
 <div class="rightCon">
 <div class="infoCon">
-<!--
-<h2><img src="images/ico_act.gif" alt="活动" width="16" height="16"
-  align="absmiddle" />活动摘要</h2>
-<ul>
-  <li><span class="fr"><airad:cutString size="8" value="${campaign.campaignName}" mark="..."/></span>名称</li>
-  <li><span class="fr sml"><%=startTime%></span>开始时间</li>
-  <c:if test="${!empty campaign.endTime}">
-  <li><span class="fr sml"><fmt:formatDate value="${campaign.endTime}"type="both" pattern="yyyy-MM-dd HH:mm" /></span>结束时间</li>
-  </c:if>
-  <li><span class="fr sml"><sup>&yen;</sup>${campaign.buggetDay}</span>每日预算</li>
-  <li><span class="fr sml"><c:choose><c:when test="${campaign.pubKind}=='2'">加速</c:when><c:otherwise>正常</c:otherwise> </c:choose>  </span>投放方式</li>
-</ul>
--->
 <h2><img src="images/ico_gup.gif" alt="活动" width="16" height="16"
   align="absmiddle" />广告组摘要</h2>
 <ul>
@@ -188,8 +135,9 @@ if(null!=coreCampaign.getStartTime()){
 <!-- 开发嵌入end--></div>
 <%@ include file="/WEB-INF/jspf/footer.jsp"%>
 <script type="text/javascript" src="/js/tree/js/jquery.simple.tree.self.js"></script>
-<script type="text/javascript" src="/js/area/area.js"></script>
+<!--
 <link href="style/lay.css" type="text/css" rel="stylesheet" />
+-->
 <script>
 
     $(document).ready(function() {
@@ -216,6 +164,8 @@ if(null!=coreCampaign.getStartTime()){
 
       showAdGroupTree();
       addCss("adGroup.do?action=list");
+      //先影藏
+      $("#pslayer").hide();
     });
 </script>
 
