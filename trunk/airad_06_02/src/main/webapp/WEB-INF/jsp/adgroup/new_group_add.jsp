@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/jspf/taglibs.jspf"%>
+<%@ include file="/WEB-INF/jspf/area.jsp"%>
 <%@page import="com.mitian.airad.model.CoreCampaign"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" debug="true">
@@ -9,9 +10,9 @@
 <link href="style/lay.css" type="text/css" rel="stylesheet" />
 <%@ include file="/WEB-INF/jspf/header.jsp"%>
 <script type="text/javascript" src="/js/area/area.js"></script>
-<!--
+
+<script type="text/javascript" src="/js/area/data.js"></script>
 <script type="text/javascript" src="/js/area/popupselector_cpd.js"></script>
--->
 </head>
 
 <body>
@@ -43,6 +44,7 @@
 				style="display: block">请输入一个有助于您识别该广告组的名称，比如：长三角地区人群</small></td>
 		</tr>
 		<tr><th></th><td><div id="areaId">地区选择</div></td></tr>
+		<input type="text" id="txtLoc" readonly="readonly" value="请选择地区" class="inp_txt inp_wid2 col_b" name="">
 		<tr>
 			<th><span class="must">*</span>投放地区</th>
 			<td><form:radiobutton path="coreAdGroup.adLoclType" value="0"
