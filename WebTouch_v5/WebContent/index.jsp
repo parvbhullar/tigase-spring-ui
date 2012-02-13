@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.ivyinfo.session.bean.SessionUserBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <% 
 String ctxindex = request.getContextPath();
 HttpSession getSession = request.getSession();
-SessionUserBean sessionUserBean = (SessionUserBean) getSession.getAttribute("sessionUserBean");
-String username=sessionUserBean.getUserBean().getName();
 %>
 <html>
 <head>
@@ -296,7 +293,7 @@ String username=sessionUserBean.getUserBean().getName();
 
 
 <div class="ui-layout-north" style="background-image:url(images/head_bg.jpg)">
-	<div style="float:right;padding-right:30px;padding-top:10px;"><label id="username"><img width="25" src="css/im/images/noavatar_small.gif" />当前用户：<%=username %></label>&nbsp;|&nbsp;
+	<div style="float:right;padding-right:30px;padding-top:10px;"><label id="username"><img width="25" src="css/im/images/noavatar_small.gif" />当前用户：</label>&nbsp;|&nbsp;
 	<a id="personal" href="javascript:void(false)">个人设置</a>&nbsp;|&nbsp;
 	<a id="cancellation" href="login.jsp">注销 </a>
 	</div>
