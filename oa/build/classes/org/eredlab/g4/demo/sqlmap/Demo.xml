@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 演示与教程手工映射SQL语句 -->
+<sqlMap namespace="Demo">
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto" />
+	<typeAlias alias="catalogVO" type="org.eredlab.g4.demo.vo.CatalogVO" />
+
+	<!-- 查询FlashReport元数据  -->
+	<select id="getFcfDataList" parameterClass="map" resultClass="dto">
+		SELECT name as name, value as value, color as color, alpha as alpha,
+		issliced as isSliced
+		FROM xzb_demo_fcf where product = #product#
+		<dynamic>
+			<isNotEmpty prepend="and" property="rownum">
+			rownum <![CDATA[ <= ]]> #rownum#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询FlashReport元数据  -->
+	<select id="getFcfDataListMysql" parameterClass="map" resultClass="dto">
+		SELECT name as name, value as value, color as color, alpha as alpha,
+		issliced as isSliced
+		FROM xzb_demo_fcf where product = #product#
+		<dynamic>
+			<isNotEmpty property="rownum">
+			  limit $rownum$
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询FlashReport元数据合计  -->
+	<select id="getFcfSumDataList" parameterClass="map" resultClass="dto">
+		SELECT name, sum(value) as value
+		FROM xzb_demo_fcf where product in ('1','2')
+		group by name
+	</select>
+
+	<!-- 查询测试数据  -->
+	<select id="getTestData" parameterClass="map" resultClass="dto">
+		SELECT a.sxh, a.xh, DECODE (a.zflb, 11, '门诊', 34, '住院') AS zflb,
+		a.grbm,
+		b.xm AS xm, (SELECT sfdlmc
+		FROM bg01sfxmdl
+		WHERE sfdlbm =
+		a.sfdlbm) AS sfdlmc, a.sfxmmc, a.sl,
+		a.sjjg,a.fyze,a.cd,a.gg,a.sfsj,a.sfy
+		FROM by09zyfymx a, by10cyjsb b
+	WHERE a.sxh = b.sxh and a.yybm = '00000021' and a.sfsj <![CDATA[ <= ]]>
+	to_date('2009-03-20', 'yyyy-mm-dd') and a.sfsj <![CDATA[ >= ]]>
+		to_date('2009-03-13', 'yyyy-mm-dd')
+	</select>
+
+	<!-- 查询测试数据  -->
+	<select id="getTestData1" parameterClass="map" resultClass="dto">
+		SELECT a.sxh, a.dwmc, a.grbm, a.xm, decode(a.xb, 1, '男', 2, '女' ,
+		'人妖') as xb, a.xnl, a.fyze, a.qzfbf AS zfje,
+		(a.fyze - a.qzfbf) AS
+		ybbx, a.jbsj AS jssj, a.sfy as jbr, (select yymc from
+		bg05ddyyda where
+		yybm = a.yybm) as yymc
+		FROM by10cyjsb a where yybm = '00000021'
+	</select>
+
+	<!-- 查询测试数据  -->
+	<select id="getTestData2" parameterClass="map" resultClass="dto">
+		SELECT a.sfdlbm, a.xmmc, a.xmrj, a.gg, a.dw, a.zfbl9 AS zfbl, a.jx,
+		a.cd,
+		a.qyzt AS qybz, a.ggsj, a.yybm
+		FROM bg02ldfwxm a where yybm =
+		'03010001'
+	</select>
+
+	<!-- 插入一条结算数据 -->
+	<insert id="insertEz_byjsbDomain" parameterClass="dto">
+		INSERT INTO
+		xzb_DEMO_BYJSB (
+		sxh, dwmc, grbm, xm, xb, xnl, fyze, zfje, ybbx, jssj, yymc,
+		jbr)
+		VALUES (#sxh#, #dwmc#, #grbm#, #xm#, #xb#, #xnl#, #fyze#, #zfje#,
+		#ybbx#, #jssj#, #yymc#, #jbr#)
+	</insert>
+
+	<!-- 插入一条收费项目 -->
+	<insert id="insertEz_sfxmDomain" parameterClass="dto">
+		INSERT INTO
+		xzb_demo_sfxm (
+		xmid, sfdlbm, xmmc,
+		xmrj, gg, dw,
+		zfbl, jx, cd,
+		qybz, yybm,
+		ggsj)
+		VALUES
+		(#xmid#, #sfdlbm#, #xmmc#,
+		#xmrj#, #gg#, #dw#,
+		#zfbl#, #jx#,
+		#cd#,
+		#qybz#, #yybm#, #ggsj# )
+	</insert>
+
+	<!-- 查询医院收费目录 -->
+	<select id="queryCatalogsForPrint" parameterClass="map"
+		resultClass="dto">
+		SELECT
+		xmid, xmmc, xmrj,
+		gg, dw, zfbl,
+		jx, cd, qybz,
+		yybm, ggsj, sfdlbm
+		FROM xzb_demo_sfxm a WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+		</dynamic>
+		ORDER BY xmid desc
+	</select>
+	
+	<select id="queryCatalogsForPrintForPageCount" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		FROM xzb_demo_sfxm a WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询医院收费目录(打印) -->
+	<select id="queryCatalogsForPrintLimitRows" parameterClass="map"
+		resultClass="dto">
+		SELECT
+		xmid, xmmc, xmrj,
+		gg, dw, zfbl,
+		jx, cd, qybz,
+		yybm, ggsj, sfdlbm
+	FROM xzb_demo_sfxm a WHERE 1 = 1 and rownum <![CDATA[ < ]]>
+		$rownum$
+		<dynamic>
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询医院收费目录(打印) -->
+	<select id="queryCatalogsForPrintLimitRowsMysql" parameterClass="map"
+		resultClass="dto">
+		SELECT
+		xmid, xmmc, xmrj,
+		gg, dw, zfbl,
+		jx, cd, qybz,
+		yybm, ggsj, sfdlbm
+	FROM xzb_demo_sfxm a WHERE 1 = 1 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+		</dynamic>
+		limit $rownum$
+	</select>
+
+	<!-- 查询病人结算信息 -->
+	<select id="queryBalanceInfo" parameterClass="map" resultClass="dto">
+		SELECT sxh, dwmc, grbm, xm, xb, xnl, fyze, zfje, ybbx, to_char(jssj, 'yyyy-mm-dd hh24:mi:ss') as jssj, yymc, jbr
+		FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询病人结算信息 -->
+	<select id="queryBalanceInfoMysql" parameterClass="map" resultClass="dto">
+		SELECT sxh, dwmc, grbm, xm, xb, xnl, fyze, zfje, ybbx, jssj, yymc, jbr
+		  FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询病人结算信息 -->
+	<select id="countBalanceInfo" parameterClass="map" resultClass="java.lang.Integer">
+		SELECT count(*)
+		FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询病人结算汇总信息 -->
+	<select id="sumBalanceInfo" parameterClass="map" resultClass="dto">
+		SELECT '共' || COUNT(sxh) || '人次' AS sxh, SUM (fyze) AS fyze,
+		       SUM (ybbx) AS ybbx, SUM (zfje) AS zfje
+		  FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询病人结算汇总信息 -->
+	<select id="sumBalanceInfoMysql" parameterClass="map" resultClass="dto">
+		SELECT concat('共', cast(COUNT(sxh) as char),'人次') AS sxh, round(SUM(fyze),2) AS fyze,
+		       round(SUM(ybbx),2) AS ybbx, round(SUM(zfje),2) AS zfje
+		  FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询中国行政区划数据  -->
+	<select id="getChinaDataArea" parameterClass="map" resultClass="dto">
+		SELECT areacode as value, areaname as text
+		FROM xzb_demo_chinaarea
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="areacode">
+				areacode like '$areacode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="areacodelength">
+				length(areacode) = $areacodelength$
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 参数管理-查询参数列表 -->
+	<select id="getChinaDataArea4Paging" parameterClass="map"
+		resultClass="dto">
+		SELECT areacode as value,
+		areaname as text
+		FROM xzb_demo_chinaarea a
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="areacode">
+				a.areacode = #areacode#
+			</isNotEmpty>
+		</dynamic>
+		ORDER BY areacode desc
+	</select>
+	
+	<select id="getChinaDataArea4PagingForPageCount" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		FROM xzb_demo_chinaarea a WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="areacode">
+				a.areacode = #areacode#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询医院收费目录(表格演示) -->
+	<select id="queryCatalogsForGridDemo" parameterClass="map"
+		resultClass="dto">
+		SELECT
+		xmid, xmmc, xmrj,
+		gg, dw, zfbl,
+		jx, cd, qybz,
+		yybm, ggsj, sfdlbm
+		FROM xzb_demo_sfxm a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xmid">
+				a.xmid = #xmid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="sfdlbm">
+				a.sfdlbm = #sfdlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="jx">
+				a.jx = #jx#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="cd">
+				a.cd like '%$cd$%'
+			</isNotEmpty>
+		</dynamic>
+		ORDER BY xmid desc
+	</select>
+	
+	<select id="countCatalogsForGridDemo" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) as count
+		FROM xzb_demo_sfxm a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xmid">
+				a.xmid = #xmid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="sfdlbm">
+				a.sfdlbm = #sfdlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="jx">
+				a.jx = #jx#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="cd">
+				a.cd like '%$cd$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询第一级树节点 -->
+	<select id="queryAreas4Tree4FirstLevel" parameterClass="map"
+		resultClass="dto">
+		SELECT areacode as id, areaname as text
+		FROM
+		xzb_demo_chinaarea a where length(areacode) = 2
+	</select>
+
+	<!-- 查询树节点 -->
+	<select id="queryAreas4Tree" parameterClass="map" resultClass="dto">
+		SELECT areacode as id, areaname as text
+		FROM xzb_demo_chinaarea a WHERE
+		a.areacode like '$areacode$%' and
+		length(areacode) = $length$
+	</select>
+
+	<!-- 查询表格树数据 -->
+	<select id="queryDeptItemsByDto4TreeGridDemo" parameterClass="map"
+		resultClass="dto">
+		SELECT
+		deptid as id, deptname as text, parentid,sortno,customid,leaf
+		FROM xzbdept
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="deptid">
+				deptid = #deptid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentid">
+				parentid = #parentid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="deptname">
+				deptname like
+				'%$deptname$%'
+			</isNotEmpty>
+		</dynamic>
+		order by sortno
+	</select>
+
+	<!-- 查询病人结算信息 -->
+	<select id="queryBalanceInfo2" parameterClass="map" resultClass="dto" remapResults="true">
+		SELECT sxh, dwmc, grbm, xm, xb, xnl, fyze, zfje, ybbx, jssj, yymc, jbr
+		FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="grbm">
+				a.grbm = #grbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="dwmc">
+				a.dwmc like '%$dwmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xnl1">
+			a.xnl <![CDATA[ >= ]]> #xnl1#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xnl2">
+			a.xnl <![CDATA[ <= ]]> #xnl2#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询病人结算信息 -->
+	<select id="countBalanceInfo2" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*)
+		FROM xzb_DEMO_BYJSB a
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sxh">
+				a.sxh = #sxh#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="grbm">
+				a.grbm = #grbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="dwmc">
+				a.dwmc like '%$dwmc$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xm">
+				a.xm like '%$xm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xnl1">
+			a.xnl <![CDATA[ >= ]]> #xnl1#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xnl2">
+			a.xnl <![CDATA[ <= ]]> #xnl2#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 查询医院收费目录综合实例 -->
+	<select id="queryCatalogs2" parameterClass="map" resultClass="dto">
+		SELECT
+		xmid, xmmc, xmrj,
+		gg, dw, zfbl,
+		jx, cd, qybz,
+		yybm, ggsj, sfdlbm
+		FROM xzb_demo_sfxm a WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="xmid">
+				a.xmid = #xmid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="xmmc">
+				a.xmmc like '%$xmmc$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<update id="updatesfxm" parameterClass="map">
+		UPDATE xzb_demo_sfxm
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="sfdlbm">
+				sfdlbm = #sfdlbm#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="ggsj">
+				ggsj = #ggsj#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="yybm">
+				yybm = #yybm#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="qybz">
+				qybz = #qybz#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="cd">
+				cd = #cd#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="jx">
+				jx = #jx#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="zfbl">
+				zfbl = #zfbl#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="dw">
+				dw = #dw#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="gg">
+				gg = #gg#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="xmmc">
+				xmmc = #xmmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="xmrj">
+				xmrj = #xmrj#
+			</isNotEmpty>
+		</dynamic>
+		WHERE 1=1 and xmid = #xmid#
+	</update>
+
+	<delete id="deleteSfxm" parameterClass="map">
+       DELETE FROM xzb_demo_sfxm WHERE xmid = #xmid#
+	</delete>
+	
+	<update id="updateByjsb" parameterClass="map">
+		UPDATE xzb_DEMO_BYJSB SET fyze = #fyze# WHERE sxh = #sxh#
+	</update>
+	
+	<!-- 查询医院收费目录(打印):综合范例 -->
+	<select id="queryCatalogsForPrintLimitRows4DemoWithMysql" parameterClass="map" resultClass="catalogVO">
+		SELECT 
+		       xmid, xmmc, xmrj, gg, dw, zfbl, jx, cd, qybz, yybm, ggsj, sfdlbm
+	      FROM xzb_demo_sfxm a 
+	     WHERE 1=1 limit 50
+	</select>
+	
+	<!-- 查询文件列表信息 -->
+	<select id="queryFiles" parameterClass="map" resultClass="dto">
+	   SELECT fileid, title, path,uploaddate,filesize,remark
+		 FROM xzb_demo_upload WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="title">
+				title like '%$title$%'
+			</isNotEmpty>
+		</dynamic>
+		order by fileid desc
+	</select>
+	<!-- 查询文件列表信息 -->
+	<select id="queryFiles4Oracle" parameterClass="map" resultClass="dto">
+	   SELECT fileid, title, path,TO_CHAR(uploaddate, 'yyyy-mm-dd hh24:mi:ss') AS uploaddate,
+	          filesize,remark
+		 FROM xzb_demo_upload WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="title">
+				title like '%$title$%'
+			</isNotEmpty>
+		</dynamic>
+		order by fileid desc
+	</select>
+	<!-- 统计文件列表 -->
+	<select id="countFiles" parameterClass="map" resultClass="java.lang.Integer">
+	   SELECT count(*)
+		 FROM xzb_demo_upload WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="AND" property="title">
+				title like '%$title$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 插入一文件上传数据 -->
+	<insert id="insertEa_demo_uploadPo" parameterClass="dto">
+		  INSERT INTO
+			xzb_demo_upload (
+			fileid, title, path,uploaddate,filesize,remark,fileName,dirName,upLoadType)
+		  VALUES (#fileid#, #title#, #path#,#uploaddate#,#filesize#,#remark#,#fileName#,#dirName#,#upLoadType#)
+	</insert>
+	<!-- ftp上传 -->
+	<insert id="insertEa_demo_uploadFtp" parameterClass="dto">
+		  INSERT INTO
+			xzb_demo_upload (
+			fileid, title,uploaddate,filesize,remark,fileName,dirName,upLoadType)
+		  VALUES (#fileid#, #title#,#uploaddate#,#filesize#,#remark#,#fileName#,#dirName#,#upLoadType#)
+	</insert>
+	
+	<!-- 根据文件ID获取一个文件 -->
+	<select id="queryFileByFileID" parameterClass="java.lang.String" resultClass="dto">
+	   SELECT *
+		 FROM xzb_demo_upload WHERE fileid = #fileid#
+	</select>
+	
+	<!-- 根据文件ID删除一个文件 -->
+	<delete id="delFileByFileID" parameterClass="java.lang.String">
+       DELETE FROM xzb_demo_upload WHERE fileid = #fileid#
+	</delete>
+	
+	<!-- 定义出入参对象映射 -->
+	<parameterMap id="prcdto" class="java.util.Map">
+		<parameter property="myname" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" /> <!-- 入参 -->
+		<parameter property="number1" jdbcType="DOUBLE" javaType="java.math.BigDecimal" mode="IN" /> <!-- 入参 -->
+		<parameter property="number2" jdbcType="DOUBLE" javaType="java.math.BigDecimal" mode="IN" /> <!-- 入参 -->
+		<parameter property="sum" jdbcType="DOUBLE" javaType="java.math.BigDecimal" mode="OUT" /> <!-- 出参 -->
+		<parameter property="result" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" /> <!-- 出参 -->
+		<parameter property="appCode" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" /> <!-- 执行代码 -->
+		<parameter property="errMsg" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" /> <!-- 出错信息 -->
+	</parameterMap>
+	<!-- 演示调用存储过程:如果你将存储过程是通过oracle的package的方式来组织,则使用packagename.prcname的方式来调用 -->
+	<procedure id="g4_prc_demo" parameterMap="prcdto">{call g4_prc_demo(?,?,?,?,?,?,?)}</procedure>
+	<!-- 演示调用存储过程:MYSQL数据库 -->
+	<procedure id="g4_prc_demo_mysql" parameterMap="prcdto">{call g4_prc_demo(?,?,?,?,?,?,?)}</procedure>
+	
+</sqlMap>
