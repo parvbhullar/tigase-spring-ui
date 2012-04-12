@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 全局数据访问模型 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- 加载jdbc属性文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Apache Commons DBCP 数据源  -->
+	<bean id="dataSourceG4" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${g4.jdbc.driverClassName}" />
+		<property name="url" value="${g4.jdbc.url}" />
+		<property name="username" value="${g4.jdbc.username}" />
+		<property name="password" value="${g4.jdbc.password}" />
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="30" />
+		<property name="maxIdle" value="15" />
+		<property name="minIdle" value="5" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="60" />
+		<property name="maxWait" value="10000" />
+		<property name="logAbandoned" value="true" />
+	</bean>
+	
+	<!-- 配置sqlmapClientFactory -->
+	<bean id="sqlMapClientG4" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocations">
+			<list>
+				<!-- G4系统级的SQL映射 -->
+				<value>config/g4/g4.sqlmap.xml</value>
+				<!-- 业务系统的SQL映射 
+					<value>config/app/app.sqlmap.xml</value>
+					-->
+			</list>
+		</property>
+		<property name="dataSource" ref="dataSourceG4" />
+	</bean>
+	
+	<!-- 配置G4数据读取器  -->
+	<bean id="g4Reader" class="org.eredlab.g4.bmf.base.IReaderImpl">
+		<property name="sqlMapClient" ref="sqlMapClientG4" />
+	</bean>
+	
+	<!-- 配置G4Dao  -->
+	<bean id="g4Dao" class="org.eredlab.g4.bmf.base.IDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClientG4" />
+	</bean>
+	
+</beans>

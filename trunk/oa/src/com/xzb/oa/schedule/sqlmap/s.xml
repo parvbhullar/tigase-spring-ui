@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 演示与教程手工映射SQL语句 -->
+<sqlMap namespace="S">
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto" />
+	<typeAlias alias="catalogVO" type="org.eredlab.g4.demo.vo.CatalogVO" />
+	<typeAlias alias="userInfo" type="org.eredlab.g4.arm.vo.UserInfoVo"/>
+
+	<!-- 查询我的日程列表 -->
+	<select id="queryScheduleList" parameterClass="map" resultClass="dto" remapResults="true">
+		SELECT scheId, scheFounder, scheTitle, scheUrgent, promptTime ,remind, beginDate, endDate, del, scheStatus, content
+		FROM xzb_s_schedule WHERE locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询我的日程列表-->
+	<select id="countScheduleList" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) FROM xzb_s_schedule  WHERE locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 插入一条日程表记录 -->
+	<insert id="saveScheduleItem" parameterClass="dto">
+		INSERT INTO xzb_s_schedule (
+		   scheId, scheTitle, scheUrgent, promptTime, 
+		   remind, scheFounder, beginDate, del,
+		   endDate, content) 
+		VALUES (#scheid#, #schetitle#, #scheurgent#, #prompttime#,#remind#, #schefounder#, #begindate#,
+		        #del#,#enddate#,#content#)
+	</insert>
+	
+	<!-- 根据主键更新日程 -->
+	<update id="updateScheduleItem" parameterClass="dto">
+         UPDATE xzb_s_schedule
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="schetitle">
+	         scheTitle = #schetitle#
+			</isNotNull>
+			<isNotNull prepend="," property="scheurgent">
+	         scheUrgent = #scheurgent#
+			</isNotNull>
+			<isNotNull prepend="," property="prompttime">
+	         promptTime = #prompttime#
+			</isNotNull>
+			<isNotNull prepend="," property="remind">
+	         remind = #remind#
+			</isNotNull>
+			<isNotNull prepend="," property="begindate">
+	         beginDate = #begindate#
+			</isNotNull>
+			<isNotNull prepend="," property="enddate">
+	         endDate = #enddate#
+			</isNotNull>
+			<isNotNull prepend="," property="content">
+	         content = #content#
+			</isNotNull>
+			<isNotNull prepend="," property="del">
+	         del = #del#
+			</isNotNull>
+			<isNotNull prepend="," property="remark">
+	         remark = #remark#
+			</isNotNull>
+			<isNotNull prepend="," property="schestatus">
+	         scheStatus = #schestatus#
+			</isNotNull>
+			<isNotNull prepend="," property="locked">
+	         locked = #locked#
+			</isNotNull>
+		</dynamic> 
+	        WHERE scheId = #scheid#    
+	</update>
+	
+	<!-- 查询日程列表 -->
+	<select id="queryAllScheduleList" parameterClass="map" resultClass="dto" remapResults="true">
+		SELECT a.scheId, b.username as scheFounder, a.scheTitle, a.scheUrgent, a.remind, a.beginDate, a.endDate, a.scheStatus, a.content
+		FROM xzb_s_schedule a,xzbuser b WHERE a.scheFounder =b.userid and a.locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				a.scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				a.scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			a.beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			a.endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				a.scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询日程列表-->
+	<select id="countAllScheduleList" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) FROM xzb_s_schedule  WHERE locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询我的日历日程列表 -->
+	<select id="querySchedules" parameterClass="map" resultClass="dto" remapResults="true">
+		SELECT scheId as id, scheUrgent as cid, scheTitle as title, beginDate as start, endDate as end, content as notes
+		FROM xzb_s_schedule WHERE locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查询我的日历日程列表-->
+	<select id="countSchedules" parameterClass="map"
+		resultClass="java.lang.Integer">
+		SELECT count(*) FROM xzb_s_schedule  WHERE locked = '1' 
+		<dynamic>
+			<isNotEmpty prepend="AND" property="schetitle">
+				scheTitle like '%$schetitle$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schefounder">
+				scheFounder = #schefounder#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="begindate">
+			beginDate <![CDATA[ >= ]]> #begindate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="enddate">
+			endDate <![CDATA[ <= ]]> #enddate#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="schestatus">
+				scheStatus = #schestatus#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+</sqlMap>
