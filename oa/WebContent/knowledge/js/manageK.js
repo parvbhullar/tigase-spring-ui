@@ -51,6 +51,12 @@ Ext.onReady(function() {
 			},{
 				dataIndex : 'attaid',
 				hidden	  : true
+			},{
+				dataIndex : 'username',
+				hidden	  : true	
+			},{
+				dataIndex : 'deptname',
+				hidden	  : true
 			}]);
 	
 	/**
@@ -90,7 +96,8 @@ Ext.onReady(function() {
 							name : 'updatetime'
 						},{
 							name : 'attaid'
-						}])
+						},{name:'username'}
+						,{name:'deptname'}])
 			});
 
 	// 翻页排序时带上查询条件
@@ -148,12 +155,13 @@ Ext.onReady(function() {
 	var tbar = new Ext.Toolbar({
 		items : [ {
 					text : '新增',
+					id:'grid_add',
 					iconCls : 'page_addIcon',
 					handler : function() {
 						var selectModel = dirTree.getSelectionModel();
 						var selectNode = selectModel.getSelectedNode();
-						var dirText=selectNode.attributes.text;
-						if('根目录'==dirText){
+						var dirId=selectNode.attributes.id;
+						if('001003001'==dirId){
 							Ext.Msg.alert('根目录 不可新建文档!');
 							return;
 						}else{
@@ -163,15 +171,10 @@ Ext.onReady(function() {
 					}
 		}, '-', {
 			text : '删除',
+			id:'grid_del',
 			iconCls : 'deleteIcon',
 			handler : function() {
 				deleteDocItems();
-			}
-		},'-', {
-			text : '授权',
-			iconCls : 'deleteIcon',
-			handler : function() {
-				limitisDocItems();
 			}
 		},'->', {
 			xtype : 'textfield',
@@ -488,13 +491,14 @@ var selectPanel=new Ext.form.FormPanel({
 		name : 'selectPanel',
 		defaultType : 'textfield',
 		labelAlign : 'right',
+		readOnly:true,
 		labelWidth : 65,
 		frame : false,
 		bodyStyle : 'padding:5 5 0',
 		items : [{
 	    	   id:'selectDeps',
 	    	   width:600,
-	    	   readonly:true,
+	    	   readOnly:true,
 	    	   fieldLabel:'选择部门',
 	    	   listeners: {
 	    		      focus: function() {
@@ -532,7 +536,7 @@ var selectPanel=new Ext.form.FormPanel({
 								height : 500,
 								resizable : false,
 								draggable : true,
-								closeAction : 'hide',
+								closeAction : 'close',
 								title : '<span class="commoncss">部门分配</span>',
 								// iconCls : 'page_addIcon',
 								modal : true,
@@ -564,7 +568,7 @@ var selectPanel=new Ext.form.FormPanel({
 	       },{
 	    	   id:'selectPersons',
 	    	   width:600,
-	    	   readonly:true,
+	    	   readOnly:true,
 	    	   fieldLabel:'选择人员 ',
 	    	   listeners: {
 	    		      focus: function() {
@@ -603,7 +607,7 @@ var selectPanel=new Ext.form.FormPanel({
 									height : 500,
 									resizable : false,
 									draggable : true,
-									closeAction : 'hide',
+									closeAction : 'close',
 									title : '<span class="commoncss">人员分配</span>',
 									// iconCls : 'page_addIcon',
 									modal : true,
@@ -661,7 +665,7 @@ var selectPanel=new Ext.form.FormPanel({
 		    	        	 if(a.checked==true)
 		    	        		 {
 				    	        	 Ext.getCmp('radioForm').setValue(a.inputValue);			    	        	
-				    	        	 selectPanel.hide();
+				    	        	// selectPanel.hide();
 				    	        	// addDocWindow.body.update();
 		    	        		 }
 		    	        	 
@@ -672,14 +676,14 @@ var selectPanel=new Ext.form.FormPanel({
 		    	        	 if(a.checked==true)
 		    	        		 {
 					    	        	Ext.getCmp('radioForm').setValue(a.inputValue);					    	        					    	
-					    	        	 selectPanel.hide();
+					    	        	// selectPanel.hide();
 					    	        
 					    	        	
 		    	        		 }
 		    	        }},
 		    	        {boxLabel:'部分共享',id:'state3',name:'radio',checked:false,inputValue:'2',handler:function(){
 		    	        	//limitisWindow.show();
-		    	        	
+		    	        	/**
 		    	        	if(Ext.getCmp('radiotype').getValue()=='dir')
 		    	        		{
 		    	        			Ext.getCmp('limitisDocId').setValue(Ext.getCmp('radioDirId').getValue());
@@ -687,13 +691,13 @@ var selectPanel=new Ext.form.FormPanel({
 		    	        			{
 		    	        			Ext.getCmp('limitisDocId').setValue(Ext.getCmp('radioDocId').getValue());
 		    	        			}
-							
+							*/
 		    	        	var a=Ext.getCmp('state3');
 		    	        	 if(a.checked==true)
 		    	        		 {
 		    	        		 	Ext.getCmp('radioForm').setValue(a.inputValue);
 		    	        		 	//limitisWindow.show();		    	        		 	
-		    	        		 	 selectPanel.show();		    	        		 	
+		    	        		 	// selectPanel.show();		    	        		 	
 		    	        		 
 		    	        		 	
 		    	        		 }
@@ -736,28 +740,28 @@ var selectPanel=new Ext.form.FormPanel({
 		    	 defaultType:'radio',
 		    	 hideLabels:true,//checked:true
 		    	 items:[
-		    	        {boxLabel:'不共享，（默认情况下）',id:'state1',name:'radio',inputValue:'0',checked:false,handler:function(){
+		    	        {boxLabel:'不共享，（默认情况下）',id:'state1_',name:'radio',inputValue:'0',checked:false,handler:function(){
 		    	        	
-		    	        	 var a=Ext.getCmp('state1');
+		    	        	 var a=Ext.getCmp('state1_');
 		    	        	 if(a.checked==true)
 		    	        	 Ext.getCmp('radioForm').setValue(a.inputValue);
 		    	        	
 		    	        	 
 		    	        }},
-		    	        {boxLabel:'共享所有人',id:'state2',name:'radio',inputValue:'1',checked:false,handler:function(){
+		    	        {boxLabel:'共享所有人',id:'state2_',name:'radio',inputValue:'1',checked:false,handler:function(){
 		    	        	
-		    	        	var a=Ext.getCmp('state2');
+		    	        	var a=Ext.getCmp('state2_');
 		    	        	 if(a.checked==true)
 		    	        		 Ext.getCmp('radioForm').setValue(a.inputValue);
 		    	        	 
 		    	        	  	
 		    	        }},
-		    	        {boxLabel:'选择部门',id:'state4',name:'radio',inputValue:'2',checked:false,handler:function(){
+		    	        {boxLabel:'选择部门',id:'state4_',name:'radio',inputValue:'2',checked:false,handler:function(){
+		    	        	var a=Ext.getCmp('state4_');
 		    	        	
-		    	        	var a=Ext.getCmp('state4');
-		    	        	Ext.getCmp('DirlimitisType').setValue('0');//目录分配部门
 		    	        	 if(a.checked==true)
 		    	        		 {
+		    	        		 Ext.getCmp('DirlimitisType').setValue('0');//目录分配部门
 		    	        		 	Ext.getCmp('radioForm').setValue(a.inputValue);
 		    	        		 	 var formItemSelector = new Ext.Panel({ 
 		 								labelWidth: 3,
@@ -784,7 +788,7 @@ var selectPanel=new Ext.form.FormPanel({
 		 							
 		 							var test=new Ext.Window({
 		 								layout : 'fit',
-		 								id:'selectDeptsWindow',
+		 								id:'selectDeptsWindow_',
 		 								width : 500,
 		 								height : 500,
 		 								resizable : false,
@@ -808,7 +812,7 @@ var selectPanel=new Ext.form.FormPanel({
 		 									text : '关闭',
 		 									iconCls : 'deleteIcon',
 		 									handler : function() {
-		 										test.close();
+		 										Ext.getCmp('selectDeptsWindow_').close();
 		 									}
 		 								}]
 		 								
@@ -822,13 +826,14 @@ var selectPanel=new Ext.form.FormPanel({
 		    	        	  	
 		    	        }},
 		    	      
-		    	        {boxLabel:'选择人员',id:'state3',name:'radio',checked:false,inputValue:'2',handler:function(){
+		    	        {boxLabel:'选择人员',id:'state3_',name:'radio',checked:false,inputValue:'2',handler:function(){
 		    	        	//limitisWindow.show();						
-		    	        	var a=Ext.getCmp('state3');
-		    	        	Ext.getCmp('DirlimitisType').setValue('1');//目录分配人员
+		    	        	var a=Ext.getCmp('state3_');
+		    	        	
 		    	        	 if(a.checked==true)
 		    	        		 {
-		    	        		 	Ext.getCmp('radioForm').setValue(a.inputValue);
+		    	        		 Ext.getCmp('DirlimitisType').setValue('1');//目录分配人员
+		    	        		 	Ext.getCmp('radioForm').setValue(a.inputValue);		    	        		 	
 		    	        		 	 var formItemSelector = new Ext.Panel({ 
 		 								labelWidth: 3,
 		 								width:600,
@@ -854,7 +859,7 @@ var selectPanel=new Ext.form.FormPanel({
 		 							
 		 							var test=new Ext.Window({
 		 								layout : 'fit',
-		 								id:'selectDeptsWindow',
+		 								id:'selectPersonsWindow_',
 		 								width : 500,
 		 								height : 500,
 		 								resizable : false,
@@ -878,7 +883,7 @@ var selectPanel=new Ext.form.FormPanel({
 		 									text : '关闭',
 		 									iconCls : 'deleteIcon',
 		 									handler : function() {
-		 										test.close();
+		 										Ext.getCmp('selectPersonsWindow_').close();
 		 									}
 		 								}]
 		 								
@@ -952,9 +957,9 @@ var selectPanel=new Ext.form.FormPanel({
 						alert("选择一种共享类型");
 						return;
 					}
-				var dirId=Ext.getCmp('radioDirId').getValue();
-				var type=Ext.getCmp('radiotype').getValue();
-				var docId=Ext.getCmp('radioDocId').getValue();
+				var dirId=Ext.getCmp('radioDirId_').getValue();
+				//var type=Ext.getCmp('radiotype').getValue();
+				//var docId=Ext.getCmp('radioDocId').getValue();
 				
 				Ext.Ajax
 				.request( {
@@ -974,9 +979,8 @@ var selectPanel=new Ext.form.FormPanel({
 					},
 					params : {
 						shareType:shareType,
-						dirId:dirId,
-						type:type,
-						docId:docId
+						dirId:dirId
+						
 					}
 				});
 			
@@ -1109,8 +1113,7 @@ var selectPanel=new Ext.form.FormPanel({
 	          html : ''
 	        } ]
 	});
-	
-	
+
 	var addDocWindow = new Ext.Window( {
 		width : 700,
 //		height : 470,
@@ -1131,7 +1134,7 @@ var selectPanel=new Ext.form.FormPanel({
 		pageY : 20,
 		pageX : document.body.clientWidth / 2 - 420 / 2,
 		animateTarget : Ext.getBody(),
-		constrain : true,
+		constrain : true,//,radioPanel,selectPanel
 		items : [ addDocFormPanel,panel,addDocFormPanelDown,radioPanel,selectPanel],
 		buttons : [
 				{
@@ -1396,9 +1399,12 @@ var selectPanel=new Ext.form.FormPanel({
 		$('#dirForm').ajaxForm(options);
 		$("#dirForm").submit();
 		*/
+		
 		selectPanel.hide();
 		radioPanel.hide();
+		//addDocWindow.doLayout();
 		addDocWindow.show();
+		
 		addDocWindow
 				.setTitle('<span class="commoncss">新增文件</span>');
 		Ext.getCmp('windowmode').setValue('add');
@@ -1427,6 +1433,7 @@ var selectPanel=new Ext.form.FormPanel({
 			success : function(form, action) {
 				addDocWindow.hide();
 				store.reload();
+				window.location.reload();
 				//refreshNode(Ext.getCmp('parentid').getValue());
 				form.reset();
 				Ext.MessageBox.alert('提示', action.result.msg);
@@ -1530,8 +1537,9 @@ var selectPanel=new Ext.form.FormPanel({
 	function editDocInit() {
 		var record = grid.getSelectionModel().getSelected();		
 		addDocFormPanel.getForm().loadRecord(record);
-		selectPanel.hide();
+		selectPanel.show();
 		radioPanel.show();
+
 		addDocWindow.show();
 		addDocWindow.setTitle('<span class="commoncss">修改文档</span>');
 		var selectModel = dirTree.getSelectionModel();
@@ -1542,6 +1550,8 @@ var selectPanel=new Ext.form.FormPanel({
 		Ext.getCmp('docContentT').setValue(record.get('doccontent'));
 		Ext.getCmp('docId').setValue(record.get('docid'));
 		Ext.getCmp('attaId').setValue(record.get('attaid'));
+		Ext.getCmp('selectDeps').setValue(record.get('deptname'));
+		Ext.getCmp('selectPersons').setValue(record.get('username'));
 
 		$("#docDirId").val(selectNode.attributes.id);
 		$("#docAttaId").val(record.get('attaid'));
@@ -1881,7 +1891,7 @@ var selectPanel=new Ext.form.FormPanel({
 								var selectNode = selectModel.getSelectedNode();
 								Ext.getCmp('radioDirId_').setValue(selectNode.attributes.id);
 								
-								Ext.getCmp('radiotype').setValue('dir');
+								//Ext.getCmp('radiotype').setValue('dir');
 								radiowindow.show();
 								}
 						},

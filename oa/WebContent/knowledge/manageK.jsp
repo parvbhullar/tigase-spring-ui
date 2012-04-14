@@ -13,6 +13,7 @@
 <eRedG4:import src="/knowledge/js/manageK.js"/>
 <eRedG4:import src="/knowledge/js/Multiselect.js"/>
 <eRedG4:import src="/knowledge/js/knowledgeShare.js"/>
+<eRedG4:import src="/knowledge/js/knowledgeShare_.js"/>
 <eRedG4:import src="/knowledge/js/DDView.js"/>
 <eRedG4:import src="/knowledge/js/manageSelf.js"/>
 <eRedG4:ext.codeRender fields="SEX,LOCKED,USERTYPE"/>

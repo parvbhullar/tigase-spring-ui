@@ -149,12 +149,26 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 		});
 
 
+		this.tbar1 = new Ext.Toolbar({
+			items : [ {
+						xtype:'button',
+						id:'saveButton',
+						text : '保存',
+						iconCls : 'page_addIcon',
+						handler : function() {
+							
+					
+						}
+			}]
+		});
+		
+
 		//this.toMultiselect.on('dblclick', this.onRowDblClick, this);
 				
 		var p = new Ext.Panel({
 			//bodyStyle:this.bodyStyle,
 			//border:this.border,
-			//tbar:[this.tbar],
+			tbar:[this.tbar1],
 			layout:"table",
 			layoutConfig:{columns:3}
 		});
@@ -186,6 +200,7 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			this.addIcon.on('click', this.fromTo, this);
 			this.removeIcon.on('click', this.toFrom, this);
 			this.saveIcon.on('click', this.saveRightTree, this);
+			Ext.getCmp('saveButton').on('click', this.saveRightTree, this);
 		}
 		if (!this.drawLeftIcon || this.hideNavIcons) { this.addIcon.dom.style.display='none'; }
 		if (!this.drawRightIcon || this.hideNavIcons) { this.removeIcon.dom.style.display='none'; }
