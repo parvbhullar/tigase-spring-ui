@@ -94,11 +94,11 @@
 	</insert>
 	
 	<insert id="insertLimitisDir" parameterClass="dto" >
-		INSERT INTO xzb_role (
-		   id, type, docId, 
-		   sharType) 
-		VALUES (#id#, #type#, #dirId#,
-		    #sharType#)
+		INSERT INTO xzbdataauthorize (
+		   authorizeId, moduleType, moduleId
+		  ) 
+		VALUES (#id#, #type#, #dirId#
+		    )
 	</insert>
 	<!-- 初始化根目录 -->
 	<insert id="initDirItem" parameterClass="dto" >
@@ -215,6 +215,12 @@
 		DELETE 
 		  FROM xzb_k_dir
 		      WHERE dirId like '%$dirId$%'
+	</delete>
+	<!-- 删除知识管理系统的权限 -->
+	<delete id="deleteAuthorize" parameterClass="map" >
+		DELETE 
+		  FROM xzbdataauthorize
+		      WHERE moduleId =#moduleId# and moduleType=#moduleType#
 	</delete>
 	
 	<!-- 通过dirId删除右边的文档 -->
@@ -427,9 +433,29 @@ where parentId= #parentDirId# and dirName= #dirname#
 		
 		<select id="queryDocsForManage" parameterClass="map"
 			resultClass="dto">
+			select a.docId, a.docTitle, a.docDirId, a.docType, a.releaseTime, a.updateTime, a.docAuthor, a.docAuthorDep,a.updateAuthor, a.updateAuthorDep, a.docStatus, a.typeOfDoc, a.enabled, 
+			a.docContent,a.attaId,a.share,a.userid ,b.userName,
+			b.deptName	from xzb_k_doc a LEFT JOIN xzbdataauthorize b on a.docId=b.moduleId	 
+			where enabled='1'
+			<dynamic>
+				<isNotEmpty prepend="AND" property="dirId"> 
+					filePath like '%$dirId$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="docTitle"> 
+					docTitle like '%$docTitle$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="typeOfDoc"> 
+					typeOfDoc = #typeOfDoc#
+				</isNotEmpty>
+			</dynamic>
+			order by updateTime desc
+		</select>
+		
+		<select id="queryDocsForManageShare" parameterClass="map"
+			resultClass="dto">
 			select docId, docTitle, docDirId, docType, releaseTime, updateTime, docAuthor,
 			docAuthorDep,
-			updateAuthor, updateAuthorDep, docStatus, typeOfDoc, enabled, docContent,attaId,share
+			updateAuthor, updateAuthorDep, docStatus, typeOfDoc, enabled, docContent,attaId,share,userid
 			from xzb_k_doc
 			where enabled='1'
 			<dynamic>
@@ -444,7 +470,8 @@ where parentId= #parentDirId# and dirName= #dirname#
 				</isNotEmpty>
 			</dynamic>
 			order by updateTime desc
-		</select>	
+		</select>
+			
 		<select id="queryDocsForManageForPageCount" parameterClass="map" resultClass="java.lang.Integer">
 			select count(*) from xzb_k_doc where enabled='1'
 			<dynamic>

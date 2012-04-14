@@ -396,7 +396,7 @@ public class KAction extends BaseAction {
 		if (WebUtils.getParamValue("DEFAULT_DEVELOP_ACCOUNT", request).equals(userInfoVo.getAccount())) {
 			dto.remove("usertype");
 		}
-		List userList = g4Reader.queryForPage("K.queryDocsForManage", dto);
+		List userList = g4Reader.queryForPage("K.queryDocsForManageShare", dto);
 		Dto o=new BaseDto();
 		for(int i=0;i<userList.size();i++)
 		{
@@ -568,44 +568,19 @@ public class KAction extends BaseAction {
 		Dto outDto=new BaseDto();
 		String type = request.getParameter("shareType");//共享类型
 		String dirId=request.getParameter("dirId");//目录id
-		String type1=request.getParameter("type");//doc代表文档,dir 代表目录
-		String docId=request.getParameter("docId");
+		
 		
 		
 		if(G4Utils.isEmpty(type))
 		{
 			type="0";
 		}
-		if(G4Utils.isEmpty(dirId)&&type1.equals("dir"))
-		{
-			setOkTipMsg("保存失败", response);
-			return null;
-		}
-		if(G4Utils.isEmpty(docId)&&type1.equals("doc"))
-		{
-			setOkTipMsg("保存失败", response);
-			return null;
-		}
-		if(type1.equals("dir"))
-		{
 			dto.put("dirId", dirId);
 			dto.put("type", type);
-			dto.put("lei", type1);
 			kService.updateShareType(dto);
 			
 			setOkTipMsg("共享成功", response);
-		}else if(type1.equals("doc"))
-		{
-			dto.put("docId", docId);
-			dto.put("type", type);
-			dto.put("lei", type1);
-			
-			
-			//dto.put("fields", fields);
-			kService.updateShareType(dto);
-			
-			setOkTipMsg("修改成功", response);
-		}
+		
 		
 		
 		return mapping.findForward(null);

@@ -40,7 +40,7 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
     onRender: function(ct, position){
 		Ext.ux.ItemSelector.superclass.onRender.call(this, ct, position);
 		
-		var dirId=Ext.getCmp('radioDirId_').getValue();//文档id
+		var dirId=Ext.getCmp('radioDirId_').getValue();//目录id
 		var DoclimitisType=Ext.getCmp('DirlimitisType').getValue();
 		//alert(docId);
 		//var depType=Ext.getCmp('depLimitis').getValue();
@@ -149,12 +149,26 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 		});
 
 
+		this.tbar1 = new Ext.Toolbar({
+			items : [ {
+						xtype:'button',
+						id:'saveButton_',
+						text : '保存',
+						iconCls : 'page_addIcon',
+						handler : function() {
+							
+					
+						}
+			}]
+		});
+		
+		
 		//this.toMultiselect.on('dblclick', this.onRowDblClick, this);
 				
 		var p = new Ext.Panel({
 			//bodyStyle:this.bodyStyle,
 			//border:this.border,
-			//tbar:[this.tbar],
+			tbar:[this.tbar1],
 			layout:"table",
 			layoutConfig:{columns:3}
 		});
@@ -186,6 +200,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			this.addIcon.on('click', this.fromTo, this);
 			this.removeIcon.on('click', this.toFrom, this);
 			this.saveIcon.on('click', this.saveRightTree, this);
+			Ext.getCmp('saveButton_').on('click', this.saveRightTree, this);
+			
 		}
 		if (!this.drawLeftIcon || this.hideNavIcons) { this.addIcon.dom.style.display='none'; }
 		if (!this.drawRightIcon || this.hideNavIcons) { this.removeIcon.dom.style.display='none'; }
@@ -383,21 +399,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 	saveRightTree:function()
 	{
 		this.roonodes = this.rightTree.getRootNode().childNodes;
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
-		
-		//var depType=Ext.getCmp('depLimitis').getValue();//部门类型
-		//var peopleType=Ext.getCmp('peopleLimitis').getValue();//人员类型
-		//var limitisType=Ext.getCmp('limitisType').getValue();//部门为1，人员为2
-		//var saveLimitisUrl=null;
-		//if(DoclimitisType=='0')
-		//	{
-		//	saveLimitisUrl='./k.xzb?reqCode=saveLimitisDept';
-			//}else if(DoclimitisType=='1')
-				//{
-				//	saveLimitisUrl='./k.xzb?reqCode=saveLimitisPerson';
-			//	}
-		
+		var docId=Ext.getCmp('radioDirId_').getValue();//文档id
+		var DoclimitisType=Ext.getCmp('DirlimitisType').getValue();	
 		var fields = '';
 		var fieldsName='';
         for(var i=0;i<this.roonodes.length;i++){  //从节点中取出子节点依次遍历
@@ -416,10 +419,7 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
             		
             		fieldsName=fieldsName+","+rootnode.text;
             	}
-            //alert(rootnode.text);
-            //if(rootnode.childNodes.length>0){  //判断子节点下是否存在子节点，个人觉得判断是否leaf不太合理，因为有时候不是leaf的节点也可能没有子节点
-                //findchildnode(rootnode);    //如果存在子节点  递归
-            //}    
+           
         }
         Ext.Ajax.request({
 			url :'./k.xzb?reqCode=saveLimitisDept',
@@ -430,13 +430,13 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			
 				if(DoclimitisType=='0')
 					{
-						Ext.getCmp('selectDeps').setValue(fieldsName);
-						Ext.getCmp('selectDeptsWindow').hide();
+						//Ext.getCmp('selectDeps').setValue(fieldsName);
+						Ext.getCmp('selectDeptsWindow_').close();
 					
 					}else if(DoclimitisType=='1')
 						{
-							Ext.getCmp('selectPersons').setValue(fieldsName);
-							Ext.getCmp('selectPersonsWindow').hide();
+							//Ext.getCmp('selectPersons').setValue(fieldsName);
+							Ext.getCmp('selectPersonsWindow_').close();
 						}
 				Ext.Msg.alert('提示', resultArray.msg);
 			},
@@ -451,42 +451,10 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 				fields :fields,
 				docId:docId,
 				fieldsName:fieldsName,
-				moduleType:'1',
+				moduleType:'0',
 				DoclimitisType:DoclimitisType
 			}
 		});
-        /**
-        Ext.Msg.confirm(
-				'请确认',
-				'<span style="color:red"><b>提示:</b>删除文档将同时删除和文档相关的权限信息,请慎重.</span><br>继续删除吗?',
-				function(btn, text) {
-					if (btn == 'yes') {
-						showWaitMsg();
-						Ext.Ajax.request({
-							url : saveLimitisUrl,//'./k.xzb?reqCode=saveLimitis',
-							success : function(response) {
-								var resultArray = Ext.util.JSON
-										.decode(response.responseText);
-								Ext.Msg.alert('提示', resultArray.msg);
-							},
-							failure : function(response) {
-								var resultArray = Ext.util.JSON
-										.decode(response.responseText);
-								Ext.Msg.alert('提示', resultArray.msg);
-							},
-							params : {
-								fields :fields,
-								docId:docId,
-								depType:depType,
-								peopleType:peopleType,
-								fieldsName:fieldsName,
-								limitisType:limitisType
-							}
-						});
-					}
-				});
-        */
-        
         
 	}
 });

@@ -75,7 +75,7 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 		dep=(BaseDto)g4Dao.queryForObject("K.queryUserdep", pDto);
 		String deptid=dep.getAsString("deptid");
 		pDto.put("deptid", deptid);
-		pDto.put("roleType", "0");//在xzb_role目录标志位为0
+		pDto.put("moduleType", "0");//目录标志位为0
 		List deptList = g4Dao.queryForList("K.queryAllDirItems", pDto);
 		G4RoleLimitis g=new G4RoleLimitis();
 		List newDeptList=g.FilterRoleLimitis(deptList,pDto);
@@ -289,7 +289,6 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 			limits.put("dirId", dirId);
 			limits.put("id", limitisId);
 			limits.put("type", "0");
-			limits.put("sharType", "0");
 			
 			//
 			pDto.put("path", userId+","+dirName);
@@ -465,13 +464,10 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 		 	}
 		g4Dao.delete("K.deleteDirItem", pDto);
 		
-		/**
-		 * 对后台文件操作
-		String file=pDto.getAsString("filepath");
-		file=path+"\\"+file;
-		File delFile=new File(file);
-		delFiles(delFile);	
-		*/
+		Dto Adto=new BaseDto();
+		Adto.put("moduleType", "0");
+		Adto.put("moduleId", pDto.getAsString("dirId"));
+		g4Dao.delete("K.deleteAuthorize",Adto);
 		outDto.put("success", "1");
 		return outDto;
 		
@@ -726,6 +722,9 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 		for (int i = 0; i < arrChecked.length; i++) {
 			dto.put("docId", arrChecked[i]);
 			dto.put("enabled", "0");
+			Dto Adto=new BaseDto();
+			Adto.put("moduleType", "1");
+			Adto.put("moduleId", arrChecked[i]);
 			//g4Dao.update("K.updateDocItem", dto);
 			Dto pathDto=new BaseDto();
 			pathDto=(BaseDto)g4Dao.queryForObject("K.queryUpLoadPath", dto);
@@ -734,6 +733,7 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 			try{
 				g4Dao.delete("K.deleteDocUpload", dto);
 				g4Dao.delete("K.deleteDocItem", dto);
+				g4Dao.delete("K.deleteAuthorize",Adto);
 			}catch(Exception e)
 			{
 				
@@ -995,15 +995,9 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 	}
 
 	@Override
-	public Dto updateShareType(Dto dto) {
+	public Dto updateShareType(Dto dto) {	
 		
-		if(dto.getAsString("lei").equals("dir"))
-		{
-			g4Dao.update("K.updateShareType", dto);
-		}else if(dto.getAsString("lei").equals("doc"))
-		{
-			g4Dao.update("K.updateShareTypeDoc", dto);
-		}
+		g4Dao.update("K.updateShareType", dto);		
 		return null;
 	}
 
