@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * 
  * A custom service for retrieving users from a custom datasource, such as a database.
  * <p>
  * This custom service must implement Spring's {@link UserDetailsService}
