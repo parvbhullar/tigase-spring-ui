@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 组织机构模型手工映射SQL语句 -->
+<sqlMap namespace="W">
+	<typeAlias alias="dto" type="org.eredlab.g4.ccl.datastructure.impl.BaseDto"/>
+	<typeAlias alias="userInfo" type="org.eredlab.g4.arm.vo.UserInfoVo"/>
+	<typeAlias alias="menuVo" type="org.eredlab.g4.arm.web.tag.vo.MenuVo"/>
+	
+	<!-- 目录sql开始 -->
+	
+	<select id="queryWorkdiarysByDto" parameterClass="map" resultClass="dto">
+		SELECT 
+		   *
+		FROM xzb_workdiary where userid=#userid#
+		<dynamic>
+			<isNotEmpty prepend="AND" property="k_dir_id"> 
+				dirId = #deptid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="parentid"> 
+				parentId = #parentid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="loginuserid"> 
+				loginUserId = #loginuserid#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="dirMold"> 
+				dirMold = #dirMold#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="k_dir_name"> 
+				dirName like '%$deptname$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 根据用户所属目录对象 -->
+	<select id="queryDeptinfoByDeptid" parameterClass="map" resultClass="dto">
+		SELECT dirId,dirName
+		  FROM xzb_k_dir where dirId = #deptid#
+	</select>
+	<!-- 查询上传附件的信息 -->
+	<select id="getAttItems" parameterClass="map" resultClass="dto">
+		SELECT *
+		  FROM xzb_demo_upload where fileid = #attid#
+	</select>
+	
+	<!-- 查询当前目录的文件夹路径 -->
+	<select id="queryWorkdiarys" parameterClass="map" resultClass="dto">
+		SELECT dirId, dirName, parentId, 
+		   customId,leaf, sortNo, remark, enabled,filePath,dirType
+		  FROM xzb_k_dir where dirId = #docDirId#
+	</select>
+	<!-- 查询父目录的路径 -->
+	<select id="queryDirParentPath" parameterClass="map" resultClass="dto">
+		SELECT filePath
+		  FROM xzb_k_dir where dirId = #parentDirId#
+	</select>
+	<!-- 路径 -->
+	<select id="queryDirnameByPath" parameterClass="map" resultClass="dto">
+		SELECT dirName FROM xzb_k_dir where dirId = #dirId#
+	</select>
+	
+	<!-- 查询根目录是否存在 -->
+	<select id="countDir" parameterClass="map" resultClass="dto">
+		SELECT COUNT(*) as count FROM xzb_k_dir where dirId = #deptid#
+	</select>
+	
+	
+	
+	<!-- 增加新目录 -->
+	<insert id="insertWorkdiary" parameterClass="dto" >
+		INSERT INTO xzb_workdiary (
+		   id, start, end, 
+		   ad,cid, title, userid) 
+		VALUES (#id#, #start#, #end#,
+		    #ad#, #cid#, #title#, #userid#)
+	</insert>
+	
+	<insert id="insertLimitisDoc" parameterClass="dto" >
+		INSERT INTO xzb_role (
+		   id, type, docId, 
+		   sharType) 
+		VALUES (#id#, #type#, #docId#,
+		    #sharType#)
+	</insert>
+	<!-- 初始化根目录 -->
+	<insert id="initWorkdiary" parameterClass="dto" >
+		INSERT INTO xzb_k_dir (
+		   dirId, dirName, parentId, 
+		   customId,leaf, sortNo, remark, enabled,filePath) 
+		VALUES (#deptid#,'根目录','0',
+		    '', '0', '1', '', '1','')
+	</insert>
+	<!-- 向目录中插入文件夹的绝对路径 -->
+	<update id="saveDirFilepath" parameterClass="dto" >
+		UPDATE xzb_k_dir
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="baseFile">
+	         filePath = #baseFile#
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE dirId = #dirid#  and enabled='1'  
+	</update>
+	
+	<!-- 查询路径 -->
+	<select id="queryDirfileBydel" parameterClass="map" resultClass="dto ">
+		SELECT filePath FROM xzb_k_dir where dirId = #dirId#
+	</select>
+	<!-- 修改目录名称 -->
+	<update id="updateWorkdiary" parameterClass="dto">
+         UPDATE xzb_k_dir
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="modifyMenuName">
+	         dirName = #modifyMenuName#
+			</isNotNull>
+			<isNotNull prepend="," property="modify_sortNo">
+	         sortNo = #modify_sortNo#
+			</isNotNull>
+			<isNotNull prepend="," property="modify_remark">
+	         remark = #modify_remark#
+			</isNotNull>
+			<isNotNull prepend="," property="parentMenuid_">
+	         parentId = #parentMenuid_#
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE dirId = #modifyMenuid#  and enabled='1'  
+	</update>
+	<!-- 修改父目录的leaf -->
+	<update id="updateParentDirLeaf" parameterClass="dto">
+         UPDATE xzb_k_dir
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="parentDirId">
+	         leaf ='0'
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE dirId = #parentDirId#  and enabled='1'  
+	</update>
+	<!-- 目录位置更改后，修改filepath -->
+	<update id="updateDirFilePath" parameterClass="dto">
+         UPDATE xzb_k_dir
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="filepath">
+	         filePath =#filepath#
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE dirId = #modifyMenuid#  and enabled='1'  
+	</update>
+	<!-- 目录位置变更，修改左边文档的filepath -->
+	<update id="updateDocFilePath" parameterClass="dto">
+         UPDATE xzb_k_doc
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="filepath">
+	         filePath =#filepath#
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE docDirId = #modifyMenuid#  
+	</update>
+	
+	
+	<!-- 删除子目录 -->
+	<delete id="deleteChildWorkdiary" parameterClass="map" >
+		DELETE 
+		  FROM xzb_k_dir
+		      WHERE filePath like '%$dirId$%'
+	</delete>
+	<!-- 删除目录 -->
+	
+	<delete id="deleteWorkdiary" parameterClass="map" >
+		DELETE 
+		  FROM xzb_workdiary
+		      WHERE id=#id#
+	</delete>
+	
+	<!-- 通过dirId删除右边的文档 -->
+	
+	<select id="deleteDocByDirId" parameterClass="map" resultClass="dto" >
+		SELECT COUNT(*) as count 
+		  FROM xzb_k_doc
+		      WHERE filePath like '%$dirId$%'
+	</select>
+	<!-- 查询同级的目录 -->
+	<select id="queryDirInfoByDirid" parameterClass="map" resultClass="dto">
+		SELECT COUNT(*) as count FROM xzb_k_dir x LEFT JOIN  xzb_k_dir y on x.parentId=y.parentId
+where x.dirId= #dirId#
+	</select>
+
+	<select id="updateDirInfoByDirid" parameterClass="map" resultClass="dto">
+		SELECT count(*) as count  FROM xzb_k_dir where parentId =(select parentId from xzb_k_dir where dirId=#dirId#)
+	</select>
+	<!-- 查询同级目录是否同名 -->
+	<select id="queryDirIsNewName" parameterClass="map" resultClass="dto">
+		SELECT COUNT(*) as count FROM xzb_k_dir 
+where parentId= #parentDirId# and dirName= #dirname#
+	</select>
+	<!-- 当没有子目录的时候，将leaf改为1 -->
+	<update id="updateParentDirLeafByDelete" parameterClass="dto">
+         UPDATE xzb_k_dir
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="parentDirId">
+	         leaf ='1'
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE dirId = #parentDirId#  and enabled='1'  
+	</update>
+	<!-- 权限设置 -->
+	<update id="saveLimitisDep">
+	UPDATE  xzb_role
+	<dynamic prepend="SET"> 
+			<isEqual property="depType" compareValue="1" prepend=",">
+  				editDep = #fields#
+			</isEqual>
+			<isEqual property="depType" compareValue="1" prepend=",">
+  				editDepName = #fieldsName#
+			</isEqual>
+			<isEqual property="depType" compareValue="2" prepend=",">
+  				readDep = #fields#
+			</isEqual>
+			<isEqual property="depType" compareValue="2" prepend=",">
+  				readDepName = #fieldsName#
+			</isEqual>
+									
+		</dynamic> 
+		WHERE docId=#docId#
+	
+	</update>
+	
+	<update id="saveLimitisPerson">
+	UPDATE  xzb_role
+	<dynamic prepend="SET"> 
+			<isEqual property="peopleType" compareValue="1" prepend=",">
+  				editPerson = #fields#
+			</isEqual>
+			<isEqual property="peopleType" compareValue="1" prepend=",">
+  				editPersonName = #fieldsName#
+			</isEqual>
+			<isEqual property="peopleType" compareValue="2" prepend=",">
+  				readPerson = #fields#
+			</isEqual>
+			<isEqual property="peopleType" compareValue="2" prepend=",">
+  				readPersonName = #fieldsName#
+			</isEqual>
+									
+		</dynamic> 
+		WHERE docId=#docId#
+	
+	</update>
+	
+	<select id="queryLimitis" parameterClass="map" resultClass="dto">
+	SELECT editDep,readDep,editPerson,readPerson,editDepName,readDepName,editPersonName,readPersonName
+	
+	from xzb_role where docId=#docId#
+	
+	
+	</select>
+	
+	
+	<!-- 目录sql结束 -->
+	
+	<!-- 文档 SQL 开始 -->
+		<insert id="insertDocItem" parameterClass="dto" >
+		    INSERT INTO xzb_k_doc (
+        	docId ,
+        	docTitle ,
+        	docContent ,
+        	docDirId ,
+        	docType ,
+        	releaseTime ,
+        	updateTime ,
+        	docAuthor ,
+        	docAuthorDep ,
+        	updateAuthor ,
+        	updateAuthorDep ,
+        	docStatus ,
+        	sharType ,
+        	attaId,
+        	enabled,
+        	filePath 
+        ) VALUES (
+        	#docId# ,
+        	#docTitle# ,
+        	#docContent# ,
+        	#docDirId# ,
+        	#docType# ,
+        	#releaseTime# ,
+        	#updateTime# ,
+        	#docAuthor# ,
+        	#docAuthorDep# ,
+        	#updateAuthor# ,
+        	#updateAuthorDep# ,
+        	#docStatus# ,
+        	#sharType# ,
+        	#attaId#,
+        	'1' ,
+        	#filepath#
+        )
+		</insert>
+		
+		<delete id="deleteDocItem" parameterClass="map">
+    <![CDATA[
+        DELETE from xzb_k_doc 
+        WHERE 
+	        docId = #docId# 
+    ]]>
+    </delete>
+    
+    <delete id="deleteDocUpload" parameterClass="map">
+    <![CDATA[
+        DELETE from xzb_demo_upload where fileid in 
+		(SELECT SUBSTR(attaId,2,LENGTH(attaId)-2) as fileid from xzb_k_doc where docId=#docId#)
+    ]]>
+    </delete>
+    
+    <delete id="deleteAtt" parameterClass="map" >
+    <![CDATA[
+        DELETE from xzb_demo_upload where fileid =#attid# 
+		
+    ]]>
+    </delete>
+    
+    <select id="queryUpLoadPath" parameterClass="map" resultClass="dto">
+    SELECT * from xzb_demo_upload  where fileid in 
+(select SUBSTR(attaId,2,LENGTH(attaId)-2) as fileid from xzb_k_doc where docId=#docId#)
+    
+    
+    </select>
+    
+    <update id="updateDocItemDetail" >
+        UPDATE xzb_k_doc SET
+	          docTitle 		= 	#docTitle#,
+	          docContent 	= 	#docContent#,
+	          <dynamic>
+		          <isNotEmpty property="attaId">
+		          attaId		=	#attaId#,
+		          </isNotEmpty>
+	          </dynamic>
+	          updateTime	=	#updateTime# 
+        WHERE 
+	        docId = #docId# 
+    </update>
+		
+		<select id="queryDocsForManage" parameterClass="map"
+			resultClass="dto">
+			select docId, docTitle, docDirId, docType, releaseTime, updateTime, docAuthor,
+			docAuthorDep,
+			updateAuthor, updateAuthorDep, docStatus, sharType, enabled, docContent,attaId
+			from xzb_k_doc
+			where enabled='1'
+			<dynamic>
+				<isNotEmpty prepend="AND" property="dirId"> 
+					filePath like '%$dirId$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="docTitle"> 
+					docTitle like '%$docTitle$%'
+				</isNotEmpty>
+			</dynamic>
+			order by updateTime desc
+		</select>	
+		<select id="queryDocsForManageForPageCount" parameterClass="map" resultClass="java.lang.Integer">
+			select count(*) from xzb_k_doc where enabled='1'
+			<dynamic>
+				<isNotEmpty prepend="AND" property="dirId"> 
+					docDirId = #dirId#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="docTitle"> 
+					docTitle like '%$docTitle$%'
+				</isNotEmpty>
+			</dynamic>
+		</select>
+	<!-- 文档 SQL 结束 -->
+	
+	
+</sqlMap>
