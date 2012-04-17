@@ -42,9 +42,20 @@ public class SServiceImpl extends BaseServiceImpl implements SService {
 	 * @return
 	 */
 	public Dto saveScheItem(Dto pDto) {
+		
+		
+		
 		Dto outDto = new BaseDto();
+		String limitisId=IDHelper.getK_limitis_ID();
+		Dto limits=new BaseDto();
+		String scheid=IDHelper.getScheduleid();
 		pDto.put("locked", ArmConstants.LOCK_Y);
-		pDto.put("scheid", IDHelper.getScheduleid());
+		pDto.put("scheid", scheid);
+		
+		limits.put("dirId", scheid);
+		limits.put("id", limitisId);
+		limits.put("type", "2");
+		g4Dao.insert("S.insertLimitisSch", limits);
 		g4Dao.insert("S.saveScheduleItem", pDto);
 		return outDto;
 	}
@@ -85,5 +96,46 @@ public class SServiceImpl extends BaseServiceImpl implements SService {
 		}
 		g4Dao.update("S.updateScheduleItem", pDto);
 		return null;
+	}
+
+	
+	public Dto updateShareType(Dto dto) {
+		g4Dao.update("S.updateShareType", dto);		
+		return null;
+		
+	}
+
+	/**
+	 * 查询下级
+	 */
+	public Dto queryLower(Dto dto) {
+		
+		Dto inDto=new BaseDto();
+		Dto outDto=new BaseDto();
+		List deptList = g4Dao.queryForList("S.queryAllLower", dto);
+		if(!G4Utils.isEmpty("deptList"))
+		{
+			for(int i=0;i<deptList.size();i++)
+			{
+				
+				inDto=(BaseDto)deptList.get(i);
+				inDto.put("text", inDto.getAsString("username")+"  "+inDto.getAsString("deptname"));
+				inDto.put("id", inDto.getAsString("userid"));
+				int count=(Integer)g4Dao.queryForObject("S.queryCountLeader", inDto);
+				if(count==0)
+				{
+					inDto.put("leaf", true);
+					inDto.put("icon", "./resource/image/ext/user.gif");
+				}else{
+					inDto.put("leaf", false);
+					inDto.put("icon", "./resource/image/ext/group.png");
+				}
+			}
+			
+			
+		}
+		outDto.put("jsonString", JsonHelper.encodeObject2Json(deptList));
+		
+		return outDto;
 	}
 }

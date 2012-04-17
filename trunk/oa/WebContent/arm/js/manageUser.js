@@ -136,6 +136,14 @@ Ext.onReady(function() {
 				width : 80,
 				renderer : POSTTYPERender
 			}, {
+				id : 'leadername',
+				header : '上下级关系',
+				dataIndex : 'leadername'
+			},{
+				id : 'leader',
+				header : '上下级关系',
+				dataIndex : 'leader'
+			},{
 				id : 'phonenumber',
 				header : '电话',
 				dataIndex : 'phonenumber'
@@ -192,6 +200,10 @@ Ext.onReady(function() {
 									name : 'deptname'
 								}, {
 									name : 'post'
+								},{
+									name : 'leadername'
+								},{
+									name : 'leader'
 								}, {
 									name : 'phonenumber'
 								}, {
@@ -521,7 +533,85 @@ Ext.onReady(function() {
 							labelStyle : micolor,
 							allowBlank : false,
 							anchor : '99%'
-						}, usertypeCombo, lockedCombo, sexCombo, posttypeCombo, {
+						}, usertypeCombo, lockedCombo, sexCombo, posttypeCombo,{
+							fieldLabel : '关系维护',
+							name : 'leaderName',
+							id:'leaderName',
+							allowBlank : true,
+							anchor : '99%',
+							value:'未维护',
+							readOnly:true,
+							listeners:{
+								focus:function(){
+									
+									var formItemSelector = new Ext.Panel({ 
+										labelWidth: 3,
+										width:600,
+										items:[{
+											xtype:"managerUserLeader",
+											name:"itemselector",
+											fieldLabel:"",
+											msWidth:250,
+											msHeight:450,
+											valueField:"id",
+											displayField:"text",
+											leftTreeRoot:'雪中豹集成与开发平台',
+											leftTreeId:'001',
+											imagePath:"./image",
+											//switchToFrom:true,
+											toLegend:"权限列表",
+											fromLegend:"选择权限",
+											dataUrl : './organization.xzb?reqCode=departmentTreeInit_',//部门树初始化
+											saveLimitisUrl:'./k.xzb?reqCode=saveLimitis'//保存的路径
+											
+										}]
+									});
+									
+									var test=new Ext.Window({
+										layout : 'fit',
+										id:'selectPersonsWindow',
+										width : 500,
+										height : 500,
+										resizable : false,
+										draggable : true,
+										closeAction : 'close',
+										title : '<span class="commoncss">上下级维护</span>',
+										// iconCls : 'page_addIcon',
+										modal : true,
+										collapsible : true,
+										titleCollapse : true,
+										maximizable : false,
+										buttonAlign : 'right',
+										border : false,
+										animCollapse : true,
+										pageY : 20,
+										pageX : document.body.clientWidth / 2 - 100 / 2,
+										animateTarget : Ext.getBody(),
+										constrain : true,
+										items : [formItemSelector],
+										buttons : [{
+											text : '关闭',
+											iconCls : 'deleteIcon',
+											handler : function() {
+												test.close();
+											}
+										}]
+										
+									});
+						test.show();
+									
+									
+								}
+								
+							}
+						},{
+							fieldLabel : '',
+							name : 'leader',
+							id:'leader',
+							allowBlank : true,
+							anchor : '99%',
+							hidden:true
+						}, {
 							fieldLabel : '电话',
 							name : 'phonenumber',
 							allowBlank : true,
@@ -816,6 +906,8 @@ Ext.onReady(function() {
 		Ext.getCmp('password').setValue('@@@@@@');
 		Ext.getCmp('password1').setValue('@@@@@@');
 		Ext.getCmp('userid').setValue(record.get('userid'));
+		Ext.getCmp('leaderName').setValue(record.get('leadername'));
+		Ext.getCmp('leader').setValue(record.get('leader'));
 		Ext.getCmp('btnReset').hide();
 	}
 

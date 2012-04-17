@@ -40,4 +40,18 @@ public interface SService extends BaseService{
 	 */
 	public Dto updateScheItem(Dto pDto);
 	
+	/**
+	 * 改变共享关系
+	 * @param dto
+	 * @return
+	 */
+	public Dto updateShareType(Dto dto);
+	
+	/**
+	 * 查询下级
+	 * @param dto
+	 * @return
+	 */
+	public Dto queryLower(Dto dto);
+	
 }

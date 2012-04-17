@@ -640,6 +640,18 @@ var selectPanel=new Ext.form.FormPanel({
 	    		    	  
 	    		      }
 	    		    }
+	       },{
+	    	   xtype:'textfield',
+	    	   id:'selectDeptId',
+	    	   hidden:true
+	    	   
+	    	   
+	       },{
+	    	   xtype:'textfield',
+	    	   id:'selectPersonsId',
+	    	   hidden:true
+	    	   
+	    	   
 	       }]
 	       
 		
@@ -1369,7 +1381,7 @@ var selectPanel=new Ext.form.FormPanel({
 		var flag = Ext.getCmp('windowmode').getValue();
 		//console.info("新增或编辑标志位="+flag);
 		if($("#docAttaId").val()!=''){
-			alert("234ff");
+			
 			$("#attaName").html('');
 		}
 		if('add'==flag){
@@ -1400,8 +1412,8 @@ var selectPanel=new Ext.form.FormPanel({
 		$("#dirForm").submit();
 		*/
 		
-		selectPanel.hide();
-		radioPanel.hide();
+		//selectPanel.hide();
+		//radioPanel.hide();
 		//addDocWindow.doLayout();
 		addDocWindow.show();
 		
@@ -1424,6 +1436,31 @@ var selectPanel=new Ext.form.FormPanel({
 			name: 'docContent',
 			value: Ext.getCmp("docContentT").getValue()
 			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'deptId',
+			name: 'deptId',
+			value: Ext.getCmp("selectDeptId").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'deptName',
+			name: 'deptName',
+			value: Ext.getCmp("selectDeps").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'personId',
+			name: 'personId',
+			value: Ext.getCmp("selectPersonsId").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'personName',
+			name: 'personName',
+			value: Ext.getCmp("selectPersons").getValue()
+			});
+		
 		addDocFormPanel.doLayout();
 		addDocFormPanel.form.submit( {
 			url : './k.xzb?reqCode=saveDocItem&typeOfDoc='+person+'',
@@ -1597,6 +1634,30 @@ var selectPanel=new Ext.form.FormPanel({
 			id: 'docContent',
 			name: 'docContent',
 			value: Ext.getCmp("docContentT").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'deptId',
+			name: 'deptId',
+			value: Ext.getCmp("selectDeptId").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'deptName',
+			name: 'deptName',
+			value: Ext.getCmp("selectDeps").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'personId',
+			name: 'personId',
+			value: Ext.getCmp("selectPersonsId").getValue()
+			});
+		addDocFormPanel.add({
+			xtype: 'hidden',
+			id: 'personName',
+			name: 'personName',
+			value: Ext.getCmp("selectPersons").getValue()
 			});
 		addDocFormPanel.add({
 			xtype:'hidden',

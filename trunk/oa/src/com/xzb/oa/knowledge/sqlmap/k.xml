@@ -256,26 +256,30 @@ where parentId= #parentDirId# and dirName= #dirname#
 	        WHERE dirId = #parentDirId#  and enabled='1'  
 	</update>
 	<!-- 权限设置 -->
-	<update id="saveLimitisDep">
-	UPDATE  xzb_role
+	
+	<update id="updateFromLimitis">
+	UPDATE  xzbdataauthorize
 	<dynamic prepend="SET"> 
-			<isEqual property="depType" compareValue="1" prepend=",">
-  				editDep = #fields#
-			</isEqual>
-			<isEqual property="depType" compareValue="1" prepend=",">
-  				editDepName = #fieldsName#
-			</isEqual>
-			<isEqual property="depType" compareValue="2" prepend=",">
-  				readDep = #fields#
-			</isEqual>
-			<isEqual property="depType" compareValue="2" prepend=",">
-  				readDepName = #fieldsName#
-			</isEqual>
+			<isNotEmpty prepend="," property="deptId">
+	         deptId=#deptId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="deptId">
+	         deptName=#deptName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="userId">
+	        userId=#userId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="userId">
+	         userName=#userName#
+			</isNotEmpty>
+			
 									
 		</dynamic> 
-		WHERE docId=#docId#
+		1=1
+		WHERE moduleId=#docId# and moduleType=#moduleType#
 	
 	</update>
+	
 	
 	<update id="saveLimitisDep_">
 	UPDATE  xzbdataauthorize
@@ -291,26 +295,7 @@ where parentId= #parentDirId# and dirName= #dirname#
 	
 	</update>
 	
-	<update id="saveLimitisPerson">
-	UPDATE  xzb_role
-	<dynamic prepend="SET"> 
-			<isEqual property="peopleType" compareValue="1" prepend=",">
-  				editPerson = #fields#
-			</isEqual>
-			<isEqual property="peopleType" compareValue="1" prepend=",">
-  				editPersonName = #fieldsName#
-			</isEqual>
-			<isEqual property="peopleType" compareValue="2" prepend=",">
-  				readPerson = #fields#
-			</isEqual>
-			<isEqual property="peopleType" compareValue="2" prepend=",">
-  				readPersonName = #fieldsName#
-			</isEqual>
-									
-		</dynamic> 
-		WHERE docId=#docId#
-	
-	</update>
+
 	
 	<select id="queryLimitis" parameterClass="map" resultClass="dto">
 	SELECT *
@@ -460,7 +445,7 @@ where parentId= #parentDirId# and dirName= #dirname#
 			where enabled='1'
 			<dynamic>
 				<isNotEmpty prepend="AND" property="dirId"> 
-					filePath like '%$dirId$%'
+					userid=#dirId#
 				</isNotEmpty>
 				<isNotEmpty prepend="AND" property="docTitle"> 
 					docTitle like '%$docTitle$%'

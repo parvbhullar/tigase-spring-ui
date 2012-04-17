@@ -5,6 +5,9 @@
 <eRedG4:import src="/schedule/js/manageS.js" />
 <eRedG4:ext.codeRender fields="SCHEURGENT,DEL,SCHESTATUS,LOCKED"/>
 <eRedG4:ext.codeStore fields="SCHEURGENT,DEL,SCHESTATUS,LOCKED"/>
+
+<eRedG4:import src="/schedule/js/scheduleShare.js"/>
+<eRedG4:import src="/schedule/js/knowledgeShare_.js"/>
 <eRedG4:body>
 </eRedG4:body>
 </eRedG4:html>

@@ -698,6 +698,22 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 		limitisDto.put("type", "1");//文档的权限类型为1
 		g4Dao.insert("K.insertDocItem", pDto);
 		g4Dao.insert("K.insertLimitisDoc", limitisDto);
+		
+		//
+		if(!G4Utils.isEmpty(pDto.getAsString("personId")) || !G4Utils.isEmpty(pDto.getAsString("deptId")))
+		{
+			Dto mDto=new BaseDto();
+			mDto.put("docId", pDto.getAsString("docId"));
+			mDto.put("moduleType", "1");
+			mDto.put("userId", pDto.getAsString("personId"));
+			mDto.put("userName", pDto.getAsString("personName"));
+			mDto.put("deptId", pDto.getAsString("deptId"));
+			mDto.put("deptName", pDto.getAsString("deptName"));
+			g4Dao.update("K.updateFromLimitis", mDto);
+		}
+		
+		
+		
 		return null;
 	}
 
@@ -709,6 +725,21 @@ public class KServiceImpl extends BaseServiceImpl implements KService {
 			pDto.put("sortNo", null);
 		}
 		g4Dao.update("K.updateDocItemDetail", pDto);
+		
+		//
+		if(!G4Utils.isEmpty(pDto.getAsString("personId")) || !G4Utils.isEmpty(pDto.getAsString("deptId")))
+		{
+			Dto mDto=new BaseDto();
+			mDto.put("docId", pDto.getAsString("docId"));
+			mDto.put("moduleType", "1");
+			mDto.put("userId", pDto.getAsString("personId"));
+			mDto.put("userName", pDto.getAsString("personName"));
+			mDto.put("deptId", pDto.getAsString("deptId"));
+			mDto.put("deptName", pDto.getAsString("deptName"));
+			g4Dao.update("K.updateFromLimitis", mDto);
+		}
+		
+		//
 		outDto.put("success", new Boolean(true));
 		return outDto;
 		
