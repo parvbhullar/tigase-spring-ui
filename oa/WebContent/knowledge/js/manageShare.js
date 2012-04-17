@@ -558,14 +558,14 @@ Ext.onReady(function() {
 	 */
 
 	var root = new Ext.tree.AsyncTreeNode({
-				text : root_deptname,
+				text : '共享文档',
 				expanded : true,
-				id : root_deptid
+				id : '001'
 			});
 	var dirTree = new Ext.tree.TreePanel({
 				loader : new Ext.tree.TreeLoader({
 							baseAttrs : {},
-							dataUrl : './k.xzb?reqCode=dirTreeInitShare&loginuserid='+login_userid+''
+							dataUrl : './organization.xzb?reqCode=departmentTreeInit_'
 						}),
 				root : root,
 				title : '', 

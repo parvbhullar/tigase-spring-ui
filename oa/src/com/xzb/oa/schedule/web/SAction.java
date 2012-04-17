@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.eredlab.g4.arm.service.OrganizationService;
 import org.eredlab.g4.arm.service.UserService;
-import org.eredlab.g4.arm.util.ArmConstants;
 import org.eredlab.g4.arm.vo.UserInfoVo;
 import org.eredlab.g4.ccl.datastructure.Dto;
 import org.eredlab.g4.ccl.datastructure.impl.BaseDto;
 import org.eredlab.g4.ccl.json.JsonHelper;
 import org.eredlab.g4.ccl.util.G4Constants;
+import org.eredlab.g4.ccl.util.G4RoleLimitis;
 import org.eredlab.g4.ccl.util.G4Utils;
-import org.eredlab.g4.rif.util.WebUtils;
 import org.eredlab.g4.rif.web.BaseAction;
 import org.eredlab.g4.rif.web.CommonActionForm;
+
+import com.xzb.oa.knowledge.service.KService;
 import com.xzb.oa.schedule.service.SService;
 
 /**
@@ -33,7 +33,8 @@ public class SAction extends BaseAction {
 	private UserService userService = (UserService) super.getService("userService");
 
 	private SService sService = (SService) super.getService("sService");
-
+	
+	private KService kService = (KService) super.getService("kService");
 
 	/**
 	 * 我的日程管理主界面
@@ -82,10 +83,22 @@ public class SAction extends BaseAction {
 	public ActionForward saveScheItem(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String userid = getSessionContainer(request).getUserInfo().getUserid();
+		
 		CommonActionForm aForm = (CommonActionForm) form;
+		
 		Dto inDto = aForm.getParamAsDto(request);
+		
 		inDto.put("schefounder", userid);
+		
+		if(G4Utils.isEmpty(inDto.getAsString("exppeopleId")))
+		{
+			inDto.put("exppeopleId", userid);  //pDto.getAsString("exppeopleId")
+		}
+		
+		
 		String remind = request.getParameter("remind");
+		
+		
 		if (null == remind || remind.equals("")) {
 			inDto.put("remind", "1");
 		}
@@ -165,7 +178,59 @@ public class SAction extends BaseAction {
 		CommonActionForm aForm = (CommonActionForm) form;
 		Dto dto = aForm.getParamAsDto(request);
 		List list = g4Reader.queryForPage("S.queryAllScheduleList", dto);
+		for(int i=0;i<list.size();i++)
+		{
+			Dto b=new BaseDto();
+			b=(BaseDto)list.get(i);
+			b.put("loginuserid", b.getAsString("execf"));
+			b.put("id", b.getAsString("scheid"));
+		}
+		//
+		Dto dep=new BaseDto();
+		dep=kService.queryUserdep(dto);
+		String deptid=dep.getAsString("deptid");
+		dto.put("moduleType", "2");
+		dto.put("deptid", deptid);
+		
+		G4RoleLimitis g1=new G4RoleLimitis();
+		List newDeptList=g1.FilterRoleLimitis(list,dto);
+		//
+		//Integer countInteger = (Integer) g4Reader.queryForObject("S.countAllScheduleList", dto);
+		Integer countInteger = 0;
+		if(null != newDeptList)
+		{
+			countInteger = newDeptList.size();
+		}
+		String jsonString = JsonHelper.encodeList2PageJson(newDeptList, countInteger, G4Constants.FORMAT_Date);
+		super.write(jsonString, response);
+		return mapping.findForward(null);
+	}
+	
+	
+	/**
+	 * 查询下属日程
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward queryLowerScheduleList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		CommonActionForm aForm = (CommonActionForm)form;
+		Dto dto = aForm.getParamAsDto(request);
+		
+		String userid=request.getParameter("userid");
+		dto.put("userid", userid);
+		
+		
+		List list = g4Reader.queryForPage("S.queryLowerScheduleList", dto);
+		
+		
+		//
 		Integer countInteger = (Integer) g4Reader.queryForObject("S.countAllScheduleList", dto);
+		
 		String jsonString = JsonHelper.encodeList2PageJson(list, countInteger, G4Constants.FORMAT_Date);
 		super.write(jsonString, response);
 		return mapping.findForward(null);
@@ -206,6 +271,65 @@ public class SAction extends BaseAction {
 		Integer countInteger = (Integer) g4Reader.queryForObject("S.countSchedules", dto);
 		String jsonString = "{" + JsonHelper.encodeList2PageJson1(list, countInteger, G4Constants.FORMAT_Date);
 		super.write(jsonString, response);
+		return mapping.findForward(null);
+	}
+	
+	
+	public ActionForward updateShareType(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		CommonActionForm aForm = (CommonActionForm)form;
+		Dto dto = aForm.getParamAsDto(request);
+		Dto outDto=new BaseDto();
+		String type = request.getParameter("shareType");//共享类型
+		String sId=request.getParameter("sId");//目录id
+		
+		
+		
+		if(G4Utils.isEmpty(type))
+		{
+			type="0";
+		}
+			dto.put("sId", sId);
+			dto.put("type", type);
+			sService.updateShareType(dto);
+			
+			setOkTipMsg("共享成功", response);
+		
+		
+		
+		return mapping.findForward(null);
+	}
+	
+	/**
+	 * 下级日程查看
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward lowerCalenderInit(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		UserInfoVo userInfoVo = getSessionContainer(request).getUserInfo();
+		request.setAttribute("userid", userInfoVo.getUserid());
+		
+		request.setAttribute("username", "下级成员");
+		
+		request.setAttribute("login_account", userInfoVo.getAccount());
+		return mapping.findForward("lowerCalenderView");
+	}
+	
+	
+	public ActionForward lowerTree(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Dto dto = new BaseDto();
+		String nodeid = request.getParameter("node");
+		
+		dto.put("parentid", nodeid);
+
+		Dto outDto = sService.queryLower(dto);
+		write(outDto.getAsString("jsonString"), response);
 		return mapping.findForward(null);
 	}
 

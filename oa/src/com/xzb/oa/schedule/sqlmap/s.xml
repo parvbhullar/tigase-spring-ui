@@ -15,7 +15,7 @@
 				scheTitle like '%$schetitle$%'
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="schefounder">
-				scheFounder = #schefounder#
+				execFounder like '%$schefounder$%'
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="begindate">
 			beginDate <![CDATA[ >= ]]> #begindate#
@@ -57,9 +57,17 @@
 		INSERT INTO xzb_s_schedule (
 		   scheId, scheTitle, scheUrgent, promptTime, 
 		   remind, scheFounder, beginDate, del,
-		   endDate, content) 
+		   endDate, content,execFounder) 
 		VALUES (#scheid#, #schetitle#, #scheurgent#, #prompttime#,#remind#, #schefounder#, #begindate#,
-		        #del#,#enddate#,#content#)
+		        #del#,#enddate#,#content#,#exppeopleId#)
+	</insert>
+	<!-- 日程权限 -->
+	<insert id="insertLimitisSch" parameterClass="dto">
+		INSERT INTO xzbdataauthorize (
+		   authorizeId, moduleType, moduleId
+		  ) 
+		VALUES (#id#, #type#, #dirId#
+		    )
 	</insert>
 	
 	<!-- 根据主键更新日程 -->
@@ -105,14 +113,15 @@
 	
 	<!-- 查询日程列表 -->
 	<select id="queryAllScheduleList" parameterClass="map" resultClass="dto" remapResults="true">
-		SELECT a.scheId, b.username as scheFounder, a.scheTitle, a.scheUrgent, a.remind, a.beginDate, a.endDate, a.scheStatus, a.content
-		FROM xzb_s_schedule a,xzbuser b WHERE a.scheFounder =b.userid and a.locked = '1' 
+		SELECT a.scheId, b.username as execFounder, a.scheTitle, a.scheUrgent, a.remind, a.beginDate, a.endDate, a.scheStatus, a.content
+		,a.execFounder as execf ,a.share
+		FROM xzb_s_schedule a,xzbuser b WHERE a.execFounder = b.userid and a.locked = '1' 
 		<dynamic>
 			<isNotEmpty prepend="AND" property="schetitle">
 				a.scheTitle like '%$schetitle$%'
 			</isNotEmpty>
-			<isNotEmpty prepend="AND" property="schefounder">
-				a.scheFounder = #schefounder#
+			<isNotEmpty prepend="AND" property="execfounder">
+				a.execFounder in '%$execfounder$%'
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="begindate">
 			a.beginDate <![CDATA[ >= ]]> #begindate#
@@ -126,6 +135,18 @@
 		</dynamic>
 	</select>
 	
+	<update id="updateShareType" parameterClass="dto" >
+		UPDATE xzb_s_schedule
+		<dynamic prepend="SET"> 
+			<isNotNull prepend="," property="type">
+	         share = #type#
+			</isNotNull>
+									
+		</dynamic> 
+	        WHERE scheId = #sId# 
+	</update>
+	
+	
 	<!-- 查询日程列表-->
 	<select id="countAllScheduleList" parameterClass="map"
 		resultClass="java.lang.Integer">
@@ -134,8 +155,8 @@
 			<isNotEmpty prepend="AND" property="schetitle">
 				scheTitle like '%$schetitle$%'
 			</isNotEmpty>
-			<isNotEmpty prepend="AND" property="schefounder">
-				scheFounder = #schefounder#
+			<isNotEmpty prepend="AND" property="execfounder">
+				execFounder in ($execfounder$)
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="begindate">
 			beginDate <![CDATA[ >= ]]> #begindate#
@@ -158,7 +179,7 @@
 				scheTitle like '%$schetitle$%'
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="schefounder">
-				scheFounder = #schefounder#
+				execFounder in ($schefounder$)
 			</isNotEmpty>
 			<isNotEmpty prepend="AND" property="begindate">
 			beginDate <![CDATA[ >= ]]> #begindate#
@@ -193,6 +214,25 @@
 				scheStatus = #schestatus#
 			</isNotEmpty>
 		</dynamic>
+	</select>
+	
+	<select id="queryAllLower" parameterClass="map"
+		resultClass="dto">
+		select a.USERNAME,d.DEPTNAME,a.USERID from xzbuser a LEFT JOIN xzbdept d on 
+		a.DEPTID=d.DEPTID where a.leader=#parentid#
+		
+	</select>
+	
+	<select id="queryCountLeader" parameterClass="map"
+		resultClass="java.lang.Integer">
+		select count(*) from xzbuser  where leader=#userid#
+		
+	</select>
+	
+	<select id="queryLowerScheduleList" parameterClass="map"
+		resultClass="dto">
+		SELECT * FROM xzb_s_schedule where execFounder like '%$userid$%' order by beginDate desc
+		
 	</select>
 
 </sqlMap>

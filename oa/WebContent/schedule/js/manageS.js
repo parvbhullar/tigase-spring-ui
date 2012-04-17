@@ -100,7 +100,7 @@ Ext.onReady(function() {
 				dataIndex : 'scheurgent',
 				width : 45,
 				renderer : SCHEURGENTRender
-			}, {
+			},  {
 				header : '开始时间',
 				dataIndex : 'begindate',
 				sortable : true
@@ -201,7 +201,10 @@ Ext.onReady(function() {
 						emptyMsg : "没有符合条件的记录",
 						items : ['-', '&nbsp;&nbsp;', pagesize_combo]
 					});
-
+			
+			
+			
+			
 			// 表格实例
 			var grid = new Ext.grid.GridPanel({
 						region : 'center', // 和VIEWPORT布局模型对应，充当center区域布局
@@ -237,11 +240,17 @@ Ext.onReady(function() {
 							handler : function() {
 								editInit();
 							}
-						}, '-', {
+						},'-', {
 							text : '已完成',
 							iconCls : 'acceptIcon',
 							handler : function() {
 								deleteScheItems(2);
+							}
+						},'-', {
+							text : '授权',
+							iconCls : 'acceptIcon',
+							handler : function() {
+								limitisScheItems();
 							}
 						}, '-', {
 							text : '删除',
@@ -333,6 +342,358 @@ Ext.onReady(function() {
 			  
 			}); 
 			
+
+		    var radio = new Ext.form.RadioGroup({  
+		        id:'myGroup',  
+		            fieldLabel: '执行人',  
+		      //      itemCls: 'x-check-group-alt',  
+		       	 items : [{
+		       		 layout : 'column', 
+		            items: [    
+		             {boxLabel: '安排给其他人', name: 'cb',inputValue : '2',id:'cb1',handler:function(){
+		            	 var a=Ext.getCmp('cb1');
+		            	 
+		            	 if(a.checked==true)
+		            		 {
+		            	 var formItemSelector = new Ext.Panel({ 
+								labelWidth: 3,
+								width:500,
+								items:[{
+									xtype:"scheduleShare",
+									name:"itemselector",
+									fieldLabel:"",
+									msWidth:250,
+									msHeight:450,
+									valueField:"id",
+									displayField:"text",
+									leftTreeRoot:'雪中豹集成与开发平台',
+									leftTreeId:'001',
+									imagePath:"./knowledge/js",
+									//switchToFrom:true,
+									toLegend:"权限列表",
+									fromLegend:"选择权限",
+									dataUrl : './organization.xzb?reqCode=departmentTreeInit_',//部门树初始化
+									saveLimitisUrl:'./k.xzb?reqCode=saveLimitis'//保存的路径
+									
+								}]
+							});
+							
+							var test=new Ext.Window({
+								layout : 'fit',
+								id:'extPeopleWindow',
+								width : 400,
+								height : 450,
+								resizable : false,
+								draggable : true,
+								closeAction : 'hide',
+								title : '<span class="commoncss">执行人分配</span>',
+								// iconCls : 'page_addIcon',
+								modal : true,
+								collapsible : true,
+								titleCollapse : true,
+								maximizable : false,
+								buttonAlign : 'right',
+								border : false,
+								animCollapse : true,
+								pageY : 20,
+								pageX : document.body.clientWidth / 2 - 220 / 2,
+								animateTarget : Ext.getBody(),
+								constrain : true,
+								items : [formItemSelector],
+								buttons : [{
+									text : '关闭',
+									iconCls : 'deleteIcon',
+									handler : function() {
+										test.close();
+									}
+								}]
+								
+							});
+				test.show();
+		            		 } 
+		             }
+		            	 
+		             
+		             }
+		            ]  
+		         }]
+		    });  
+			
+			
+			
+			var radioPanel=new Ext.form.FormPanel({
+				id:'',
+				height:50,
+				items:[
+				       {
+				    	 xtype:'radiogroup',
+				    	 id:'checkRadio',
+				    	 //defaultType:'radiogroup',
+				    	// layout: 'form',
+				    	 hideLabels:true,//checked:true
+				    	 items:[
+				    	        {boxLabel:'不共享',id:'state1',name:'radio',inputValue:'0',checked:false,handler:function(){
+				    	        	
+				    	        	 var a=Ext.getCmp('state1');
+				    	        	 if(a.checked==true)
+				    	        		 {
+						    	        	 Ext.getCmp('radioForm').setValue(a.inputValue);			    	        	
+						    	        	// selectPanel.hide();
+						    	        	// addDocWindow.body.update();
+				    	        		 }
+				    	        	 
+				    	        }},
+				    	        {boxLabel:'共享所有人',id:'state2',name:'radio',inputValue:'1',checked:false,handler:function(){
+				    	        	
+				    	        	var a=Ext.getCmp('state2');
+				    	        	 if(a.checked==true)
+				    	        		 {
+							    	        	Ext.getCmp('radioForm').setValue(a.inputValue);					    	        					    	
+							    	        	// selectPanel.hide();
+							    	        
+							    	        	
+				    	        		 }
+				    	        }},
+				    	        {boxLabel:'部分共享',id:'state3',name:'radio',checked:false,inputValue:'2',handler:function(){
+				    	        	//limitisWindow.show();
+				    	        	/**
+				    	        	if(Ext.getCmp('radiotype').getValue()=='dir')
+				    	        		{
+				    	        			Ext.getCmp('limitisDocId').setValue(Ext.getCmp('radioDirId').getValue());
+				    	        		}else if(Ext.getCmp('radiotype').getValue()=='doc')
+				    	        			{
+				    	        			Ext.getCmp('limitisDocId').setValue(Ext.getCmp('radioDocId').getValue());
+				    	        			}
+									*/
+				    	        	var a=Ext.getCmp('state3');
+				    	        	 if(a.checked==true)
+				    	        		 {
+				    	        		 	Ext.getCmp('radioForm').setValue(a.inputValue);
+				    	        		 	//limitisWindow.show();		    	        		 	
+				    	        		 	// selectPanel.show();		    	        		 	
+				    	        		 
+				    	        		 	
+				    	        		 }
+				    	        		 
+				    	        	
+				    	        	  
+				    	        }}
+				    	        
+				    	        ] ,
+				    	
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'scheduleId',
+				    	   hidden:true
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'radioForm',
+				    	   hidden:true
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'radioDirId',
+				    	   hidden:true
+				    	   
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'radioDocId',
+				    	   hidden:true
+				    	   
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'radiotype',
+				    	   hidden:true
+				    	   
+				       },{
+				    	   xtype:'textfield',
+				    	   id:'limitisType',
+				    	   hidden:true
+				    	   
+				       }
+				       ]
+			});
+			
+			
+
+			
+			var selectPanel=new Ext.form.FormPanel({
+				
+				id : 'selectPanel',
+				name : 'selectPanel',
+				defaultType : 'textfield',
+				labelAlign : 'right',
+				labelWidth : 60,
+				frame : false,
+				bodyStyle : 'padding:5 5 0',
+				items : [{
+			    	   id:'selectDeps',
+			    	  width:450,
+			    	   readOnly:true,
+			    	   fieldLabel:'选择部门',
+			    	   listeners: {
+			    		      focus: function() {
+			    		    	   var typeOfRadio=  Ext.getCmp('radioForm').getValue();
+			    		    	   
+			    		    	   	Ext.getCmp('limitisType').setValue('0');//代表部门
+			    		    	      if(typeOfRadio=='2')
+				    		    	   {
+			    		    	   var formItemSelector = new Ext.Panel({ 
+										labelWidth: 3,
+										width:600,
+										items:[{
+											xtype:"knowledgeShare_",
+											name:"itemselector",
+											fieldLabel:"",
+											msWidth:250,
+											msHeight:450,
+											valueField:"id",
+											displayField:"text",
+											leftTreeRoot:'雪中豹集成与开发平台',
+											leftTreeId:'001',
+											imagePath:"./knowledge/js",
+											//switchToFrom:true,
+											toLegend:"权限列表",
+											fromLegend:"选择权限",
+											dataUrl : './organization.xzb?reqCode=departmentTreeInit',//部门树初始化
+											saveLimitisUrl:'./k.xzb?reqCode=saveLimitis'//保存的路径
+											
+										}]
+									});
+									
+									var test=new Ext.Window({
+										layout : 'fit',
+										id:'selectDeptsWindow',
+										width : 400,
+										height : 450,
+										resizable : false,
+										draggable : true,
+										closeAction : 'hide',
+										title : '<span class="commoncss">部门分配</span>',
+										// iconCls : 'page_addIcon',
+										modal : true,
+										collapsible : true,
+										titleCollapse : true,
+										maximizable : false,
+										buttonAlign : 'right',
+										border : false,
+										animCollapse : true,
+										pageY : 20,
+										pageX : document.body.clientWidth / 2 - 420 / 2,
+										animateTarget : Ext.getBody(),
+										constrain : true,
+										items : [formItemSelector],
+										buttons : [{
+											text : '关闭',
+											iconCls : 'deleteIcon',
+											handler : function() {
+												test.close();
+											}
+										}]
+										
+									});
+						test.show();
+			    		    	   		
+				    		    	   }
+			    		      }
+			    		    }
+			       },{
+			    	   id:'selectPersons',
+			    	   width:450,
+			    	   readOnly:true,
+			    	   fieldLabel:'选择人员',
+			    	   listeners: {
+			    		      focus: function() {
+			    		    	  
+			    		    	  var typeOfRadio=  Ext.getCmp('radioForm').getValue();
+			    		       	  Ext.getCmp('limitisType').setValue('1');//代表人员
+			    		    	  if(typeOfRadio=='2')
+			    		    	   {
+				    		    	   var formItemSelector = new Ext.Panel({ 
+											labelWidth: 3,
+											width:500,
+											items:[{
+												xtype:"knowledgeShare_",
+												name:"itemselector",
+												fieldLabel:"",
+												msWidth:250,
+												msHeight:450,
+												valueField:"id",
+												displayField:"text",
+												leftTreeRoot:'雪中豹集成与开发平台',
+												leftTreeId:'001',
+												imagePath:"./knowledge/js",
+												//switchToFrom:true,
+												toLegend:"权限列表",
+												fromLegend:"选择权限",
+												dataUrl : './organization.xzb?reqCode=departmentTreeInit_',//部门树初始化
+												saveLimitisUrl:'./k.xzb?reqCode=saveLimitis'//保存的路径
+												
+											}]
+										});
+										
+										var test=new Ext.Window({
+											layout : 'fit',
+											id:'selectPersonsWindow',
+											width : 400,
+											height : 450,
+											resizable : false,
+											draggable : true,
+											closeAction : 'hide',
+											title : '<span class="commoncss">人员分配</span>',
+											// iconCls : 'page_addIcon',
+											modal : true,
+											collapsible : true,
+											titleCollapse : true,
+											maximizable : false,
+											buttonAlign : 'right',
+											border : false,
+											animCollapse : true,
+											pageY : 20,
+											pageX : document.body.clientWidth / 2 - 420 / 2,
+											animateTarget : Ext.getBody(),
+											constrain : true,
+											items : [formItemSelector],
+											buttons : [{
+												text : '关闭',
+												iconCls : 'deleteIcon',
+												handler : function() {
+													test.close();
+												}
+											}]
+											
+										});
+							test.show();
+				    		    	   		
+				    		    	  
+			    		    	   }
+			    		    	  
+			    		    	  
+			    		    	  
+			    		      }
+			    		    }
+			       }]
+			       
+				
+				
+			});
+			
+
+			
+			
+			var limitisPanel=new Ext.Panel({
+				id:'limtisPanel',
+				name:'limtisPanel',
+				height:300,
+				
+				//defaultType:'textfield',
+		
+				items:[
+				       radioPanel,selectPanel
+		   ]
+					
+			});	
+			
+			
 			var ptime = new Ext.form.NumberField({   
                 fieldLabel:'提前提醒时间(分钟)', 
                 name : 'prompttime',
@@ -357,7 +718,7 @@ Ext.onReady(function() {
 							allowBlank : false,
 							labelStyle : micolor,
 							anchor : '99%'
-						}, scheUrgentCombo, remindcheckbox,ptime, {
+						},scheUrgentCombo, remindcheckbox,ptime, {
 							xtype : 'datetimefield',
 							fieldLabel : '开始时间',
 							id : 'begind',
@@ -376,9 +737,22 @@ Ext.onReady(function() {
 							name : 'content',
 							xtype : 'textarea',
 							allowBlank : false,
-							height:200,
+							height:20,
 							anchor : '99%'
-						}, delCombo ,{
+						},radio,{
+							fieldLabel : '',
+							id:'exppeople',
+							xtype : 'textfield',
+							readOnly:true,
+							anchor : '99%'
+						} ,{
+							fieldLabel : '',
+							
+							id:'exppeopleId',
+							xtype : 'textfield',						
+							hidden:true,
+							anchor : '99%'
+						} ,delCombo ,{
 							id : 'windowmode',
 							name : 'windowmode',
 							hidden : true
@@ -401,10 +775,87 @@ Ext.onReady(function() {
 						}]
 			});
 
+			var limitisWindow=new Ext.Window({
+				layout : 'fit',
+				id:'limitisWindow',
+				width : 600,
+				height : 200,
+				resizable : false,
+				draggable : true,
+				closeAction : 'hide',
+				modal : true,
+				title : '<span class="commoncss">授权</span>',
+				// iconCls : 'page_addIcon',
+				collapsible : true,
+				titleCollapse : true,
+				maximizable : false,
+				buttonAlign : 'right',
+				border : false,
+				animCollapse : true,
+				pageY : 20,
+				pageX : document.body.clientWidth / 2 - 420 / 2,
+				animateTarget : Ext.getBody(),
+				constrain : true,
+				items : [limitisPanel],
+				buttons : [{
+					text : '保存',
+					iconCls : 'acceptIcon',
+					handler : function() {
+						
+						var sId=Ext.getCmp('scheduleId').getValue();
+						
+						var shareType=Ext.getCmp('radioForm').getValue();
+						if(shareType=='')
+							{
+								alert("选择一种共享类型");
+								return;
+							}
+						//var dirId=Ext.getCmp('radioDirId_').getValue();
+						//var type=Ext.getCmp('radiotype').getValue();
+						//var docId=Ext.getCmp('radioDocId').getValue();
+						
+						Ext.Ajax
+						.request( {
+							url : './s.xzb?reqCode=updateShareType',
+							success : function(response) {
+								var resultArray = Ext.util.JSON
+										.decode(response.responseText);
+								
+								Ext.Msg.alert('提示',
+										resultArray.msg);
+							},
+							failure : function(response) {
+								var resultArray = Ext.util.JSON
+										.decode(response.responseText);
+								Ext.Msg.alert('提示',
+										resultArray.msg);
+							},
+							params : {
+								shareType:shareType,
+								sId:sId
+								
+							}
+						});
+					}
+				},  {
+					text : '关闭',
+					iconCls : 'deleteIcon',
+					handler : function() {
+						limitisWindow.hide();
+					}
+				}]
+				
+				
+				
+			});
+			
+			
+			
 	var addScheWindow = new Ext.Window({
 				layout : 'fit',
+				id:'addScheWindow',
 				width : 400,
-				height : 490,
+				height : 450,
 				resizable : false,
 				draggable : true,
 				closeAction : 'hide',
@@ -431,7 +882,7 @@ Ext.onReady(function() {
 									'系统正处于演示模式下运行,您的操作被取消!该模式下只能进行查询操作!');
 							return;
 						}
-						var mode = Ext.getCmp('windowmode').getValue();
+					var mode = Ext.getCmp('windowmode').getValue();
 						if (mode == 'add')
 							saveScheItem();
 						else
@@ -471,6 +922,7 @@ Ext.onReady(function() {
 			 * 新增日程初始化
 			 */
 			function addInit() {
+				
 				Ext.getCmp('btnReset').hide();
 				var flag = Ext.getCmp('windowmode').getValue();
 				if (typeof(flag) != 'undefined') {
@@ -478,6 +930,7 @@ Ext.onReady(function() {
 				} else {
 					clearForm(addScheFormPanel.getForm());
 				}
+				
 				addScheWindow.show();
 				addScheWindow.setTitle('<span class="commoncss">新增日程</span>');
 				Ext.getCmp('windowmode').setValue('add');
@@ -487,7 +940,13 @@ Ext.onReady(function() {
 				Ext.getCmp('btnFinish').hide();
 				Ext.getCmp('btnDelete').hide();
 				// Ext.getCmp('btnReset').show();
+				
+				
 			}
+			
+	
+
+			
 			
 			/**
 			 * 保存日程
@@ -627,6 +1086,21 @@ Ext.onReady(function() {
 							}
 						});
 			}
+			
+			function limitisScheItems(){
+				
+				var rows = grid.getSelectionModel().getSelections();
+				
+				if (Ext.isEmpty(rows)) {
+						Ext.Msg.alert('提示', '请先选中要分配的日程!');
+					
+					return;
+				}
+				var strChecked = jsArray2JsString(rows, 'scheid');
+				Ext.getCmp('scheduleId').setValue(strChecked);
+				limitisWindow.show();
+			}
+			
 			
 			/**
 			 * 删除日程

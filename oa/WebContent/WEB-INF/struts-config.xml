@@ -132,6 +132,7 @@
 			type="com.xzb.oa.schedule.web.SAction">
 			<forward name="manageSView" path="/schedule/manageS.jsp" />
 			<forward name="manageAllSView" path="/schedule/manageAllS.jsp" />
+			<forward name="lowerCalenderView" path="/schedule/lower.jsp" />
 			<forward name="manageCalenderView" path="/schedule/manageSCalender.jsp" />
 		</action>
 		

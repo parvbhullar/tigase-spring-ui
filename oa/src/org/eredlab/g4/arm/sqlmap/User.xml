@@ -6,7 +6,7 @@
 	
 	<!-- 用户管理与授权-用户列表 -->
 	<select id="queryUsersForManage" parameterClass="map" resultClass="dto">
-		 SELECT userid, username, deptid, ACCOUNT, usertype, post, phonenumber, mobilenumber, emailaddress, emailsize, atsize,
+		 SELECT userid, username, deptid, ACCOUNT, usertype, post, phonenumber, mobilenumber, emailaddress, emailsize, atsize,leaderName,leader,
 		       (SELECT deptname
 		          FROM xzbdept
 		         WHERE deptid = a.deptid) AS deptname, sex, LOCKED, remark
@@ -55,9 +55,9 @@
 		INSERT INTO xzbuser (
 		   userid, username, account, 
 		   password, sex, deptid, 
-		   locked, remark, usertype,enabled, post, phonenumber, mobilenumber, emailaddress, emailsize, atsize) 
+		   locked, remark, usertype,enabled, post, phonenumber, mobilenumber, emailaddress, emailsize, atsize,leader,leaderName) 
 		VALUES (#userid#, #username#, #account#, #password#, #sex#, #deptid#,
-		        #locked#,#remark#, #usertype#, #enabled#, #post#, #phonenumber#, #mobilenumber#, #emailaddress#, #emailsize#, #atsize# )
+		        #locked#,#remark#, #usertype#, #enabled#, #post#, #phonenumber#, #mobilenumber#, #emailaddress#, #emailsize#, #atsize#,#leader#,#leaderName# )
 	</insert>
 	
 	<!-- 保存用户附属信息 -->
@@ -128,6 +128,12 @@
 			</isNotNull>
 			<isNotNull prepend="," property="atsize">
 	         atsize = #atsize#
+			</isNotNull>
+			<isNotNull prepend="," property="leader">
+	         leader = #leader#
+			</isNotNull>
+			<isNotNull prepend="," property="leaderName">
+	         leaderName = #leaderName#
 			</isNotNull>
 		</dynamic> 
 	        WHERE userid = #userid#    

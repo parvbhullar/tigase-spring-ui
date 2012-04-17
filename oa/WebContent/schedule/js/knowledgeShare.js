@@ -40,8 +40,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
     onRender: function(ct, position){
 		Ext.ux.ItemSelector.superclass.onRender.call(this, ct, position);
 		
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
+		var docId="";//文档id
+		var DoclimitisType="";
 		//alert(docId);
 		//var depType=Ext.getCmp('depLimitis').getValue();
 		//var peopleType=Ext.getCmp('peopleLimitis').getValue();
@@ -398,8 +398,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 	saveRightTree:function()
 	{
 		this.roonodes = this.rightTree.getRootNode().childNodes;
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
+		var docId=""//Ext.getCmp('docId').getValue();//文档id
+		var DoclimitisType=""//Ext.getCmp('DoclimitisType').getValue();
 		
 		//var depType=Ext.getCmp('depLimitis').getValue();//部门类型
 		//var peopleType=Ext.getCmp('peopleLimitis').getValue();//人员类型
@@ -431,24 +431,14 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
             		
             		fieldsName=fieldsName+","+rootnode.text;
             	}
-            //alert(rootnode.text);
-            //if(rootnode.childNodes.length>0){  //判断子节点下是否存在子节点，个人觉得判断是否leaf不太合理，因为有时候不是leaf的节点也可能没有子节点
-                //findchildnode(rootnode);    //如果存在子节点  递归
-            //}    
+            
         }
+       Ext.getCmp('execfounder').setValue(fields);
+       Ext.getCmp('execfoundername').setValue(fieldsName);
+       
+       Ext.getCmp('selectPersonsWindow').close();
         
-				if(DoclimitisType=='0')
-					{
-						Ext.getCmp('selectDeps').setValue(fieldsName);
-						Ext.getCmp('selectDeptId').setValue(fields);
-						Ext.getCmp('selectDeptsWindow').hide();
-					
-					}else if(DoclimitisType=='1')
-						{
-							Ext.getCmp('selectPersons').setValue(fieldsName);
-							Ext.getCmp('selectPersonsId').setValue(fields);
-							Ext.getCmp('selectPersonsWindow').hide();
-						}
+        
         
 	}
 });

@@ -40,8 +40,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
     onRender: function(ct, position){
 		Ext.ux.ItemSelector.superclass.onRender.call(this, ct, position);
 		
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
+		var scheduleId=Ext.getCmp('scheduleId').getValue();//目录id
+		var DoclimitisType="";//Ext.getCmp('DirlimitisType').getValue();
 		//alert(docId);
 		//var depType=Ext.getCmp('depLimitis').getValue();
 		//var peopleType=Ext.getCmp('peopleLimitis').getValue();
@@ -82,8 +82,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 				dataUrl :'./k.xzb?reqCode=queryLimitis_',
 				 baseParams:
 				 {
-					 docId:docId,
-					 moduleType:'1',
+					 docId:scheduleId,
+					 moduleType:'0',
 					 DoclimitisType:DoclimitisType
 					
 				}
@@ -149,26 +149,12 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 		});
 
 
-		this.tbar1 = new Ext.Toolbar({
-			items : [ {
-						xtype:'button',
-						id:'saveButton',
-						text : '保存',
-						iconCls : 'page_addIcon',
-						handler : function() {
-							
-					
-						}
-			}]
-		});
-		
-
 		//this.toMultiselect.on('dblclick', this.onRowDblClick, this);
 				
 		var p = new Ext.Panel({
 			//bodyStyle:this.bodyStyle,
 			//border:this.border,
-			tbar:[this.tbar1],
+			//tbar:[this.tbar],
 			layout:"table",
 			layoutConfig:{columns:3}
 		});
@@ -200,7 +186,6 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			this.addIcon.on('click', this.fromTo, this);
 			this.removeIcon.on('click', this.toFrom, this);
 			this.saveIcon.on('click', this.saveRightTree, this);
-			Ext.getCmp('saveButton').on('click', this.saveRightTree, this);
 		}
 		if (!this.drawLeftIcon || this.hideNavIcons) { this.addIcon.dom.style.display='none'; }
 		if (!this.drawRightIcon || this.hideNavIcons) { this.removeIcon.dom.style.display='none'; }
@@ -398,21 +383,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 	saveRightTree:function()
 	{
 		this.roonodes = this.rightTree.getRootNode().childNodes;
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
-		
-		//var depType=Ext.getCmp('depLimitis').getValue();//部门类型
-		//var peopleType=Ext.getCmp('peopleLimitis').getValue();//人员类型
-		//var limitisType=Ext.getCmp('limitisType').getValue();//部门为1，人员为2
-		//var saveLimitisUrl=null;
-		//if(DoclimitisType=='0')
-		//	{
-		//	saveLimitisUrl='./k.xzb?reqCode=saveLimitisDept';
-			//}else if(DoclimitisType=='1')
-				//{
-				//	saveLimitisUrl='./k.xzb?reqCode=saveLimitisPerson';
-			//	}
-		
+		var docId=Ext.getCmp('scheduleId').getValue();//文档id
+		var DoclimitisType=Ext.getCmp('limitisType').getValue();
 		var fields = '';
 		var fieldsName='';
         for(var i=0;i<this.roonodes.length;i++){  //从节点中取出子节点依次遍历
@@ -431,26 +403,44 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
             		
             		fieldsName=fieldsName+","+rootnode.text;
             	}
-            //alert(rootnode.text);
-            //if(rootnode.childNodes.length>0){  //判断子节点下是否存在子节点，个人觉得判断是否leaf不太合理，因为有时候不是leaf的节点也可能没有子节点
-                //findchildnode(rootnode);    //如果存在子节点  递归
-            //}    
+          
         }
-        
+        Ext.Ajax.request({
+			url :'./k.xzb?reqCode=saveLimitisDept',
+			success : function(response) {
+				var resultArray = Ext.util.JSON
+						.decode(response.responseText);
+				
+			
 				if(DoclimitisType=='0')
 					{
 						Ext.getCmp('selectDeps').setValue(fieldsName);
-						Ext.getCmp('selectDeptId').setValue(fields);
-						Ext.getCmp('selectDeptsWindow').hide();
+						Ext.getCmp('selectDeptsWindow').close();
 					
 					}else if(DoclimitisType=='1')
 						{
 							Ext.getCmp('selectPersons').setValue(fieldsName);
-							Ext.getCmp('selectPersonsId').setValue(fields);
-							Ext.getCmp('selectPersonsWindow').hide();
+							Ext.getCmp('selectPersonsWindow').close();
 						}
+				Ext.Msg.alert('提示', resultArray.msg);
+			},
+			failure : function(response) {
+				var resultArray = Ext.util.JSON
+						.decode(response.responseText);
+				
+				Ext.Msg.alert('提示', resultArray.msg);
+				
+			},
+			params : {
+				fields :fields,
+				docId:docId,
+				fieldsName:fieldsName,
+				moduleType:'2',
+				DoclimitisType:DoclimitisType
+			}
+		});
         
 	}
 });
 
-Ext.reg("knowledgeShare", Ext.ux.ItemSelector);
+Ext.reg("knowledgeShare_", Ext.ux.ItemSelector);

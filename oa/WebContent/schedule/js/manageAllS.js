@@ -38,15 +38,69 @@ Ext.onReady(function() {
 										defaultType : 'textfield',
 										border : false,
 										items : [{
-													fieldLabel : '提交人', // 标签
-													id : 'schefounder',
-													name : 'schefounder', // name:后台根据此name属性取值
+													fieldLabel : '执行人', // 标签
+													id : 'execfoundername',
+													name : 'execfoundername', // name:后台根据此name属性取值
 													// 添加一个监听事件
-//													listeners : {
-//														'focus' : function(obj) {
-//													personAddInit();
-//														}
-//													},
+													listeners : {
+														focus : function() {
+															var formItemSelector = new Ext.Panel({ 
+																labelWidth: 3,
+																width:600,
+																items:[{
+																	xtype:"knowledgeShare",
+																	name:"itemselector",
+																	fieldLabel:"",
+																	msWidth:250,
+																	msHeight:450,
+																	valueField:"id",
+																	displayField:"text",
+																	leftTreeRoot:'雪中豹集成与开发平台',
+																	leftTreeId:'001',
+																	imagePath:"./knowledge/js",
+																	//switchToFrom:true,
+																	toLegend:"权限列表",
+																	fromLegend:"选择权限",
+																	dataUrl : './organization.xzb?reqCode=departmentTreeInit_',//部门树初始化
+																	saveLimitisUrl:''//保存的路径
+																	
+																}]
+															});
+															
+															var test=new Ext.Window({
+																layout : 'fit',
+																id:'selectPersonsWindow',
+																width : 500,
+																height : 500,
+																resizable : false,
+																draggable : true,
+																closeAction : 'close',
+																title : '<span class="commoncss">人员分配</span>',
+																// iconCls : 'page_addIcon',
+																modal : true,
+																collapsible : true,
+																titleCollapse : true,
+																maximizable : false,
+																buttonAlign : 'right',
+																border : false,
+																animCollapse : true,
+																pageY : 20,
+																pageX : document.body.clientWidth / 2 - 420 / 2,
+																animateTarget : Ext.getBody(),
+																constrain : true,
+																items : [formItemSelector],
+																buttons : [{
+																	text : '关闭',
+																	iconCls : 'deleteIcon',
+																	handler : function() {
+																		test.close();
+																	}
+																}]
+																
+															});
+															test.show();
+														}
+													},
 													anchor : '100%' // 宽度百分比
 												}]
 									}, {
@@ -110,7 +164,12 @@ Ext.onReady(function() {
 								labelWidth : 60, // 标签宽度
 								defaultType : 'textfield',
 								border : false,
-								items : []
+								items : [{
+									id : 'execfounder',
+									name : 'execfounder',
+									anchor : '100%',
+									hidden : true
+								}]
 							}]
 						}],
 
@@ -137,8 +196,8 @@ Ext.onReady(function() {
 
 			// 定义列模型
 			var cm = new Ext.grid.ColumnModel([new Ext.grid.RowNumberer(),{
-				header : '提交人',
-				dataIndex : 'schefounder',
+				header : '执行人',
+				dataIndex : 'execfounder',
 				sortable : true
 			}, {
 				header : '标题',
@@ -181,7 +240,7 @@ Ext.onReady(function() {
 									totalProperty : 'TOTALCOUNT', // 记录总数
 									root : 'ROOT' // Json中的列表数据根节点
 								}, [{
-											name : 'schefounder'
+											name : 'execfounder'
 										}, {
 											name : 'schetitle'
 										}, {
@@ -420,7 +479,7 @@ Ext.onReady(function() {
 					}
 				}]
 			});
-			
+	
 	
 			
 			/**
@@ -491,12 +550,4 @@ Ext.onReady(function() {
 			}
 			
 						
-			/**
-			 * 选择人员初始化
-			 */
-			function personAddInit() {
-				addScheWindow.show();
-				addScheWindow.setTitle('<span class="commoncss">选择人员</span>');
-			}
-
 		});

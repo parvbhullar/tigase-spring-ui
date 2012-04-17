@@ -2,6 +2,7 @@
 <%@ include file="/common/include/taglib.jsp"%>
 <eRedG4:html title="人员管理与授权">
 <eRedG4:import src="/arm/js/manageUser.js"/>
+<eRedG4:import src="/arm/js/managerUserLeader.js"/>
 <eRedG4:ext.codeRender fields="SEX,LOCKED,USERTYPE,POSTTYPE"/>
 <eRedG4:ext.codeStore fields="SEX,LOCKED,USERTYPE,POSTTYPE"/>
 <eRedG4:body>

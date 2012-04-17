@@ -412,19 +412,22 @@ public class KAction extends BaseAction {
 		dto.put("moduleType", "1");//文档的权限标志位为1
 		G4RoleLimitis g1=new G4RoleLimitis();
 		List newDeptList=g1.FilterRoleLimitis(userList,dto);
-		
-		for(int i=0;i<newDeptList.size();i++)
+		if(!G4Utils.isEmpty(newDeptList))
 		{
-			Dto d=(BaseDto)newDeptList.get(i);	
-			if(!G4Utils.isEmpty(d.get("doccontent")))
+			for(int i=0;i<newDeptList.size();i++)
 			{
-				byte[] b=(byte[])d.get("doccontent");				
-				String a=new String(b,"utf-8");
-				d.put("doccontent", a);
+				Dto d=(BaseDto)newDeptList.get(i);	
+				if(!G4Utils.isEmpty(d.get("doccontent")))
+				{
+					byte[] b=(byte[])d.get("doccontent");				
+					String a=new String(b,"utf-8");
+					d.put("doccontent", a);
+				}
 			}
 		}
+		
 		Integer pageCount = (Integer) g4Reader.queryForObject("K.queryDocsForManageForPageCount", dto);
-		String jsonString = JsonHelper.encodeList2PageJson(newDeptList, pageCount, null);
+		String jsonString = JsonHelper.encodeList2PageJson(newDeptList, newDeptList.size(), null);
 		write(jsonString, response);
 		return mapping.findForward(null);
 	}

@@ -2,7 +2,7 @@
 
 Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 	msWidth:200,
-	msHeight:600,
+	msHeight:400,
 	hideNavIcons:false,
 	imagePath:null,//图片路径
 	iconLeft:"left2.gif",
@@ -40,8 +40,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
     onRender: function(ct, position){
 		Ext.ux.ItemSelector.superclass.onRender.call(this, ct, position);
 		
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
+		var docId="";//文档id
+		var DoclimitisType="";//Ext.getCmp('DoclimitisType').getValue();
 		//alert(docId);
 		//var depType=Ext.getCmp('depLimitis').getValue();
 		//var peopleType=Ext.getCmp('peopleLimitis').getValue();
@@ -130,45 +130,18 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			text:'保存',
 			iconCls : 'page_addIcon'
 		});
-		/**
-		 * {
-						xtype:'button',
-						text : '保存',
-						iconCls : 'page_addIcon',
-						listeners:{
-							'click':this.saveRightTree
-							
-						}
-						
-			}
-		 */
-		this.tbar = new Ext.Toolbar({
-			items : [this.b
-			         
-			         ]
-		});
-
-
-		this.tbar1 = new Ext.Toolbar({
-			items : [ {
-						xtype:'button',
-						id:'saveButton',
-						text : '保存',
-						iconCls : 'page_addIcon',
-						handler : function() {
-							
-					
-						}
-			}]
-		});
 		
+		this.tbar = new Ext.Toolbar({
+			items : [this.b]
+		});
+
 
 		//this.toMultiselect.on('dblclick', this.onRowDblClick, this);
 				
 		var p = new Ext.Panel({
 			//bodyStyle:this.bodyStyle,
 			//border:this.border,
-			tbar:[this.tbar1],
+			//tbar:[this.tbar],
 			layout:"table",
 			layoutConfig:{columns:3}
 		});
@@ -200,7 +173,6 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 			this.addIcon.on('click', this.fromTo, this);
 			this.removeIcon.on('click', this.toFrom, this);
 			this.saveIcon.on('click', this.saveRightTree, this);
-			Ext.getCmp('saveButton').on('click', this.saveRightTree, this);
 		}
 		if (!this.drawLeftIcon || this.hideNavIcons) { this.addIcon.dom.style.display='none'; }
 		if (!this.drawRightIcon || this.hideNavIcons) { this.removeIcon.dom.style.display='none'; }
@@ -398,8 +370,8 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
 	saveRightTree:function()
 	{
 		this.roonodes = this.rightTree.getRootNode().childNodes;
-		var docId=Ext.getCmp('docId').getValue();//文档id
-		var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
+		var docId=""//Ext.getCmp('docId').getValue();//文档id
+			//var DoclimitisType=Ext.getCmp('DoclimitisType').getValue();
 		
 		//var depType=Ext.getCmp('depLimitis').getValue();//部门类型
 		//var peopleType=Ext.getCmp('peopleLimitis').getValue();//人员类型
@@ -431,26 +403,15 @@ Ext.ux.ItemSelector = Ext.extend(Ext.Panel,  {
             		
             		fieldsName=fieldsName+","+rootnode.text;
             	}
-            //alert(rootnode.text);
-            //if(rootnode.childNodes.length>0){  //判断子节点下是否存在子节点，个人觉得判断是否leaf不太合理，因为有时候不是leaf的节点也可能没有子节点
-                //findchildnode(rootnode);    //如果存在子节点  递归
-            //}    
+            
         }
+      Ext.getCmp('exppeople').setValue(fieldsName);
+      Ext.getCmp('exppeopleId').setValue(fields);
+      Ext.getCmp('extPeopleWindow').close();
         
-				if(DoclimitisType=='0')
-					{
-						Ext.getCmp('selectDeps').setValue(fieldsName);
-						Ext.getCmp('selectDeptId').setValue(fields);
-						Ext.getCmp('selectDeptsWindow').hide();
-					
-					}else if(DoclimitisType=='1')
-						{
-							Ext.getCmp('selectPersons').setValue(fieldsName);
-							Ext.getCmp('selectPersonsId').setValue(fields);
-							Ext.getCmp('selectPersonsWindow').hide();
-						}
+        
         
 	}
 });
 
-Ext.reg("knowledgeShare", Ext.ux.ItemSelector);
+Ext.reg("scheduleShare", Ext.ux.ItemSelector);
