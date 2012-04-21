@@ -1,0 +1,46 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; font-size: 13px; }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q {	quotes: none; }
+blockquote:before, blockquote:after,q:before, q:after { content: ''; content: none; }
+:focus { outline: 0; }
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+table { border-collapse: collapse; border-spacing: 0; }
+article, aside, footer, header, hgroup, nav, section { display: block; }
+a { border: none; text-decoration: none; }
+#iframe { margin: 0; padding: 0; float: left; }
+#frame { width: 100%; height: 59px; float: left; margin: 0; padding: 0; background-image: url(images/bg.jpg); background-color: #485d78; }
+ 	#inside { margin: auto; width: 960px; margin-top: 13px;  }
+		#jointext { display: block; float: right; font-family: Georgia; font-style: italic; text-shadow: 1px 1px 0px #1c3553; color: #fff; font-size: 15px; margin-top: 7px; margin-right: 20px; }
+ 		#logo { float: left; margin-top: 3px; }
+		#join { float: right; margin-right: 20px; }
+		#close { float: right; margin-top: 5px; }
+		#switcher { float: right; margin-right: 40px; position: relative; }
+				#field { height: 24px; width: 233px; background-image: url(images/dropdown.png); cursor: pointer; color: #424242; font-family: Georgia; font-style: italic; padding: 8px 0 0 13px;}
+				#dropdown { display: none; position: absolute; top: 33px; width: 242px; height: 237px; overflow: hidden; background-color: #e8eff7; -webkit-box-shadow: 0px 0px 6px rgba(0,0,0,0.3); border: 1px solid #becddf; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;}
+				#dropdowninside {-webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; border-top: 1px solid #fff; border-left: 1px solid #fff; width: 241px; height: 252px; overflow: scroll; }
+				#dropdowninside ul { list-style: none; display: block; float: left; }
+				#dropdowninside ul li { list-style: none; display: block; float: left; border-top: 1px solid #f8fafc; }
+				#dropdowninside ul li a { background-image: url(images/zoom.png); background-repeat: no-repeat; background-position: 10px 10px; padding: 8px 0 0px 30px; width: 212px; height: 24px; display: block; float: left; font-family: Georgia; color: #8fa0b3; text-shadow: 1px 1px 0px #fff; font-style: italic; border-bottom: 1px solid #c9d6e7; }
+				#dropdowninside ul li a:hover { background-color: #dde7f1; color: #798594; }
+				
+				
+.theme-item-wrap { float: left; margin-right: 25px; margin-left: 25px; margin-bottom: 70px; position: relative; }
+.theme-item-wrap h2 { font-size: 22px; font-style: italic; text-align: center; clear: both; padding-bottom: 5px;}
+.theme-item-wrap a img { border: none; box-shadow: 0px 0px 5px #bebebe; -moz-box-shadow: 0px 0px 5px #bebebe; -webkit-box-shadow: 0px 0px 5px #bebebe; }
+.theme-item-wrap div { position: absolute; top: 216px; left: -2px; background-image: url(../images/gallery2-button.png); width: 258px; height: 45px; }
+.theme-item-wrap div a { font-family: Gerogia; color: #fff; display: block; width: 38px; height: 30px; float: left; padding: 8px 0 0 65px; font-style: italic; font-size: 14px; -moz-text-shadow: 1px 1px 0px #0a454e; -webkit-text-shadow: 1px 1px 0px #0a454e; text-shadow: 1px 1px 0px #0a454e; }
+.theme-item-wrap div a.theme-item-link-two { padding: 8px 0 0 60px; width: 33px; }
+.theme-item-wrap div a:hover { color: #fef2a3; }
+.gallery-hover { z-index: 40; position: absolute; background: #fff; padding: 8px; -webkit-border-radius: 8px; -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25); -moz-border-radius: 8px; -moz-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25); border: none; visibility: hidden; left:-9999px; top:0px;}
+#page_link_wrap { margin: 30px 0px 35px 250px;  }
+body { overflow: hidden; }
+#iframe body { overflow: auto; }
