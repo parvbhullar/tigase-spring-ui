@@ -1,5 +1,0 @@
- <c:if test="${not empty param.value}">
- <div class="wrBox"  name="_errorinfo">
- <div  class="wr" >${param.value}</div>
-</div>
-</c:if>

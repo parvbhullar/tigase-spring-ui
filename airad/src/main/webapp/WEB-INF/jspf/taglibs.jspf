@@ -1,6 +1,0 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="/WEB-INF/tags/c.tld"%>
-<%@ taglib prefix="fn" uri="/WEB-INF/tags/fn.tld"%>
-<%@ taglib prefix="fmt" uri="/WEB-INF/tags/fmt.tld"%>
-<%@ taglib prefix="airad" uri="http://www.airad.com/tlds/airad-html-common"%>
-<%@ taglib prefix="el" uri="/WEB-INF/tags/elfuncs.tld"%>
